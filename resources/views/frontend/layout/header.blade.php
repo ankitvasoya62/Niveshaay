@@ -19,7 +19,7 @@
 		<div class="container">
 			<div class="header-wrapper">
 				<div class="logo-wrapper">
-					<a class="site-logo" href="#" title="Logo">
+					<a class="site-logo" href="{{route('frontend.home')}}" title="Logo">
 						<img src="{{url('images/logo.png')}}" alt="Site- Logo">
 					</a>
 				</div>

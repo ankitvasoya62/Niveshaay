@@ -65,12 +65,12 @@
               </li>
             </ul> --}}
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="{{ route('admin.showchangepassword')}}" class="nav-link @if($active =='change-password') active @endif">
               <i class="fas fa-key nav-icon"></i>
               <p>Change Password</p>
             </a>
-          </li>
+          </li> --}}
           <li class="nav-item">
                 <a href="{{route('admin.admin-users')}}" class="nav-link @if($active =='admin') active @endif">
                   <i class="fas fa-users nav-icon"></i>

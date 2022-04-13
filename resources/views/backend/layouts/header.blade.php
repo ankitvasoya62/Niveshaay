@@ -30,26 +30,28 @@
             <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto" style="margin-left:10px;">
         <div id="google_translate_element"></div>
-        {{-- <li class="nav-item dropdown">
+        <li class="nav-item dropdown">
 
-            <a type="text" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="icon-user"> <i class="fas fa-user"></i></span>
+            <a href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">
+                <span class="icon-user"> Welcome, {{Auth::user()->name}}</span>
             </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a href="{{ route('admin.showchangepassword')}}" class="dropdown-item">
-                    <i class="fas fa-key nav-icon"></i> Change Password
-                </a>
-                <a href="" class="dropdown-item">
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width: 100%">
+                <li>
+                    <a href="{{ route('admin.showchangepassword')}}" class="dropdown-item @if($active =='change-password') active @endif">
+                        <i class="fas fa-key nav-icon"></i> Change Password
+                    </a>
+                </li>
+                {{-- <a href="" class="dropdown-item">
                     <form action="{{route('logout')}}" method="POST">
                         @csrf
                         <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt nav-icon"></i> Logout</button>
                     </form>
-                </a>
-            </div>
-        </li> --}}
-        <li class="nav-item">
-            <span>Welcome, {{Auth::user()->name}}</span>
+                </a> --}}
+            </ul>
         </li>
+        {{-- <li class="nav-item">
+            <span>Welcome, {{Auth::user()->name}}</span>
+        </li> --}}
     </ul>
 </nav>
         <!-- /.navbar -->

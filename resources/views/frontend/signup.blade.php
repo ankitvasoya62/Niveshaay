@@ -62,7 +62,7 @@
                           </div>
                           <div class="form-group form-btn-wrapper">
                             <button type="submit" class="btn btn-border">Sign Up</button>
-                            <button type="submit" class="btn btn-border login-link" data-link="login-modal">Login</button>
+                            <button type="button" class="btn btn-border login-link" onclick=location.href='{{ route("frontend.home")}}'>Cancel</button>
                           </div>                
                         </div>
                       </form>

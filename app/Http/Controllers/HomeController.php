@@ -37,12 +37,12 @@ class HomeController extends Controller
     }
 
     public function changepassword(Request $request){
-        if (!(Hash::check($request->get('current_password'), Auth::user()->password))) {
-            // The passwords matches
-            return redirect()->back()->with("error","Your current password does not matches with the password.");
-        }
+        // if (!(Hash::check($request->get('current_password'), Auth::user()->password))) {
+        //     // The passwords matches
+        //     return redirect()->back()->with("error","Your current password does not matches with the password.");
+        // }
         $this->validate($request,[
-            'current_password'=>'required',
+            // 'current_password'=>'required',
             'password'=>'required|min:8|confirmed'
             
             

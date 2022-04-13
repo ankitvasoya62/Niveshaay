@@ -67,14 +67,14 @@
                             <label for="pincode"> Pincode<span class="red-text">*</span></label>
                             <input id="pincode" name="pin_code" type="text" class="form-control" placeholder="Enter Pincode ">		                    
                             @error('pin_code')
-                                <span>{{ $message }}</span>
+                                <span class="error">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group half-width">
                             <label for="pan-num"> Please provide your PAN NO<span class="red-text">*</span></label>
                             <input id="pan-num" name="pan_no" type="text" class="form-control" placeholder="Enter PAN No. ">		                    
                             @error('pan_no')
-                                <span>{{ $message }}</span>
+                                <span class="error">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group has-radio-group">

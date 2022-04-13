@@ -45,13 +45,13 @@
                         </div>
                         <form id="quickForm" method="POST" action="{{route('admin.changepassword')}}" enctype="multipart/form-data">@csrf
                         <div class="card-body">
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="current_password">Current Password</label>
                                 <input type="password" name="current_password" id="current_password" class="form-control">
                                 @error('current_password')
                                     <span class="error">{{ $message }}</span>
                                 @enderror
-                            </div>
+                            </div> --}}
                             <div class="form-group">
                                 <label for="password">New Password</label>
                                 <input type="password" name="password" id="password" class="form-control">

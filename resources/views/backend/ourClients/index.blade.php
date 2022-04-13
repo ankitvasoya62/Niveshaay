@@ -49,7 +49,7 @@
                                             <th style="width: 5%">SR No</th>
                                             <th style="width: 10%">Client Name</th>
                                             <th>Client Description</th>
-                                            <th>Client Image</th>
+                                            {{-- <th>Client Image</th> --}}
                                             <th style="width: 15%">Client Designation</th>
                                             <th>Action</th>
                                             
@@ -62,7 +62,7 @@
                                             <td>{{++$i}}</td>
                                             <td>{{ $client->client_name }}</td>
                                             <td>{{ Str::limit($client->client_description,50,'...') }}</td>
-                                            <td><img src="{{ asset('images/clients/'.$client->client_image)}}"></td>
+                                            {{-- <td><img src="{{ asset('images/clients/'.$client->client_image)}}"></td> --}}
                                             <td>{{ $client->client_designation }}</td>
                                             {{-- <td>{{date("d-m-Y", strtotime($share->created_at)) }}</td>
                                             <td>{{date("d-m-Y", strtotime($share->updated_at))}}</td> --}}
