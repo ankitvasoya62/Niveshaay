@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 @endpush
 @section('content')
+
 <div class="home-page-banner">
 	<section class="home-page-banner-section">
 		<!-- <div class="nivehshaay-container"></div> -->
