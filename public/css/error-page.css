@@ -1,0 +1,12 @@
+.error-page { text-align: center; }
+.error-page.niveshaay-section-paddding { padding-top: 50px; }
+.error-page .container { padding: 0 15px; }
+.error-page h1 { font-size: 180px; color: #83b645; line-height: 1; font-weight: bold; margin-bottom: 40px; }
+.error-page h2 { font-size: 46px; line-height: 1.2; margin-bottom: 30px; }
+.error-page p { font-size: 22px; line-height: 1.5; }
+.error-page .btn-green { margin-top: 30px; text-transform: uppercase; }
+@media screen and (max-width:991px) {
+    .error-page h1 { font-size: 100px; margin-bottom: 30px; }
+    .error-page h2 { font-size: 42px; }
+    .error-page.niveshaay-section-paddding { padding-top: 30px; }
+}

@@ -1,0 +1,41 @@
+.research-page-banner-section {position:relative;display:flex;align-items:center;justify-content:center;padding-bottom: 38.3%;}
+.research-page-banner-section .container{position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);width:100%;    max-width: 1220px;
+    padding: 0 30px;
+    margin: 0 auto;}
+.research-page-banner-section img {position:absolute;left:0;top:0;height:100%;width:100%;z-index:0;object-fit:cover;}
+.research-page-banner-section h1 {font-size:55px;color:#FFF;text-align:center;font-weight:bold;}
+.research-page-wrapper {padding:50px 0 60px;}
+.research-page-wrapper .container {max-width:100%;padding:0 50px;}
+.research-page-wrapper .research-inner + .research-inner {margin-top:50px;}
+.research-page-wrapper .research-inner h2 {font-size:26px;font-weight:bold;margin-bottom:20px;}
+.research-page-wrapper .research-image-grid {display:flex;margin:0 -15px -30px;flex-wrap:wrap;}
+.research-page-wrapper .research-image-grid .research-item {flex:0 0 16.66%;max-width:16.66%;padding:0 15px 30px;}
+.research-page-wrapper .research-image-grid .research-item .research-item-inner{box-shadow:0 0 20px 0 rgba(0, 0, 0, 0.16);background-color:#fff;display:flex;justify-content:center;align-items:center;height:150px;padding:15px;}
+.research-page-wrapper .research-image-grid .research-item .research-item-inner img{max-height: 120px;widht:auto;}
+
+/*media-css*/
+@media (max-width:1440px) {
+    .research-page-wrapper .research-image-grid .research-item {flex:0 0 20%;max-width:20%;}
+}
+@media (max-width:1199px) {
+    .research-page-wrapper .container {padding:0 30px;}
+    .research-page-wrapper {padding:50px 0;}
+    .research-page-wrapper .research-image-grid .research-item {flex:0 0 25%;max-width:25%;}
+}
+@media (max-width:991px) {
+    .research-page-wrapper .research-image-grid .research-item {flex:0 0 33.33%;max-width:33.33%;padding:0 15px 30px;}
+    .research-page-wrapper .research-image-grid .research-item .research-item-inner {padding:15px;min-height:120px;}
+}
+@media (max-width:767px) {
+    .research-page-banner-section {min-height:200px;}
+    .research-page-banner-section h1 {font-size:45px;}
+    .research-page-wrapper .container {padding:0 15px;}
+    .research-page-wrapper .research-inner h2 {font-size:22px;}
+}
+@media (max-width:575px) {
+    .research-page-banner-section h1 {font-size:34px;}
+    .research-page-wrapper .research-image-grid .research-item {flex:0 0 50%;max-width:50%;}
+}
+@media (max-width:375px) {
+    .research-page-wrapper .research-image-grid .research-item {flex:0 0 100%;max-width:100%;}
+}

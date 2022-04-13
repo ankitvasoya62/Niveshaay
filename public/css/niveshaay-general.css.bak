@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+@import "slick-theme.css";
+@import "slick.css";
+@import "aos.css";
+@import "blog-landing.css";
+@import "contact-page.css";
+@import "header.css";
+@import "error-page.css";
+@import "home-page.css";

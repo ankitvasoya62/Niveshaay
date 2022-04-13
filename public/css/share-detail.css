@@ -1,0 +1,101 @@
+body.share-detail-page .niveshaay-header { box-shadow: 0 0 10px rgba(0, 0, 0, .12); }
+.share-detail-page-wrapper { padding: 98px 0 50px; }
+.share-detail-title-wrapper { text-align: center; margin-bottom: 44px; }
+.share-detail-title-wrapper .borosil-logo { display: block; width: 188px; height: auto; margin: 0 auto 26px; }
+.share-detail-title-wrapper h1.heading-title.niveshaay-section-title { font-size: 60px; margin-bottom: 15px !important; }
+.share-detail-title-wrapper h1 span { display: block; }
+.date-wrapper { display: flex; justify-content: center; }
+.date-wrapper li + li:before { content: ''; position: absolute; background: #888; height: 30px; width: 2px; left: 0; top: 8px; }
+.date-wrapper li { padding: 0 15px; display: inline-block; font-family: 'Open Sans', sans-serif; font-size: 25px; font-weight: normal; line-height: 1.82; color: #888; position: relative; }
+.date-wrapper li + li { padding-left: 20px; }
+.date-wrapper li .icon { background-color: transparent; color: #83b645; width: auto; height: auto; border-radius: 0; transition: all 0.3s; }
+.date-wrapper li .icon:hover { color: #83b645; }
+.date-wrapper li .bookmark-hover { display: none; }
+.date-wrapper li .icon:hover .bookmark { display: none; }
+.date-wrapper li .icon:hover .bookmark-hover { display: inline-block; }
+.date-wrapper li .icon .fa-bookmark { font-size: 24px; }
+.date-wrapper li .icon .bookmark:before,
+.date-wrapper li .icon .bookmark-hover:before { content: '\f02e'; }
+.share-detail-content-wrapper .share-detail-content-inner { display: flex; }
+.share-detail-content-wrapper .cms-page-content { flex: 0 0 calc(100% - 395px); max-width: calc(100% - 395px); }
+.share-detail-content-wrapper .share-detail-right-col { flex: 0 0 395px; max-width: 395px; padding-left: 34px; }
+
+/*.share-detail-right-col*/
+.share-detail-right-col .data-wrapper + .data-wrapper { margin-top: 28px; }
+.share-detail-right-col .data-wrapper { box-shadow: 0 0 20px 0 rgba(74, 121, 18, 0.15); border: solid 1px #e1e1e1; background-color: #f9f9f9; padding: 25px 26px; }
+.share-detail-right-col .data-wrapper h2 { font-size: 24px; font-weight: 600; line-height: 0.92; color: #3b3b3b; margin-bottom: 15px; }
+.share-detail-right-col .data-wrapper ul li + li { margin-top: 8px; }
+.share-detail-right-col .data-wrapper ul li { display: flex; font-family: 'Open Sans', sans-serif; color: #3b3b3b; line-height: 1.75; }
+.share-detail-right-col .data-wrapper ul li .data-title,
+.share-detail-right-col .data-wrapper ul li .data-content { flex: 0 0 50%; max-width: 50%; }
+.share-detail-right-col .data-wrapper ul li .data-content { padding-left: 10px; }
+.share-detail-right-col .data-wrapper .data-wrapper-inner span { display: block; font-family: 'Open Sans', sans-serif; color: #3b3b3b; line-height: 1.75; }
+.share-detail-right-col .data-wrapper .data-wrapper-inner a.email-id-link { color: #83b645; position: relative; padding-left: 25px; font-family: 'Open Sans', sans-serif; }
+.share-detail-right-col .data-wrapper .data-wrapper-inner a.email-id-link:before { content: ''; position: absolute; background-image: url('../images/email-green.svg'); background-position: center; background-size: cover; width: 19px; height: 13px; left: 0; top: 6px; }
+
+/*.cms-page-content*/
+.cms-page-content em { display: block; margin-bottom: 44px; color: #3b3b3b; font-family: 'Open Sans', sans-serif; font-style: normal; }
+.cms-page-content h2 { font-size: 22px; font-weight: 600; line-height: 1; color: #3b3b3b; margin-bottom: 25px; font-family: "Playfair Display", serif; }
+.cms-page-content h3 { font-family: 'Open Sans', sans-serif; font-size: 18px; font-weight: 700; line-height: 1.22; color: #3b3b3b; margin-bottom: 25px; }
+.cms-page-content h4,
+.cms-page-content h5,
+.cms-page-content h6 { font-family: 'Open Sans', sans-serif; font-size: 16px; font-weight: 700; line-height: 1.22; color: #3b3b3b; margin-bottom: 25px; }
+.cms-page-content ul { margin-bottom: 25px; }
+.cms-page-content ol { margin-bottom: 25px; padding-left: 20px; list-style: decimal; }
+.cms-page-content ul li { position: relative; padding-left: 18px; font-size: 16px; line-height: 1.38; color: #3b3b3b; font-family: 'Open Sans', sans-serif; }
+.cms-page-content ol li { font-size: 16px; line-height: 1.38; color: #3b3b3b; font-family: 'Open Sans', sans-serif; }
+.cms-page-content ul li + li,
+.cms-page-content ol li + li { margin-top: 15px; }
+.cms-page-content ul li:before { content: ''; position: absolute; background: #83b645; border-radius: 50%; left: 7px; top: 9px; width: 5px; height: 5px; }
+.cms-page-content ul li ul { margin-top: 15px; }
+.cms-page-content ol li ul { margin-top: 15px; padding-left: 0; }
+.cms-page-content ol li ol { margin-top: 15px; }
+.cms-page-content ul li ol { margin-top: 15px; }
+.cms-page-content p { font-size: 16px; font-weight: normal; line-height: 1.75; color: #3b3b3b; margin-bottom: 25px; }
+.cms-page-content p span { font-size: 16px; font-weight: normal; line-height: 1.75; color: #3b3b3b; }
+.cms-page-content p a { font-size: 16px; font-weight: normal; line-height: 1.75; color: #3b3b3b; display: inline-block; color: #83b645; }
+.cms-page-content p a:hover { color: #3b3b3b; }
+.cms-page-content h2.has-green-title { color: #83b645; }
+.cms-page-content img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cms-page-content .cms-border-box { border: solid 1px #bcbcbc; padding: 25px; }
+.cms-page-content .cms-border-box p{margin: 0;}
+.cms-page-content .cms-border-box p+p{margin-top: 25px;}
+.summer-note-content table td, table th {
+    border: 1px solid #dee2e6;
+}
+.summer-note-content table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    background-color: transparent;
+}
+.summer-note-content table td, table th {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+/*media-css*/
+@media screen and (max-width:991px) {
+    .share-detail-padding { padding: 60px 0 50px; }
+    .share-detail-title-wrapper { margin-bottom: 20px; }
+    .share-detail-title-wrapper .borosil-logo { margin: 0 auto 20px; }
+    .share-detail-title-wrapper h1.heading-title.niveshaay-section-title { font-size: 40px; margin-bottom: 20px !important; }
+    .share-detail-content-wrapper .share-detail-content-inner { flex-wrap: wrap; }
+    .share-detail-content-wrapper .share-detail-left-col { flex: 0 0 100%; max-width: 100%; }
+    .cms-page-content em img { width: 100%; }
+    .share-detail-content-wrapper .share-detail-right-col { flex: 0 0 100%; max-width: 100%; padding: 0; }
+    .cms-page-content em,
+    .cms-page-content h2,
+    .cms-page-content ul,
+    .cms-page-content p { margin-bottom: 20px; }
+    .cms-page-content h3 { margin-bottom: 20px; }
+    .share-detail-right-col .data-wrapper + .data-wrapper { margin-top: 20px; }
+    .cms-page-content .cms-border-box { margin-bottom: 20px; }
+    .cms-page-content .cms-border-box p+p{margin-top: 20px;}
+}
+@media screen and (max-width:767px) {
+    .share-detail-title-wrapper h1.heading-title.niveshaay-section-title { font-size: 30px; }
+    .share-detail-page-wrapper { padding: 50px 0; }
+    .date-wrapper li { font-size: 22px; }
+    .date-wrapper li + li:before { height: 25px; }
+}

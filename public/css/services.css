@@ -1,0 +1,115 @@
+.services-tabbing-section { padding:100px 0;}
+.services-tabbing-section .tab-heading-block { display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;border-bottom:1px solid rgba(49,49,49,0.1);}
+.services-tabbing-section .tab-heading-block > li { transition:0.5s all;height:100%;position:relative;}
+.services-tabbing-section .service-tab-wrapper .tab-inner-detail h2 { color:#000;font-size:20px;font-weight:700; margin-bottom: 10px;}
+.services-tabbing-section .tab-heading-block li>a { font-size:20px;font-weight:bold;line-height:1.1;padding:30px 22px;transition:0.5s all;display:inline-block;color:#000;width:100%;position:relative;text-align:center;}
+.services-tabbing-section .tab-heading-block li a .down-arrow-icon { display:none;position:absolute;right:20px;top:50%;transform:translateY(-50%);width:20px;height:20px;}
+.services-tabbing-section .tab-heading-block li.active > a { background-color:#84b645;color:#fff;border-top-left-radius:4px;border-top-right-radius:4px;}
+.services-tabbing-section .tab-heading-block a em { position:relative;min-height:64px;display:flex;justify-content:center;margin-bottom:17px;}
+.services-tabbing-section .tab-heading-block a img { position:absolute;transition:0.5s all;}
+.services-tabbing-section .tab-heading-block a .tab-icon { opacity:1;visibility:visible;}
+.services-tabbing-section .tab-heading-block li.active .tab-icon-hover { opacity:1;visibility:visible;}
+.services-tabbing-section .tab-heading-block li.active .tab-icon { opacity:0;visibility:hidden;}
+.services-tabbing-section .tab-heading-block li.active>a { color:#fff;}
+.services-tabbing-section .tab-heading-block a .tab-icon-hover { opacity:0;visibility:hidden;}
+.services-tabbing-section .list-catagory-section { padding:0;}
+.services-tabbing-section .tab-content-block .tab-content-inner { display:none;}
+.services-tabbing-section .tab-content-block .tab-content-inner.active { display:block;}
+.services-tabbing-section .service-tab-wrapper .tab-inner-detail p { margin-bottom:10px;}
+.services-tabbing-section .service-tab-wrapper .tab-inner-detail p,.services-tabbing-section .service-tab-wrapper .tab-inner-detail ul li, .services-tabbing-section .service-tab-wrapper .tab-inner-detail~p { color:#222121;line-height:1.75;font-weight:normal;}
+.services-tabbing-section ul.green-dot-listing li + li { margin-top:10px;}
+.services-tabbing-section ul.green-dot-listing { margin-bottom:10px;}
+.services-tabbing-section .tab-inner-detail ul li { font-family:'Open Sans',sans-serif;}
+.services-tabbing-section ul.green-dot-listing li span { color:#84b645;}
+.services-tabbing-section ul.green-dot-listing ol { list-style-type:lower-roman;}
+.services-tabbing-section ul.green-dot-listing ol li:before,.services-tabbing-section ul.green-dot-listing ul li:before { content:none;}
+.services-tabbing-section .service-tab-wrapper p.has-different-style { font-style:italic;text-align:center;color:#000;margin:10px 0 0;}
+.services-tabbing-section .service-tab-wrapper p.has-different-style a { text-decoration:underline;color:#84b645;}
+.services-tabbing-section .list-inner-wrapper { opacity: 0; height: 466px; transition: 0.5s all;}
+.services-tabbing-section .niveshaay-pick-smallcase .smallcase-grid { opacity: 0; height: 605px; transition: 0.5s all;}
+.services-tabbing-section .tab-content-inner.opacity .list-inner-wrapper{ opacity: 1; height: auto;}
+.services-tabbing-section .tab-content-inner.opacity.niveshaay-pick-smallcase .smallcase-grid { opacity: 1; height: auto;}
+
+.services-tabbing-section p.subscription-fees-text{
+    position: relative;
+    max-width: 503px;
+    margin: 22px auto 0;
+    text-align: center;
+    background-color: #f8f8f8;
+    padding: 13px 15px 17px 30px;
+    border: 1px solid #e1e1e1;
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 20px;
+    line-height: 1.4;
+    color: #222121;
+}
+.services-tabbing-section p.subscription-fees-text span{
+    font-weight: 600;
+}
+.services-tabbing-section p.subscription-fees-text:before{
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 6px;
+    background-color: #84b645;
+}
+
+
+/*media-css*/
+@media (max-width:1280px) { 
+ .services-tabbing-section .list-catagory-wrapper, .services-tabbing-section .niveshaay-pick-smallcase .smallcase-grid { padding-bottom:60px;}
+ .services-tabbing-section .niveshaay-pick-smallcase .slick-dots { bottom:20px;}
+}
+@media (max-width:1199px) {
+    .services-tabbing-section p.subscription-fees-text{font-size: 18px;}
+     .services-tabbing-section { padding:80px 0;}
+ .services-tabbing-section .tab-heading-block li> a { font-size:18px;padding:15px;}
+ .services-tabbing-section .list-catagory-wrapper, .services-tabbing-section .niveshaay-pick-smallcase .smallcase-grid { padding-bottom:55px;}
+}
+@media(min-width:992px) { 
+    .services-tabbing-section .tab-heading-block li:hover > a { background-color:#84b645;color:#fff;border-top-left-radius:4px;border-top-right-radius:4px;}
+ .services-tabbing-section .tab-heading-block li:hover a { color:#fff;}
+ .services-tabbing-section .tab-heading-block a .tab-icon-hover { opacity:0;visibility:hidden;}
+ .services-tabbing-section .tab-heading-block li:hover .tab-icon-hover { opacity:1;visibility:visible;}
+ .services-tabbing-section .tab-content-block .tab-content-inner p.has-different-style a:hover { text-decoration:none;}
+ .services-tabbing-section .service-tab-wrapper p.has-different-style a:hover { text-decoration:none;}
+}
+@media(max-width:991px) { 
+    .services-tabbing-section p.subscription-fees-text{font-size: 16px;padding: 10px 12px 12px 12px;}
+    .services-tabbing-section { padding:50px 0;}
+ .services-tabbing-section .tab-heading-block .tab-content-inner { display:none;padding-bottom:20px;}
+ .services-tabbing-section .tab-heading-block { display:block;border-bottom:none;}
+ .services-tabbing-section .tab-heading-block > li:not(:last-child) { border-bottom: 1px solid rgba(49,49,49,0.1);}
+ .services-tabbing-section .service-tab-wrapper .tab-inner-detail h2 { font-size:18px;}
+ .services-tabbing-section .tab-heading-block li.active >a { background-color:#fff;border-radius:inherit;color:inherit;}
+ .services-tabbing-section .tab-heading-block a em { margin-bottom:0;min-width:45px;height:45px;margin-right:10px;min-height:inherit;}
+ .services-tabbing-section .tab-heading-block li.active>a { background-color:#84b645;color:#fff;border-radius:4px;}
+ .services-tabbing-section .tab-heading-block li a span svg { transition:0.5s all;}
+ .services-tabbing-section .tab-heading-block li.active a span svg { transform:rotate(180deg);}
+ .services-tabbing-section .tab-heading-block li.active a span svg .down-arrow-svg { fill:#fff;}
+ .services-tabbing-section .tab-heading-block .tab-content-inner { margin-top: 20px;}
+ .services-tabbing-section .tab-heading-block .tab-content-inner.active { display:block;}
+ .services-tabbing-section .tab-heading-block li>a { max-width:100%;display:flex;align-items:center;text-align:inherit;font-size:16px;padding:25px 40px 25px 25px;}
+ .services-tabbing-section .tab-heading-block li a .down-arrow-icon { display:block;}
+ .services-tabbing-section .list-catagory-wrapper, .services-tabbing-section .niveshaay-pick-smallcase .smallcase-grid { padding-bottom:40px;}
+ .services-tabbing-section .niveshaay-pick-smallcase .slick-dots { bottom:10px;}
+ .services-tabbing-section .list-catagory-section.niveshaay-research-block .slick-dots { bottom:-40px;}
+}
+@media(max-width:767px) { 
+    .services-tabbing-section .tab-heading-block a em { min-width:25px;height:25px;}
+}
+@media (max-width:575px) { 
+    .services-tabbing-section .tab-heading-block li> a { font-size:16px;}
+ .services-tabbing-section .list-catagory-wrapper { padding-bottom:50px;}
+ .services-tabbing-section .list-catagory-section.niveshaay-research-block .slick-dots { bottom:-45px;}
+ .services-tabbing-section .list-catagory-section.niveshaay-research-block .slick-list { margin:0;}
+ .services-tabbing-section .niveshaay-pick-smallcase .smallcase-grid { padding-bottom:25px;}
+}
+@media(max-width:425px){
+    .services-tabbing-section p.subscription-fees-text span{
+        display: block;
+    }
+}

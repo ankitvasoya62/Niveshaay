@@ -1,0 +1,281 @@
+.subscription-form-section{
+    padding: 90px 0 100px;
+}
+.subscription-form-section h1{
+    font-size: 54px;
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 52px;
+    color:#3b3b3b;
+}
+.subscription-form-section h1 span{
+    display: block;
+}
+.white-shadow-card{
+    background-color: #fff;
+    box-shadow: 0 0 10px 0 rgba(74, 121, 18, 0.15);
+    padding: 22px 30px 30px;
+}
+.subscription-form-section .custom-form-section .form-wrapper .form-outer-wrapper{
+    align-items: baseline;
+}
+.subscription-form-section .custom-form-section .form-wrapper .form-outer-wrapper .form-group:not(:last-child){
+    margin-bottom: 22px;
+}
+.subscription-form-section .custom-form-section .form-wrapper .form-outer-wrapper .form-group.has-radio-group,
+.subscription-form-section .custom-form-section .form-wrapper .form-outer-wrapper .form-group.has-checkbox-list{
+    margin-bottom: 40px;
+}
+.custom-form-section .form-wrapper .form-group.has-date-picker .form-control{
+    padding-right: 60px;
+    background-image: url('../images/calendar.svg');
+    background-position: calc(100% - 16px) center;
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+}
+.form-group label .red-text,.form-group .label .red-text{
+    color:#b5111b
+}
+.form-group label,
+.form-group .label{
+    display: inline-block;
+    font-size: 18px;
+    color: #313131;
+    font-family:'Open Sans',sans-serif;
+    margin-bottom: 10px;
+}
+.form-group .custom-radio-wrapper,
+.form-group .custom-checkbox-wrapper{
+    display: flex;
+    align-items: center;
+}
+.form-group .custom-radio-wrapper.full-width,
+.form-group .custom-checkbox-wrapper.full-width{
+    flex-wrap: wrap;
+}
+.form-group .custom-radio-wrapper .custom-radio-btn .radio-btn-inner,
+.form-group .custom-checkbox-wrapper .custom-checkbox .checkbox-inner{
+    position: relative;
+    display: inline-block;
+}
+.form-group .custom-radio-wrapper .custom-radio-btn + .custom-radio-btn,
+.form-group .custom-checkbox-wrapper .custom-checkbox + .custom-checkbox{
+    margin-left: 50px;
+}
+.form-group .custom-radio-wrapper .custom-radio-btn label,
+.form-group .custom-checkbox-wrapper .custom-checkbox label{
+    padding-left: 35px;
+    margin-bottom: 0;
+}
+.form-group .custom-radio-wrapper .custom-radio-btn label:before,
+.form-group .custom-checkbox-wrapper .custom-checkbox label:before{
+    position: absolute;
+    content: '';
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    border: 1px solid #b8b8b8;
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+}
+.form-group .custom-checkbox-wrapper .custom-checkbox label:before{
+    border-radius: 0;
+}
+.form-group .custom-checkbox-wrapper .custom-checkbox label:after{
+    position: absolute;
+    content: '';
+    width: 25px;
+    height: 24px;
+    background-color: transparent;
+    background-image: url('../images/green-tick.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    left: 0;
+    top: 1px;
+    opacity: 0;
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+}
+.form-group .custom-radio-wrapper .custom-radio-btn label:after{
+    position: absolute;
+    content: '';
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    top: 5px;
+    left: 5px;
+    background-color: #83b645;
+    opacity: 0;
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+}
+
+.form-group .custom-radio-wrapper .custom-radio-btn input:checked + label:before,
+.form-group .custom-checkbox-wrapper .custom-checkbox input:checked + label:before{
+    border-color: #83b645;
+}
+.form-group .custom-radio-wrapper .custom-radio-btn input:checked + label:after,
+.form-group .custom-checkbox-wrapper .custom-checkbox input:checked + label:after{
+    opacity: 1;
+}
+.form-group .custom-radio-wrapper .custom-radio-btn input,
+.form-group .custom-checkbox-wrapper .custom-checkbox .checkbox-inner input{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    appearance: none;
+    opacity: 0;
+    z-index: 2;
+    cursor: pointer;
+}
+.form-group .custom-radio-wrapper.full-width .custom-radio-btn{
+    flex:0 0 100%;
+    max-width: 100%;
+}
+.form-group .custom-radio-wrapper.full-width .custom-radio-btn + .custom-radio-btn{
+    margin: 18px 0 0;
+}
+.form-group .custom-checkbox-wrapper.full-width .custom-checkbox.has-full-width{
+    flex:0 0 100%;
+    max-width: 100%;
+    margin: 30px 0 0;
+}
+.form-group .custom-checkbox-wrapper .custom-checkbox.has-large-width{
+    flex:1;
+}
+.form-group .custom-checkbox-wrapper .custom-checkbox .other-feild{
+    display: flex;
+    align-items: center;
+}
+.form-group .custom-checkbox-wrapper .custom-checkbox .other-feild .other-input-wrapper{
+    position: relative;
+    display: inline-block;
+    margin-left: 5px;
+    flex:1;
+}
+.form-group .custom-checkbox-wrapper .custom-checkbox .other-feild .other-input-wrapper label{
+    display: none;
+}
+.form-group .custom-checkbox-wrapper .custom-checkbox .other-feild .other-input-wrapper .form-control{
+   border: 1px solid transparent;
+   border-bottom-color: #e1e1e1;
+   height: 27px;
+   line-height: 27px;
+}
+.subscription-form-section .custom-form-section .form-wrapper .btn-green{
+    min-width: 188px;
+}
+
+
+/*datepicker*/
+.ui-widget.ui-widget-content{border:none;border-radius:5px;box-shadow:rgb(0 0 0 / 16%) 0px 1px 4px;}
+.ui-widget-header{color:#3b3b3b;background:none;border-radius:none;font-weight:500;border:none;}
+.ui-datepicker th{font-weight:500;color:#3b3b3b;}
+.ui-datepicker td span,.ui-datepicker td a{border:none!important;background:none!important;color:#313131!important;text-align:center;padding:0;border-radius:3px;height:35px;width:35px;display:inline-flex;align-items:center;justify-content:center;}
+.ui-datepicker td span:hover,.ui-datepicker td a:hover{background-color:rgba(131, 182, 69, 0.1)!important;color:#83b645!important}
+.ui-state-highlight,.ui-widget-content .ui-state-highlight,.ui-widget-header .ui-state-highlight{background-color:rgba(131, 182, 69, 0.1)!important;color:#83b645!important;}
+.ui-datepicker .ui-state-default.ui-state-active{background-color:#83b645!important;color:#fff!important;}
+.ui-datepicker-today .ui-state-highlight:hover{background-color:rgba(131, 182, 69, 0.1)!important;color:#83b645!important}
+.ui-datepicker .ui-datepicker-prev span{background-image:none;border-color:transparent #3b3b3b transparent transparent;border-width:5px 6px 5px 0;width:0;height:0;border-style:solid;position:relative;left:auto;top:auto;margin:0;}
+.ui-datepicker .ui-datepicker-next span{background-image:none;border-color:transparent transparent transparent #3b3b3b;border-width:5px 0 5px 6px;width:0;height:0;border-style:solid;position:relative;left:auto;top:auto;margin:0;}
+.ui-datepicker .ui-datepicker-prev,.ui-datepicker .ui-datepicker-next{display:inline-flex;align-items:center;justify-content:center;top:auto;background:none;border:none;cursor:pointer;}
+.ui-datepicker .ui-datepicker-next{right:2px!important;}
+.ui-datepicker .ui-datepicker-prev{left:2px!important;}
+
+
+@media(max-width:1199px){
+    .subscription-form-section{
+        padding: 80px 0;
+    }
+}
+@media(max-width:991px){
+    .subscription-form-section{
+        padding: 50px 0;
+    }
+    .form-group .custom-checkbox-wrapper.full-width .custom-checkbox.has-full-width{
+        margin-top: 15px;
+    }
+    .form-group .custom-checkbox-wrapper .custom-checkbox.has-large-width{
+        flex:0 0 100%;
+        max-width: 100%;
+        margin: 15px 0 0 !important; 
+    }
+    .form-group label, .form-group .label{
+        font-size: 16px;
+    }
+    .form-group .custom-radio-wrapper .custom-radio-btn + .custom-radio-btn, .form-group .custom-checkbox-wrapper .custom-checkbox + .custom-checkbox{
+        margin-left: 20px;
+    }
+    .form-group .custom-radio-wrapper .custom-radio-btn label, .form-group .custom-checkbox-wrapper .custom-checkbox label{
+        padding-left: 30px;
+    }
+    .form-group .custom-radio-wrapper .custom-radio-btn label:before, .form-group .custom-checkbox-wrapper .custom-checkbox label:before{
+        height: 21px;
+        width: 21px;
+        top: 2px;
+    }
+    .form-group .custom-radio-wrapper .custom-radio-btn label:after{
+        height: 13px;
+        width: 13px;
+        left: 4px;
+        top: 6px;
+    }
+    .form-group .custom-checkbox-wrapper .custom-checkbox label:after{
+        top: 3px;
+        left: 1px;
+        background-size: 13px 13px;
+        height: 20px;
+        width: 20px;
+    }
+    .subscription-form-section .custom-form-section .form-wrapper .form-outer-wrapper .form-group.has-radio-group, .subscription-form-section .custom-form-section .form-wrapper .form-outer-wrapper .form-group.has-checkbox-list{
+        margin-bottom: 22px;
+    }
+}
+@media(max-width:767px){
+    .subscription-form-section h1{
+        font-size: 45px;
+        margin-bottom: 30px;
+    }
+    .subscription-form-section .custom-form-section .form-outer-wrapper .form-group.half-width{
+        flex:0 0 100%;
+        max-width: 100%;
+    }
+    .white-shadow-card{
+        padding: 15px;
+    }
+    .form-group .label{
+        margin-bottom: 0;
+    }
+    .form-group label{
+        margin-bottom: 5px;
+    }
+    .form-group .custom-radio-wrapper, .form-group .custom-checkbox-wrapper{
+        flex-wrap: wrap;
+    }
+    .form-group .custom-radio-wrapper .custom-radio-btn, .form-group .custom-checkbox-wrapper .custom-checkbox{
+        flex:0 0 33.33%;
+        max-width: 33.33%;
+        margin: 10px 0 0 !important;
+    }
+}
+@media(max-width:575px){
+    .subscription-form-section h1{
+        font-size: 34px;
+    }
+    .form-group .custom-radio-wrapper .custom-radio-btn, .form-group .custom-checkbox-wrapper .custom-checkbox{
+        flex:0 0 50%;
+        max-width: 50%;
+    }
+}
+@media(max-width:425px){
+    .form-group .custom-radio-wrapper .custom-radio-btn, .form-group .custom-checkbox-wrapper .custom-checkbox{
+        flex:0 0 100%;
+        max-width: 100%;
+    }
+}

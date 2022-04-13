@@ -1,0 +1,1 @@
+<div class="" style="color: blue">your Password is <b>{{ $password }}<b></div>

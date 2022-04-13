@@ -1,0 +1,46 @@
+.inner-page-banner-section.contact-page-banner{position:relative;display:flex;align-items:center;justify-content:center;padding-bottom: 38.3%;padding-top: 0;}
+.inner-page-banner-section.contact-page-banner .container{position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);width:100%;max-width: 1220px;padding: 0 30px;margin: 0 auto;}
+.inner-page-banner-section.contact-page-banner img{object-position: left;}
+/* contact-us-section css start */
+.contact-us-section{padding:100px 0;}
+.contact-us-section .container{max-width:1230px;padding:0 30px;width:100%;margin:0 auto;}
+.contact-us-section .contact-us-content-wrapper{display:flex;}
+.contact-us-section .contact-us-content-wrapper .form-wrapper{flex:1;padding-right:30px;}
+.contact-us-section .contact-us-content-wrapper button{outline:0!important;}
+.contact-us-section .contact-us-content-wrapper .form-group label{display:none;}
+.contact-us-section .contact-us-content-wrapper .get-in-touch-wrapper{max-width:370px;flex:0 0 370px;background-color:#83b645;}
+.contact-us-section .contact-us-content-wrapper .get-in-touch-wrapper .title-wrapper{padding:30px;border-bottom:1px solid rgba(255,255,255,0.5);}
+.contact-us-section .contact-us-content-wrapper .get-in-touch-wrapper .title-wrapper h2{color:#fff;line-height:0.92;font-size:24px;font-weight:700;}
+.contact-us-section .contact-us-content-wrapper .get-in-touch-wrapper .content-wrapper{padding:23px 25px;}
+.contact-us-section .contact-us-content-wrapper .get-in-touch-wrapper .content-wrapper .get-in-touch-content li{display:flex;margin-bottom:20px;}
+.contact-us-section .contact-us-content-wrapper .get-in-touch-wrapper .content-wrapper .get-in-touch-content li span{color:#fff;margin-right:10px;min-width:24px;}
+.contact-us-section .contact-us-content-wrapper .get-in-touch-wrapper .content-wrapper .get-in-touch-content li a{color:#fff;font-family:'open-sans',sans-serif;font-size:15px;}
+.contact-us-section .contact-us-content-wrapper .get-in-touch-wrapper .content-wrapper .get-in-touch-content li a:hover{text-decoration:underline;}
+.contact-us-section .contact-us-content-wrapper .get-in-touch-wrapper .content-wrapper .get-in-touch-content li address{color:#fff;font-style:normal;font-family:'open-sans',sans-serif;font-size:15px;}
+.contact-us-section .contact-us-content-wrapper .get-in-touch-wrapper .content-wrapper h3{font-size:18px;font-weight:500;color:#fff;margin-bottom:15px;}
+.contact-us-section .contact-us-content-wrapper .get-in-touch-wrapper .content-wrapper .social-icon-wrapper{display:flex;}
+.contact-us-section .contact-us-content-wrapper .get-in-touch-wrapper .content-wrapper .social-icon-wrapper li+li{margin-left:10px;}
+.contact-us-section .contact-us-content-wrapper .get-in-touch-wrapper .content-wrapper .social-icon-wrapper li a{display:block;height:32px;width:32px;border:1px solid #fff;border-radius:50%;position:relative;transition:all 0.3s;}
+.contact-us-section .contact-us-content-wrapper .get-in-touch-wrapper .content-wrapper .social-icon-wrapper li a:hover{background-color:#fff;}
+.contact-us-section .contact-us-content-wrapper .get-in-touch-wrapper .content-wrapper .social-icon-wrapper li a span{color:#fff;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);transition:all 0.3s;}
+.contact-us-section .contact-us-content-wrapper .get-in-touch-wrapper .content-wrapper .social-icon-wrapper li a:hover span{color:#83b645;}
+
+@media(max-width:1199px){
+    .contact-us-section{padding:80px 0;}
+    .contact-us-section .contact-us-content-wrapper .form-wrapper{padding-right:20px;}
+}
+@media(max-width:991px){
+    .contact-us-section{padding:50px 0;}
+    .contact-us-section .contact-us-content-wrapper{flex-wrap:wrap;}
+    .contact-us-section .contact-us-content-wrapper .get-in-touch-wrapper{max-width:100%;flex:0 0 100%;}
+    .contact-us-section .contact-us-content-wrapper .form-wrapper{padding:0;margin-bottom:45px;}
+}
+@media(max-width:767px){
+    .contact-us-section .container{padding:0 15px;}
+    .inner-page-banner-section.contact-page-banner{
+        min-height: 200px;
+    }
+}
+@media(max-width:574px){
+    .contact-us-section .contact-us-content-wrapper .get-in-touch-wrapper .title-wrapper,.contact-us-section .contact-us-content-wrapper .get-in-touch-wrapper .content-wrapper{padding:25px 15px;}
+}

@@ -1,0 +1,26 @@
+.login-page-wrapper { padding-top: 0 !important; }
+.login-page-section{padding:0;}
+.login-page-section .login-content-wrapper{display:flex;min-height:100vh;}
+.login-page-section .login-content-wrapper .login-image,.login-page-section .login-content-wrapper .login-form-wrapper{flex:0 0 50%;max-width:50%;}
+.login-page-section .login-content-wrapper .login-image{position:relative;}
+.login-page-section .login-content-wrapper .login-image img{width:100%;height:100%;position:absolute;object-fit:cover;left:0;right:0;top:0;}
+.login-page-section .login-content-wrapper .login-form-wrapper{padding:50px 20px 50px 100px;max-width:483px;width:100%;margin-right:auto;align-self:center;margin-bottom:0;}
+.login-page-section .login-content-wrapper .login-form-wrapper .logo-wrapper{margin-bottom:30px;}
+.login-page-section .login-content-wrapper .login-form-wrapper .site-logo{display:block;width:168px;height:auto;}
+.login-page-section .login-content-wrapper .login-form-wrapper .site-logo img{width:100%;height:auto;}
+.login-page-section .login-content-wrapper .login-form-wrapper h1{font-size:24px;font-weight:bold;margin-bottom:8px;}
+.login-page-section .login-content-wrapper .login-form-wrapper p{font-size:16px;line-height:1.38;color:#3b3b3b;margin-bottom:37px;font-weight:normal;}
+.login-page-section .login-content-wrapper .login-form-wrapper .login-form .form-group{margin-bottom:35px;position:relative;}
+.login-page-section .login-content-wrapper .login-form-wrapper .login-form .form-group .btn-green{width:100%;}
+.login-page-section .login-content-wrapper .login-form-wrapper .login-form label{position:relative;display:block;font-size:16px;color:#3b3b3b;font-family:'Open Sans',sans-serif;color:#000;margin-bottom:8px;}
+.login-page-section .login-content-wrapper .login-form-wrapper .login-form .form-group .password-help{position:absolute;right:0;top:0;font-size:14px;font-weight:normal;font-family:'Open Sans',sans-serif;}
+.contact-us-section.login-page-section .contact-us-content-wrapper .form-wrapper .error-message{left:0;}
+
+/*media-css*/
+@media screen and (max-width:1199px){
+    .login-page-section .login-content-wrapper .login-form-wrapper{padding:50px 20px 50px 20px;}
+}
+@media screen and (max-width:768px){
+    .login-page-section .login-content-wrapper .login-image{display:none;}
+    .login-page-section .login-content-wrapper .login-form-wrapper{flex:0 0 100%;max-width:100%;}
+}
