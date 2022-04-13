@@ -12,7 +12,9 @@ class InvoiceDetail extends Model
         'description',
         'amount',
         'subscription_start_date',
-        'subscription_end_date'
+        'subscription_end_date',
+        'subscription_form_id',
+        'invoice_no'
     ];
 
     public function subscriptionForm(){

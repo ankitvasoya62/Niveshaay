@@ -86,13 +86,16 @@
                         <span class="error">{{$message}}</span>
                     @enderror
                   </div>
-                  <div class="form-group">
-                    <label for="name">Initiating Coverage Date</label>
-                    <input type="date" name="share_date" class="form-control" id="share_date" placeholder="Enter Title" value="{{ $share->share_date }}" required>
-                    @error('share_date')
-                        <span class="error">{{$message}}</span>
-                    @enderror
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="name">Initiating Coverage Date</label>
+                      <input type="date" name="share_date" class="form-control" id="share_date" placeholder="Enter Title" value="{{ $share->share_date }}" required>
+                      @error('share_date')
+                          <span class="error">{{$message}}</span>
+                      @enderror
+                    </div>  
                   </div>
+                  
                   <div class="form-group">
                     <label for="description">Short Description</label>
                     <textarea type="text" name="short_description" class="form-control" rows="5" cols="20" placeholder="Describe your title here...">{{$share->short_description}}</textarea>
@@ -100,6 +103,7 @@
                         <span class="error">{{$message}}</span>
                     @enderror
                   </div>
+                  
                   <div class="form-group">
                     <label for="exampleInputFile">Share Image</label>
                     

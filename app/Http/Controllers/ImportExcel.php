@@ -50,8 +50,8 @@ class ImportExcel extends Controller
                 return back()->withFailures($import->failures())->withRows($getRows);
             }
         } catch (\Throwable $th) {
-            throw $th;
-            //return back()->withError('Something went wrong! Check your file.');
+            // throw $th;
+            return back()->withError('Something went wrong! Check your file.');
         }
         return back()->withSuccess('Imported Successfully')->withRows($getRows);
     }

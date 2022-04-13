@@ -139,7 +139,15 @@
 <script>
   $(function () {
     // Summernote
-    $('#summernote1,#summernote2,#summernote3,#summernote4').summernote();
+    $('#summernote1,#summernote2,#summernote3,#summernote4').summernote({
+        callbacks: {
+            onFocus: function (contents) {
+                if($(this).summernote('isEmpty')){
+                $(this).html(''); 
+                }
+            }
+        }
+    });
   });
 </script>
 @endpush

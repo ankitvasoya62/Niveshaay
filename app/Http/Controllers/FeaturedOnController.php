@@ -107,6 +107,8 @@ class FeaturedOnController extends Controller
     {
         //
         $featuredOn = FeaturedOn::find($id);
+        $previous_featured_logo = $featuredOn->featured_logo;
+        $previous_featured_image = $featuredOn->featured_image;
         $featuredOn->featured_title = $request->featured_title;
         $featuredOn->featured_description = $request->featured_description;
         $featuredOn->featured_date = $request->featured_date;
@@ -116,12 +118,14 @@ class FeaturedOnController extends Controller
             $imageName = time().".".$image->extension();
             $image->move(public_path('images/featured/featured-image'),$imageName);
             $featuredOn->featured_image= $imageName;
+            @unlink(public_path('images/featured/featured-image/'.$previous_featured_image));
         }
         if($request->file('featured_logo')){
             $image = $request->file('featured_logo');
             $imageName = time().".".$image->extension();
             $image->move(public_path('images/featured/featured-logo'),$imageName);
             $featuredOn->featured_logo = $imageName;
+            @unlink(public_path('images/featured/featured-logo/'.$previous_featured_logo));
         }
         
         
@@ -141,7 +145,11 @@ class FeaturedOnController extends Controller
     {
         //
         $featuredOn = FeaturedOn::find($id);
+        $previous_featured_logo = $featuredOn->featured_logo;
+        $previous_featured_image = $featuredOn->featured_image;
         $featuredOn->delete();
+        @unlink(public_path('images/featured/featured-image/'.$previous_featured_image));
+        @unlink(public_path('images/featured/featured-logo/'.$previous_featured_logo));
         return redirect()->route('admin.featured-on')->with('success','Feature Delete Successfully');
     }
 }

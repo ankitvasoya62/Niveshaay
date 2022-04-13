@@ -79,13 +79,16 @@
                         <span class="error">{{$message}}</span>
                     @enderror
                   </div>
-                  <div class="form-group">
-                    <label for="name">Initiating Coverage Date</label>
-                    <input type="date" name="share_date" class="form-control" id="share_date" placeholder="Enter Title" value="{{old('share_date')}}" required>
-                    @error('share_date')
-                        <span class="error">{{$message}}</span>
-                    @enderror
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="name">Initiating Coverage Date</label>
+                      <input type="date" name="share_date" class="form-control" id="share_date" placeholder="Enter Title" value="{{old('share_date')}}" required>
+                      @error('share_date')
+                          <span class="error">{{$message}}</span>
+                      @enderror
+                    </div>
                   </div>
+                  
                   <div class="form-group">
                     <label for="description">Short Description</label>
                     <textarea type="text" name="short_description" class="form-control" rows="5" cols="20" placeholder="Describe your title here..." value="{{old('short_description')}}"></textarea>
@@ -224,7 +227,7 @@
                   </div>
                   
                   <div class="form-group">
-                    <label for="description">Upload</label>
+                    <label for="description">Description</label>
                     <textarea type="text" name="share_description" class="form-control" id="summernote" rows="5" cols="20" placeholder="Describe your title here..."></textarea>
                     {{-- <input type="file" name="share_description" class="form-control" accept="application/pdf"> --}}
                     @error('share_description')

@@ -100,6 +100,7 @@ class TweeterFeedController extends Controller
     {
         //
         $tweeterFeed = TweeterFeed::find($id);
+        $previous_image = $tweeterFeed->tweeter_user_image;
         $tweeterFeed->tweeter_name = $request->tweeter_name;
         $tweeterFeed->tweeter_username = $request->tweeter_username;
         $tweeterFeed->tweeter_description = $request->tweeter_description;
@@ -108,6 +109,7 @@ class TweeterFeedController extends Controller
             $imageName = time().".".$image->extension();
             $image->move(public_path('images/tweeter-feeds'),$imageName);
             $tweeterFeed->tweeter_user_image= $imageName;
+            @unlink(public_path('images/tweeter-feeds/'.$previous_image));
         }
         
         // $newClient->client_designation = $request->client_designation;
@@ -125,7 +127,9 @@ class TweeterFeedController extends Controller
     {
         //
         $tweeterFeed = TweeterFeed::find($id);
+        $previous_image = $tweeterFeed->tweeter_user_image;
         $tweeterFeed->delete();
+        @unlink(public_path('images/tweeter-feeds/'.$previous_image));
         return redirect()->route('admin.tweeter-feeds')->with('success','Tweeter Feed Deleted Successfully');
     }
 }

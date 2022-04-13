@@ -34,6 +34,7 @@ class SubscriptionFormDetail extends Model
         'understand_risk_reward',
         'is_email_verified',
         'is_verified_by_admin',
+        'is_payment_received',
         'user_id'
     ];
 

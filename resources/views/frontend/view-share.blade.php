@@ -42,7 +42,7 @@
                             <a href="{{ asset('pdf/'.$share->share_description.$encode) }}" target="_blank">Share Detail Pdf</a>
                              --}}
 
-                            <div class="cms-border-box">
+                            <div class="cms-border-box" style="margin-top:15px">
                                 <h2 class="has-green-title">Disclaimer:</h2>
                                 <p><strong>Niveshaay is a SEBI Registered (SEBI Registration No. INA000008552) Investment Advisory Firm. </strong>The research and reports express our opinions which we have based upon generally available public information, field research, inferences and deductions through are due 
                                     diligence and analytical process. To the best our ability and belief, all information contained here is accurate and reliable, and has been obtained from public sources we believe to be accurate and reliable. We make no representation, express or implied, as to the accuracy, 
@@ -115,25 +115,25 @@
         //     }
         // });
         document.oncontextmenu = function() { 
-            alert("Not allowed");
+            //alert("Not allowed");
             return false;  
         }; 
         jQuery(document).on('keydown', function(e) {
             if((e.ctrlKey || e.metaKey) && (e.key == "p" || e.key == "P" || e.key == "s" || e.key == "S" || e.key == "u" || e.key == "U" || e.charCode == 16 || e.charCode == 112 || e.keyCode == 80) ){
-                alert("Not allowed");
+                //alert("Not allowed");
                 e.cancelBubble = true;
                 e.preventDefault();
 
                 e.stopImmediatePropagation();
             }
             if (event.keyCode == 123) { // Prevent F12
-                alert("Not allowed");
+                //alert("Not allowed");
                 e.cancelBubble = true;
                 e.preventDefault();
 
                 e.stopImmediatePropagation();
             } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
-                alert("Not allowed");
+                //alert("Not allowed");
                 e.cancelBubble = true;
                 e.preventDefault();
 

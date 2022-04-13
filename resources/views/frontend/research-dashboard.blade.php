@@ -29,7 +29,7 @@
 		<div class="list-catagory-wrapper">
 			<div class="list-wrapper">
 				<div class="list-inner-wrapper">
-					<div class="list-item-wrapper">
+					{{-- <div class="list-item-wrapper">
 						<a href="#" class="list-item-link">
 							<div class="list-item">
 								<div class="item-img-wrapper">
@@ -82,7 +82,27 @@
 								</div>
 							</div>
 						</a>
-					</div>
+					</div> --}}
+					@foreach ($researches as $research)
+						<div class="list-item-wrapper">
+							<a href="#" class="list-item-link">
+								<div class="list-item">
+									<div class="item-img-wrapper">
+										<img src="{{asset('images/share-images/'.$research->share_image)}}" alt="McClintock eye">
+									</div>
+									<div class="item-content-wrapper">
+										<h3>{{ $research->share_title}}</h3>
+										<div class="item-inner-content">
+											
+											{{-- <p>{!! $research->description !!}</p> --}}
+											<p>{{ Str::limit($research->short_description,50,' ...') }}</p>
+											<span><a href="{{ route('frontend.view.share',$research->id) }}">Read More</a></span>
+										</div>
+									</div>
+								</div>
+							</a>
+						</div>	
+					@endforeach
 				</div>
 			</div>
 		</div>

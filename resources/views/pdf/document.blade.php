@@ -265,12 +265,12 @@
                     </div>
                 </div>
             </div>
-	        <div class="terms-condition-block">
+	        {{-- <div class="terms-condition-block">
 	            <h2>Terms & Conditions</h2>
 	            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</p>
 	           	<p>sed do eiusmod tempor incididunt ut labore et</p>
 	           	<p>dolore magna aliqua.</p>
-	        </div>       
+	        </div>        --}}
         </div>
     </div>
     <div class="green-bar"></div>

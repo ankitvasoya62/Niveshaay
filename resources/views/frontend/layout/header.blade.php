@@ -33,15 +33,15 @@
 								<li class="@if($active=='about') active @endif">
 									<a href="{{route('frontend.about')}}" title="About Us">About Us</a>
 								</li>
-								<li>
+								<li class="@if($active=='services') active @endif">
 									<a href="{{ route('frontend.services') }}" title="Services">Services</a>
 								</li>
-								<li>
+								<li class="@if($active=='our-strategy') active @endif">
 									<a href="{{route('frontend.our-strategy')}}" title="Research Process">Our Strategy
 									</a>
 								</li>
 								@if (Auth::user())
-									<li>
+									<li class="@if($active=='share-details') active @endif">
 										<a href="{{route('frontend.share-detail')}}" title="Our Research">Our Research
 										</a>
 									</li>

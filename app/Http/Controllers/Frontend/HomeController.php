@@ -466,10 +466,11 @@ class HomeController extends Controller
         $active = '';
         $SubscriptionFormDetailCount = SubscriptionFormDetail::where('user_id',auth()->user()->id)->where('is_email_verified',1)->first();
         $isEmailVerified = 1;
+        $researches = ourresearchreport();
         if(empty($SubscriptionFormDetailCount)){
             $isEmailVerified = 0;
         }
-        return view('frontend.research-dashboard',compact('active','isEmailVerified'));        
+        return view('frontend.research-dashboard',compact('active','isEmailVerified','researches'));        
     }
 
     public function generatePDF(){

@@ -74,15 +74,18 @@
                         <span class="error">{{$message}}</span>
                     @enderror
                   </div>
-                  <div class="form-group">
-                        <label>Date Of Birth:</label>
-                        
-                        <input type="date" class="form-control datetimepicker-input" name="dob" value="{{ old('dob') }}">
-                        @error('dob')
-                            <span class="error">{{$message}}</span>
-                        @enderror
-                        
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label>Date Of Birth:</label>
+                      
+                      <input type="date" class="form-control datetimepicker-input" name="dob" value="{{ old('dob') }}">
+                      @error('dob')
+                          <span class="error">{{$message}}</span>
+                      @enderror
+                      
                     </div>
+                  </div>
+                  <div class="col-md-3">
                     <div class="form-group">
                         <label>Subscription Start Date:</label>
                         
@@ -92,15 +95,19 @@
                         @enderror
                         
                     </div>
+                  </div>
+                  <div class="col-md-3">
                     <div class="form-group">
-                        <label>Subscription End Date:</label>
-                        
-                        <input type="date" class="form-control datetimepicker-input" name="subscription_end_date" value="{{ old('subscription_end_date') }}">
-                        @error('subscription_end_date')
-                            <span class="error">{{$message}}</span>
-                        @enderror
-                        
+                      <label>Subscription End Date:</label>
+                      
+                      <input type="date" class="form-control datetimepicker-input" name="subscription_end_date" value="{{ old('subscription_end_date') }}">
+                      @error('subscription_end_date')
+                          <span class="error">{{$message}}</span>
+                      @enderror
+                      
                     </div>
+                  </div>
+                    
                     <div class="form-group">
                         <label for="name">Amount</label>
                         <input type="number" name="amount" class="form-control" id="amount" placeholder="Enter Amount" value="{{old('amount')}}" required>

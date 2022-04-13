@@ -1,1 +1,2 @@
-<div class="" style="color: blue">your Password is <b>{{ $password }}<b></div>
+<h4>Hello {{ $name }}, </h4>
+<div class="">your Password is <b style="color: blue">{{ $password }}<b></div>

@@ -51,7 +51,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="news_letter">Select Newsletter</label>
-                                <select name="newsletter_id" id="news_letter" class="form-control" required oninvalid="this.setCustomValidity('please select only one newsletter')">
+                                <select name="newsletter_id" id="news_letter" class="form-control">
                                     <option value="">---Select One---</option>
                                     @foreach ( $newsletters as $newsletter)
                                         <option value="{{ $newsletter->id }}">{{ $newsletter->title }}</option>    

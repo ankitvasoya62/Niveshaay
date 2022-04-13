@@ -35,7 +35,7 @@ class ComplaintStatusController extends Controller
         
 
         
-        return view('backend.complaintstatus.currentmonth',compact('active','current_month_investor_count','sebi_scores_count','other_sources_count'));
+        return view('backend.complaintStatus.currentmonth',compact('active','current_month_investor_count','sebi_scores_count','other_sources_count'));
     }
 
     public function storeCurrentMonth(Request $request){
@@ -133,7 +133,7 @@ class ComplaintStatusController extends Controller
             array_push($monthlyComplaints,$per_month_data);
         }
         $active ='monthly';
-        return view('backend.complaintstatus.monthly',compact('monthlyComplaints','active'));
+        return view('backend.complaintStatus.monthly',compact('monthlyComplaints','active'));
     }
 
     public function storeMonthly(Request $request){
@@ -202,7 +202,7 @@ class ComplaintStatusController extends Controller
             array_push($annuallyComplaints,$per_year_complaints);
         }
         $active ='annually';
-        return view('backend.complaintstatus.annually',compact('annuallyComplaints','active'));
+        return view('backend.complaintStatus.annually',compact('annuallyComplaints','active'));
     }
 
     public function storeAnnually(Request $request){

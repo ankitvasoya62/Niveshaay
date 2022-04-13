@@ -4,7 +4,18 @@
 <link rel="stylesheet" href="{{ asset('admin/plugins/daterangepicker/daterangepicker.css') }}">
 <link rel="stylesheet" href="{{ asset ('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset ('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-
+<style>
+    .loader{
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        display: none;
+        background: transparent url("{{ asset('images/site-loader.svg') }}");
+        z-index: 1000;
+        height: 31px;
+        width: 31px;
+    }
+</style>
 @endpush
 @section('content')
 <div class="content-wrapper">
@@ -123,9 +134,17 @@
                                             <a href="{{ route('admin.delete-subscription',$subscription_detail->id)}}" class="btn btn-danger" onclick="return confirm('Are you sure to delete')"><i class="nav-icon fas fa-trash"></i></a>
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.view.invoicedetails',$subscription_detail->id) }}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
-                                            {{-- <a href="" class="btn btn-info"><i class="fas fa-edit"></i></a> --}}
+                                            @if($subscription_detail->is_payment_received == 1)
+                                            {{-- <a href="{{ route('admin.view.invoicedetails',$subscription_detail->id) }}" class="btn btn-primary"><i class="fas fa-eye"></i></a> --}}
+                                            <a href="#" onclick="event.preventDefault();" class="btn btn-info invoice-details" data-toggle="modal" data-target="#modal-default-2" id="{{ $subscription_detail->id}}"><i class="fas fa-edit"></i></a>
                                             <a href="{{ route('admin.download.invoice',$subscription_detail->id)}}" class="btn btn-success">Download Invoice</a>
+                                            <a href="{{ route('admin.download.invoicepdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank">Download PDF</a>
+
+                                            @else
+                                            <a href="#" onclick="event.preventDefault();" class="btn btn-info disabled" ><i class="fas fa-edit"></i></a>
+                                            <a href="#" class="btn btn-success disabled">Download Invoice</a>
+                                            <a href="#" class="btn btn-success disabled">Download PDF</a>
+                                            @endif
                                             
                                         </td>
                                     </tr>
@@ -178,6 +197,41 @@
         <!-- /.modal-dialog -->
     </div>
 
+    <div class="modal fade" id="modal-default-2" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title" id="contact-title"></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            </div>
+            <div class="modal-body" id="invoice-content">
+            <div class="row">
+                {{-- <div class="col-md-12" >
+                    <a class="btn btn-primary add-invoice" style="float:right;margin-bottom:15px">Add More Invoice</a>
+                </div> --}}
+                <div class="loader">
+
+                </div>
+               <div class="col-md-12">
+                    <form id="invoice-form" action="" method="POST">@csrf
+                        
+                        
+                    </form>
+               </div> 
+            </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-primary" id="invoice-form-submit" onclick="fninvoicesubmit()">Submit</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            
+            </div>
+        </div>
+        <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 </div>
 @endsection
 @push('js')
@@ -288,6 +342,151 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
     function removeinvoice(id){
         $('.card-payment-form')[id-1].remove();
         return false;
+    }
+
+    $('.invoice-details').click(function(e){
+        e.preventDefault();
+        subscription_form_id = $(this).attr('id');
+        $.ajax({
+            url: "{{  url('/admin/edit/invoice') }}/"+subscription_form_id,
+                     type:"GET",
+                     dataType:"json",
+                     success:function(data) {
+                        // $('#contact-title').text(data.first_name + " " + data.last_name);
+                        // $('#contact-name').text(data.first_name + " " + data.last_name);
+                        // $('#contact-email').text(data.email);
+                        // $('#contact-message').text(data.message);
+                        console.log(data.length);
+                        $('#invoice-form').attr('action',"{{  url('/admin/update/invoice') }}/"+subscription_form_id);
+                        $('#invoice-form').html('');
+                        var invoicehtml = '';
+                        $.each(data,function(index,value){
+                            if(index == 0){
+                                invoicehtml += `@csrf<div class="card"><div class="card-body"><div class="row">
+                                                    <input type="hidden" value="`+ value.id+`" name="invoice_id[]">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Description</label>
+                                                            <input type="text" class="form-control" name="description[]" value="`+ value.description+`">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Amount</label>
+                                                            <input type="number" class="form-control" name="amount[]" value="`+ value.amount+`">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Subscription Start Date</label>
+                                                            <input type="date" class="form-control" name="subscription_start_date[]" value="`+ value.subscription_start_date+`" id="subscription_start_date">
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Subscription End Date</label>
+                                                            <input type="date" class="form-control" name="subscription_end_date[]" value="`+ value.subscription_end_date+`" id="subscription_end_date">
+                                                            <span class="text-danger" id="invoice_end_date_error"></span>
+                                                        </div>
+                                                    </div>
+                                                </div></div></div>`
+
+                            }else{
+                                invoicehtml += `<div class="card"><div class="card-body"><div class="row">
+                                                    <input type="hidden" value="`+ value.id+`" name="invoice_id[]">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Description</label>
+                                                            <input type="text" class="form-control" name="description[]" value="`+ value.description+`" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Amount</label>
+                                                            <input type="number" class="form-control" name="amount[]" value="`+ value.amount+`" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Subscription Start Date</label>
+                                                            <input type="date" class="form-control" name="subscription_start_date[]" value="`+ value.subscription_start_date+`" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Subscription End Date</label>
+                                                            <input type="date" class="form-control" name="subscription_end_date[]" value="`+ value.subscription_end_date+`" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div></div></div>`
+
+                            }
+                            });
+                            $('#invoice-form').html(invoicehtml);
+                      },
+                      error:function(res){
+                        
+                      }
+        });
+    });
+    $(document).on('.invoice-form-submit','click',function(e){
+        e.preventDefault();
+        var subscriptionformaction = $('#invoice-form').attr('action');
+        $.ajax({
+            url:subscriptionformaction,
+            type:'POST',
+            data:$('#invoice-form').seriallize(),
+            success:function(data) {
+
+                console.log(data);                
+                     
+            },
+            error:function(res){
+            
+            }
+        });        
+    });
+    // $(".invoice-form-submit").click(function(e){
+        
+    // })
+    function fninvoicesubmit(){
+        var subscription_start_date = document.getElementById('subscription_start_date');
+        var subscription_end_date = document.getElementById('subscription_end_date');
+        if(subscription_start_date.value < subscription_end_date.value ){
+            var subscriptionformaction = $('#invoice-form').attr('action');
+            $.ajax({
+                url:subscriptionformaction,
+                type:'POST',
+                data:$('#invoice-form').serialize(),
+                
+                success:function(data) {
+
+                    if(data.success == 1){
+                            window.location.href = window.location.href;
+                    }else{
+                        // if(data.message.email){
+                        //     jQuery('#login-modal-email-error').html(data.message.email[0]);
+                        // }else if(data.message.password){
+                        //     jQuery('#login-modal-error').html(data.message.password[0]);
+                        // }else{
+                        //     jQuery('#login-modal-email-error').html(data.message);
+                        // }
+                        console.log(data);
+                    }
+                
+                        
+                },
+                error:function(res){
+                   
+                }
+            }); 
+        }else{
+            $('#invoice_end_date_error').focus();
+            $('#invoice_end_date_error').html("Subscription end date should be greater than subscription start date");
+            
+        }
+               
     }
 </script>
 <!--Data Table End -->

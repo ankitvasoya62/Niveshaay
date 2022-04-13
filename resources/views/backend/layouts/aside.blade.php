@@ -230,7 +230,7 @@
               
               <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="nav-icon fas fa-sign-out-alt"></i>
-                Logout
+                <p>Logout</p>
               </a>
               
               <form action="{{route('logout')}}" method="POST" id="logout-form">

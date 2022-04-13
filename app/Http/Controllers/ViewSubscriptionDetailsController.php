@@ -13,7 +13,8 @@ use App\Mail\PaymentDetailsMail;
 use PDF;
 use App\Models\InvoiceDetail;
 use App\Models\SubscriptionLog;
-
+use Illuminate\Support\Facades\Validator;
+use App\Models\User;
 class ViewSubscriptionDetailsController extends Controller
 {
     //
@@ -36,9 +37,10 @@ class ViewSubscriptionDetailsController extends Controller
 
     public function deleteSubscriptionDetails($id){
         $subscription_details = SubscriptionFormDetail::find($id);
-        $subscription_details->status = 'deleted';
-        $subscription_details->save();
-        return redirect()->back();        
+        // $subscription_details->status = 'deleted';
+        // $subscription_details->save();
+        $subscription_details->delete();
+        return redirect()->back()->with('success','Subscribe User Deleted Successfully');        
     }
 
     public function editSubscriptionDetails($id){
@@ -140,7 +142,15 @@ class ViewSubscriptionDetailsController extends Controller
             $data['subscription_start_date'] = $request->subscription_start_date[$key];
             $data['subscription_end_date'] = $request->subscription_end_date[$key];
             $data['subscription_form_id'] = $id;
-            
+            $today= Carbon::now();
+            $currentmonth = $today->month;
+            $currentyear = $today->year;
+            if($currentmonth < 4){
+                $invoice_no = "#NRS/".($currentyear-1)."-".($currentyear)."/".($id+100);
+            }else{
+                $invoice_no = "#NRS/".$currentyear."-".($currentyear+1)."/".($id+100);
+            }
+            $data['invoice_no'] = $invoice_no;
             $insertdata = InvoiceDetail::insert($data);
             $max_date[] = $request->subscription_end_date[$key];
             array_push($table_data,$data);
@@ -161,9 +171,9 @@ class ViewSubscriptionDetailsController extends Controller
         $currentmonth = $today->month;
         $currentyear = $today->year;
         if($currentmonth < 4){
-            $invoice_no = "#NIV/".($currentyear-1)."-".($currentyear)."/".($id+100);
+            $invoice_no = "#NRS/".($currentyear-1)."-".($currentyear)."/".($id+100);
         }else{
-            $invoice_no = "#NIV/".$currentyear."-".($currentyear+1)."/".($id+100);
+            $invoice_no = "#NRS/".$currentyear."-".($currentyear+1)."/".($id+100);
         }
         $data['invoice_no'] = $invoice_no;
         $amount = $amount_sum;
@@ -194,12 +204,20 @@ class ViewSubscriptionDetailsController extends Controller
                     ->subject($data["title"])
                     ->attachData($pdf->output(), "invoice.pdf");
         });
-        
+        // $pdf->output(public_path('invoicepdf/'.$id.'/invoice.pdf'),'F');
         $subscription_details['is_payment_received'] = 1;
         $subscription_details->save();
 
-        $subscription_details_user  = $subscription_details->user->subscription_end_date;
-          
+        $subscription_details_user  = $subscription_details->user;
+        $subscription_details_user_end_date = $subscription_details_user->subscription_end_date;
+        $subscription_details_user_end_date = date('Y-m-d',strtotime($subscription_details_user_end_date));
+        $max_date[] = $subscription_details_user_end_date;
+        $max_subscription_end_date = max($max_date);
+
+        $user = User::find($subscription_details_user->id);
+        $user->subscription_end_date  = $max_subscription_end_date;
+        $user->save();
+
 
         
         return redirect()->route('admin.subscription-details')->with('success','Payment Received! Mail Sent Successfully');
@@ -223,36 +241,95 @@ class ViewSubscriptionDetailsController extends Controller
     }
 
     public function editinvoice($id){
-        $invoice = InvoiceDetail::find($id);
-        // dd($invoice->subscriptionForm->user_id);
-        $active = 'subscription-details';
-        return view('backend.invoicedetails.edit',compact('invoice','active'));
+        $invoice = InvoiceDetail::latest()->where('subscription_form_id',$id)->get();
+        return response()->json($invoice);
+        // // dd($invoice->subscriptionForm->user_id);
+        // $active = 'subscription-details';
+        // return view('backend.invoicedetails.edit',compact('invoice','active'));
     }
 
     public function updateinvoice(Request $request,$id){
-        $validatedata = $request->validate([
+        
+        $invoices = InvoiceDetail::latest()->where('subscription_form_id',$id)->get();
 
-    		'name' => 'description',
-    		
-            'amount' => 'required',
-            
-            'subscription_start_date' => 'required|date|date_format:Y-m-d',
-            'subscription_end_date' => 'required|date|date_format:Y-m-d|after:subscription_start_date'
+        foreach ($invoices as $key => $value) {
+            # code...
+            if($value->id == $request->invoice_id[$key] ){
+                $invoice = InvoiceDetail::find($value->id);
+                $invoice->description = $request->description[$key];
+                $invoice->amount = $request->amount[$key];
+                $invoice->subscription_start_date = !empty($request->subscription_start_date[$key]) ? date('Y-m-d',strtotime($request->subscription_start_date[$key])) : NULL;
+                $invoice->subscription_end_date = !empty($request->subscription_end_date[$key]) ? date('Y-m-d',strtotime($request->subscription_end_date[$key])) : NULL;
+                
+                $user = User::find($invoice->subscriptionForm->user_id);
+                if(!empty($user)){
+                    $max_date = max($user->subscription_end_date,$invoice->subscription_end_date);
+                    $user->subscription_end_date = $max_date;
+                    $user->save();
+                }
+                if($key == 0){
+                    $invoice->subscription_end_date = !empty($max_date) ? $max_date : $invoice->subscription_end_date;
+                }
+                $invoice->save();
+            }
+        }
+        $success = ['success'=>1];
+        session()->flash('success','Invoice updated successfully');
+        return response()->json($success);
+    }
 
-    	]);
-        $invoice = InvoiceDetail::find($id);
-        $invoice->description = $request->description;
-        $invoice->amount = $request->amount;
-        $invoice->subscription_start_date = !empty($request->subscription_start_date) ? date('Y-m-d',strtotime($request->subscription_start_date)) : "";
-        $invoice->subscription_end_date = !empty($request->subscription_end_date) ? date('Y-m-d',strtotime($request->subscription_end_date)) : "";
-        $invoice->save();
-        $subscriptionlog = new SubscriptionLog([
-            'title'=> $request->description,
-            'subscription_start_date' => !empty($request->subscription_start_date) ? date('Y-m-d',strtotime($request->subscription_start_date)) : "",
-            'subscription_end_date' => !empty($request->subscription_end_date) ? date('Y-m-d',strtotime($request->subscription_end_date)) : "",
-            'amount'=>$request->amount,
-            'user_id'=> $invoice->subscriptionForm->user_id
-        ]);
-        return back()->with('success','invoice updated successfully');
+    public function generatePdf($id){
+        $subscription_details = SubscriptionFormDetail::find($id);
+        $toEmail = $subscription_details->email;
+        $invoices = InvoiceDetail::latest()->where('subscription_form_id',$id)->first();
+        // dd($invoices);
+        $table_data = [];
+        $inoice = array();
+        $invoice['description'] = $invoices->description;
+        $invoice['amount'] = $invoices->amount;
+        $invoice['subscription_start_date'] = $invoices->subscription_start_date;
+        $invoice['subscription_end_date'] = $invoices->subscription_end_date;
+        // $invoice['amount'] = $invoices->amount;
+        $invoice['invoice_no'] = $invoices->invoice_no;
+        array_push($table_data,$invoice);
+        $data['name_of_investor'] = $subscription_details->name_of_investor;
+        $data['pan_no'] = $subscription_details->pan_no;
+        $data['state'] = $subscription_details->state;
+        $data["email"] = $subscription_details->email;
+        // $today= Carbon::now();
+        // $currentmonth = $today->month;
+        // $currentyear = $today->year;
+        // if($currentmonth < 4){
+        //     $invoice_no = "#NIV/".($currentyear-1)."-".($currentyear)."/".($id+100);
+        // }else{
+        //     $invoice_no = "#NIV/".$currentyear."-".($currentyear+1)."/".($id+100);
+        // }
+        $data['invoice_no'] = $invoices->invoice_no;
+        $amount = $invoices->amount;
+        if($subscription_details->state == 'Gujarat'){
+               $cgst = $amount * 0.09;
+               $sgst = $amount * 0.09;
+               $total = $amount + $cgst + $sgst;
+               $data['amount'] = $amount;
+               $data['cgst'] = $cgst;
+               $data['sgst'] = $sgst;
+               $data['total'] = $total;
+               
+        }else{
+            $igst = $amount * 0.18;
+            $total = $amount + $igst;
+            $data['amount'] = $amount;
+            $data['igst'] = $igst;
+            $data['total'] = $total;
+        }
+        
+        
+        $data['table_data'] = $table_data;
+        
+        // dd($data);
+        $pdf = PDF::loadView('pdf.document', $data);
+        return $pdf->download('invoice.pdf');
+        // return $pdf->output('document.pdf',true);
+        //return $pdf->stream('document.pdf');
     }
 }

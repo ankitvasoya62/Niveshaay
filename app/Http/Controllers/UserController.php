@@ -11,6 +11,7 @@ use Mail;
 use App\Mail\passwordMail;
 use Str;
 use App\Models\User;
+use App\Models\SubscriptionFormDetail;
 class UserController extends Controller
 {
     /**
@@ -24,7 +25,7 @@ class UserController extends Controller
         $users = User::latest()->where('is_admin',0)->get();
         $active = "users";
         $route = "user";
-        return view('backend.userManagement.listusers',compact('active','users','route'));
+        return view('backend.userManagement.listUsers',compact('active','users','route'));
     }
 
     /**
@@ -83,7 +84,7 @@ class UserController extends Controller
         User::insert($data);
         $toEmail = $request->email;
         try{
-            Mail::to($toEmail)->send(new passwordMail($random_password));
+            Mail::to($toEmail)->send(new passwordMail($random_password,$request->name));
         }
         catch(\Throwable $th){
             throw $th;
@@ -117,7 +118,7 @@ class UserController extends Controller
         //
         $user = User::find($id);
         $active= "users";
-        return view('backend.userManagement.EditUser',compact('active','user'));
+        return view('backend.userManagement.editUser',compact('active','user'));
         
     }
 
@@ -187,7 +188,8 @@ class UserController extends Controller
         // $data['status'] = "deleted";
         // $data['updated_at'] = Carbon::now();
         // DB::table('users')->where('id',$id)->update($data);
-        $user->delete();
+        $user->forceDelete();
+        SubscriptionFormDetail::where('user_id',$id)->forceDelete();
         $notification = array(
             
             'success'=>'User Deleted Successfully'
@@ -248,10 +250,10 @@ class UserController extends Controller
         User::insert($data);
         $toEmail = $request->email;
         try{
-            Mail::to($toEmail)->send(new passwordMail($random_password));
+            Mail::to($toEmail)->send(new passwordMail($random_password,$request->name));
         }
         catch(\Throwable $th){
-            throw $th;
+            //throw $th;
         }
         $notification = array(
             // 'message' => 'User Inserted Successfully',
@@ -265,7 +267,7 @@ class UserController extends Controller
     public function editAdminUser($id){
         $user = User::find($id);
         $active= "admin";
-        return view('backend.userManagement.EditAdminUser',compact('active','user'));
+        return view('backend.userManagement.editAdminUser',compact('active','user'));
         
     }
 
@@ -304,7 +306,7 @@ class UserController extends Controller
     public function deleteAdminUser($id){
         $user = User::find($id); 
         
-        $user->delete();
+        $user->forceDelete();
         $notification = array(
             
             'success'=>'User Deleted Successfully'

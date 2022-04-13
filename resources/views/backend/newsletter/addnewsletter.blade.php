@@ -126,8 +126,8 @@
     $('#summernote1,#summernote2,#summernote3,#summernote4').summernote({
         callbacks: {
             onFocus: function (contents) {
-                if($('#summernote1,#summernote2,#summernote3,#summernote4').summernote('isEmpty')){
-                $('#summernote1,#summernote2,#summernote3,#summernote4').html(''); 
+                if($(this).summernote('isEmpty')){
+                $(this).html(''); 
                 }
             }
         }

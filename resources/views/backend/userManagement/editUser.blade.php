@@ -23,7 +23,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Add User</li>
+              <li class="breadcrumb-item active">Edit User</li>
             </ol>
           </div>
         </div>
@@ -74,33 +74,41 @@
                         <span class="error">{{$message}}</span>
                     @enderror
                   </div>
-                  <div class="form-group">
-                        <label>Date Of Birth:</label>
-                        
-                        <input type="date" class="form-control datetimepicker-input" name="dob" value="{{ date("Y-m-d", strtotime($user->dob)) }}">
-                        @error('dob')
-                            <span class="error">{{$message}}</span>
-                        @enderror
-                        
-                    </div>
-                  <div class="form-group">
-                        <label>Subscription Start Date:</label>
-                        
-                        <input type="date" class="form-control datetimepicker-input" name="subscription_start_date" value="{{ date("Y-m-d", strtotime($user->subscription_start_date)) }}">
-                        @error('subscription_start_date')
-                            <span class="error">{{$message}}</span>
-                        @enderror
-                        
-                    </div>
+                  <div class="col-md-3">
                     <div class="form-group">
-                        <label>Subscription End Date:</label>
-                        
-                        <input type="date" class="form-control datetimepicker-input" name="subscription_end_date" value="{{ date("Y-m-d", strtotime($user->subscription_end_date)) }}">
-                        @error('subscription_end_date')
-                            <span class="error">{{$message}}</span>
-                        @enderror
-                        
+                      <label>Date Of Birth:</label>
+                      
+                      <input type="date" class="form-control datetimepicker-input" name="dob" value="{{ date("Y-m-d", strtotime($user->dob)) }}">
+                      @error('dob')
+                          <span class="error">{{$message}}</span>
+                      @enderror
+                      
                     </div>
+                  </div>
+                  
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label>Subscription Start Date:</label>
+                      
+                      <input type="date" class="form-control datetimepicker-input" name="subscription_start_date" value="{{ date("Y-m-d", strtotime($user->subscription_start_date)) }}">
+                      @error('subscription_start_date')
+                          <span class="error">{{$message}}</span>
+                      @enderror
+                      
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label>Subscription End Date:</label>
+                      
+                      <input type="date" class="form-control datetimepicker-input" name="subscription_end_date" value="{{ date("Y-m-d", strtotime($user->subscription_end_date)) }}">
+                      @error('subscription_end_date')
+                          <span class="error">{{$message}}</span>
+                      @enderror
+                      
+                    </div>
+                  </div>
+                    
                     <div class="form-group">
                         <label for="name">Amount</label>
                         <input type="number" name="amount" class="form-control" id="amount" placeholder="Enter Amount" value="{{ $user->amount }}" required>

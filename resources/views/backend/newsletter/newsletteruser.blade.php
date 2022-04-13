@@ -75,7 +75,7 @@
                                                 @if($newsletteruser->status == 'active')
                                                     <span class="badge badge-success">active</span>
                                                 @else
-                                                <span class="badge badge-success">inactive</span>
+                                                <span class="badge badge-warning">inactive</span>
                                                 @endif
                                             </td>
                                             <td>

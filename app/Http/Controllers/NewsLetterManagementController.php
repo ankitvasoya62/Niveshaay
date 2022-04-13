@@ -102,10 +102,10 @@ class NewsLetterManagementController extends Controller
         $newsletter->title = $request->title;
         //$newsletter->banner_title = $request->banner_title;
         $newsletter->date = $request->date;
-        $newsletter->editor_top = $request->editor_top;
-        $newsletter->editor_left = $request->editor_left;
-        $newsletter->editor_right = $request->editor_right;
-        $newsletter->editor_bottom = $request->editor_bottom;
+        $newsletter->editor_top = !empty($request->editor_top) || $request->editor_top != "<p><br><p>" ? $request->editor_top : '';
+        $newsletter->editor_left = !empty($request->editor_left) || $request->editor_left != "<p><br><p>" ? $request->editor_left : '';
+        $newsletter->editor_right = !empty($request->editor_right) || $request->editor_right != "<p><br><p>" ? $request->editor_right : '';
+        $newsletter->editor_bottom = !empty($request->editor_bottom) || $request->editor_bottom != "<p><br><p>" ? $request->editor_bottom : '';
         $image = $request->file('banner');
         $imageName = time().".".$image->extension();
         $image->move(public_path('images/newsletter'),$imageName);
@@ -127,10 +127,12 @@ class NewsLetterManagementController extends Controller
         $newsletter->title = $request->title;
         //$newsletter->banner_title = $request->banner_title;
         $newsletter->date = $request->date;
-        $newsletter->editor_top = $request->editor_top;
-        $newsletter->editor_left = $request->editor_left;
-        $newsletter->editor_right = $request->editor_right;
-        $newsletter->editor_bottom = $request->editor_bottom;
+        $newsletter->editor_top = !empty($request->editor_top) || $request->editor_top != "<p><br><p>" ? $request->editor_top : '';
+        // $newsletter->editor_left = !empty($request->editor_left) || $request->editor_left != "<p><br><p>" ? $request->editor_left : '';
+        $newsletter->editor_left = preg_replace('/<p[^>]*>(&nbsp;|\s+|<br\s*\/?>)*<\/p>/','',$request->editor_left);
+        $newsletter->editor_right = preg_replace('/<p[^>]*>(&nbsp;|\s+|<br\s*\/?>)*<\/p>/','',$request->editor_right);
+        // $newsletter->editor_right = !empty($request->editor_right) || $request->editor_right != "<p><br><p>" ? $request->editor_right : '';
+        $newsletter->editor_bottom = !empty($request->editor_bottom) || $request->editor_bottom != "<p><br><p>" ? $request->editor_bottom : '';
         if($request->file('banner')){
             
             $image = $request->file('banner');
@@ -169,7 +171,7 @@ class NewsLetterManagementController extends Controller
             'newsletter_id'=>'required'
         ],
         [
-            'newsletter_id.required'=>'Please select only one newsletter'
+            'newsletter_id.required'=>'Please select any one newsletter'
         ]);
         $newsletterid = $request->newsletter_id;
         $newsletter = Newsletter::find($newsletterid);

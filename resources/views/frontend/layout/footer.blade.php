@@ -124,7 +124,7 @@
 				success:function(data) {
 					
 					if(data.success == 1){
-						window.location.href = "/dashboard";
+						window.location.href = "{{ route('frontend.share-detail') }}";
 					}else{
 						if(data.message.email){
 							jQuery('#login-modal-email-error').html(data.message.email[0]);
