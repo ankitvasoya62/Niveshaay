@@ -108,6 +108,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/download/invoice/{id}',[ViewSubscriptionDetailsController::class,'downloadinvoice'])->name('admin.download.invoice');
         Route::get('/edit/invoice/{id}',[ViewSubscriptionDetailsController::class,'editinvoice'])->name('admin.edit.invoice');
         Route::post('/update/invoice/{id}',[ViewSubscriptionDetailsController::class,'updateinvoice'])->name('admin.update.invoice');
+        Route::get('/download/pdf/invoice/{id}',[ViewSubscriptionDetailsController::class,'generatePdf'])->name('admin.download.invoicepdf');
         /*Subscription Detail Route */
         Route::get('/complaint-status/current-month',[ComplaintStatusController::class,'currentMonth'])->name('admin.currentmonthcomplaint');
         Route::post('/complaint-status/store/current-month',[ComplaintStatusController::class,'storeCurrentMonth'])->name('admin.storecurrentmonthcomplaint');
