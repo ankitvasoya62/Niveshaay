@@ -60,7 +60,7 @@
         </div>
         <div class="row">
           <div class="col-8">
-          <a href="{{ route('admin.password.request') }}">forgot password</a>
+          <a href="{{ route('admin.password.request') }}">Forgot Password</a>
           </div>
           <!-- /.col -->
           <div class="col-4">

@@ -78,14 +78,14 @@ class ComplaintStatusController extends Controller
                 foreach ($fields as $key => $value) {
                     # code...
                     if($row == 0){
-                        $currentmonthinsert[$value] = $investorsDetails[$key];
+                        $currentmonthinsert[$value] = !empty($investorsDetails[$key]) ? $investorsDetails[$key] : 0;
                     }
                     elseif ($row == 1) {
                         # code...
-                        $currentmonthinsert[$value] = $sebiDetails[$key];
+                        $currentmonthinsert[$value] = !empty($sebiDetails[$key]) ? $sebiDetails[$key] : 0;
                     }
                     else{
-                        $currentmonthinsert[$value] = $otherDetails[$key];
+                        $currentmonthinsert[$value] = !empty($otherDetails[$key]) ? $otherDetails[$key] : 0;
                     }
                     
                 }
@@ -161,10 +161,10 @@ class ComplaintStatusController extends Controller
             $per_month_data = MonthlyComplaint::latest()->where('month',$complaint_month)->where('year',$complaint_full_year)->first();
             
             $storeMonthlyComplaints = array();
-            $storeMonthlyComplaints['carried_forward'] = $request['carried_forward_'.$key];
-            $storeMonthlyComplaints['received'] = $request['received_'.$key];
-            $storeMonthlyComplaints['resolved'] = $request['resolved_'.$key];
-            $storeMonthlyComplaints['pending'] = $request['pending_'.$key];
+            $storeMonthlyComplaints['carried_forward'] = !empty($request['carried_forward_'.$key]) ? $request['carried_forward_'.$key] : 0 ;
+            $storeMonthlyComplaints['received'] = !empty($request['received_'.$key]) ? $request['received_'.$key] :0;
+            $storeMonthlyComplaints['resolved'] = !empty($request['resolved_'.$key]) ? $request['resolved_'.$key] : 0;
+            $storeMonthlyComplaints['pending'] = !empty($request['pending_'.$key]) ? $request['pending_'.$key] : 0;
             $storeMonthlyComplaints['month'] = $complaint_month;
             $storeMonthlyComplaints['year'] = $complaint_full_year;
 
@@ -225,10 +225,10 @@ class ComplaintStatusController extends Controller
             $per_year_complaints = array();
             $per_year_complaints = AnnuallyComplaint::latest()->where('year',$complaint_year)->first();
             $storeAnnuallyComplaints = array();
-            $storeAnnuallyComplaints['carried_forward'] = $request['carried_forward_'.$key];
-            $storeAnnuallyComplaints['received'] = $request['received_'.$key];
-            $storeAnnuallyComplaints['resolved'] = $request['resolved_'.$key];
-            $storeAnnuallyComplaints['pending'] = $request['pending_'.$key];
+            $storeAnnuallyComplaints['carried_forward'] = !empty($request['carried_forward_'.$key]) ? $request['carried_forward_'.$key] : 0 ;
+            $storeAnnuallyComplaints['received'] = !empty($request['received_'.$key]) ? $request['received_'.$key] : 0;
+            $storeAnnuallyComplaints['resolved'] = !empty($request['resolved_'.$key]) ? $request['resolved_'.$key] : 0;
+            $storeAnnuallyComplaints['pending'] = !empty($request['pending_'.$key]) ? $request['pending_'.$key] : 0;
             
             $storeAnnuallyComplaints['year'] = $complaint_year;
 

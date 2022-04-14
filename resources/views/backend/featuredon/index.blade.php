@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('admin/home') }}">Home</a></li>
                             <li class="breadcrumb-item active">Featured On</li>
                         </ol>
                     </div>
@@ -48,7 +48,7 @@
                                         <tr>
                                             <th>SR No</th>
                                             <th>Image</th>
-                                            <th>Date</th>
+                                            <th>Date of Publish</th>
                                             <th style="width:5%">Title</th>
                                             <th>Logo</th>
                                             <th>Description</th>

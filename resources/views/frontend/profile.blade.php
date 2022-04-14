@@ -43,7 +43,7 @@
             </div>
             <div class="table-outer-wrapper">
                 <div class="table-wrapper">
-                    <h3>Current Subscription</h3>
+                    <h3>Current Subscriptions</h3>
                     <table class="table">
                         <thead>
                             <tr>
@@ -73,7 +73,7 @@
                     </table>
                 </div>
                 <div class="table-wrapper">
-                    <h3>Past Subscription</h3>
+                    <h3>Past Subscriptions</h3>
                     <table class="table">
                         <thead>
                             <tr>

@@ -87,7 +87,7 @@ class SubscriptionDetailsController extends Controller
         if(empty($subscription_details)){
             $subscriptionFormDetail = new SubscriptionFormDetail;
             $subscriptionFormDetail->name_of_investor = $request['name_of_investor'];
-            $subscriptionFormDetail->dob = Carbon::parse($request['dob'])->format('Y-m-d');
+            $subscriptionFormDetail->dob = Carbon::createFromFormat('d/m/Y',$request['dob'])->format('Y-m-d');
             $subscriptionFormDetail->email = $request['email'];
             $subscriptionFormDetail->mobile_no = $request['mobile_no'];
             $subscriptionFormDetail->pan_no = $request['pan_no'];
@@ -115,7 +115,7 @@ class SubscriptionDetailsController extends Controller
         else{
             $subscriptionFormDetail = SubscriptionFormDetail::where('user_id',auth()->user()->id)->where('status','active')->first();
             $subscriptionFormDetail->name_of_investor = $request['name_of_investor'];
-            $subscriptionFormDetail->dob = Carbon::parse($request['dob'])->format('Y-m-d');
+            $subscriptionFormDetail->dob = Carbon::createFromFormat('d/m/Y',$request['dob'])->format('Y-m-d');
             $subscriptionFormDetail->email = $request['email'];
             $subscriptionFormDetail->mobile_no = $request['mobile_no'];
             $subscriptionFormDetail->pan_no = $request['pan_no'];

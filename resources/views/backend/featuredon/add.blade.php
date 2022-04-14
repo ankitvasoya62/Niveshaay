@@ -18,7 +18,7 @@
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('admin/home') }}">Home</a></li>
                 <li class="breadcrumb-item active">Featured On</li>
               </ol>
             </div>
@@ -43,7 +43,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="featured_date">Date</label>
+                                <label for="featured_date">Date of Publish</label>
                                 <input type="date" name="featured_date" id="featured_date" class="form-control">
                                 @error('featured_date')
                                     <span class="error">{{ $message }}</span>

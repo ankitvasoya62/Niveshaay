@@ -12,16 +12,18 @@ class passwordMail extends Mailable
     use Queueable, SerializesModels;
 
     public $password;
+    public $name;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($random_password)
+    public function __construct($random_password,$name='')
     {
         //
         $this->password = $random_password;
+        $this->name = $name;
     }
 
     /**

@@ -58,10 +58,11 @@
 									<a href="#" title="Login/Signup" data-link="login-modal" class="modal-link">Login/Signup </a>
 									{{-- <a href="{{ route('login') }}" title="Login/Signup">Login/Signup </a> --}}
 								</li>
+								@endif
 								<li class=" btn btn-green">
 									<a href="https://niveshaay.smallcase.com/" title="Visit smallCase" target="_blank">Visit Smallcase </a>
 								</li>
-								@endif
+								
 							</ul>
 						</nav>
 						<div class="hamburger">

@@ -11,28 +11,28 @@
                         <div class="form-outer-wrapper">
                           <div class="form-group half-width">
                             <label for="first-name">First Name</label>
-                            <input id="first-name" name="first_name" type="text" class="form-control" placeholder="First Name">	
+                            <input id="first-name" name="first_name" type="text" class="form-control" placeholder="First Name" value="{{ old('first_name') }}">	
                             @error('first_name')
                                 <span style="color:red">{{ $message }}</span>
                             @enderror	                    
                           </div>
                           <div class="form-group half-width">
                             <label for="last-name">Last Name</label>
-                            <input id="last-name" name="last_name" type="text" class="form-control" placeholder="Last Name">
+                            <input id="last-name" name="last_name" type="text" class="form-control" placeholder="Last Name" value="{{ old('last_name') }}">
                             @error('last_name')
                                 <span style="color:red">{{ $message }}</span>
                             @enderror	           		                    
                           </div>
                           <div class="form-group half-width">
                             <label for="email-address">Email Address</label>
-                            <input id="email-address" name="email" type="text" class="form-control" placeholder="Email Address">
+                            <input id="email-address" name="email" type="text" class="form-control" placeholder="Email Address" value="{{ old('email') }}">
                             @error('email')
                                 <span style="color:red">{{ $message }}</span>
                             @enderror	           		                    
                           </div>
                           <div class="form-group half-width">
                             <label for="contact-no">phn-no</label>
-                            <input id="contact-no" name="phone_no" type="number" class="form-control" placeholder="+91 | Phone Number">	
+                            <input id="contact-no" name="phone_no" type="number" class="form-control" placeholder="+91 | Phone Number" value="{{ old('phone_no') }}">	
                             @error('phone_no')
                                 <span style="color:red">{{ $message }}</span>
                             @enderror	           	                    
@@ -62,7 +62,7 @@
                           </div>
                           <div class="form-group form-btn-wrapper">
                             <button type="submit" class="btn btn-border">Sign Up</button>
-                            <button type="button" class="btn btn-border login-link" onclick=location.href='{{ route("frontend.home")}}'>Cancel</button>
+                            
                           </div>                
                         </div>
                       </form>
