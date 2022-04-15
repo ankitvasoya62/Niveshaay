@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
                         <li class="breadcrumb-item active">Bulk Newsletter Users Import</li>
                     </ol>
                 </div>
@@ -68,11 +68,13 @@
                     <form action="{{ route('admin.newsletter.storebulk.user') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="file" name="file" class="form-control" >
+                        <span style="color:red">*The excel file must be a file of type: csv, xls, xlsx.</span>
                         <br>
-                        <a class="btn btn-success" href="{{ asset('images/Book1.xlsx') }}" download>Download Demo Excel</a>
+                        <br>
                         <button class="btn btn-success">Import Newsletter User Data</button>
-                        {{-- <a class="btn btn-warning" href="#">Export User Data</a> --}}
+                        <a class="btn btn-warning" href="{{ asset('images/Book1.xlsx') }}" download>Download Demo Excel</a>{{-- <a class="btn btn-warning" href="#">Export User Data</a> --}}
                     </form>
+                    
                     @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>

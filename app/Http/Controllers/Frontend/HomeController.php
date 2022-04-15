@@ -26,6 +26,7 @@ use App\Models\OurClientSayManagement;
 use App\Models\FeaturedOn;
 use App\Models\TweeterFeed;
 use DB;
+use File;
 
 class HomeController extends Controller
 {
@@ -428,6 +429,15 @@ class HomeController extends Controller
                 if($request->has('profile_photo')){
                     
                     $image = $request->file('profile_photo');
+                    $imageFileExt = $image->getClientOriginalName();
+                    $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
+                    $imageName = str_replace(" ", "_", $imageFileName).'_' .time().".".$image->extension();
+                    //$imageName = time().".".$image->extension();
+                    $destinationPath = public_path('images/profile-photos');
+                    
+                    if(!File::exists($destinationPath)) {
+                        File::makeDirectory($destinationPath, 0777, true, true);
+                    }
                     $imageName = time().".".$image->extension();
                     $image->move(public_path('images/profile-photos'),$imageName);
                     $user->profile_photo= $imageName;

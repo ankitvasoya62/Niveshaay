@@ -90,7 +90,7 @@ class UserController extends Controller
             throw $th;
         }
         $notification = array(
-            'success'=>'User Inserted Successfully'
+            'success'=>'User created successfully. Password has been mailed on registered mail ID.'
             );
         return redirect()->route('admin.users')->with($notification);
         
@@ -228,7 +228,7 @@ class UserController extends Controller
         $validatedata = $request->validate([
 
     		'name' => 'required',
-    		'email' => 'required|email',
+    		'email' => 'required|email|unique:users,email',
             
             'phone_no' => 'required|digits:10',
             'dob' => 'required|date|date_format:Y-m-d|before:'.$todayDate,
@@ -258,7 +258,7 @@ class UserController extends Controller
         $notification = array(
             // 'message' => 'User Inserted Successfully',
             // 'alert-type' => 'success'
-            'success' => 'User Inserted Successfully',
+            'success' => 'Admin User created successfully. Password has been mailed on registered mail ID.',
             );
         return redirect()->route('admin.admin-users')->with($notification);
         

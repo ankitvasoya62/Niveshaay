@@ -14,11 +14,11 @@
 		<h1>Niveshaay Risk Profiling and <span>Suitability Assessment</span></h1>
 		<div class="subscription-form-block custom-form-section">
 			<div class="white-shadow-card form-wrapper">
-                <form method="POST" action="{{ route('store.subscription-details')}}">@csrf
+                <form method="POST" action="{{ route('store.subscription-details')}}" id="subscription-form">@csrf
                     <div class="form-outer-wrapper">
                         <div class="form-group half-width">
                             <label for="name">Name of Investor<span class="red-text">*</span></label>
-                            <input id="name" name="name_of_investor" type="text" class="form-control" placeholder="Enter Name">		                    
+                            <input id="name" name="name_of_investor" type="text" class="form-control" placeholder="Enter Name" value="{{ Auth::user()->name }}" required>		                    
                             @error('name_of_investor')
                                 <span class="error">{{ $message }}</span>
                             @enderror
@@ -32,17 +32,18 @@
                         </div>
                         <div class="form-group half-width">
                             <label for="email"> Email Address<span class="red-text">*</span></label>
-                            <input id="email" name="email" type="text" class="form-control" placeholder="Enter Address ">		                    
+                            <input id="email" name="email" type="text" class="form-control" placeholder="Enter Address" value="{{ Auth::user()->email }}">		                    
                             @error('email')
                                 <span class="error">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group half-width">
                             <label for="mobile-num">Mobile Number<span class="red-text">*</span></label>
-                            <input id="mobile-num" name="mobile_no" type="text" class="form-control" placeholder="Enter Mobile Number ">		                    
+                            <input id="mobile-num" name="mobile_no" type="text" class="form-control" placeholder="Enter Mobile Number " value="{{ Auth::user()->phone_no }}">		                    
                             @error('mobile_no')
                                 <span class="error">{{ $message }}</span>
                             @enderror
+                            <span class="error" id="mobile_no_error"></span>
                         </div>
                         <div class="form-group half-width">
                             <label for="street-address">Full Street Address</label>
@@ -53,7 +54,7 @@
                         </div>
                         <div class="form-group half-width">
                             <label for="state">State/UnionTerritory ( Please put in country also if outside India)<span class="red-text">*</span></label>
-                            <select name="state" class="custom-dropdown form-control">
+                            <select name="state" class="custom-dropdown form-control" required>
                                 <option value=''>SELECT One</option>
                                 @foreach ($states as $key=>$value )
                                     <option value="{{ $value }}">{{ $value }} </option>
@@ -65,7 +66,7 @@
                         </div>
                         <div class="form-group half-width">
                             <label for="pincode"> Pincode<span class="red-text">*</span></label>
-                            <input id="pincode" name="pin_code" type="text" class="form-control" placeholder="Enter Pincode ">		                    
+                            <input id="pincode" name="pin_code" type="text" class="form-control" placeholder="Enter Pincode" required>		                    
                             @error('pin_code')
                                 <span class="error">{{ $message }}</span>
                             @enderror
@@ -453,8 +454,32 @@
 @push('js')
     <script defer type="text/javascript" src="{{asset('/js/jquery-ui-datepicker.min.js')}}"></script>
     <script type="module">
-        JQuery.datepicker.formatDate( "dd-mm-yyyy");
+        //JQuery.datepicker.formatDate( "dd-mm-yyyy");
+        jQuery('#mobile-num').blur(function(){
+            var phoneno = /^\d{10}$/;
+            var inputtxt = jQuery(this).val();
+            if((inputtxt.match(phoneno)))
+            {
+                jQuery('#mobile_no_error').html('');
+            }
+            else
+            {
+                jQuery('#mobile_no_error').html('The mobile no must be 10 digits.');
+            }
+        });
+        jQuery('#subscription-form').submit(function(){
+            var phoneno = /^\d{10}$/;
+            var inputtxt = jQuery('#mobile-num').val();
+            if((inputtxt.match(phoneno)))
+            {
+                return true;
+            }
+            else
+            {
+              return false;
+            }
 
+        });
     </script>
 @endpush
 @endsection

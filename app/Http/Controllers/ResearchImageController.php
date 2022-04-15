@@ -57,11 +57,25 @@ class ResearchImageController extends Controller
             foreach ($report_images as $key => $value) {
                 # code...
                 $subResearchImages = new SubResearchImage;
-                $image = $value;
-                $imageName = time().".".$image->extension();
-                $image->move(public_path('images/research-images/'.$researchId),$imageName);
-                $subResearchImages->report_image_path= $imageName;
-                $subResearchImages->research_image_id = $researchId;
+                try{
+                    $image = $value;
+                    $imageFileExt = $image->getClientOriginalName();
+                    $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
+                    $imageName = str_replace(" ", "_", $imageFileName).'_' . time().'.'.$image->getClientOriginalExtension();
+                    //$imageName = time().".".$image->extension();
+                    $destinationPath = public_path('images/research-images/'.$researchId);
+                
+                    if(!File::exists($destinationPath)) {
+                        File::makeDirectory($destinationPath, 0777, true, true);
+                    }
+
+                    $image->move(public_path('images/research-images/'.$researchId),$imageName);
+                    $subResearchImages->report_image_path= $imageName;
+                    $subResearchImages->research_image_id = $researchId;
+                }catch(\Exception $e){
+                    return $e->getMessage();
+                }
+                
                 
                 $subResearchImages->save();
                 
@@ -145,13 +159,27 @@ class ResearchImageController extends Controller
             foreach ($report_images as $key => $value) {
                 # code...
                 $researchImages = new SubResearchImage;
-                $image = $value;
-                $imageName = time().".".$image->extension();
-                $image->move(public_path('images/research-images/'.$id),$imageName);
-                $researchImages->report_image_path= $imageName;
-                $researchImages->research_image_id = $id;
+                try{
+                    $image = $value;            
+                    $imageFileExt = $image->getClientOriginalName();
+                    $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
+                    $imageName = str_replace(" ", "_", $imageFileName).'_' . time().'.'.$image->getClientOriginalExtension();
+                    //$imageName = time().".".$image->extension();
+                    $destinationPath = public_path('images/research-images/'.$researchId);
                 
-                $researchImages->save();
+                    if(!File::exists($destinationPath)) {
+                        File::makeDirectory($destinationPath, 0777, true, true);
+                    }
+                    //$imageName = time().".".$image->extension();
+                    $image->move(public_path('images/research-images/'.$id),$imageName);
+                    $researchImages->report_image_path= $imageName;
+                    $researchImages->research_image_id = $id;
+                    
+                    $researchImages->save();
+                }catch(\Exception $e){
+
+                }
+                
             }
         }
         return redirect()->back()->with('success','Images Update Successfully');

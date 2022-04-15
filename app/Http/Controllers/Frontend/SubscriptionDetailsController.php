@@ -69,7 +69,7 @@ class SubscriptionDetailsController extends Controller
             'name_of_investor'=>'required',
             'dob'=>'required',
             'email'=>'required',
-            'mobile_no'=>'required|max:10',
+            'mobile_no'=>'required|digits:10',
             'pan_no'=>'required|max:10|min:10',
             'pin_code'=>'required|max:6',
             'street_address'=>'required',

@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
                             <li class="breadcrumb-item active">Tweeter Feeds</li>
                         </ol>
                     </div>
@@ -69,9 +69,9 @@
                                             
                                             
                                             <td>
-                                                <a href="{{route('admin.edit.tweeter-feeds',$tweeterfeed->id)}}" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                                                <a href="{{route('admin.edit.tweeter-feeds',$tweeterfeed->id)}}" class="btn btn-info" title="edit"><i class="fas fa-edit"></i></a>
                                                 <a onclick="return confirm('Are you sure want to delete?')"
-                                                    href="{{route('admin.delete.tweeter-feeds',$tweeterfeed->id)}}" class="btn btn-danger"><i class="fas fa-trash-alt"></i>
+                                                    href="{{route('admin.delete.tweeter-feeds',$tweeterfeed->id)}}" class="btn btn-danger" title="delete"><i class="fas fa-trash-alt"></i>
                                                 </a>
                                             </td>
                                             

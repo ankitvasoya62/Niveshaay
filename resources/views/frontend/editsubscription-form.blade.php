@@ -14,7 +14,7 @@
 		<h1>Niveshaay Risk Profiling and <span>Suitability Assessment</span></h1>
 		<div class="subscription-form-block custom-form-section">
 			<div class="white-shadow-card form-wrapper">
-                <form method="POST" action="{{ route('store.subscription-details')}}">@csrf
+                <form method="POST" action="{{ route('store.subscription-details')}}" id="subscription-form">@csrf
                     <div class="form-outer-wrapper">
                         <div class="form-group half-width">
                             <label for="name">Name of Investor<span class="red-text">*</span></label>
@@ -50,6 +50,7 @@
                             @error('street_address')
                                 <span class="error">{{ $message }}</span>
                             @enderror
+                            <span class="error" id="mobile_no_error"></span>
                         </div>
                         <div class="form-group half-width">
                             <label for="state">State/UnionTerritory ( Please put in country also if outside India)<span class="red-text">*</span></label>
@@ -452,5 +453,33 @@
 </section>
 @push('js')
     <script defer type="text/javascript" src="{{asset('/js/jquery-ui-datepicker.min.js')}}"></script>
+    <script type="module">
+        //JQuery.datepicker.formatDate( "dd-mm-yyyy");
+        jQuery('#mobile-num').blur(function(){
+            var phoneno = /^\d{10}$/;
+            var inputtxt = jQuery(this).val();
+            if((inputtxt.match(phoneno)))
+            {
+                jQuery('#mobile_no_error').html('');
+            }
+            else
+            {
+                jQuery('#mobile_no_error').html('The mobile no must be 10 digits.');
+            }
+        });
+        jQuery('#subscription-form').submit(function(){
+            var phoneno = /^\d{10}$/;
+            var inputtxt = jQuery('#mobile-num').val();
+            if((inputtxt.match(phoneno)))
+            {
+                return true;
+            }
+            else
+            {
+              return false;
+            }
+
+        });
+    </script>
 @endpush
 @endsection

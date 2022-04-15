@@ -32,7 +32,7 @@
                           </div>
                           <div class="form-group half-width">
                             <label for="contact-no">phn-no</label>
-                            <input id="contact-no" name="phone_no" type="number" class="form-control" placeholder="+91 | Phone Number" value="{{ old('phone_no') }}">	
+                            <input id="contact-no" name="phone_no" type="text" class="form-control" placeholder="Phone Number" value="{{ old('phone_no') }}">	
                             @error('phone_no')
                                 <span style="color:red">{{ $message }}</span>
                             @enderror	           	                    

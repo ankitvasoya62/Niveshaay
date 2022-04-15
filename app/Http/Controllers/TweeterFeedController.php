@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TweeterFeed;
 use Illuminate\Http\Request;
+use File;
 
 class TweeterFeedController extends Controller
 {
@@ -53,11 +54,25 @@ class TweeterFeedController extends Controller
         $tweeterFeed->tweeter_name = $request->tweeter_name;
         $tweeterFeed->tweeter_username = $request->tweeter_username;
         $tweeterFeed->tweeter_description = $request->tweeter_description;
+        try{
+            if($request->file('tweeter_user_image')){
+                $image = $request->file('tweeter_user_image');
+                $imageFileExt = $image->getClientOriginalName();
+                $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
+                $imageName = str_replace(" ", "_", $imageFileName).'_' .time().".".$image->extension();
+                $destinationPath = public_path('images/tweeter-feeds');
+                
+                if(!File::exists($destinationPath)) {
+                    File::makeDirectory($destinationPath, 0777, true, true);
+                }
+                $image->move(public_path('images/tweeter-feeds'),$imageName);
+                $tweeterFeed->tweeter_user_image= $imageName;
+            }
+        }catch(\Exception $e){
+            return redirect()->back()->with('error',$e->getMessage());
+        }
         
-        $image = $request->file('tweeter_user_image');
-        $imageName = time().".".$image->extension();
-        $image->move(public_path('images/tweeter-feeds'),$imageName);
-        $tweeterFeed->tweeter_user_image= $imageName;
+        
         // $newClient->client_designation = $request->client_designation;
         $tweeterFeed->save();
         return redirect()->route('admin.tweeter-feeds')->with('success','Tweeter Feed Added Successfully');
@@ -104,13 +119,29 @@ class TweeterFeedController extends Controller
         $tweeterFeed->tweeter_name = $request->tweeter_name;
         $tweeterFeed->tweeter_username = $request->tweeter_username;
         $tweeterFeed->tweeter_description = $request->tweeter_description;
-        if($request->file('tweeter_user_image')){
-            $image = $request->file('tweeter_user_image');
-            $imageName = time().".".$image->extension();
-            $image->move(public_path('images/tweeter-feeds'),$imageName);
-            $tweeterFeed->tweeter_user_image= $imageName;
-            @unlink(public_path('images/tweeter-feeds/'.$previous_image));
+        try{
+            if($request->file('tweeter_user_image')){
+                $image = $request->file('tweeter_user_image');
+                $imageFileExt = $image->getClientOriginalName();
+                $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
+                $imageName = str_replace(" ", "_", $imageFileName).'_' .time().".".$image->extension();
+                // $imageName = time().".".$image->extension();
+                $destinationPath = public_path('images/tweeter-feeds');
+                
+                if(!File::exists($destinationPath)) {
+                    File::makeDirectory($destinationPath, 0777, true, true);
+                }
+                $image->move(public_path('images/tweeter-feeds'),$imageName);
+                $tweeterFeed->tweeter_user_image= $imageName;
+                if(File::exists(public_path('images/tweeter-feeds/'.$previous_image))) {
+                    @unlink(public_path('images/tweeter-feeds/'.$previous_image));
+                }
+                
+            }
+        }catch(\Exception $e){
+            return redirect()->back()->with('error',$e->getMessage());
         }
+        
         
         // $newClient->client_designation = $request->client_designation;
         $tweeterFeed->save();
@@ -129,7 +160,10 @@ class TweeterFeedController extends Controller
         $tweeterFeed = TweeterFeed::find($id);
         $previous_image = $tweeterFeed->tweeter_user_image;
         $tweeterFeed->delete();
-        @unlink(public_path('images/tweeter-feeds/'.$previous_image));
+        if(File::exists(public_path('images/tweeter-feeds/'.$previous_image))) {
+            @unlink(public_path('images/tweeter-feeds/'.$previous_image));
+        }
+        
         return redirect()->route('admin.tweeter-feeds')->with('success','Tweeter Feed Deleted Successfully');
     }
 }

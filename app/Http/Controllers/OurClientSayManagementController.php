@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\OurClientSayManagement;
 use Illuminate\Http\Request;
+use File;
 
 class OurClientSayManagementController extends Controller
 {
@@ -53,10 +54,26 @@ class OurClientSayManagementController extends Controller
         $newClient = new OurClientSayManagement;
         $newClient->client_name = $request->client_name;
         $newClient->client_description = $request->client_description;
-        $image = $request->file('client_image');
-        $imageName = time().".".$image->extension();
-        $image->move(public_path('images/clients'),$imageName);
-        $newClient->client_image= $imageName;
+        if($request->file('client_image')){
+            try{
+                $image = $request->file('client_image');
+                $imageFileExt = $image->getClientOriginalName();
+                $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
+                $imageName = str_replace(" ", "_", $imageFileName).'_' .time().".".$image->extension();
+                // $imageName = time().".".$image->extension();
+                $destinationPath = public_path('images/clients');
+                
+                if(!File::exists($destinationPath)) {
+                    File::makeDirectory($destinationPath, 0777, true, true);
+                }
+                $image->move(public_path('images/clients'),$imageName);
+            }catch(\Exception $e){
+
+            }
+            
+            $newClient->client_image= $imageName;
+        }
+        
         $newClient->client_designation = $request->client_designation;
         $newClient->save();
         return redirect()->route('admin.our-clients')->with('success','Client Added Successfully');
@@ -110,11 +127,27 @@ class OurClientSayManagementController extends Controller
         $updateClient->client_name = $request->client_name;
         $updateClient->client_description = $request->client_description;
         if($request->file('client_image')){
-            $image = $request->file('client_image');
-            $imageName = time().".".$image->extension();
-            $image->move(public_path('images/clients'),$imageName);
-            $updateClient->client_image= $imageName;
-            @unlink(public_path('images/clients/'.$previous_image));
+            try{
+                $image = $request->file('client_image');
+                $imageFileExt = $image->getClientOriginalName();
+                $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
+                $imageName = str_replace(" ", "_", $imageFileName).'_' .time().".".$image->extension();
+                //$imageName = time().".".$image->extension();
+                $destinationPath = public_path('images/clients');
+                
+                if(!File::exists($destinationPath)) {
+                    File::makeDirectory($destinationPath, 0777, true, true);
+                }
+                $image->move(public_path('images/clients'),$imageName);
+                $updateClient->client_image= $imageName;
+                // if(!File::exists(public_path('images/tweeter-feeds/'.$previous_image))) {
+                //     @unlink(public_path('images/tweeter-feeds/'.$previous_image));
+                // }
+                @unlink(public_path('images/clients/'.$previous_image));
+            }catch(\Exception $e){
+
+            }
+            
         }
         
         $updateClient->client_designation = $request->client_designation;

@@ -28,7 +28,7 @@
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
                 <li class="breadcrumb-item active">Edit Newsletter Template</li>
               </ol>
             </div>
@@ -52,7 +52,7 @@
                                     <span class="error">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="form-group">
+                                                        <div class="form-group">
                                 <label for="banner_title">Banner Image</label>
                                 <input type="file" name="banner" id="banner" class="form-control">
                                 @error('banner')
@@ -69,13 +69,17 @@
                                     <span class="error">{{ $message }}</span>
                                 @enderror
                             </div> --}}
-                            <div class="form-group">
-                                <label for="date">Date</label>
-                                <input type="date" name="date" id="date" class="form-control" value="{{ $newsletter->date }}">
-                                @error('date')
-                                    <span class="error">{{ $message }}</span>
-                                @enderror
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="date">Date</label>
+                                    <input type="date" name="date" id="date" class="form-control" value="{{ $newsletter->date }}">
+                                    @error('date')
+                                        <span class="error">{{ $message }}</span>
+                                    @enderror
+                                </div>    
                             </div>
+
+                            
                             {{-- <div class="form-group">
                                 <label for="last_name">Email</label>
                                 <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}">

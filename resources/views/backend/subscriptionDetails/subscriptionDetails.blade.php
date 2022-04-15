@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
                         <li class="breadcrumb-item active">Subscription Details</li>
                     </ol>
                 </div>
@@ -113,37 +113,37 @@
                                             <a onclick="return confirm('Are you sure want to delete?')"
                                                 href="{{ route('admin.delete.share',$share->id) }}" class="btn btn-danger"><i class="fas fa-trash-alt"></i>
                                             </a> --}}
-                                            <a href="{{ route('admin.show-details',$subscription_detail->id)}}" class="btn btn-info"><i class="nav-icon fas fa-eye"></i></a>
-                                            <a href="{{ route('admin.edit-subscription',$subscription_detail->id)}}" class="btn btn-info"><i class="nav-icon fas fa-edit"></i></a>
+                                            <a href="{{ route('admin.show-details',$subscription_detail->id)}}" class="btn btn-info" title="view"><i class="nav-icon fas fa-eye"></i></a>
+                                            <a href="{{ route('admin.edit-subscription',$subscription_detail->id)}}" class="btn btn-info" title="edit"><i class="nav-icon fas fa-edit"></i></a>
                                             
                                             @if($subscription_detail->is_verified_by_admin == 0)
-                                                <a href="{{ route('admin.verify-subscription',$subscription_detail->id)}}" class="btn btn-warning" onclick="return confirm('Are you sure to verify?')">Verification Pending</a>
+                                                <a href="{{ route('admin.verify-subscription',$subscription_detail->id)}}" class="btn btn-warning" onclick="return confirm('Are you sure to verify?')" title="verify">Verification Pending</a>
                                             @else
-                                                <span class="badge badge-success" style="height:40px;font-size:16px;padding:13px">Verified</span>
+                                                <span class="badge badge-success" style="height:40px;font-size:16px;padding:13px" title="verified">Verified</span>
                                             @endif
                                             @if($subscription_detail->is_payment_received == 0)
                                                 @if($subscription_detail->is_verified_by_admin == 0)
-                                                <a class="btn btn-danger disabled"> Confirm Payment</a>
+                                                <a class="btn btn-danger disabled" title="Confirm Payment"> Confirm Payment</a>
                                                 @else
-                                                <a style="cursor:pointer"  class="btn btn-danger payment-received-button" id="{{ $subscription_detail->id }}" data-toggle="modal" data-target="#modal-default" @if($subscription_detail->is_verified_by_admin == 0) disabled @endif> Confirm Payment</a>
+                                                <a style="cursor:pointer"  class="btn btn-danger payment-received-button" id="{{ $subscription_detail->id }}" data-toggle="modal" data-target="#modal-default" @if($subscription_detail->is_verified_by_admin == 0) disabled @endif title="Confirm Payment"> Confirm Payment</a>
                                                 @endif
                                              
                                             @else
-                                                <span class="badge badge-success" style="height:40px;font-size:16px;padding:13px">Payment Received</span>
+                                                <span class="badge badge-success" style="height:40px;font-size:16px;padding:13px" title="Payment Received">Payment Received</span>
                                             @endif
-                                            <a href="{{ route('admin.delete-subscription',$subscription_detail->id)}}" class="btn btn-danger" onclick="return confirm('Are you sure to delete')"><i class="nav-icon fas fa-trash"></i></a>
+                                            <a href="{{ route('admin.delete-subscription',$subscription_detail->id)}}" class="btn btn-danger" onclick="return confirm('Are you sure to delete')" title="delete"><i class="nav-icon fas fa-trash"></i></a>
                                         </td>
                                         <td>
                                             @if($subscription_detail->is_payment_received == 1)
                                             {{-- <a href="{{ route('admin.view.invoicedetails',$subscription_detail->id) }}" class="btn btn-primary"><i class="fas fa-eye"></i></a> --}}
                                             <a href="#" onclick="event.preventDefault();" class="btn btn-info invoice-details" data-toggle="modal" data-target="#modal-default-2" id="{{ $subscription_detail->id}}"><i class="fas fa-edit"></i></a>
-                                            <a href="{{ route('admin.download.invoice',$subscription_detail->id)}}" class="btn btn-success">Download Invoice</a>
-                                            <a href="{{ route('admin.download.invoicepdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank">Download PDF</a>
+                                            <a href="{{ route('admin.download.invoice',$subscription_detail->id)}}" class="btn btn-success" title="Download Details">Download Details</a>
+                                            <a href="{{ route('admin.download.invoicepdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Invoice">Download Invoice</a>
 
                                             @else
-                                            <a href="#" onclick="event.preventDefault();" class="btn btn-info disabled" ><i class="fas fa-edit"></i></a>
-                                            <a href="#" class="btn btn-success disabled">Download Invoice</a>
-                                            <a href="#" class="btn btn-success disabled">Download PDF</a>
+                                            <a href="#" onclick="event.preventDefault();" class="btn btn-info disabled" title="edit"><i class="fas fa-edit"></i></a>
+                                            <a href="#" class="btn btn-success disabled" title="Download Details">Download Details</a>
+                                            <a href="#" class="btn btn-success disabled" title="Download Invoice">Download Invoice</a>
                                             @endif
                                             
                                         </td>

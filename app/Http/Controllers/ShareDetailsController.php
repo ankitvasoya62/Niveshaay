@@ -63,14 +63,29 @@ class ShareDetailsController extends Controller
         }
         $share->copy_to_our_research = $request->copy_to_our_research;
         $share->short_description = $request->short_description;
-        $sharelogo = $request->file('share_logo');
-        $shareLogoName = time().".".$sharelogo->extension();
-        $sharelogo->move(public_path('images/share-logo'),$shareLogoName);
-        $share->share_logo = $shareLogoName;
-        $shareimage = $request->file('share_image');
-        $shareImageName = time().".".$shareimage->extension();
-        $shareimage->move(public_path('images/share-images'),$shareImageName);
-        $share->share_image = $shareImageName;
+
+        try{
+            if($request->file('share_logo')){
+                $sharelogo = $request->file('share_logo');
+                $imageFileExt = $sharelogo->getClientOriginalName();
+                $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
+                $shareLogoName =  str_replace(" ", "_", $imageFileName).'_' .time().".".$sharelogo->extension();
+                $sharelogo->move(public_path('images/share-logo'),$shareLogoName);
+                $share->share_logo = $shareLogoName;
+            }
+            if($request->file('share_image')){
+                $shareimage = $request->file('share_image');
+                $imageFileExt = $shareimage->getClientOriginalName();
+                $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
+                $shareImageName = str_replace(" ", "_", $imageFileName).'_' .time().".".$shareimage->extension();
+                $shareimage->move(public_path('images/share-images'),$shareImageName);
+                $share->share_image = $shareImageName;
+            }
+            
+        }catch(\Exception $e){
+            return redirect()->back()->with('error',$e->getMessage());
+        }
+        
         // $sharedescription = $request->file('share_description');
         // $shareDescriptionName = time().".".$sharedescription->extension();
         // $sharedescription->move(public_path('pdf'),$shareDescriptionName);
@@ -112,26 +127,30 @@ class ShareDetailsController extends Controller
         }
         $share->copy_to_our_research = !empty($request->copy_to_our_research) ? $request->copy_to_our_research :0 ;
         $share->short_description = $request->short_description;
-        if($request->file('share_logo')){
-            $sharelogo = $request->file('share_logo');
-            $shareLogoName = time().".".$sharelogo->extension();
-            $sharelogo->move(public_path('images/share-logo'),$shareLogoName);
-            $share->share_logo = $shareLogoName;
-            @unlink(public_path('images/share-logo')."/".$share_previous_logo);
+        try{
+            if($request->file('share_logo')){
+                $sharelogo = $request->file('share_logo');
+                $imageFileExt = $sharelogo->getClientOriginalName();
+                $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
+                $shareLogoName =  str_replace(" ", "_", $imageFileName).'_' .time().".".$sharelogo->extension();
+                $sharelogo->move(public_path('images/share-logo'),$shareLogoName);
+                $share->share_logo = $shareLogoName;
+                @unlink(public_path('images/share-logo')."/".$share_previous_logo);
+            }
+            if($request->file('share_image')){
+                $shareimage = $request->file('share_image');
+                $imageFileExt = $shareimage->getClientOriginalName();
+                $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
+                $shareImageName = str_replace(" ", "_", $imageFileName).'_' .time().".".$shareimage->extension();
+                $shareimage->move(public_path('images/share-images'),$shareImageName);
+                $share->share_image = $shareImageName;
+                @unlink(public_path('images/share-images')."/".$share_previous_image);
+            }
+        }catch(\Exception $e){
+            return redirect()->back()->with('error',$e->getMessage());
         }
-        if($request->file('share_image')){
-            $shareimage = $request->file('share_image');
-            $shareImageName = time().".".$shareimage->extension();
-            $shareimage->move(public_path('images/share-images'),$shareImageName);
-            $share->share_image = $shareImageName;
-            @unlink(public_path('images/share-images')."/".$share_previous_image);
-        }
-        // if($request->file('share_description')){
-        //     $sharedescription = $request->file('share_description');
-        //     $shareDescriptionName = time().".".$sharedescription->extension();
-        //     $sharedescription->move(public_path('pdf'),$shareDescriptionName);
-        //     $share->share_description = $shareDescriptionName;
-        // }
+        
+        
         $share->save();
         return redirect()->route('admin.share')->with('success','Share Updated Successfully');
     }

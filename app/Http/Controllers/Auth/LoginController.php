@@ -72,7 +72,7 @@ class LoginController extends Controller
         {
             if (auth()->user()->is_admin == 1) {
                 Auth::logout();
-                $errors = ['success'=>0,'message'=>"Email address or Password was incorrect."];
+                $errors = ['success'=>0,'message'=>"Email address or password does not match."];
                 return response()->json($errors);
                 
             }else{
@@ -80,7 +80,7 @@ class LoginController extends Controller
             return response()->json($success);
             }
         }else{
-            $errors = ['success'=>0,'message'=>"Email address or Password was incorrect."];
+            $errors = ['success'=>0,'message'=>"Email address or password does not match"];
             return response()->json($errors);
             
         }
@@ -108,11 +108,11 @@ class LoginController extends Controller
             }else{
                 Auth::logout();
                 return redirect()->route('admin.loginform')
-                ->with('error','Email-Address or Password Are Wrong.');
+                ->with('error','Email address or password does not match.');
             }
         }else{
             return redirect()->route('admin.login')
-                ->with('error','Email-Address or Password Are Wrong.');
+                ->with('error','Email address or password does not match.');
         }
     }
 
@@ -122,7 +122,7 @@ class LoginController extends Controller
             'last_name'=>'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed|min:8',
-            'phone_no' => 'required'
+            'phone_no' => 'required|digits:10'
         ],
         [
             'password.confirmed'=> "Password and Confirm Password does not match"

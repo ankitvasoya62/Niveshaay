@@ -28,7 +28,7 @@
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
                 <li class="breadcrumb-item active">Add Newsletter Template</li>
               </ol>
             </div>
@@ -66,13 +66,16 @@
                                     <span class="error">{{ $message }}</span>
                                 @enderror
                             </div> --}}
-                            <div class="form-group">
-                                <label for="date">Date</label>
-                                <input type="date" name="date" id="date" class="form-control" value="{{ old('date') }}">
-                                @error('date')
-                                    <span class="error">{{ $message }}</span>
-                                @enderror
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="date">Date</label>
+                                    <input type="date" name="date" id="date" class="form-control" value="{{ old('date') }}">
+                                    @error('date')
+                                        <span class="error">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
+                            
                             
                             <div class="form-group">
                                 <label for="editor_top">Editor Top</label>

@@ -18,7 +18,7 @@
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="{{ url('admin/home') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
                 <li class="breadcrumb-item active">Featured On</li>
               </ol>
             </div>
@@ -31,7 +31,7 @@
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <div class="card-title">Add Featured On</div>
+                            <div class="card-title">Edit Featured On</div>
                         </div>
                         <form id="quickForm" method="POST" action="{{route('admin.update.featured-on',$featuredOn->id)}}" enctype="multipart/form-data">@csrf
                         <div class="card-body">
@@ -43,15 +43,18 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <img src="{{ asset('images/featured/featured-image/'.$featuredOn->featured_image) }}">
+                                <img src="{{ asset('images/featured/featured-image/'.$featuredOn->featured_image) }}" style="width: 150px">
                             </div>
-                            <div class="form-group">
-                                <label for="featured_date">Date of Publish</label>
-                                <input type="date" name="featured_date" id="featured_date" class="form-control" value="{{ $featuredOn->featured_date }}">
-                                @error('featured_date')
-                                    <span class="error">{{ $message }}</span>
-                                @enderror
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="featured_date">Date of Publish</label>
+                                    <input type="date" name="featured_date" id="featured_date" class="form-control" value="{{ $featuredOn->featured_date }}">
+                                    @error('featured_date')
+                                        <span class="error">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
+                            
                             <div class="form-group">
                                 <label for="featured_logo">Logo</label>
                                 <input type="file" name="featured_logo" id="featured_logo" class="form-control">
@@ -60,7 +63,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <img src="{{ asset('images/featured/featured-logo/'.$featuredOn->featured_logo) }}">
+                                <img src="{{ asset('images/featured/featured-logo/'.$featuredOn->featured_logo) }}" style="width: 150px">
                             </div>
                             <div class="form-group">
                                 <label for="featured_title">Title</label>

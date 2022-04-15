@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\FeaturedOn;
 use Illuminate\Http\Request;
+use File;
 
 class FeaturedOnController extends Controller
 {
@@ -56,15 +57,42 @@ class FeaturedOnController extends Controller
         $featuredOn->featured_description = $request->featured_description;
         $featuredOn->featured_date = $request->featured_date;
         $featuredOn->featured_url = $request->featured_url;
-        $image = $request->file('featured_image');
-        $imageName = time().".".$image->extension();
-        $image->move(public_path('images/featured/featured-image'),$imageName);
-        $featuredOn->featured_image= $imageName;
+        if($request->file('featured_image')){
+            try{
+                $image = $request->file('featured_image');
+                $imageFileExt = $image->getClientOriginalName();
+                $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
+                $imageName = str_replace(" ", "_", $imageFileName).'_' .time().".".$image->extension();
+                $destinationPath = public_path('images/featured/featured-image');
+                
+                if(!File::exists($destinationPath)) {
+                    File::makeDirectory($destinationPath, 0777, true, true);
+                }
+                // $imageName = time().".".$image->extension();
+                $image->move(public_path('images/featured/featured-image'),$imageName);
+                $featuredOn->featured_image= $imageName;
+            }catch(\Exception $e){
 
-        $image = $request->file('featured_logo');
-        $imageName = time().".".$image->extension();
-        $image->move(public_path('images/featured/featured-logo'),$imageName);
-        $featuredOn->featured_logo = $imageName;
+            }
+            
+        }
+        
+        try{
+            $image = $request->file('featured_logo');
+            $imageFileExt = $image->getClientOriginalName();
+            $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
+            $imageName = time().".".$image->extension();
+            $destinationPath = public_path('images/featured/featured-logo');
+                
+            if(!File::exists($destinationPath)) {
+                File::makeDirectory($destinationPath, 0777, true, true);
+            }
+            $image->move(public_path('images/featured/featured-logo'),$imageName);
+            $featuredOn->featured_logo = $imageName;
+        }catch(\Exception $e){
+
+        }
+        
         $featuredOn->save();
         return redirect()->route('admin.featured-on')->with('success','Feature Added Successfully');
 
@@ -113,19 +141,32 @@ class FeaturedOnController extends Controller
         $featuredOn->featured_description = $request->featured_description;
         $featuredOn->featured_date = $request->featured_date;
         $featuredOn->featured_url = $request->featured_url;
-        if($request->file('featured_image')){
-            $image = $request->file('featured_image');
-            $imageName = time().".".$image->extension();
-            $image->move(public_path('images/featured/featured-image'),$imageName);
-            $featuredOn->featured_image= $imageName;
-            @unlink(public_path('images/featured/featured-image/'.$previous_featured_image));
+        if($request->file('featured_image'))
+        {   try{
+                $image = $request->file('featured_image');
+                $imageFileExt = $image->getClientOriginalName();
+                $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
+                $image->move(public_path('images/featured/featured-image'),$imageName);
+                $featuredOn->featured_image= $imageName;
+                @unlink(public_path('images/featured/featured-image/'.$previous_featured_image));
+            }catch(\Exception $e){
+
+            }
+            
         }
         if($request->file('featured_logo')){
-            $image = $request->file('featured_logo');
-            $imageName = time().".".$image->extension();
-            $image->move(public_path('images/featured/featured-logo'),$imageName);
-            $featuredOn->featured_logo = $imageName;
-            @unlink(public_path('images/featured/featured-logo/'.$previous_featured_logo));
+            try{
+                $image = $request->file('featured_logo');
+                $imageFileExt = $image->getClientOriginalName();
+                $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
+                // $imageName = time().".".$image->extension();
+                $image->move(public_path('images/featured/featured-logo'),$imageName);
+                $featuredOn->featured_logo = $imageName;
+                @unlink(public_path('images/featured/featured-logo/'.$previous_featured_logo));
+            }catch(\Exception $e){
+
+            }
+            
         }
         
         

@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
                         <li class="breadcrumb-item active">Contact Us</li>
                     </ol>
                 </div>
@@ -67,7 +67,7 @@
                                         <td>{{ $contact->email}}</td>
                                         <td>{{ Str::limit($contact->message,20,' ...') }}</td>
                                         <td>{{date("d-m-Y", strtotime($contact->created_at)) }}</td>
-                                        <td><a style="cursor:pointer" data-toggle="modal" data-target="#modal-default" class="btn btn-info contact-details" id="{{ $contact->id }}"><i class="nav-icon fas fa-eye"></i></a></td>
+                                        <td><a style="cursor:pointer" data-toggle="modal" data-target="#modal-default" class="btn btn-info contact-details" id="{{ $contact->id }}" title="view"><i class="nav-icon fas fa-eye"></i></a></td>
                                         
                                         
                                     </tr>

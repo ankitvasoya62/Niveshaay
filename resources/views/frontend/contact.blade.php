@@ -13,24 +13,33 @@
               <div class="form-inner-wrapper">
               <form class="contact-us-form" method="POST" action="{{route('frontend.contactForm')}}">
                 @csrf
+                @if(Auth::user())
+
+                  <?php 
+                    $name = explode(" ",Auth::user()->name);
+                    $firstname = !empty($name[0]) ? $name[0] : "";
+                    $lastname = !empty($name[1]) ? $name[1] : "";
+                  ?>
+
+                @endif
                 <div class="form-outer-wrapper">
                   <div class="form-group half-width">
                     <label for="name">First Name</label>
-                    <input id="name" name="first_name" type="text" class="form-control" placeholder="First Name" value="{{old('first_name')}}" required>
+                    <input id="name" name="first_name" type="text" class="form-control" placeholder="First Name" value="{{ !empty($firstname) ? $firstname : old('first_name') }}" required>
                     @error('first_name')
                         <span class="error-message">*{{$message}}</span>
                     @enderror
                   </div>
                   <div class="form-group half-width">
                     <label for="last-name">Last Name</label>
-                    <input id="last-name" name="last_name" type="text" class="form-control" placeholder="Last Name" value="{{old('last_name')}}" required>
+                    <input id="last-name" name="last_name" type="text" class="form-control" placeholder="Last Name" value="{{ !empty($lastname) ? $lastname : old('last_name')}}" required>
                     @error('last_name')
                         <span class="error-message">*{{$message}}</span>
                     @enderror
                   </div>
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input id="email" name="email" type="email" class="form-control" placeholder="Email Address" value="{{old('email')}}" required>
+                    <input id="email" name="email" type="email" class="form-control" placeholder="Email Address" value="{{ Auth::user() ? Auth::user()->email : old('email') }}" required>
                     @error('email')
                         <span class="error-message">*{{$message}}</span>
                     @enderror

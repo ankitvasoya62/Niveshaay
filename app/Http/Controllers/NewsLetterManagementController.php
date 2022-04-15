@@ -10,6 +10,7 @@ use App\Mail\NewsletterMail;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\NewsletterUserImport;
 use App\Rules\ExcelRule;
+use File;
 
 class NewsLetterManagementController extends Controller
 {
@@ -106,10 +107,27 @@ class NewsLetterManagementController extends Controller
         $newsletter->editor_left = !empty($request->editor_left) || $request->editor_left != "<p><br><p>" ? $request->editor_left : '';
         $newsletter->editor_right = !empty($request->editor_right) || $request->editor_right != "<p><br><p>" ? $request->editor_right : '';
         $newsletter->editor_bottom = !empty($request->editor_bottom) || $request->editor_bottom != "<p><br><p>" ? $request->editor_bottom : '';
-        $image = $request->file('banner');
-        $imageName = time().".".$image->extension();
-        $image->move(public_path('images/newsletter'),$imageName);
-        $newsletter->banner= $imageName;
+        if($request->file('banner')){
+            try{
+                $image = $request->file('banner');
+                $imageFileExt = $image->getClientOriginalName();
+                $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
+                $imageName = str_replace(" ", "_", $imageFileName).'_' .time().".".$image->extension();
+                //$imageName = time().".".$image->extension();
+                $destinationPath = public_path('images/newsletter');
+                
+                if(!File::exists($destinationPath)) {
+                    File::makeDirectory($destinationPath, 0777, true, true);
+                }
+                //$imageName = time().".".$image->extension();
+                $image->move(public_path('images/newsletter'),$imageName);
+                $newsletter->banner= $imageName;
+            }catch(\Exception $e){
+
+            }
+            
+        }
+        
         $newsletter->save();
 
         return redirect()->route('admin.newsletter')->with('success','Newsletter added successfully');
@@ -136,7 +154,16 @@ class NewsLetterManagementController extends Controller
         if($request->file('banner')){
             
             $image = $request->file('banner');
-            $imageName = time().".".$image->extension();
+            $imageFileExt = $image->getClientOriginalName();
+            $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
+            $imageName = str_replace(" ", "_", $imageFileName).'_' .time().".".$image->extension();
+            //$imageName = time().".".$image->extension();
+            $destinationPath = public_path('images/newsletter');
+            
+            if(!File::exists($destinationPath)) {
+                File::makeDirectory($destinationPath, 0777, true, true);
+            }
+            //$imageName = time().".".$image->extension();
             $image->move(public_path('images/newsletter'),$imageName);
             $newsletter->banner= $imageName;
             @unlink(public_path('images/newsletter/'.$previous_image));
@@ -149,7 +176,9 @@ class NewsLetterManagementController extends Controller
 
     public function deletenewsletter($id){
         $newsletter = Newsletter::find($id);
+        $previous_image = $newsletter->banner;
         $newsletter->delete();
+        @unlink(public_path('images/newsletter/'.$previous_image));
         return redirect()->route('admin.newsletter')->with('success','Newsletter deleted successfully');        
     }
 
