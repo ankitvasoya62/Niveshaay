@@ -66,6 +66,6 @@ class Kernel extends HttpKernel
         'is_admin' => \App\Http\Middleware\IsAdmin::class,
         'subscription_expired' => \App\Http\Middleware\IsSubscriptionExpired::class,
         'is_payment_received' => \App\Http\Middleware\IsPaymentReceived::class,
-        'is_front_user'=>\App\Http\Middleware\IsFrontuser::class,        
+        'is_front_user'=>\App\Http\Middleware\IsFrontUser::class,        
     ];
 }
