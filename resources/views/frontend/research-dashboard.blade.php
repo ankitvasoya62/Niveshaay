@@ -15,7 +15,11 @@
 		<div class="niveshaay-container">
 			<h2 class="heading-title niveshaay-section-title">Our Research Services</h2>
 			@if(empty($isEmailVerified))
-				<p>Please Subscribe <a href="{{ route('frontend.subscriptionForm') }}" title="Click to Subscribe">Here</a></p>
+				@if(empty($subscriptionFormCount))
+					<p>Please Subscribe <a href="{{ route('frontend.subscriptionForm') }}" title="Click to Subscribe">Here</a></p>
+				@else
+					<p>Please Complete Your Registration From Here <a href="{{ route('frontend.subscriptionForm') }}" title="Click to Subscribe">Here</a></p>
+				@endif
 			@else
 				<p>You have verified the agreement successfully. You will receive the mail soon for further process. 
 				</p>

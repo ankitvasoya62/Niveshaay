@@ -59,7 +59,7 @@ Route::get('/reset-password/{token}',[ResetPasswordController::class, 'showReset
 Route::post('/reset-password',[ResetPasswordController::class, 'reset'])->middleware('guest')->name('password.update');
 Route::get('admin/forgot-password',[ForgotPasswordController::class, 'showadminRequestForm'])->middleware('guest')->name('admin.password.request');
 Route::get('/share-detail/{id}',[HomeController::class,'viewShare'])->name('frontend.view.share');        
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:admin')->group(function () {
     Route::prefix('admin')->middleware('is_admin')->group(function () {
         Route::get('/home', [App\Http\Controllers\HomeController ::class, 'index'])->name('admin.home');
         Route::get('/change-password',[App\Http\Controllers\HomeController ::class, 'showchangepasswordform'])->name('admin.showchangepassword');
@@ -194,4 +194,25 @@ Route::middleware('auth')->group(function () {
     Route::post('/verifyOtp',[SubscriptionDetailsController::class,'verifyOtp'])->name('frontend.verifyotp');
     
 });
-
+Route::middleware('auth')->group(function () {
+    
+    Route::middleware(['is_front_user'])->group(function () {
+        Route::middleware(['subscription_expired'])->group(function () {
+            Route::get('/profile',[HomeController::class, 'userProfile'])->name('frontend.profile');
+            Route::post('/edit/profile',[HomeController::class, 'editProfile'])->name('frontend.editprofile');
+            Route::middleware('is_payment_received')->group(function () {
+                Route::get('/dashboard',[HomeController::class,'shareDetail'])->name('frontend.share-detail');
+                
+            });
+            
+        });
+        Route::get('/subscription-form',[SubscriptionDetailsController::class,'subscriptionForm'])->name('frontend.subscriptionForm');
+        Route::post('/store/subscription-detail',[SubscriptionDetailsController::class,'storeDetails'])->name('store.subscription-details');
+        Route::get('/advisor-agreement',[SubscriptionDetailsController::class,'advisorAgreement'])->name('frontend.advisor-agreement');
+        Route::get('/research-dashboard',[HomeController::class, 'researchDashboard'])->name('frontend.research-dashboard');
+        Route::post('/sendOtp',[SubscriptionDetailsController::class,'sendOtp'])->name('frontend.sendotp');
+        Route::post('/verifyOtp',[SubscriptionDetailsController::class,'verifyOtp'])->name('frontend.verifyotp');
+            
+    });
+    
+});

@@ -17,7 +17,7 @@ class NewsLetterManagementController extends Controller
     //
     public function newsletterusers(){
         $active = "newsletterusers";
-        $newsletterusers = NewsletterUser::all();
+        $newsletterusers = NewsletterUser::orderBy('id','desc')->get();
         return view('backend.newsletter.newsletteruser',compact('newsletterusers','active'));
     }
 
@@ -76,7 +76,7 @@ class NewsLetterManagementController extends Controller
 
     public function newsletters(){
         $active = "newsletters";
-        $newsletters = Newsletter::all();
+        $newsletters = Newsletter::orderBy('id','desc')->get();
         return view('backend.newsletter.newsletter',compact('newsletters','active'));        
     }
 

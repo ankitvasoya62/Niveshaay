@@ -17,7 +17,7 @@ class FeaturedOnController extends Controller
     {
         //
         $active = "featured-on";
-        $listFeaturedOn = FeaturedOn::where('status','active')->get();
+        $listFeaturedOn = FeaturedOn::where('status','active')->orderBy('id','desc')->get();
         return view('backend.featuredon.index',compact('active','listFeaturedOn'));
     }
 

@@ -48,7 +48,7 @@ class HomeController extends Controller
             
         ]);        
         
-        $user = Auth::user();
+        $user = Auth::guard('admin')->user();
         $user->password = Hash::make($request->password);
         $user->save();
 

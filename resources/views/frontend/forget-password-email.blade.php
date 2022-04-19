@@ -27,7 +27,7 @@
                           
                           <div class="form-group form-btn-wrapper">
                             <button type="submit" class="btn btn-border">{{ __('Send Password Reset Link') }}</button>
-                            <button type="submit" class="btn btn-border login-link" data-link="login-modal">Login</button>
+                            
                           </div>                
                         </div>
                       </form>

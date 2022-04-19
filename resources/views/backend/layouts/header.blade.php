@@ -33,7 +33,7 @@
         <li class="nav-item dropdown">
 
             <a href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">
-                <span class="icon-user"> Welcome, {{Auth::user()->name}}</span>
+                <span class="icon-user"> Welcome, {{Auth::guard('admin')->user()->name}}</span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width: 100%">
                 <li>

@@ -36,10 +36,10 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Our Clients Say</h3>
+                                <h3 class="card-title">What Our Clients Say</h3>
                                 <div style="float:right; display:block;">
                                     <button class="btn btn-success"> <a href="{{route('admin.add.our-clients')}}"
-                                            class="text-light"><i class="fa fa-plus"></i> Add Our Clients Say</a> </button>
+                                            class="text-light"><i class="fa fa-plus"></i> Add Testimonial</a> </button>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -48,7 +48,7 @@
                                         <tr>
                                             <th style="width: 5%">SR No</th>
                                             <th style="width: 10%">Client Name</th>
-                                            <th>Client Description</th>
+                                            <th>Testimonial</th>
                                             {{-- <th>Client Image</th> --}}
                                             <th style="width: 15%">Client Designation</th>
                                             <th>Action</th>
@@ -68,9 +68,9 @@
                                             <td>{{date("d-m-Y", strtotime($share->updated_at))}}</td> --}}
                                             
                                             <td>
-                                                <a href="{{route('admin.edit.our-clients',$client->id)}}" class="btn btn-info" title="edit"><i class="fas fa-edit"></i></a>
-                                                <a onclick="return confirm('Are you sure want to delete?')"
-                                                    href="{{route('admin.delete.our-clients',$client->id)}}" class="btn btn-danger" title="delete"><i class="fas fa-trash-alt"></i>
+                                                <a href="{{route('admin.edit.our-clients',$client->id)}}" class="btn btn-info" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <a onclick="return confirm('Are you sure you want to delete this entry?')"
+                                                    href="{{route('admin.delete.our-clients',$client->id)}}" class="btn btn-danger" title="Delete"><i class="fas fa-trash-alt"></i>
                                                 </a>
                                             </td>
                                             

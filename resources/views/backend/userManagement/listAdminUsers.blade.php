@@ -70,9 +70,9 @@
                                         <td>{{ $user->phone_no }}</td>
                                         <td>{{$user->dob }}</td>
                                         <td>
-                                            <a href="{{route('admin.edit.admin-user',$user->id)}}" class="btn btn-info" title="edit"><i class="fas fa-edit"></i></a>
-                                            <a onclick="return confirm('Are you sure want to delete?')"
-                                                href="{{route('admin.delete.admin-user',$user->id)}}" class="btn btn-danger" title="delete"><i class="fas fa-trash-alt"></i>
+                                            <a href="{{route('admin.edit.admin-user',$user->id)}}" class="btn btn-info" title="Edit"><i class="fas fa-edit"></i></a>
+                                            <a onclick="return confirm('Are you sure you want to delete this entry?')"
+                                                href="{{route('admin.delete.admin-user',$user->id)}}" class="btn btn-danger" title="Delete"><i class="fas fa-trash-alt"></i>
                                             </a>
                                         </td>
                                         

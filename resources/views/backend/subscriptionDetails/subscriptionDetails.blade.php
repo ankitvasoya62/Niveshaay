@@ -38,7 +38,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Subscription Details</li>
+                        <li class="breadcrumb-item active">Manage Subscription</li>
                     </ol>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Subscription Details</h3>
+                            <h3 class="card-title">Manage Subscription</h3>
                             <div style="float:right; display:block;">
                                 <form action='{{ route('download.excel') }}' class="form-inline">
                                     
@@ -81,9 +81,10 @@
                                 <thead>
                                     <tr>
                                         <th style="width:5%;">SR No</th>
+                                        <th style="width:10%;">Date</th>
                                         <th style="width:10%;">Name of Investor</th>
                                         <th style="width:10%;">Email</th>
-                                        {{-- <th style="width:10%;">D.O.B</th> --}}
+                                        
                                         <th style="width:10%;">Pan no.</th>
                                         <th style="width:10%;">Mobile no.</th>
                                         
@@ -100,9 +101,10 @@
                                 @foreach ($subscription_details as $subscription_detail)
                                     <tr>
                                         <td>{{++$i}}</td>
+                                        <td>{{date("d-m-Y", strtotime($subscription_detail->created_at)) }}</td>
                                         <td>{{ $subscription_detail->name_of_investor}}</td>
                                         <td>{{ $subscription_detail->email}}</td>
-                                        {{-- <td>{{date("d-m-Y", strtotime($subscription_detail->dob)) }}</td> --}}
+                                        
                                         <td>{{ $subscription_detail->pan_no}}</td>
                                         <td>{{ $subscription_detail->mobile_no}}</td>
                                         
@@ -113,8 +115,8 @@
                                             <a onclick="return confirm('Are you sure want to delete?')"
                                                 href="{{ route('admin.delete.share',$share->id) }}" class="btn btn-danger"><i class="fas fa-trash-alt"></i>
                                             </a> --}}
-                                            <a href="{{ route('admin.show-details',$subscription_detail->id)}}" class="btn btn-info" title="view"><i class="nav-icon fas fa-eye"></i></a>
-                                            <a href="{{ route('admin.edit-subscription',$subscription_detail->id)}}" class="btn btn-info" title="edit"><i class="nav-icon fas fa-edit"></i></a>
+                                            <a href="{{ route('admin.show-details',$subscription_detail->id)}}" class="btn btn-info" title="View"><i class="nav-icon fas fa-eye"></i></a>
+                                            <a href="{{ route('admin.edit-subscription',$subscription_detail->id)}}" class="btn btn-info" title="Edit"><i class="nav-icon fas fa-edit"></i></a>
                                             
                                             @if($subscription_detail->is_verified_by_admin == 0)
                                                 <a href="{{ route('admin.verify-subscription',$subscription_detail->id)}}" class="btn btn-warning" onclick="return confirm('Are you sure to verify?')" title="verify">Verification Pending</a>
@@ -123,26 +125,26 @@
                                             @endif
                                             @if($subscription_detail->is_payment_received == 0)
                                                 @if($subscription_detail->is_verified_by_admin == 0)
-                                                <a class="btn btn-danger disabled" title="Confirm Payment"> Confirm Payment</a>
+                                                <a class="btn btn-warning disabled" title="Confirm Payment"> Confirm Payment</a>
                                                 @else
-                                                <a style="cursor:pointer"  class="btn btn-danger payment-received-button" id="{{ $subscription_detail->id }}" data-toggle="modal" data-target="#modal-default" @if($subscription_detail->is_verified_by_admin == 0) disabled @endif title="Confirm Payment"> Confirm Payment</a>
+                                                <a style="cursor:pointer"  class="btn btn-warning payment-received-button" id="{{ $subscription_detail->id }}" data-toggle="modal" data-target="#modal-default" @if($subscription_detail->is_verified_by_admin == 0) disabled @endif title="Confirm Payment"> Confirm Payment</a>
                                                 @endif
                                              
                                             @else
                                                 <span class="badge badge-success" style="height:40px;font-size:16px;padding:13px" title="Payment Received">Payment Received</span>
                                             @endif
-                                            <a href="{{ route('admin.delete-subscription',$subscription_detail->id)}}" class="btn btn-danger" onclick="return confirm('Are you sure to delete')" title="delete"><i class="nav-icon fas fa-trash"></i></a>
+                                            <a href="{{ route('admin.delete-subscription',$subscription_detail->id)}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this entry?')" title="Delete"><i class="nav-icon fas fa-trash"></i></a>
                                         </td>
                                         <td>
                                             @if($subscription_detail->is_payment_received == 1)
                                             {{-- <a href="{{ route('admin.view.invoicedetails',$subscription_detail->id) }}" class="btn btn-primary"><i class="fas fa-eye"></i></a> --}}
                                             <a href="#" onclick="event.preventDefault();" class="btn btn-info invoice-details" data-toggle="modal" data-target="#modal-default-2" id="{{ $subscription_detail->id}}"><i class="fas fa-edit"></i></a>
-                                            <a href="{{ route('admin.download.invoice',$subscription_detail->id)}}" class="btn btn-success" title="Download Details">Download Details</a>
+                                            {{-- <a href="{{ route('admin.download.invoice',$subscription_detail->id)}}" class="btn btn-success" title="Download Details">Download Details</a> --}}
                                             <a href="{{ route('admin.download.invoicepdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Invoice">Download Invoice</a>
 
                                             @else
                                             <a href="#" onclick="event.preventDefault();" class="btn btn-info disabled" title="edit"><i class="fas fa-edit"></i></a>
-                                            <a href="#" class="btn btn-success disabled" title="Download Details">Download Details</a>
+                                            {{-- <a href="#" class="btn btn-success disabled" title="Download Details">Download Details</a> --}}
                                             <a href="#" class="btn btn-success disabled" title="Download Invoice">Download Invoice</a>
                                             @endif
                                             
@@ -176,7 +178,7 @@
             <div class="modal-body" id="contact-content">
             <div class="row">
                 <div class="col-md-12" >
-                    <a class="btn btn-primary add-invoice" style="float:right;margin-bottom:15px">Add More Invoice</a>
+                    <a class="btn btn-primary add-invoice" style="float:right;margin-bottom:15px">Add More Services</a>
                 </div>
                <div class="col-md-12">
                     <form id="payment-received-form" action="{{ route('admin.payment-received')}}" method="POST">@csrf
@@ -281,7 +283,7 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
         // $(this).attr('data-target','#modal-default');
         $('#payment-received-form').html('');
         var appendhtml = '@csrf<input type="hidden" value="'+ subscription_id +'" id="subscription_form_id" name="subscription_form_id">';
-        appendhtml += `<div class="card card-payment-form"><div class="card-header"><b>Invoice 1</b></div><div class="card-body"> <div class="row"><div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Description</label><textarea class="form-control" name="description[]" required></textarea></div></div><div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Amount</label><input type="number" class="form-control" name="amount[]" required> </div></div><div class="col-md-6">
+        appendhtml += `<div class="card card-payment-form"><div class="card-header"><b>Invoice Details</b></div><div class="card-body"> <div class="row"><div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Description</label><textarea class="form-control" name="description[]" required></textarea></div></div><div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Amount</label><input type="number" class="form-control" name="amount[]" required> </div></div><div class="col-md-6">
             <div class="form-group d-inline">
                 <label class="control-label">Subscription Start Date</label>
                 <input type="date" class="form-control" name="subscription_start_date[]" required> 
@@ -298,7 +300,7 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
     });
     $(document).on('click','.add-invoice',function(){
         var invoicecount = $('.card-payment-form').length + 1;
-        var appendhtml = `<div class="card card-payment-form"><div class="card-header"><b>Invoice `+ invoicecount+`</b><a class="btn btn-danger" style="float:right" onclick="return removeinvoice(`+invoicecount+`)"><i class="nav-icon fas fa-trash"></i></a></div><div class="card-body"> <div class="row"><div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Description</label><textarea class="form-control" name="description[]" required></textarea></div></div><div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Amount</label><input type="number" class="form-control" name="amount[]" required> </div></div><div class="col-md-6">
+        var appendhtml = `<div class="card card-payment-form"><div class="card-header"><b>Invoice Details</b><a class="btn btn-danger" style="float:right" onclick="return removeinvoice(`+invoicecount+`)"><i class="nav-icon fas fa-trash"></i></a></div><div class="card-body"> <div class="row"><div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Description</label><textarea class="form-control" name="description[]" required></textarea></div></div><div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Amount</label><input type="number" class="form-control" name="amount[]" required> </div></div><div class="col-md-6">
                     <div class="form-group d-inline">
                         <label class="control-label">Subscription Start Date</label>
                         <input type="date" class="form-control" name="subscription_start_date[]" required> 

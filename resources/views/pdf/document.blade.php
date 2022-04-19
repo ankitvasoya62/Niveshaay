@@ -205,7 +205,7 @@
                         @foreach ( $table_data as $key=>$value )
                             <tr>
                                 <td width="10%">{{ $key + 1 }}.</td>
-                                <td width="80%"><p>{!! nl2br($value['description']) !!}</p></td>
+                                <td width="80%"><p>{!! nl2br($value['description']) !!}</p><p>{{ date('d F, Y',strtotime($value['subscription_start_date'])) }} to {{ date('d F, Y',strtotime($value['subscription_end_date'])) }} </p></td>
                                 <td width="20%"><div class="price-block"><em class="rupee-icon" style=""><img width="5" src="{{ public_path('images/rupee-icon.png') }}" alt="rupee-icon" style="display:inline"></em> {{ number_format($value['amount'],2) }}</div></td>                                
                             </tr>
                         @endforeach

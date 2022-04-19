@@ -346,7 +346,7 @@ class SubscriptionDetailsController extends Controller
             return response()->json($success);
         }
         else{
-            $success = ['success'=>0,'message'=>'otp does not match'];
+            $success = ['success'=>0,'message'=>'OTP does not match'];
             return response()->json($success);            
         }
         

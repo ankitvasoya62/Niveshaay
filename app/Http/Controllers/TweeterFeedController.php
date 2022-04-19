@@ -16,7 +16,7 @@ class TweeterFeedController extends Controller
     public function index()
     {
         //
-        $listtweeterfeed = TweeterFeed::all();
+        $listtweeterfeed = TweeterFeed::orderBy('id','desc')->get();
         $active = 'tweeter-feeds';
         return view('backend.tweeterfeed.index',compact('listtweeterfeed','active'));
     }

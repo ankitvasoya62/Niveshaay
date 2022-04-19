@@ -85,9 +85,9 @@
                                         <td>{{ !empty($user->subscription_end_date) ? date("d-m-Y", strtotime($user->subscription_end_date)) : "" }}</td>
                                         
                                         <td>
-                                            <a href="{{route('admin.edit-user',$user->id)}}" class="btn btn-info" title="edit"><i class="fas fa-edit"></i></a>
-                                            <a onclick="return confirm('Are you sure want to delete?')"
-                                                href="{{route('admin.delete-user',$user->id)}}" style="margin-left: 5px" class="btn btn-danger" title="delete"><i class="fas fa-trash-alt"></i>
+                                            <a href="{{route('admin.edit-user',$user->id)}}" class="btn btn-info" title="Edit"><i class="fas fa-edit"></i></a>
+                                            <a onclick="return confirm('Are you sure you want to delete this entry?')"
+                                                href="{{route('admin.delete-user',$user->id)}}" style="margin-left: 5px" class="btn btn-danger" title="Delete"><i class="fas fa-trash-alt"></i>
                                             </a>
                                         </td>
                                         

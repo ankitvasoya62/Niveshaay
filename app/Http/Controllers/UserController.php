@@ -228,7 +228,7 @@ class UserController extends Controller
         $validatedata = $request->validate([
 
     		'name' => 'required',
-    		'email' => 'required|email|unique:users,email',
+    		'email' => 'required|email',
             
             'phone_no' => 'required|digits:10',
             'dob' => 'required|date|date_format:Y-m-d|before:'.$todayDate,

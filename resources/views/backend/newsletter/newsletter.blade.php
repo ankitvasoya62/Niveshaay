@@ -24,7 +24,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Newsletter templates</li>
+                            <li class="breadcrumb-item active">Newsletter Templates</li>
                         </ol>
                     </div>
                 </div>
@@ -36,10 +36,10 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Newsletter templates</h3>
+                                <h3 class="card-title">Newsletter Templates</h3>
                                 <div style="float:right; display:block;">
                                     <button class="btn btn-success"> <a href="{{ route('admin.newsletter.add')}}"
-                                            class="text-light"><i class="fa fa-plus"></i>&nbsp;Add New</a> </button>
+                                            class="text-light"><i class="fa fa-plus"></i>&nbsp;Add New Template</a> </button>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -47,7 +47,7 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 5%">SR No</th>
-                                            <th>Title</th>
+                                            <th>Template Title</th>
                                             {{-- <th>last Name</th>
                                             <th>Email</th>
                                             <th>Phone no.</th> --}}
@@ -65,12 +65,12 @@
                                             
                                             
                                             <td>
-                                                <a href="{{ route('admin.newsletter.show',$newsletter->id)}}" class="btn btn-primary" target="_blank"><i class="fas fa-eye"></i></a>
-                                                <a href="{{ route('admin.newsletter.edit',$newsletter->id)}}" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                                                <a href="{{ route('admin.newsletter.show',$newsletter->id)}}" class="btn btn-primary" target="_blank" title="Show"><i class="fas fa-eye"></i></a>
+                                                <a href="{{ route('admin.newsletter.edit',$newsletter->id)}}" class="btn btn-info" title="Edit"><i class="fas fa-edit"></i></a>
                                                 
                                                 
-                                                <a onclick="return confirm('Are you sure want to delete?')"
-                                                    href="{{ route('admin.newsletter.delete',$newsletter->id)}}" class="btn btn-danger"><i class="fas fa-trash-alt"></i>
+                                                <a onclick="return confirm('Are you sure you want to delete this entry?')"
+                                                    href="{{ route('admin.newsletter.delete',$newsletter->id)}}" class="btn btn-danger" title="Delete"><i class="fas fa-trash-alt"></i>
                                                 </a>
                                             </td>
                                             

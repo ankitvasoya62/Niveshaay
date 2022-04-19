@@ -79,15 +79,15 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.newsletter.edit.users',$newsletteruser->id)}}" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                                                <a href="{{ route('admin.newsletter.edit.users',$newsletteruser->id)}}" class="btn btn-info" title="Edit"><i class="fas fa-edit"></i></a>
                                                 
                                                 @if($newsletteruser->status == 'active')
-                                                    <a href="{{ route('admin.newsletter.deactive.user',$newsletteruser->id)}}" class="btn btn-warning"><i class="fas fa-ban"></i></a>
+                                                    <a href="{{ route('admin.newsletter.deactive.user',$newsletteruser->id)}}" class="btn btn-warning" title="InActive"><i class="fas fa-ban"></i></a>
                                                 @else
-                                                <a href="{{ route('admin.newsletter.active.user',$newsletteruser->id)}}" class="btn btn-success"><i class="fas fa-check"></i></a>
+                                                <a href="{{ route('admin.newsletter.active.user',$newsletteruser->id)}}" class="btn btn-success" title="Active"><i class="fas fa-check"></i></a>
                                                 @endif
-                                                <a onclick="return confirm('Are you sure want to delete?')"
-                                                    href="{{ route('admin.newsletter.delete.users',$newsletteruser->id)}}" class="btn btn-danger"><i class="fas fa-trash-alt"></i>
+                                                <a onclick="return confirm('Are you sure you want to delete this entry?')"
+                                                    href="{{ route('admin.newsletter.delete.users',$newsletteruser->id)}}" class="btn btn-danger" title="Delete"><i class="fas fa-trash-alt"></i>
                                                 </a>
                                             </td>
                                             

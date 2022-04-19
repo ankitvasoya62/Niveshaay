@@ -108,7 +108,7 @@
                                                 <td width="20" class="side-space"></td>
                                                 <td align="center"  height="73" width="164" style="height: 73px;width: 164px;">
                                                     <a href="#" title="Niveshaay Logo" height="73" width="164" style="display:block;height: 73px;width: 164px;">
-                                                        <img src="http://new.anasource.com/team8/niveshaay-newsletter/images/logo.png" alt="Niveshaay Logo" height="73" width="164" style="display:block;height: 73px;width: 164px;">
+                                                        <img src="{{ base_path()images/logo.png }}" alt="Niveshaay Logo" height="73" width="164" style="display:block;height: 73px;width: 164px;">
                                                     </a>
                                                 </td>
                                                 <td width="20" class="side-space"></td>
@@ -142,7 +142,7 @@
                                             <tr>
                                                 <td width="415"></td>
                                                 <td width="25" height="31" style="width: 25px ;height: 31px ;text-align: right;background-color: #83b645;">
-                                                    <img src="http://new.anasource.com/team8/niveshaay-newsletter/images/button-shape-new.png" alt="button-shape" width="25" height="33" style="width: 25px ;height: 33px ;display: block;">
+                                                    <img src="{{ $message->embed(base_path().'/public/images/button-shape-new.png')}}" alt="button-shape" width="25" height="33" style="width: 25px ;height: 33px ;display: block;">
                                                 </td>
                                                 <td width="10" style="background-color: #83b645;"></td>
                                                 <td width="150" class="has-date" style="font-family: Verdana;background-color:#83b645;width: 150px;color:#fff;font-size: 13px;">{{ date('F d, Y',strtotime($newsletter->date)) }}</td>
@@ -607,25 +607,25 @@
                                                                                                 <td width="12" class="mobile-inner-space"></td>
                                                                                                 <td width="16" height="16" valign="center" align="center" style="width: 16px;height: 16px;" class="text-center">
                                                                                                     <a href="#" title="instagram" width="14" height="14" style="width: 14px;height: 14px;display: block;">
-                                                                                                        <img src="http://new.anasource.com/team8/niveshaay-newsletter/images/instagram-icon-white.png" alt="instagram-icon-white" width="14" height="14" style="width: 14px;height: 14px;display: block;">
+                                                                                                        <img src="{{ $message->embed(base_path().'/public/images/button-shape-new.png')}}" alt="instagram-icon-white" width="14" height="14" style="width: 14px;height: 14px;display: block;">
                                                                                                     </a>
                                                                                                 </td>
                                                                                                 <td width="12" class="mobile-inner-space"></td>
                                                                                                 <td width="17" height="15" valign="center" align="center" style="width: 17px;height: 15px;" class="text-center">
                                                                                                     <a href="#" title="twitter" width="15" height="13" style="width: 15px;height: 13px;display: block;">
-                                                                                                        <img src="http://new.anasource.com/team8/niveshaay-newsletter/images/twitter-icon-white.png" alt="twitter-icon-white" width="15" height="13" style="width: 15px;height: 13px;display: block;">
+                                                                                                        <img src="{{ $message->embed(base_path().'/public/images/twitter-icon-white.png')}}" alt="twitter-icon-white" width="15" height="13" style="width: 15px;height: 13px;display: block;">
                                                                                                     </a>
                                                                                                 </td>
                                                                                                 <td width="12" class="mobile-inner-space"></td>
                                                                                                 <td  width="10" height="18" valign="center" align="center" style="width: 10px;height: 18px;" class="text-center">
                                                                                                     <a href="#" title="facebook"  width="8" height="16" style="width: 8px;height: 16px;display: block;">
-                                                                                                        <img src="http://new.anasource.com/team8/niveshaay-newsletter/images/facebook-icon-white.png" alt="facebook-icon-white"  width="8" height="16" style="width: 8px;height: 16px;display: block;">
+                                                                                                        <img src="{{ $message->embed(base_path().'/public/images/facebook-icon-white.png')}}" alt="facebook-icon-white"  width="8" height="16" style="width: 8px;height: 16px;display: block;">
                                                                                                     </a>
                                                                                                 </td>
                                                                                                 <td width="12" class="mobile-inner-space"></td>
                                                                                                 <td width="16" height="16" valign="center" align="center" style="width: 16px;height: 16px;" class="text-center">
                                                                                                     <a href="#" title="linkedin" width="14" height="14" style="width: 14px;height: 14px;display: block;">
-                                                                                                        <img src="http://new.anasource.com/team8/niveshaay-newsletter/images/linkedin-icon-white.png" alt="linkedin-icon-white" width="14" height="14" style="width: 14px;height: 14px;display: block;">
+                                                                                                        <img src="{{ $message->embed(base_path().'/public/images/linkedin-icon-white.png')}}" alt="linkedin-icon-white" width="14" height="14" style="width: 14px;height: 14px;display: block;">
                                                                                                     </a>
                                                                                                 </td>
                                                                                                 <td width="12" class="mobile-inner-space"></td>

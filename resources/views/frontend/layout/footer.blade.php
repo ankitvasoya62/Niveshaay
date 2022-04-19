@@ -131,7 +131,7 @@
 						}else if(data.message.password){
 							jQuery('#login-modal-error').html(data.message.password[0]);
 						}else{
-							jQuery('#login-modal-email-error').html(data.message);
+							jQuery('#login-modal-error').html(data.message);
 						}
 						
 					}

@@ -15,11 +15,12 @@ use App\Models\InvoiceDetail;
 use App\Models\SubscriptionLog;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+
 class ViewSubscriptionDetailsController extends Controller
 {
     //
     public function viewSubscriptionDetails(){
-        $subscription_details = SubscriptionFormDetail::all()->where('status','active');
+        $subscription_details = SubscriptionFormDetail::where('status','active')->orderBy('id','desc')->get();
         $active = 'subscription-details';
         return view('backend.subscriptionDetails.subscriptionDetails',compact('active','subscription_details'));
     }

@@ -19,7 +19,7 @@
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                <li class="breadcrumb-item active">Add Our Clients</li>
+                <li class="breadcrumb-item active">Edit Testimonial</li>
               </ol>
             </div>
           </div>
@@ -31,7 +31,7 @@
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <div class="card-title">Add Our Client</div>
+                            <div class="card-title">Edit Testimonial</div>
                         </div>
                         <form id="quickForm" method="POST" action="{{route('admin.update.our-clients',$client->id)}}" enctype="multipart/form-data">@csrf
                         <div class="card-body">
@@ -43,7 +43,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="client_description">Description</label>
+                                <label for="client_description">Testimonial</label>
                                 <textarea name="client_description" id="client_description" class="form-control" >{{ $client->client_description }}</textarea>
                                 @error('client_description')
                                     <span class="error">{{ $message }}</span>

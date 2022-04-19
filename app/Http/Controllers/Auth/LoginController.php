@@ -100,20 +100,39 @@ class LoginController extends Controller
         // }else{
         //     $field = 'email';
         // }
-        
-        if(Auth::attempt(['email' => $input['email'], 'password' => $input['password']]))
-        {
-            if (auth()->user()->is_admin == 1) {
-                return redirect()->route('admin.home');
-            }else{
-                Auth::logout();
+        $user = User::where('email',$request->email)
+                    // ->where('password',Hash::make($request->password))
+                    ->where('is_admin',1)
+                    ->first();
+        if($user){
+            if (!(Hash::check($request->password, $user->password))) {
+                // The passwords matches
+                // return redirect()->back()->with("error","Your current password does not matches with the password.");
                 return redirect()->route('admin.loginform')
                 ->with('error','Email address or password does not match.');
             }
+
+            Auth::guard('admin')->login($user);
+            //dd(Auth::guard('admin')->user());
+            return redirect()->route('admin.home');
+            // dd($user);
         }else{
-            return redirect()->route('admin.login')
+            return redirect()->route('admin.loginform')
                 ->with('error','Email address or password does not match.');
         }
+        // if(Auth::attempt(['email' => $input['email'], 'password' => $input['password']]))
+        // {
+        //     if (auth()->user()->is_admin == 1) {
+        //         return redirect()->route('admin.home');
+        //     }else{
+        //         Auth::logout();
+        //         return redirect()->route('admin.loginform')
+        //         ->with('error','Email address or password does not match.');
+        //     }
+        // }else{
+        //     return redirect()->route('admin.login')
+        //         ->with('error','Email address or password does not match.');
+        // }
     }
 
     public function registerUser(Request $request){
@@ -124,8 +143,10 @@ class LoginController extends Controller
             'password' => 'required|confirmed|min:8',
             'phone_no' => 'required|digits:10'
         ],
-        [
-            'password.confirmed'=> "Password and Confirm Password does not match"
+        [   
+            'email.email'=> "Please enter a valid email address",
+            'password.confirmed'=> "The passwords you entered do not match, please re-enter your passwords",
+            'password.min'=>"The password must be of at least 8 characters"
         ]
     );
     $user = User::create([
@@ -148,9 +169,20 @@ class LoginController extends Controller
         $this->guard()->login($user);
         return redirect()->route('frontend.research-dashboard');
     }
-    // public function logout(){
-    //     Auth::logout();
-    //     return redirect('/login');
-    // }
+    
+    public function logout(Request $request){
+        
+        $isAdmin = !empty($request->is_admin) ? $request->is_admin : 0;
+        if(!empty($isAdmin)){
+            Auth::guard('admin')->logout();
+        }else{
+            Auth::logout();
+        }
+        // $request->session()->invalidate();
+
+        // $request->session()->regenerateToken();
+
+        return redirect()->route('frontend.home');
+    }
     
 }

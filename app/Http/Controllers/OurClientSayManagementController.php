@@ -16,7 +16,7 @@ class OurClientSayManagementController extends Controller
     public function index()
     {
         //
-        $listClients = OurClientSayManagement::all()->where('status','active');
+        $listClients = OurClientSayManagement::where('status','active')->orderBy('id','desc')->get();
         $active ='clients';
         return view('backend.ourClients.index',compact('listClients','active'));
     }

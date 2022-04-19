@@ -25,7 +25,7 @@
                         </div>
                         <div class="form-group half-width has-date-picker">
                             <label for="dob">Date of Birth<span class="red-text">*</span></label>
-                            <input id="dob" name="dob" type="text" class="form-control datepicker" placeholder="Select Date of Birth" value="{{ date('d/m/Y',strtotime($subscription_details->dob) )}}">		                    
+                            <input id="dob" name="dob" type="text" class="form-control datepicker" placeholder="Select Date of Birth" value="{{ date('d/m/Y',strtotime($subscription_details->dob) )}}" autocomplete="off">		                    
                             @error('dob')
                                 <span class="error">{{ $message }}</span>
                             @enderror
@@ -39,10 +39,11 @@
                         </div>
                         <div class="form-group half-width">
                             <label for="mobile-num">Mobile Number<span class="red-text">*</span></label>
-                            <input id="mobile-num" name="mobile_no" type="text" class="form-control" placeholder="Enter Mobile Number " value="{{ $subscription_details->pan_no }}">		                    
+                            <input id="mobile-num" name="mobile_no" type="text" class="form-control" placeholder="Enter Mobile Number " value="{{ $subscription_details->mobile_no }}">		                    
                             @error('mobile_no')
                                 <span class="error">{{ $message }}</span>
                             @enderror
+                            <span class="error" id="mobile_no_error"></span>
                         </div>
                         <div class="form-group half-width">
                             <label for="street-address">Full Street Address</label>
@@ -50,7 +51,7 @@
                             @error('street_address')
                                 <span class="error">{{ $message }}</span>
                             @enderror
-                            <span class="error" id="mobile_no_error"></span>
+                            
                         </div>
                         <div class="form-group half-width">
                             <label for="state">State/UnionTerritory ( Please put in country also if outside India)<span class="red-text">*</span></label>

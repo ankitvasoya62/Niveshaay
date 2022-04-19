@@ -9,7 +9,7 @@ class ShareDetailsController extends Controller
 {
     //
     public function listShare(){
-        $share_list = ShareDetails::all()->where('status','active');
+        $share_list = ShareDetails::where('status','active')->orderBy('id','desc')->get();
         $active = "share";
         return view('backend.shareManagement.listshare',compact('share_list','active'));
     }

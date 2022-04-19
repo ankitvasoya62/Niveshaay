@@ -9,7 +9,7 @@ class contactUsController extends Controller
 {
     //
     public function contactUsList(){
-        $contactus_list = Contactus::all();
+        $contactus_list = Contactus::orderBy('id','desc')->get();
         $active = 'contact';
         return view('backend.contactUs.listcontacts',compact('active','contactus_list'));
     }

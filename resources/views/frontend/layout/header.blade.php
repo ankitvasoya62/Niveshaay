@@ -59,7 +59,7 @@
 									{{-- <a href="{{ route('login') }}" title="Login/Signup">Login/Signup </a> --}}
 								</li>
 								@endif
-								<li class=" btn btn-green">
+								<li class=" btn btn-green" @if(Auth::user()) style="margin-left:42px" @endif>
 									<a href="https://niveshaay.smallcase.com/" title="Visit smallCase" target="_blank">Visit Smallcase </a>
 								</li>
 								
@@ -131,15 +131,15 @@
 											
 											
 										</div>
-										{{-- <div class="form-group has-checkbox">
-											<div class="checkbox-wrapper">
+										<div class="form-group has-checkbox">
+											{{-- <div class="checkbox-wrapper">
 												<div class="checkbox-inner">
 													<input type="checkbox" class="form-control" id="checkbox" checked>
 													<label for="checkbox">Subscribe Newsletter</label>
 												</div>
-											</div>
-											<span class="password-help"><a href="{{ route('password.request') }}" title="password-help">Forgot password?</a></span>
-										</div> --}}
+											</div> --}}
+											<span class="password-help"><a href="{{ route('password.request') }}" title="password-help">Forgot Password?</a></span>
+										</div>
 										<div class="form-group form-btn-wrapper">
 											<button type="submit" class="btn btn-border">Login</button>
 											<button type="button" class="btn btn-border signup-link" data-link="signup-modal" onclick="location.href = '{{ route('frontend.signup')}}' ">Sign Up</button>

@@ -25,7 +25,7 @@
                         </div>
                         <div class="form-group half-width has-date-picker">
                             <label for="dob">Date of Birth<span class="red-text">*</span></label>
-                            <input id="dob" name="dob" type="text" class="form-control datepicker" placeholder="Select Date of Birth">		                    
+                            <input id="dob" name="dob" type="text" class="form-control datepicker" placeholder="Select Date of Birth" autocomplete="off">		                    
                             @error('dob')
                                 <span class="error">{{ $message }}</span>
                             @enderror

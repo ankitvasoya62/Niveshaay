@@ -38,10 +38,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Share Management</h3>
+                            <h3 class="card-title">Research Reports</h3>
                             <div style="float:right; display:block;">
                                 <button class="btn btn-success"> <a href="{{route('admin.add.share')}}"
-                                        class="text-light"><i class="fa fa-plus"></i> Add Share</a> </button>
+                                        class="text-light"><i class="fa fa-plus"></i> Add New Report</a> </button>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -69,9 +69,9 @@
                                         <td>{{date("d-m-Y", strtotime($share->updated_at))}}</td>
                                         
                                         <td>
-                                            <a href="{{route('admin.edit.share',$share->id)}}" class="btn btn-info" title="edit"><i class="fas fa-edit"></i></a>
-                                            <a onclick="return confirm('Are you sure want to delete?')"
-                                                href="{{ route('admin.delete.share',$share->id) }}" class="btn btn-danger" title="delete"><i class="fas fa-trash-alt"></i>
+                                            <a href="{{route('admin.edit.share',$share->id)}}" class="btn btn-info" title="Edit"><i class="fas fa-edit"></i></a>
+                                            <a onclick="return confirm('Are you sure you want to delete this entry?')"
+                                                href="{{ route('admin.delete.share',$share->id) }}" class="btn btn-danger" title="Delete"><i class="fas fa-trash-alt"></i>
                                             </a>
                                         </td>
                                         

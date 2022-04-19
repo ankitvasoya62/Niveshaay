@@ -36,6 +36,7 @@
             </div>
         @endif
           @csrf
+          <input type="hidden" name="is_admin" value="1">
         <div class="input-group mb-3">
             <input id="email-address" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
           <div class="input-group-append">

@@ -475,12 +475,13 @@ class HomeController extends Controller
     public function researchDashboard(){
         $active = '';
         $SubscriptionFormDetailCount = SubscriptionFormDetail::where('user_id',auth()->user()->id)->where('is_email_verified',1)->first();
+        $subscriptionFormCount = SubscriptionFormDetail::where('user_id',auth()->user()->id)->first();
         $isEmailVerified = 1;
         $researches = ourresearchreport();
         if(empty($SubscriptionFormDetailCount)){
             $isEmailVerified = 0;
         }
-        return view('frontend.research-dashboard',compact('active','isEmailVerified','researches'));        
+        return view('frontend.research-dashboard',compact('active','isEmailVerified','researches','subscriptionFormCount'));        
     }
 
     public function generatePDF(){

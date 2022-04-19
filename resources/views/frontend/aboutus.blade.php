@@ -41,7 +41,7 @@
 						<p class="green-text">Founder and Director
 						<span>B.COM, CA, CWA</span>
 						<span>Former Industry Research Analyst at ICICI Bank</span></p>
-						<p>“Over 12 years of experience in Equity Research and Investment Advisory, he started his journey as an Industry Research Analyst at ICICI Bank. Nearly a decade ago, after working in the finance industry and understanding its nuances, it caught his observation and interest that the wealth management industry was a little complex for investors to understand which induced him to quit his job. He then, started with advising on wealth management and leading investments for his family & friends. That’s how Niveshaay was born. He has a firm belief that taking entrepreneur calls work better than questioning quarterly performance like an analyst and has developed that culture in the enterprise too. ”</p>
+						<p>“Over 12 years of experience in Equity Research and Investment Advisory, he started his journey as an Industry Research Analyst at ICICI Bank. Nearly a decade ago, after working in the finance industry and understanding its nuances, it caught his observation and interest that the wealth management industry was a little complex for investors to understand which induced him to quit his job. He then, started with advising on wealth management and leading investments for his family & friends. That’s how Niveshaay was born. He has a firm belief that taking entrepreneur calls work better than questioning quarterly performance like an analyst and has developed that culture in the enterprise too.”</p>
 					</div>
 				</div>
 			</div>

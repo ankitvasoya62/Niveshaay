@@ -1,7 +1,15 @@
+
 <?php $active = ''; ?>
 @extends('frontend.layout.master')
 @section('content')
-
+@push('css')
+<style>
+.loading-block {  background:url('{{ asset("images/overlay-bg.png") }}') 0 0 repeat ; width: 100%; height: 100%; position: fixed; z-index:100001; top: 0; left: 0 }
+.loading-block .loading-img { position: absolute; margin: 0 auto; width: 200px; height: 50px; left: 0; right: 0; top: 40%; bottom: 0; }
+.loading-block .loading-img img { max-width: 100%; height: auto; width: 200px; }
+/* .hide{display: none} */
+  </style>
+@endpush
 <section class="subscription-form-section advisor-form">
 	<div class="niveshaay-container">
         <h1>Investment Adviser Agreement
@@ -325,22 +333,30 @@
                     </div>
             </div>
         </div>
+        
         <div class="verify-content-block custom-form-section send-otp-block">
+            
             <div class="verify-content-inner form-wrapper">
                     <h2>Verify the Agreement</h2>
                     <p>We will send you an OTP on this email address</p>
+                    
                     <div class="form-group">
                         <label for="enter-email"></label>
                         <input id="enter-email" name="subscription_email" type="text" class="form-control" placeholder="Enter your email" value='{{ $latestSubscriptionFormDetails->email }}'>
                         <span class="send-otp-error"></span>
                     </div>
                     <div class="form-group">
-                        <a href="#" class="btn btn-green" id="send-otp-button">Send OTP</a>
+                        <button type="button" class="btn btn-green" id="send-otp-button">Send OTP</button>
                     </div>
             </div>
         </div>
 </div>
 </section>
+<div class="loading-block hide" id="loading-block-sub" style="display: none">
+    <div class="loading-img">
+        <img src="{{ asset('images/loader.gif') }}">
+    </div>
+</div>
 <div id="submit-modal" class="custom-modal submit-modal" data-tab="submit-modal">
     <div class="modal-backdrop" id="verified-backdrop"></div>
     <div class="modal-content">
@@ -372,6 +388,8 @@
             if(jQuery('[name=subscription_email]').val() != ''){
                 otpExpired = 0;
                 jQuery('#send-otp-button').attr('disabled','disabled');
+                jQuery('#send-otp-button').css('pointer-events','none');
+                jQuery('#send-otp-button').css('opacity','.4');
                 jQuery.ajax({
                     url: "{{ route('frontend.sendotp') }}" ,
                     type:'POST',
@@ -382,7 +400,9 @@
                         'email':jQuery('[name=subscription_email]').val()
                         
                     },
+                    beforeSend: function(){ jQuery('.loading-block').show();},
                     success:function(data){
+                        jQuery('.loading-block').hide();
                         if(data.success == 1){
                             jQuery('.send-otp-block').hide();
                             jQuery('.verify-otp-block').show();
@@ -424,7 +444,9 @@
                                 'otp':jQuery('[name=enter-otp]').val()
                                 
                             },
+                            beforeSend: function(){ jQuery('.loading-block').show();},
                             success:function(data){
+                                jQuery('.loading-block').hide();
                                 if(data.success == 1){
                                     jQuery('.send-otp-block').hide();
                                     clearInterval(cleartime);
@@ -451,7 +473,7 @@
                     }
                 
             }else{
-                jQuery('.verify-otp-error').html('Otp is required').css('color','red');
+                jQuery('.verify-otp-error').html('OTP is required').css('color','red');
             }
             
         }

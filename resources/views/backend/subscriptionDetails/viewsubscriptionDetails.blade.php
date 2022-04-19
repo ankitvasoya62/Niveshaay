@@ -21,7 +21,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Subscription Details</li>
+                        <li class="breadcrumb-item active">Manage Subscription</li>
                     </ol>
                 </div>
             </div>

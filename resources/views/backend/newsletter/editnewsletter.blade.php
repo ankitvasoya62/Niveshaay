@@ -46,7 +46,7 @@
                         <form id="quickForm" method="POST" action="{{route('admin.newsletter.update', $newsletter->id )}}" enctype="multipart/form-data">@csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="title">Newsletter Title</label>
+                                <label for="title">Template Title</label>
                                 <input type="text" name="title" id="title" class="form-control" value="{{ $newsletter->title }}">
                                 @error('title')
                                     <span class="error">{{ $message }}</span>

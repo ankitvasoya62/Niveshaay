@@ -32,7 +32,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-              <li class="breadcrumb-item active">Edit Share</li>
+              <li class="breadcrumb-item active">Edit Research Report</li>
             </ol>
           </div>
         </div>
@@ -48,7 +48,7 @@
             <!-- jquery validation -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Edit Share</h3>
+                <h3 class="card-title">Edit Research Report</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -58,14 +58,14 @@
                     <div class="form-group">
                         <div class="custom-control custom-checkbox">
                             <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="1" name="copy_to_our_research" @if($share->copy_to_our_research == 1) checked @endif>
-                            <label for="customCheckbox1" class="custom-control-label">Copy To Our Research</label>
+                            <label for="customCheckbox1" class="custom-control-label">Copy To Sample</label>
                         </div>  
                         @error('copy_to_our_research')
                             <span class="error">{{$message}}</span>
                         @enderror
                     </div>
                   <div class="form-group">
-                    <label for="exampleInputFile">Share Logo</label>
+                    <label for="exampleInputFile">Company Logo</label>
                     
                       
                         <input type="file" class="form-control" id="shareLogo" name="share_logo">
@@ -105,7 +105,7 @@
                   </div>
                   
                   <div class="form-group">
-                    <label for="exampleInputFile">Share Image</label>
+                    <label for="exampleInputFile">Report Image</label>
                     
                     <input type="file"  class="form-control" id="exampleInputFile" name="share_image">
                         
@@ -184,7 +184,7 @@
                               @enderror
                             </div>
                             <div class="form-group">
-                              <label for="name">public</label>
+                              <label for="name">Public</label>
                               <input type="text" name="shareholding_public" class="form-control" id="shareholding_public" placeholder="Enter public" value="{{$share->shareholding_public}}" required>
                               @error('shareholding_public')
                                   <span class="error">{{$message}}</span>
@@ -251,7 +251,7 @@
                         $share_recommendation_array = explode(",",$share->share_recommendation);
                   ?>
                   <div class="form-group">
-                    <label>Share Recommendation</label>
+                    <label>Recommendation Categories</label>
                     <div class="custom-control custom-checkbox">
                       <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="0" name="share_recommendation[]" @if(in_array('0',$share_recommendation_array)) checked
                           

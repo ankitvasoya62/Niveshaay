@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'is_admin' => \App\Http\Middleware\IsAdmin::class,
         'subscription_expired' => \App\Http\Middleware\IsSubscriptionExpired::class,
-        'is_payment_received' => \App\Http\Middleware\IsPaymentReceived::class        
+        'is_payment_received' => \App\Http\Middleware\IsPaymentReceived::class,
+        'is_front_user'=>\App\Http\Middleware\IsFrontuser::class,        
     ];
 }

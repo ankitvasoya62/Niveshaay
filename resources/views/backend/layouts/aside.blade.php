@@ -125,7 +125,7 @@
             <li class="nav-item">
               <a href="{{route('admin.subscription-details')}}" class="nav-link @if($active=='subscription-details') active @endif">
                 <i class="fas fa-rocket nav-icon"></i>
-                <p>Subscription Details</p>
+                <p>Manage Subscriptions</p>
               </a>
             </li>
             <li class="nav-item @if($active =='current-month' || $active=='monthly' || $active=='annually') menu-is-opening menu-open @endif">
@@ -163,7 +163,7 @@
             <li class="nav-item">
               <a href="{{route('admin.our-clients')}}" class="nav-link @if($active=='clients') active @endif">
                 <i class="fas fa-user nav-icon"></i>
-                <p>Client Management</p>
+                <p>What Our Clients Says</p>
               </a>
             </li>
             <li class="nav-item">
@@ -175,7 +175,7 @@
             <li class="nav-item">
               <a href="{{route('admin.tweeter-feeds')}}" class="nav-link @if($active=='tweeter-feeds') active @endif">
                 <i class="fab fa-twitter nav-icon"></i>
-                <p>Twiter Feed</p>
+                <p>Twitter Feed</p>
               </a>
             </li>
             <li class="nav-item">
@@ -212,7 +212,7 @@
                 <li class="nav-item">
                   <a href="{{ route('admin.newsletter')}}" class="nav-link @if($active=='newsletters') active @endif">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Newsletter template</p>
+                    <p>Newsletter Templates</p>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -235,6 +235,7 @@
               
               <form action="{{route('logout')}}" method="POST" id="logout-form">
                 @csrf
+                <input type="hidden" value="1" name="is_admin">
                 {{-- <button type="submit"><i class="fas fa-sign-out-alt nav-link"></i> Logout</button> --}}
               </form>
               

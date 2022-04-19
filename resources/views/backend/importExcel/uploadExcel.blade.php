@@ -64,18 +64,7 @@
                         </table>
                     </div>
                 @endif
-                <div class="card-body">
-                    <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <input type="file" name="file" class="form-control" >
-                        
-                        
-                        <span style="color:red">*The excel file must be a file of type: csv, xls, xlsx.</span><br><br>
-                        <button class="btn btn-success">Import User Data</button>
-                        <a class="btn btn-warning" href="{{ asset('images/Users.csv') }}" download>Download Demo Excel</a>
-                        {{-- <a class="btn btn-warning" href="#">Export User Data</a> --}}
-                    </form>
-                    @if ($errors->any())
+                @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
@@ -83,8 +72,31 @@
                             @endforeach
                         </ul>
                     </div>
-                    @endif
-                    
+                @endif
+
+                <div class="card-body">
+                    <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-5 form-group">
+                                <input type="file" name="file" class="form-control" >
+                                
+                            </div>
+                            <div class="col-md-7 form-group" style="padding-top: 5px">
+                                <span style="color:red">*The file type should be: .csv, .xls, .xlsx.</span>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                        
+                        
+                        <button class="btn btn-success">Import Bulk Users</button>
+                        <a class="btn btn-warning" href="{{ asset('images/Users.csv') }}" download>Download Demo Excel</a>
+                        {{-- <a class="btn btn-warning" href="#">Export User Data</a> --}}
+                    </form>
+                                        
 
                 </div>
             </div>
