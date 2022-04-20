@@ -58,7 +58,7 @@
                   <div class="form-group">
                     <div class="custom-control custom-checkbox">
                       <input class="custom-control-input" type="checkbox" id="copy_our_research" value="1" name="copy_to_our_research">
-                      <label for="copy_our_research" class="custom-control-label">Copy To Sample</label>
+                      <label for="copy_our_research" class="custom-control-label">Copy to Sample Research Reports</label>
                     </div>  
                     @error('copy_to_our_research')
                         <span class="error">{{$message}}</span>
@@ -79,15 +79,18 @@
                         <span class="error">{{$message}}</span>
                     @enderror
                   </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label for="name">Initiating Coverage Date</label>
-                      <input type="date" name="share_date" class="form-control" id="share_date" placeholder="Enter Title" value="{{old('share_date')}}" required>
-                      @error('share_date')
-                          <span class="error">{{$message}}</span>
-                      @enderror
+                  <div class="row">
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label for="name">Initiating Coverage Date</label>
+                        <input type="date" name="share_date" class="form-control" id="share_date" placeholder="Enter Title" value="{{old('share_date')}}" required>
+                        @error('share_date')
+                            <span class="error">{{$message}}</span>
+                        @enderror
+                      </div>
                     </div>
                   </div>
+                  
                   
                   <div class="form-group">
                     <label for="description">Short Description</label>

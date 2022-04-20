@@ -83,7 +83,7 @@
               <i class="nav-icon fas fa-users"></i>
               <p>
                 User Management
-                <i class="fas fa-angle-left right"></i>
+                <i class="fas fa-angle-left right" style="right: 0rem !important"></i>
                 
               </p>
             </a>
@@ -104,6 +104,116 @@
             </ul>
             
           </li>
+          <li class="nav-item">
+            <a href="{{route('admin.subscription-details')}}" class="nav-link @if($active=='subscription-details') active @endif">
+              <i class="fas fa-rocket nav-icon"></i>
+              <p>Manage Subscriptions</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('admin.our-clients')}}" class="nav-link @if($active=='clients') active @endif">
+              <i class="fas fa-user nav-icon"></i>
+              <p>What Our Clients Says</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('admin.tweeter-feeds')}}" class="nav-link @if($active=='tweeter-feeds') active @endif">
+              <i class="fab fa-twitter nav-icon"></i>
+              <p>Twitter Feeds</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('admin.featured-on')}}" class="nav-link @if($active=='featured-on') active @endif">
+              <i class="fas fa-book nav-icon"></i>
+              <p>Featured On</p>
+            </a>
+          </li>
+          <li class="nav-item @if($active =='current-month' || $active=='monthly' || $active=='annually') menu-is-opening menu-open @endif">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Complaint Status
+                <i class="fas fa-angle-left right" style="right: 0rem !important"></i>
+                
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('admin.currentmonthcomplaint')}}" class="nav-link @if($active =='current-month') active @endif">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Current Month</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('admin.monthlycomplaint')}}" class="nav-link @if($active =='monthly') active @endif">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Monthly</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('admin.anuallycomplaint')}}" class="nav-link @if($active=='annually') active @endif">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Annually</p>
+                </a>
+              </li>
+              
+            </ul>
+            
+          </li>
+          <li class="nav-item">
+            <a href="{{route('admin.share')}}" class="nav-link @if($active=='share') active @endif">
+              <i class="fas fa-search nav-icon"></i>
+              <p>Research Reports</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('admin.report-images')}}" class="nav-link @if($active=='research_image') active @endif">
+              <i class="fas fa-image nav-icon"></i>
+              <p>Images Library</p>
+            </a>
+          </li>
+          <li class="nav-item @if($active=='newsletterusers' || $active == 'newsletters' || $active == 'sendnewsletter' || $active=='bulknewsletterusers') menu-is-opening menu-open @endif">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-newspaper"></i>
+              <p>
+                Newsletter Management
+                <i class="fas fa-angle-left right" style="right: 0rem !important"></i>
+                
+              </p>
+            </a>
+            <ul class="nav nav-treeview @if($active=='newsletterusers') active @endif">
+              <li class="nav-item">
+                <a href="{{ route('admin.newsletter.users')}}" class="nav-link @if($active=='newsletterusers') active @endif" >
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Subscribed Users
+                  </p>
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a href="{{ route('admin.newsletter.bulk.user')}}" class="nav-link @if($active=='bulknewsletterusers') active @endif" >
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Bulk Subscribed Users
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('admin.newsletter')}}" class="nav-link @if($active=='newsletters') active @endif">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Newsletter Templates</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('admin.newsletter.send')}}" class="nav-link @if($active == 'sendnewsletter') active @endif">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Send Newsletter
+                  </p>
+                </a>
+              </li>
+              
+            </ul>
+            
+          </li>
           {{-- <li class="nav-item">
                 <a href="{{route('admin.research')}}" class="nav-link @if($active=='research') active @endif">
                   <i class="fas fa-book nav-icon"></i>
@@ -116,116 +226,7 @@
                   <p>Contact us</p>
                 </a>
             </li>
-          <li class="nav-item">
-                <a href="{{route('admin.share')}}" class="nav-link @if($active=='share') active @endif">
-                  <i class="fas fa-search nav-icon"></i>
-                  <p>Research Reports</p>
-                </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('admin.subscription-details')}}" class="nav-link @if($active=='subscription-details') active @endif">
-                <i class="fas fa-rocket nav-icon"></i>
-                <p>Manage Subscriptions</p>
-              </a>
-            </li>
-            <li class="nav-item @if($active =='current-month' || $active=='monthly' || $active=='annually') menu-is-opening menu-open @endif">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-copy"></i>
-                <p>
-                  Complaint Status
-                  <i class="fas fa-angle-left right"></i>
-                  
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{route('admin.currentmonthcomplaint')}}" class="nav-link @if($active =='current-month') active @endif">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Current Month</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('admin.monthlycomplaint')}}" class="nav-link @if($active =='monthly') active @endif">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Monthly</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('admin.anuallycomplaint')}}" class="nav-link @if($active=='annually') active @endif">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Annually</p>
-                  </a>
-                </li>
-                
-              </ul>
-              
-            </li>
-            <li class="nav-item">
-              <a href="{{route('admin.our-clients')}}" class="nav-link @if($active=='clients') active @endif">
-                <i class="fas fa-user nav-icon"></i>
-                <p>What Our Clients Says</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('admin.featured-on')}}" class="nav-link @if($active=='featured-on') active @endif">
-                <i class="fas fa-book nav-icon"></i>
-                <p>Featured On</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('admin.tweeter-feeds')}}" class="nav-link @if($active=='tweeter-feeds') active @endif">
-                <i class="fab fa-twitter nav-icon"></i>
-                <p>Twitter Feed</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('admin.report-images')}}" class="nav-link @if($active=='research_image') active @endif">
-                <i class="fas fa-image nav-icon"></i>
-                <p>Images Library</p>
-              </a>
-            </li>
-            <li class="nav-item @if($active=='newsletterusers' || $active == 'newsletters' || $active == 'sendnewsletter' || $active=='bulknewsletterusers') menu-is-opening menu-open @endif">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-newspaper"></i>
-                <p>
-                  Newsletter Management
-                  <i class="fas fa-angle-left right"></i>
-                  
-                </p>
-              </a>
-              <ul class="nav nav-treeview @if($active=='newsletterusers') active @endif">
-                <li class="nav-item">
-                  <a href="{{ route('admin.newsletter.users')}}" class="nav-link @if($active=='newsletterusers') active @endif" >
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Subscribed Users
-                    </p>
-                  </a>
-                </li>
-                
-                <li class="nav-item">
-                  <a href="{{ route('admin.newsletter.bulk.user')}}" class="nav-link @if($active=='bulknewsletterusers') active @endif" >
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Bulk Subscribed Users
-                    </p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('admin.newsletter')}}" class="nav-link @if($active=='newsletters') active @endif">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Newsletter Templates</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('admin.newsletter.send')}}" class="nav-link @if($active == 'sendnewsletter') active @endif">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Send Newsletter
-                    </p>
-                  </a>
-                </li>
-                
-              </ul>
-              
-            </li>
+
             <li class="nav-item">
               
               <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

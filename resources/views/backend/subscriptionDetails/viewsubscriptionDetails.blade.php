@@ -96,7 +96,7 @@
                                     </div>
                                     <hr>
                                     <div class="col-md-6">
-                                        Pan number
+                                        PAN number
                                     </div>
                                     
                                     <div class="col-md-6">

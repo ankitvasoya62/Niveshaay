@@ -85,7 +85,7 @@
                                         <th style="width:10%;">Name of Investor</th>
                                         <th style="width:10%;">Email</th>
                                         
-                                        <th style="width:10%;">Pan no.</th>
+                                        <th style="width:10%;">PAN no.</th>
                                         <th style="width:10%;">Mobile no.</th>
                                         
                                         
@@ -119,7 +119,7 @@
                                             <a href="{{ route('admin.edit-subscription',$subscription_detail->id)}}" class="btn btn-info" title="Edit"><i class="nav-icon fas fa-edit"></i></a>
                                             
                                             @if($subscription_detail->is_verified_by_admin == 0)
-                                                <a href="{{ route('admin.verify-subscription',$subscription_detail->id)}}" class="btn btn-warning" onclick="return confirm('Are you sure to verify?')" title="verify">Verification Pending</a>
+                                                <a href="{{ route('admin.verify-subscription',$subscription_detail->id)}}" class="btn btn-warning" onclick="return confirm('Are you sure?')" title="verify">Verification Pending</a>
                                             @else
                                                 <span class="badge badge-success" style="height:40px;font-size:16px;padding:13px" title="verified">Verified</span>
                                             @endif
@@ -286,13 +286,13 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
         appendhtml += `<div class="card card-payment-form"><div class="card-header"><b>Invoice Details</b></div><div class="card-body"> <div class="row"><div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Description</label><textarea class="form-control" name="description[]" required></textarea></div></div><div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Amount</label><input type="number" class="form-control" name="amount[]" required> </div></div><div class="col-md-6">
             <div class="form-group d-inline">
                 <label class="control-label">Subscription Start Date</label>
-                <input type="date" class="form-control" name="subscription_start_date[]" required> 
+                <input type="date" class="form-control" name="subscription_start_date[]" required max="9999-12-31"> 
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group d-inline">
                 <label class="control-label">Subscription End Date</label>
-                <input type="date" class="form-control" name="subscription_end_date[]" required> 
+                <input type="date" class="form-control" name="subscription_end_date[]" required max="9999-12-31"> 
                 <span class="subscription-end-date-error" style="color:red"></span>
             </div>
         </div></div></div></div>`;
@@ -303,13 +303,13 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
         var appendhtml = `<div class="card card-payment-form"><div class="card-header"><b>Invoice Details</b><a class="btn btn-danger" style="float:right" onclick="return removeinvoice(`+invoicecount+`)"><i class="nav-icon fas fa-trash"></i></a></div><div class="card-body"> <div class="row"><div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Description</label><textarea class="form-control" name="description[]" required></textarea></div></div><div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Amount</label><input type="number" class="form-control" name="amount[]" required> </div></div><div class="col-md-6">
                     <div class="form-group d-inline">
                         <label class="control-label">Subscription Start Date</label>
-                        <input type="date" class="form-control" name="subscription_start_date[]" required> 
+                        <input type="date" class="form-control" name="subscription_start_date[]" required max="9999-12-31"> 
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group d-inline">
                         <label class="control-label">Subscription End Date</label>
-                        <input type="date" class="form-control" name="subscription_end_date[]" required> 
+                        <input type="date" class="form-control" name="subscription_end_date[]" required max="9999-12-31"> 
                         <span class="subscription-end-date-error" style="color:red"></span>
                     </div>
                 </div></div></div></div>`;
@@ -381,14 +381,14 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Subscription Start Date</label>
-                                                            <input type="date" class="form-control" name="subscription_start_date[]" value="`+ value.subscription_start_date+`" id="subscription_start_date">
+                                                            <input type="date" class="form-control" name="subscription_start_date[]" value="`+ value.subscription_start_date+`" id="subscription_start_date" max="9999-12-31">
                                                             
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Subscription End Date</label>
-                                                            <input type="date" class="form-control" name="subscription_end_date[]" value="`+ value.subscription_end_date+`" id="subscription_end_date">
+                                                            <input type="date" class="form-control" name="subscription_end_date[]" value="`+ value.subscription_end_date+`" id="subscription_end_date" max="9999-12-31">
                                                             <span class="text-danger" id="invoice_end_date_error"></span>
                                                         </div>
                                                     </div>
@@ -412,13 +412,13 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Subscription Start Date</label>
-                                                            <input type="date" class="form-control" name="subscription_start_date[]" value="`+ value.subscription_start_date+`" readonly>
+                                                            <input type="date" class="form-control" name="subscription_start_date[]" value="`+ value.subscription_start_date+`" readonly max="9999-12-31">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Subscription End Date</label>
-                                                            <input type="date" class="form-control" name="subscription_end_date[]" value="`+ value.subscription_end_date+`" readonly>
+                                                            <input type="date" class="form-control" name="subscription_end_date[]" value="`+ value.subscription_end_date+`" readonly max="9999-12-31">
                                                         </div>
                                                     </div>
                                                 </div></div></div>`

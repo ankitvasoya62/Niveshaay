@@ -20,14 +20,14 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, ...$guards)
     {
         $guards = empty($guards) ? [null] : $guards;
-
+        
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                if (Auth::user()->is_admin == 0) {
+                if (!empty(Auth::guard($guard)->user()) && Auth::guard($guard)->user()->is_admin == 0) {
                     return redirect('/profile');
                 }
                 
-                if(Auth::guard('admin')->user()->is_admin == 1){
+                if(!empty(Auth::guard($guard)->user()) && Auth::guard($guard)->user()->is_admin == 1){
                     return redirect('admin/home');
                 }
                 return redirect('/profile');

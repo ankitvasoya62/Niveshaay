@@ -45,15 +45,18 @@
                             <div class="form-group">
                                 <img src="{{ asset('images/featured/featured-image/'.$featuredOn->featured_image) }}" style="width: 150px">
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="featured_date">Date of Publish</label>
-                                    <input type="date" name="featured_date" id="featured_date" class="form-control" value="{{ $featuredOn->featured_date }}">
-                                    @error('featured_date')
-                                        <span class="error">{{ $message }}</span>
-                                    @enderror
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="featured_date">Date of Publish</label>
+                                        <input type="date" name="featured_date" id="featured_date" class="form-control" value="{{ $featuredOn->featured_date }}">
+                                        @error('featured_date')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
+                            
                             
                             <div class="form-group">
                                 <label for="featured_logo">Logo</label>

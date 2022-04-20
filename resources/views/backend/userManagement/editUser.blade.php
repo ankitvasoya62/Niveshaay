@@ -68,7 +68,7 @@
                     @enderror
                   </div>
                   <div class="form-group">
-                    <label for="name">Pan number</label>
+                    <label for="name">PAN number</label>
                     <input type="text" name="pan" class="form-control" id="pan" placeholder="Enter Pan Number" value="{{ $user->pan }}" required>
                     @error('pan')
                         <span class="error">{{$message}}</span>

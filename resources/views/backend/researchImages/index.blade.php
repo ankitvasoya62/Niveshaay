@@ -85,7 +85,7 @@
                                             
                                             <td>
                                                 
-                                                <a href="{{ route('admin.show.report-images',$research_images->id)}}" class="btn btn-success" title="show"><i class="nav-icon fas fa-eye"></i></a>
+                                                <a href="{{ route('admin.show.report-images',$research_images->id)}}" class="btn btn-success" title="View"><i class="nav-icon fas fa-eye"></i></a>
                                                 <a href="{{route('admin.edit.report-images',$research_images->id)}}" class="btn btn-info" title="edit"><i class="fas fa-edit"></i></a>
                                                 <a onclick="return confirm('Are you sure you want to delete this entry?')"
                                                     href="{{route('admin.delete.report-images',$research_images->id)}}" class="btn btn-danger" title="delete"><i class="fas fa-trash-alt"></i>

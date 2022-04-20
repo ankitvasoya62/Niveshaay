@@ -65,7 +65,7 @@
                                             
                                             
                                             <td>
-                                                <a href="{{ route('admin.newsletter.show',$newsletter->id)}}" class="btn btn-primary" target="_blank" title="Show"><i class="fas fa-eye"></i></a>
+                                                <a href="{{ route('admin.newsletter.show',$newsletter->id)}}" class="btn btn-primary" target="_blank" title="View"><i class="fas fa-eye"></i></a>
                                                 <a href="{{ route('admin.newsletter.edit',$newsletter->id)}}" class="btn btn-info" title="Edit"><i class="fas fa-edit"></i></a>
                                                 
                                                 

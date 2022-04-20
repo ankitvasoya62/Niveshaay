@@ -58,7 +58,7 @@
                     <div class="form-group">
                         <div class="custom-control custom-checkbox">
                             <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="1" name="copy_to_our_research" @if($share->copy_to_our_research == 1) checked @endif>
-                            <label for="customCheckbox1" class="custom-control-label">Copy To Sample</label>
+                            <label for="customCheckbox1" class="custom-control-label">Copy to Sample Research Reports</label>
                         </div>  
                         @error('copy_to_our_research')
                             <span class="error">{{$message}}</span>
@@ -86,15 +86,18 @@
                         <span class="error">{{$message}}</span>
                     @enderror
                   </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label for="name">Initiating Coverage Date</label>
-                      <input type="date" name="share_date" class="form-control" id="share_date" placeholder="Enter Title" value="{{ $share->share_date }}" required>
-                      @error('share_date')
-                          <span class="error">{{$message}}</span>
-                      @enderror
-                    </div>  
+                  <div class="row">
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label for="name">Initiating Coverage Date</label>
+                        <input type="date" name="share_date" class="form-control" id="share_date" placeholder="Enter Title" value="{{ $share->share_date }}" required>
+                        @error('share_date')
+                            <span class="error">{{$message}}</span>
+                        @enderror
+                      </div>  
+                    </div>
                   </div>
+                  
                   
                   <div class="form-group">
                     <label for="description">Short Description</label>
@@ -237,7 +240,7 @@
                   </div>
                   
                   <div class="form-group">
-                    <label for="description">Share Description</label>
+                    <label for="description">Description</label>
                     <textarea type="text" name="share_description" class="form-control" id="summernote" rows="5" cols="20" placeholder="Describe your title here...">{{$share->share_description}}</textarea>
                     {{-- <input type="file" name="share_description" class="form-control" accept="application/pdf"> --}}
                     @error('share_description')

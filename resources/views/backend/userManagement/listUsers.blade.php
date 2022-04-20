@@ -60,7 +60,7 @@
                                         <th>Phone No.</th>
                                         <th>Amount</th>
                                         <th>D.O.B</th>
-                                        <th>Pan</th>
+                                        <th>PAN</th>
                                         <th style="width:10%">Subscription Start Date</th>
                                         <th style="width:10%">Subscription End Date</th>
                                         

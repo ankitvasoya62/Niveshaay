@@ -67,17 +67,20 @@
                         <span class="error">{{$message}}</span>
                     @enderror
                   </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label>Date Of Birth:</label>
-                      
-                      <input type="date" class="form-control datetimepicker-input" name="dob" value="{{ date("Y-m-d", strtotime($user->dob)) }}">
-                      @error('dob')
-                          <span class="error">{{$message}}</span>
-                      @enderror
-                      
-                    </div>        
+                  <div class="row">
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label>Date Of Birth:</label>
+                        
+                        <input type="date" class="form-control datetimepicker-input" name="dob" value="{{ date("Y-m-d", strtotime($user->dob)) }}">
+                        @error('dob')
+                            <span class="error">{{$message}}</span>
+                        @enderror
+                        
+                      </div>        
+                    </div>
                   </div>
+                  
                   
                   
                    
