@@ -23,10 +23,16 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                if (Auth::user()->is_admin == 1) {
+                if (Auth::user()->is_admin == 0) {
+                    return redirect('/profile');
+                }
+                
+                if(Auth::guard('admin')->user()->is_admin == 1){
                     return redirect('admin/home');
                 }
                 return redirect('/profile');
+                
+                
             }
         }
 

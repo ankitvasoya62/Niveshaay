@@ -50,7 +50,7 @@ Route::get('/show-pdf-html',[HomeController::class,'generateMailPDF']);
 
 Route::view('/admin-login', 'backend.adminLogin')->name('admin.loginform')->middleware('guest:admin');
 Route::view('/expire', 'frontend.subscription-expired')->name('frontend.subscriptionExpire');
-Route::post('/admin-login', [LoginController::class, 'AdminLogin'])->name('admin.login');
+Route::post('/admin-login', [LoginController::class, 'AdminLogin'])->name('admin.login')->middleware('guest:admin');
 Route::post('/user/register', [LoginController::class, 'registerUser'])->name('user.register');
 Auth::routes();
 Route::get('/forgot-password',[ForgotPasswordController::class, 'showLinkRequestForm'])->middleware('guest')->name('password.request');

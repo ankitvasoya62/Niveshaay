@@ -42,7 +42,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('adminLogin','logout');
+        $this->middleware('guest')->except('AdminLogin','logout');
         
     }
     public function login(Request $request)
@@ -147,7 +147,8 @@ class LoginController extends Controller
         [   
             'email.email'=> "Please enter a valid email address",
             'password.confirmed'=> "The passwords you entered do not match, please re-enter your passwords",
-            'password.min'=>"The password must be of at least 8 characters"
+            'password.min'=>"The password must be of at least 8 characters",
+            'phone_no.digits'=>"The Phone Number must be of 10 digits"
         ]
     );
     $user = User::create([
