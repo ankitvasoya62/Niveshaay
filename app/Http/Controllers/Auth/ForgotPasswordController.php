@@ -33,9 +33,9 @@ class ForgotPasswordController extends Controller
     public function sendResetLinkEmail(Request $request){
         
         $request->validate(['email' => 'required|email']);
-        dd($request->only('email','is_admin'));
+        
         $status = Password::sendResetLink(
-            $request->only('email','is_admin')
+            $request->only('email')
         );
 
         return $status === Password::RESET_LINK_SENT
@@ -43,14 +43,5 @@ class ForgotPasswordController extends Controller
                     : back()->withErrors(['email' => __($status)]);
     }
 
-    /**
-     * Get the needed authentication credentials from the request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    protected function credentials(Request $request)
-    {
-        return $request->only('email');
-    }
+    
 }

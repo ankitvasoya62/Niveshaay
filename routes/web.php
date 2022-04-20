@@ -48,7 +48,7 @@ Route::get('/show-pdf-html',[HomeController::class,'generateMailPDF']);
 // Route::get('/excel',[App\Http\Controllers\ImportExcel::class, 'index']);
 // Route::post('/excel',[App\Http\Controllers\ImportExcel::class, 'store'])->name('import');
 
-Route::view('/admin-login', 'backend.adminLogin')->name('admin.loginform')->middleware('guest');
+Route::view('/admin-login', 'backend.adminLogin')->name('admin.loginform')->middleware('guest:admin');
 Route::view('/expire', 'frontend.subscription-expired')->name('frontend.subscriptionExpire');
 Route::post('/admin-login', [LoginController::class, 'AdminLogin'])->name('admin.login');
 Route::post('/user/register', [LoginController::class, 'registerUser'])->name('user.register');
