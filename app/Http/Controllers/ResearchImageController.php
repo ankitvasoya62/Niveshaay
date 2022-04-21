@@ -165,7 +165,7 @@ class ResearchImageController extends Controller
                     $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
                     $imageName = str_replace(" ", "_", $imageFileName).'_' . time().'.'.$image->getClientOriginalExtension();
                     //$imageName = time().".".$image->extension();
-                    $destinationPath = public_path('images/research-images/'.$researchId);
+                    $destinationPath = public_path('images/research-images/'.$id);
                 
                     if(!File::exists($destinationPath)) {
                         File::makeDirectory($destinationPath, 0777, true, true);
