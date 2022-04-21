@@ -4,7 +4,7 @@
 @section('content')
 @push('css')
 <style>
-.loading-block {  background:url('{{ asset("images/overlay-bg.png") }}') 0 0 repeat ; width: 100%; height: 100%; position: fixed; z-index:100001; top: 0; left: 0 }
+.loading-block {  background-color: rgba(0, 0, 0, 0.5); width: 100%; height: 100%; position: fixed; z-index:100001; top: 0; left: 0 }
 .loading-block .loading-img { position: absolute; margin: 0 auto; width: 200px; height: 50px; left: 0; right: 0; top: 40%; bottom: 0; }
 .loading-block .loading-img img { max-width: 100%; height: auto; width: 200px; }
 /* .hide{display: none} */

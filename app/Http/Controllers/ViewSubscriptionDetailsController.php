@@ -118,13 +118,15 @@ class ViewSubscriptionDetailsController extends Controller
         $name = $subscription_details->name_of_investor;
         try{
             Mail::to($toEmail)->send(new PaymentDetailsMail($name));
+            $subscription_details->is_verified_by_admin =1;
+            $subscription_details->save();
+            return redirect()->route('admin.subscription-details')->with('success','Mail Sent Successfully');
         }
         catch(\Throwable $th){
             //throw $th;
+            return redirect()->back()->with('error','Something went wrong');
         }
-        $subscription_details->is_verified_by_admin =1;
-        $subscription_details->save();
-        return redirect()->route('admin.subscription-details')->with('success','Mail Sent Successfully');;
+        
 
     }
 
@@ -268,9 +270,9 @@ class ViewSubscriptionDetailsController extends Controller
                     $user->subscription_end_date = $max_date;
                     $user->save();
                 }
-                if($key == 0){
-                    $invoice->subscription_end_date = !empty($max_date) ? $max_date : $invoice->subscription_end_date;
-                }
+                
+                // $invoice->subscription_end_date = !empty($max_date) ? $max_date : $invoice->subscription_end_date;
+                
                 $invoice->save();
             }
         }

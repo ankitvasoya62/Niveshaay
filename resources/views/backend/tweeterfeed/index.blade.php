@@ -24,7 +24,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Tweeter Feeds</li>
+                            <li class="breadcrumb-item active">Twitter Feeds</li>
                         </ol>
                     </div>
                 </div>
@@ -36,10 +36,10 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Tweeter Feed</h3>
+                                <h3 class="card-title">Twitter Feeds</h3>
                                 <div style="float:right; display:block;">
                                     <button class="btn btn-success"> <a href="{{route('admin.add.tweeter-feeds')}}"
-                                            class="text-light"><i class="fa fa-plus"></i> Add Tweeter Feed</a> </button>
+                                            class="text-light"><i class="fa fa-plus"></i> Add Twitter Feed</a> </button>
                                 </div>
                             </div>
                             <div class="card-body">

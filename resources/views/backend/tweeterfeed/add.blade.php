@@ -19,7 +19,7 @@
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                <li class="breadcrumb-item active">Add Tweeter Feeds</li>
+                <li class="breadcrumb-item active">Add Twitter Feeds</li>
               </ol>
             </div>
           </div>
@@ -31,7 +31,7 @@
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <div class="card-title">Add Tweeter Feeds</div>
+                            <div class="card-title">Add Twitter Feeds</div>
                         </div>
                         <form id="quickForm" method="POST" action="{{route('admin.store.tweeter-feeds')}}" enctype="multipart/form-data">@csrf
                         <div class="card-body">

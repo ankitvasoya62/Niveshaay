@@ -65,7 +65,7 @@
 						<div class="list-inner-wrapper">
 							@foreach ($researches as $research)
 								<div class="list-item-wrapper">
-									<a href="#" class="list-item-link">
+									<a href="{{ route('frontend.view.share',$research->id) }}" class="list-item-link">
 										<div class="list-item">
 											<div class="item-img-wrapper">
 												<img src="{{asset('images/share-images/'.$research->share_image)}}" alt="McClintock eye">
@@ -891,6 +891,16 @@
 			@if(Session::has('forgot_password_status'))
 				toastr.success(" {{ Session::get('forgot_password_status') }} ");
 			@endif
+
 		</script>
+		@if(request()->get('login') && request()->get('login') === "true")
+		<script type="module">
+			jQuery('body,html').addClass('open-modal');
+			// var obj=jQuery('#').attr('data-link');
+			var activemodal= jQuery("[data-tab='login-modal']");
+			activemodal.addClass('visible');        
+		</script>
+		@endif
+		
 	@endpush
 @endsection

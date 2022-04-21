@@ -320,6 +320,7 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
         var subscription_end_date = document.getElementsByName('subscription_end_date[]');
         var errordate = document.querySelector('.subscription-end-date-error');
         intJ = 0;
+        $('.subscription-end-date-error').html('');
         for(var i=0;i<subscription_start_date.length;i++){
             if(subscription_end_date[i].value > subscription_start_date[i].value ){
 
@@ -354,10 +355,7 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                      type:"GET",
                      dataType:"json",
                      success:function(data) {
-                        // $('#contact-title').text(data.first_name + " " + data.last_name);
-                        // $('#contact-name').text(data.first_name + " " + data.last_name);
-                        // $('#contact-email').text(data.email);
-                        // $('#contact-message').text(data.message);
+                        
                         console.log(data.length);
                         $('#invoice-form').attr('action',"{{  url('/admin/update/invoice') }}/"+subscription_form_id);
                         $('#invoice-form').html('');
@@ -389,7 +387,7 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                                                         <div class="form-group">
                                                             <label>Subscription End Date</label>
                                                             <input type="date" class="form-control" name="subscription_end_date[]" value="`+ value.subscription_end_date+`" id="subscription_end_date" max="9999-12-31">
-                                                            <span class="text-danger" id="invoice_end_date_error"></span>
+                                                            <span class="text-danger invoice_end_date_error"></span>
                                                         </div>
                                                     </div>
                                                 </div></div></div>`
@@ -400,25 +398,27 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Description</label>
-                                                            <input type="text" class="form-control" name="description[]" value="`+ value.description+`" readonly>
+                                                            <input type="text" class="form-control" name="description[]" value="`+ value.description+`">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Amount</label>
-                                                            <input type="number" class="form-control" name="amount[]" value="`+ value.amount+`" readonly>
+                                                            <input type="number" class="form-control" name="amount[]" value="`+ value.amount+`">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Subscription Start Date</label>
-                                                            <input type="date" class="form-control" name="subscription_start_date[]" value="`+ value.subscription_start_date+`" readonly max="9999-12-31">
+                                                            <input type="date" class="form-control" name="subscription_start_date[]" value="`+ value.subscription_start_date+`" max="9999-12-31">
+                                                            
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Subscription End Date</label>
-                                                            <input type="date" class="form-control" name="subscription_end_date[]" value="`+ value.subscription_end_date+`" readonly max="9999-12-31">
+                                                            <input type="date" class="form-control" name="subscription_end_date[]" value="`+ value.subscription_end_date+`" max="9999-12-31">
+                                                            <span class="text-danger invoice_end_date_error"></span>
                                                         </div>
                                                     </div>
                                                 </div></div></div>`
@@ -453,9 +453,24 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
         
     // })
     function fninvoicesubmit(){
-        var subscription_start_date = document.getElementById('subscription_start_date');
-        var subscription_end_date = document.getElementById('subscription_end_date');
-        if(subscription_start_date.value < subscription_end_date.value ){
+        var subscription_start_date = document.getElementsByName('subscription_start_date[]');
+        var subscription_end_date = document.getElementsByName('subscription_end_date[]');
+        var errordate = document.querySelector('.invoice_end_date_error');
+        intJ = 0;
+        $('.invoice_end_date_error').html('');
+        for(var i=0;i<subscription_start_date.length;i++){
+            if(subscription_end_date[i].value > subscription_start_date[i].value ){
+
+            }else{
+                intJ = 1;
+                $('.invoice_end_date_error')[i].innerHTML = 'Subscription end date should be greater than subscription start date';
+                // $('.'[i]).html('Subscription end date should be greater than subscription start date');
+                // errordate[i].innerHTML = 'Subscription end date should be greater than subscription start date';
+            }
+        }
+        // alert(intJ);
+        // return false;
+        if(intJ == 0){
             var subscriptionformaction = $('#invoice-form').attr('action');
             $.ajax({
                 url:subscriptionformaction,
@@ -467,13 +482,7 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                     if(data.success == 1){
                             window.location.href = window.location.href;
                     }else{
-                        // if(data.message.email){
-                        //     jQuery('#login-modal-email-error').html(data.message.email[0]);
-                        // }else if(data.message.password){
-                        //     jQuery('#login-modal-error').html(data.message.password[0]);
-                        // }else{
-                        //     jQuery('#login-modal-email-error').html(data.message);
-                        // }
+                        
                         console.log(data);
                     }
                 
@@ -482,12 +491,40 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                 error:function(res){
                    
                 }
-            }); 
+            });
         }else{
-            $('#invoice_end_date_error').focus();
-            $('#invoice_end_date_error').html("Subscription end date should be greater than subscription start date");
             
+            // alert("Subscription end date should be greater than subscription start date");
         }
+        // var subscription_start_date = document.getElementById('subscription_start_date');
+        // var subscription_end_date = document.getElementById('subscription_end_date');
+        // if(subscription_start_date.value < subscription_end_date.value ){
+        //     var subscriptionformaction = $('#invoice-form').attr('action');
+        //     $.ajax({
+        //         url:subscriptionformaction,
+        //         type:'POST',
+        //         data:$('#invoice-form').serialize(),
+                
+        //         success:function(data) {
+
+        //             if(data.success == 1){
+        //                     window.location.href = window.location.href;
+        //             }else{
+                        
+        //                 console.log(data);
+        //             }
+                
+                        
+        //         },
+        //         error:function(res){
+                   
+        //         }
+        //     }); 
+        // }else{
+        //     $('#invoice_end_date_error').focus();
+        //     $('#invoice_end_date_error').html("Subscription end date should be greater than subscription start date");
+            
+        // }
                
     }
 </script>
