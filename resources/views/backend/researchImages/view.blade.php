@@ -65,7 +65,8 @@
                                                 <img src="{{ asset('images/research-images/'. $research_images->id.'/'.$row['report_image_path']) }}" class="card-img-top card-img" alt="...">
                                                 <div class="card-body">
                                                     <div class="text-center path-css-design">
-                                                        <span id="image_path_{{ $row['id']}}">{{ asset('images/research-images/'. $research_images->id.'/'.$row['report_image_path']) }}</span>
+                                                        <span title="{{ asset('images/research-images/'. $research_images->id.'/'.$row['report_image_path']) }}">{{ Str::limit(asset('images/research-images/'. $research_images->id.'/'.$row['report_image_path']),60,'...') }}</span>
+                                                        <input type="hidden" name="" id="image_path_{{ $row['id']}}" value="{{ asset('images/research-images/'. $research_images->id.'/'.$row['report_image_path']) }}">
                                                     </div>
                                                     <div class="text-center">
                                                         <a class="btn btn-success copy-to-clip-board btn-lg" id="{{ $row['id'] }}" data-toggle="tooltip" data-placement="top" title="Copied"><i class="fas fa-clipboard"></i>&nbsp;&nbsp;Copy Path</a>
@@ -125,7 +126,7 @@ $(function() {
         
         var copy_to_clipboard_id = $(this).attr('id');
         var copyText = document.querySelector('#image_path_'+copy_to_clipboard_id);
-        var copyText = $('#image_path_'+copy_to_clipboard_id).text();
+        var copyText = $('#image_path_'+copy_to_clipboard_id).val();
         var tempInput = document.createElement("input");
         tempInput.style = "position: absolute; left: -1000px; top: -1000px";
         tempInput.value = copyText;
