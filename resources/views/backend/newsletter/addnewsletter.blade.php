@@ -70,7 +70,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="date">Date</label>
-                                        <input type="date" name="date" id="date" class="form-control" value="{{ old('date') }}">
+                                        <input type="date" name="date" id="date" class="form-control" value="{{ old('date') }}" max="9999-12-31">
                                         @error('date')
                                             <span class="error">{{ $message }}</span>
                                         @enderror

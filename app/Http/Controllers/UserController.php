@@ -117,9 +117,9 @@ class UserController extends Controller
             $invoice_no = "#NRS/".$currentyear."-".($currentyear+1)."/".($subscriptionFormDetails->id+100);
         }
         $invoiceDetails = new InvoiceDetail([
-            'description'=> '',
+            'description'=> 'Research Services',
             'subscription_start_date'=>date("Y-m-d", strtotime($request->subscription_start_date)),
-            'subscription_end_date'=>date("Y-m-d", strtotime($request->subscription_start_date)),
+            'subscription_end_date'=>date("Y-m-d", strtotime($request->subscription_end_date)),
             'amount'=>$request->amount,
             'invoice_no'=>$invoice_no,
             'subscription_form_id'=>$subscriptionFormDetails->id
