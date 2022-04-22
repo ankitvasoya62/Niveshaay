@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 use URL;
 use Illuminate\Support\Facades\Route;
-
+use Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ContactUs;
@@ -40,7 +40,8 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        // dd(session()->all());
         $active='home';
         $researches = ourresearchreport();
        
@@ -329,7 +330,7 @@ class HomeController extends Controller
                             ->where('invoice_details.subscription_end_date','<=',$todayDate)
                             ->where('users.id',Auth::user()->id)
                             ->get();
-        // dd($current_subscription);
+        // dd(count($past_subscription));
         return view('frontend.profile',compact('active','user','current_subscription','past_subscription'));
     }
     public function shareDetail()
@@ -529,18 +530,25 @@ class HomeController extends Controller
         dd("success");
     }
 
-    // public function generateMailPDF(){
-    //     $data["email"] = "nikhilvshah12274@gmail.com";
-    //     $data["title"] = "From ItSolutionStuff.com";
-    //     $data["body"] = "This is Demo";
-    //     $pdf = PDF::loadView('pdf.document', $data);
-    //     Mail::send('pdf.document', $data, function($message)use($data, $pdf) {
-    //         $message->to($data["email"], $data["email"])
-    //                 ->subject($data["title"])
-    //                 ->attachData($pdf->output(), "text.pdf");
-    //     });
-    //     //return $pdf->stream('document.pdf');
-    //     dd('Mail sent successfully');
-    // }
-    
+    public function changePasswordForm(){
+        $active = "change-password";
+        return view('frontend.change-password',compact('active'));
+    }
+
+    public function changePassword(Request $request){
+        $this->validate($request,[
+            // 'current_password'=>'required',
+            'password'=>'required|min:8',
+            'password_confirmation'=>'same:password'    
+
+        ],[
+            'password_confirmation.same'=> "Confirm Password does not match with New Password. Please try again!",
+        ]);        
+        
+        $user = Auth::user();
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('frontend.home')->with("forgot_password_status","Your password has been updated successfully!");
+    }
 }

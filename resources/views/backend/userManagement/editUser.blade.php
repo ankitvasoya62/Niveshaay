@@ -78,7 +78,7 @@
                     <div class="form-group">
                       <label>Date Of Birth:</label>
                       
-                      <input type="date" class="form-control datetimepicker-input" name="dob" value="{{ date("Y-m-d", strtotime($user->dob)) }}">
+                      <input type="date" class="form-control datetimepicker-input" name="dob" value="{{ date("Y-m-d", strtotime($user->dob)) }}" max="9999-12-31">
                       @error('dob')
                           <span class="error">{{$message}}</span>
                       @enderror
@@ -90,7 +90,7 @@
                     <div class="form-group">
                       <label>Subscription Start Date:</label>
                       
-                      <input type="date" class="form-control datetimepicker-input" name="subscription_start_date" value="{{ date("Y-m-d", strtotime($user->subscription_start_date)) }}">
+                      <input type="date" class="form-control datetimepicker-input" name="subscription_start_date" value="{{ date("Y-m-d", strtotime($user->subscription_start_date)) }}" max="9999-12-31">
                       @error('subscription_start_date')
                           <span class="error">{{$message}}</span>
                       @enderror
@@ -101,21 +101,25 @@
                     <div class="form-group">
                       <label>Subscription End Date:</label>
                       
-                      <input type="date" class="form-control datetimepicker-input" name="subscription_end_date" value="{{ date("Y-m-d", strtotime($user->subscription_end_date)) }}">
+                      <input type="date" class="form-control datetimepicker-input" name="subscription_end_date" value="{{ date("Y-m-d", strtotime($user->subscription_end_date)) }}" max="9999-12-31">
                       @error('subscription_end_date')
                           <span class="error">{{$message}}</span>
                       @enderror
                       
                     </div>
                   </div>
-                    
-                    <div class="form-group">
-                        <label for="name">Amount</label>
-                        <input type="number" name="amount" class="form-control" id="amount" placeholder="Enter Amount" value="{{ $user->amount }}" required>
-                        @error('amount')
-                            <span class="error">{{$message}}</span>
-                        @enderror
+                    <div class="row">
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label for="name">Amount</label>
+                          <input type="number" name="amount" class="form-control" id="amount" placeholder="Enter Amount" value="{{ $user->amount }}" required>
+                          @error('amount')
+                              <span class="error">{{$message}}</span>
+                          @enderror
+                        </div>
+                      </div>
                     </div>
+                    
                    
                   
                 </div>

@@ -91,7 +91,7 @@ class ShareDetailsController extends Controller
         // $sharedescription->move(public_path('pdf'),$shareDescriptionName);
         // $share->share_description = $shareDescriptionName;
         $share->save();
-        return redirect()->route('admin.share')->with('success','Share Added Successfully');
+        return redirect()->route('admin.share')->with('success','Share Added Successfully!');
     }
 
     public function editShare($id){
@@ -152,7 +152,7 @@ class ShareDetailsController extends Controller
         
         
         $share->save();
-        return redirect()->route('admin.share')->with('success','Share Updated Successfully');
+        return redirect()->route('admin.share')->with('success','Share Updated Successfully!');
     }
 
     public function deleteShare($id){
@@ -165,6 +165,6 @@ class ShareDetailsController extends Controller
         $share->delete();  
         @unlink(public_path('images/share-logo')."/".$share_previous_logo);
         @unlink(public_path('images/share-images')."/".$share_previous_image);
-        return redirect()->route('admin.share')->with('success','Share Deleted Successfully');      
+        return redirect()->route('admin.share')->with('success','Share Deleted Successfully!');      
     }
 }

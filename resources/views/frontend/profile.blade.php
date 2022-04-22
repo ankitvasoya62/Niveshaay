@@ -72,6 +72,7 @@
                         </tbody>
                     </table>
                 </div>
+                @if(count($past_subscription) > 0)
                 <div class="table-wrapper">
                     <h3>Past Subscriptions</h3>
                     <table class="table">
@@ -95,6 +96,7 @@
                         </tbody>
                     </table>
                 </div>
+                @endif
             </div>
         </div>
     </div>

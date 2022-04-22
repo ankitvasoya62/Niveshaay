@@ -90,7 +90,7 @@
                     <div class="col-md-3">
                       <div class="form-group">
                         <label for="name">Initiating Coverage Date</label>
-                        <input type="date" name="share_date" class="form-control" id="share_date" placeholder="Enter Title" value="{{ $share->share_date }}" required>
+                        <input type="date" name="share_date" class="form-control" id="share_date" placeholder="Enter Title" value="{{ $share->share_date }}" required max="9999-12-31">
                         @error('share_date')
                             <span class="error">{{$message}}</span>
                         @enderror

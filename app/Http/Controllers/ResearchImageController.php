@@ -81,7 +81,7 @@ class ResearchImageController extends Controller
                 
             }
         }
-        return redirect()->route('admin.edit.report-images',$researchId)->with('success','Images Added Successfully');
+        return redirect()->route('admin.edit.report-images',$researchId)->with('success','Images Added Successfully!');
     }
 
     /**
@@ -182,7 +182,7 @@ class ResearchImageController extends Controller
                 
             }
         }
-        return redirect()->back()->with('success','Images Update Successfully');
+        return redirect()->back()->with('success','Images Update Successfully!');
     }
 
     /**
@@ -212,7 +212,7 @@ class ResearchImageController extends Controller
         // @unlink(public_path('images/research-images')."/".$id);
         $subResearchImage = SubResearchImage::where('research_image_id',$id);
         $subResearchImage->delete();
-        return redirect()->back()->with('success','Images Delete Successfully');
+        return redirect()->back()->with('success','Images Delete Successfully!');
     }
 
     public function deletedByImage($id){
@@ -224,6 +224,6 @@ class ResearchImageController extends Controller
             @unlink(public_path('images/research-images/'.$subResearchImageId)."/".$research_image);
         }
         
-        return redirect()->back()->with('success','Image Delete Successfully');
+        return redirect()->back()->with('success','Image Delete Successfully!');
     }
 }

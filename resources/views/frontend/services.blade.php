@@ -133,7 +133,7 @@
 										<a href="#" class="list-item-link">
 											<div class="list-item">
 												<div class="item-img-wrapper">
-													<img src="{{asset('images/share-images/'.$research->share_image)}}" alt="McClintock eye">
+													<img src="{{asset('images/share-logo/'.$research->share_logo)}}" alt="McClintock eye">
 												</div>
 												<div class="item-content-wrapper">
 													<h3>{{ $research->share_title}}</h3>

@@ -110,7 +110,7 @@ class ViewSubscriptionDetailsController extends Controller
         $subscriptionFormDetail->risk_attitude = $request['risk_attitude'];
         $subscriptionFormDetail->knowledge_experience = $request['knowledge_experience'];
         $subscriptionFormDetail->save();
-        return redirect()->route('admin.subscription-details')->with('success','Record Updated Successfully');;
+        return redirect()->route('admin.subscription-details')->with('success','Record Updated Successfully!');
     }
     public function verifySubscriptionDetails($id){
         $subscription_details = SubscriptionFormDetail::find($id);
@@ -120,7 +120,7 @@ class ViewSubscriptionDetailsController extends Controller
             Mail::to($toEmail)->send(new PaymentDetailsMail($name));
             $subscription_details->is_verified_by_admin =1;
             $subscription_details->save();
-            return redirect()->route('admin.subscription-details')->with('success','Mail Sent Successfully');
+            return redirect()->route('admin.subscription-details')->with('success','Mail Sent Successfully!');
         }
         catch(\Throwable $th){
             //throw $th;
@@ -277,7 +277,7 @@ class ViewSubscriptionDetailsController extends Controller
             }
         }
         $success = ['success'=>1];
-        session()->flash('success','Invoice updated successfully');
+        session()->flash('success','Invoice updated successfully!');
         return response()->json($success);
     }
 

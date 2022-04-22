@@ -94,7 +94,7 @@ class FeaturedOnController extends Controller
         }
         
         $featuredOn->save();
-        return redirect()->route('admin.featured-on')->with('success','Feature Added Successfully');
+        return redirect()->route('admin.featured-on')->with('success','Feature Added Successfully!');
 
     }
 
@@ -146,6 +146,7 @@ class FeaturedOnController extends Controller
                 $image = $request->file('featured_image');
                 $imageFileExt = $image->getClientOriginalName();
                 $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
+                $imageName = str_replace(" ", "_", $imageFileName).'_' .time().".".$image->extension();
                 $image->move(public_path('images/featured/featured-image'),$imageName);
                 $featuredOn->featured_image= $imageName;
                 @unlink(public_path('images/featured/featured-image/'.$previous_featured_image));
@@ -159,7 +160,7 @@ class FeaturedOnController extends Controller
                 $image = $request->file('featured_logo');
                 $imageFileExt = $image->getClientOriginalName();
                 $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
-                // $imageName = time().".".$image->extension();
+                $imageName = time().".".$image->extension();
                 $image->move(public_path('images/featured/featured-logo'),$imageName);
                 $featuredOn->featured_logo = $imageName;
                 @unlink(public_path('images/featured/featured-logo/'.$previous_featured_logo));
@@ -173,7 +174,7 @@ class FeaturedOnController extends Controller
 
         
         $featuredOn->save();
-        return redirect()->route('admin.featured-on')->with('success','Feature Update Successfully');
+        return redirect()->route('admin.featured-on')->with('success','Changes Updated Successfully!');
     }
 
     /**

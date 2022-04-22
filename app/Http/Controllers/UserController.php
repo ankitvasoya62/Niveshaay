@@ -12,6 +12,8 @@ use App\Mail\passwordMail;
 use Str;
 use App\Models\User;
 use App\Models\SubscriptionFormDetail;
+use App\Models\InvoiceDetail;
+
 class UserController extends Controller
 {
     /**
@@ -66,7 +68,11 @@ class UserController extends Controller
             'subscription_start_date' => 'required|date|date_format:Y-m-d',
             'subscription_end_date' => 'required|date|date_format:Y-m-d|after:subscription_start_date'
 
-    	]);
+    	],[
+            'dob.date_format'=>'Please enter a valid date of birth!',
+            'subscription_start_date.date_format'=>'Please enter a valid subscription start date!',
+            'subscription_end_date.date_format'=>'Please enter a valid subscription end date!',
+        ]);
         $random_password = Str::random(8);
         $data = array();
         $data['name'] = $request->name;
@@ -81,7 +87,8 @@ class UserController extends Controller
         $data['password'] = Hash::make($random_password);
         // $data['password'] = Hash::make(str_random(8));
         $data['created_at'] = Carbon::now();
-        User::insert($data);
+        $user = new User($data);
+        $user->save();
         $toEmail = $request->email;
         try{
             Mail::to($toEmail)->send(new passwordMail($random_password,$request->name));
@@ -89,6 +96,36 @@ class UserController extends Controller
         catch(\Throwable $th){
             throw $th;
         }
+        $subscriptionFormDetails = new SubscriptionFormDetail([
+            'name_of_investor'=>$request->name,
+            'email'=>$request->email,
+            'mobile_no'=>$request->phone_no,
+            'pan_no'=>$request->pan,
+            'dob'=>date("Y-m-d", strtotime($request->dob)),
+            'user_id'=>$user->id,
+            'is_email_verified'=>1,
+            'is_verified_by_admin'=>1,
+            'is_payment_received'=>1
+        ]);
+        $subscriptionFormDetails->save();
+        $today= Carbon::now();
+        $currentmonth = $today->month;
+        $currentyear = $today->year;
+        if($currentmonth < 4){
+            $invoice_no = "#NRS/".($currentyear-1)."-".($currentyear)."/".($subscriptionFormDetails->id+100);
+        }else{
+            $invoice_no = "#NRS/".$currentyear."-".($currentyear+1)."/".($subscriptionFormDetails->id+100);
+        }
+        $invoiceDetails = new InvoiceDetail([
+            'description'=> '',
+            'subscription_start_date'=>date("Y-m-d", strtotime($request->subscription_start_date)),
+            'subscription_end_date'=>date("Y-m-d", strtotime($request->subscription_start_date)),
+            'amount'=>$request->amount,
+            'invoice_no'=>$invoice_no,
+            'subscription_form_id'=>$subscriptionFormDetails->id
+        ]);
+        $invoiceDetails->save();
+
         $notification = array(
             'success'=>'User created successfully. Password has been mailed on registered mail ID.'
             );
@@ -144,7 +181,11 @@ class UserController extends Controller
             'subscription_start_date' => 'required|date|date_format:Y-m-d',
             'subscription_end_date' => 'required|date|date_format:Y-m-d|after:subscription_start_date'
 
-    	]);
+    	],[
+            'dob.date_format'=>'Please enter a valid date of birth!',
+            'subscription_start_date.date_format'=>'Please enter a valid subscription start date!',
+            'subscription_end_date.date_format'=>'Please enter a valid subscription end date!',
+        ]);
         $data = array();
         $data['name'] = $request->name;
         $data['email'] = $request->email;
@@ -163,7 +204,7 @@ class UserController extends Controller
         $notification = array(
             // 'message' => 'User Updated Successfully',
             // 'alert-type' => 'success'
-            'success'=>'User Updated Successfully'
+            'success'=>'User Updated Successfully!'
             );
         if($user->is_admin == 0){
             return redirect()->route('admin.users')->with($notification);
@@ -192,7 +233,7 @@ class UserController extends Controller
         SubscriptionFormDetail::where('user_id',$id)->forceDelete();
         $notification = array(
             
-            'success'=>'User Deleted Successfully'
+            'success'=>'User Deleted Successfully!'
             );
         return redirect()->route('admin.users')->with($notification);
         // if($user->is_admin == 0){
@@ -234,7 +275,9 @@ class UserController extends Controller
             'dob' => 'required|date|date_format:Y-m-d|before:'.$todayDate,
             
 
-    	]);
+    	],[
+            'dob.date_format'=>'Please enter a valid date of birth!'
+        ]);
         $data = array();
         $data['name'] = $request->name;
         $data['email'] = $request->email;
@@ -295,7 +338,7 @@ class UserController extends Controller
         $user = User::find($id);
         $notification = array(
             
-            'success'=>'User Updated Successfully'
+            'success'=>'User Updated Successfully!'
             );
         
         
@@ -309,7 +352,7 @@ class UserController extends Controller
         $user->forceDelete();
         $notification = array(
             
-            'success'=>'User Deleted Successfully'
+            'success'=>'User Deleted Successfully!'
             );
         
         

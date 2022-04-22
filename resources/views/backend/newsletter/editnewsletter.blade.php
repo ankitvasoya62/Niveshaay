@@ -82,23 +82,8 @@
                             </div>
                             
 
-                            
-                            {{-- <div class="form-group">
-                                <label for="last_name">Email</label>
-                                <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}">
-                                @error('email')
-                                    <span class="error">{{ $message }}</span>
-                                @enderror
-                            </div>
                             <div class="form-group">
-                                <label for="last_name">Phone Number</label>
-                                <input type="text" name="phone_no" id="phone_no" class="form-control" value="{{ old('phone_no') }}">
-                                @error('phone_no')
-                                    <span class="error">{{ $message }}</span>
-                                @enderror
-                            </div> --}}
-                            <div class="form-group">
-                                <label for="editor_top">Editor Top</label>
+                                <label for="editor_top">Section 1: Editor Top</label>
                                 <textarea name="editor_top" class="form-control" id="summernote1" rows="5" cols="20" placeholder="Describe your title here..." value="{{old('description')}}">{{  $newsletter->editor_top }}</textarea>
                                 @error('editor_top')
                                     <span class="error">{{$message}}</span>
@@ -106,7 +91,7 @@
                             </div>
                             
                                 <div class="form-group">
-                                    <label for="editor_left">Editor Left</label>
+                                    <label for="editor_left">Section 2: Editor Left</label>
                                     <textarea name="editor_left" class="form-control" id="summernote2" placeholder="Describe your title here..." value="{{old('description')}}">{{  $newsletter->editor_left }}</textarea>
                                     @error('editor_left')
                                         <span class="error">{{$message}}</span>
@@ -115,7 +100,7 @@
                             
                             
                                 <div class="form-group">
-                                    <label for="editor_right">Editor Right</label>
+                                    <label for="editor_right">Section 2: Editor Right</label>
                                     <textarea name="editor_right" class="form-control" id="summernote3" placeholder="Describe your title here..." value="{{old('description')}}">{{  $newsletter->editor_right }}</textarea>
                                     @error('editor_right')
                                         <span class="error">{{$message}}</span>
@@ -123,7 +108,7 @@
                                 </div>
                             
                             <div class="form-group">
-                                <label for="editor_bottom">Editor Bottom</label>
+                                <label for="editor_bottom">Section 3: Editor Bottom</label>
                                 <textarea name="editor_bottom" class="form-control" id="summernote4" rows="5" cols="20" placeholder="Describe your title here..." value="{{old('description')}}">{{  $newsletter->editor_bottom }}</textarea>
                                 @error('editor_bottom')
                                     <span class="error">{{$message}}</span>

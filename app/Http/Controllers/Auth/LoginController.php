@@ -177,6 +177,7 @@ class LoginController extends Controller
         $isAdmin = !empty($request->is_admin) ? $request->is_admin : 0;
         if(!empty($isAdmin)){
             Auth::guard('admin')->logout();
+            return redirect()->route('admin.loginform');
         }else{
             Auth::logout();
         }

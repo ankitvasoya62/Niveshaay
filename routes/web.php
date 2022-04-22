@@ -53,11 +53,11 @@ Route::view('/expire', 'frontend.subscription-expired')->name('frontend.subscrip
 Route::post('/admin-login', [LoginController::class, 'AdminLogin'])->name('admin.login')->middleware('guest:admin');
 Route::post('/user/register', [LoginController::class, 'registerUser'])->name('user.register');
 Auth::routes();
-Route::get('/forgot-password',[ForgotPasswordController::class, 'showLinkRequestForm'])->middleware('guest')->name('password.request');
-Route::post('/forgot-password',[ForgotPasswordController::class, 'sendResetLinkEmail'])->middleware('guest')->name('password.email');
-Route::get('/reset-password/{token}',[ResetPasswordController::class, 'showResetForm'])->middleware('guest')->name('password.reset');
-Route::post('/reset-password',[ResetPasswordController::class, 'reset'])->middleware('guest')->name('password.update');
-Route::get('admin/forgot-password',[ForgotPasswordController::class, 'showadminRequestForm'])->middleware('guest')->name('admin.password.request');
+Route::get('/forgot-password',[ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('/forgot-password',[ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('/reset-password/{token}',[ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password',[ResetPasswordController::class, 'reset'])->name('password.update');
+Route::get('admin/forgot-password',[ForgotPasswordController::class, 'showadminRequestForm'])->name('admin.password.request');
 Route::get('/share-detail/{id}',[HomeController::class,'viewShare'])->name('frontend.view.share');        
 Route::middleware('auth:admin')->group(function () {
     Route::prefix('admin')->middleware('is_admin')->group(function () {
@@ -212,7 +212,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/research-dashboard',[HomeController::class, 'researchDashboard'])->name('frontend.research-dashboard');
         Route::post('/sendOtp',[SubscriptionDetailsController::class,'sendOtp'])->name('frontend.sendotp');
         Route::post('/verifyOtp',[SubscriptionDetailsController::class,'verifyOtp'])->name('frontend.verifyotp');
-            
+        Route::get('/change-password',[HomeController::class,'changePasswordForm'])->name('frontend.changepasswordform');            
+        Route::post('/change-password',[HomeController::class,'changePassword'])->name('frontend.changepassword');
     });
     
 });

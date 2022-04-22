@@ -76,7 +76,7 @@ class OurClientSayManagementController extends Controller
         
         $newClient->client_designation = $request->client_designation;
         $newClient->save();
-        return redirect()->route('admin.our-clients')->with('success','Client Added Successfully');
+        return redirect()->route('admin.our-clients')->with('success','Client Added Successfully!');
 
     }
 
@@ -152,7 +152,7 @@ class OurClientSayManagementController extends Controller
         
         $updateClient->client_designation = $request->client_designation;
         $updateClient->save();
-        return redirect()->route('admin.our-clients')->with('success','Client Updated Successfully');
+        return redirect()->route('admin.our-clients')->with('success','Client Updated Successfully!');
     }
 
     /**
@@ -170,6 +170,6 @@ class OurClientSayManagementController extends Controller
         // $client->status = 'deleted';
         // $client->save();
         $client->delete();
-        return redirect()->route('admin.our-clients')->with('success','Client Deleted Successfully');
+        return redirect()->route('admin.our-clients')->with('success','Client Deleted Successfully!');
     }
 }

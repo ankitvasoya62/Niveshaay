@@ -80,6 +80,7 @@
 							<div class="user-dropdown">
 								<ul>
 									<li class="@if($active=='profile') active @endif"><a href="{{route('frontend.profile')}}" title="My Profile">My Profile</a></li>
+									<li class="@if($active=='change-password') active @endif"><a href="{{route('frontend.changepasswordform')}}" title="Change Password">Change Password</a></li>
 									<li>
 										<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
 											Logout

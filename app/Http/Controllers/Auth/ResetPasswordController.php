@@ -53,8 +53,9 @@ class ResetPasswordController extends Controller
             'token' => 'required',
             'email' => 'required|email',
             'password' => 'required|min:8|confirmed',
+            
         ],[
-            'password.confirmed'=> "Password and Confirm Password does not match"
+            'password.confirmed'=> "Confirm Password does not match with New Password. Please try again!"
         ]);
      
         $status = Password::reset(

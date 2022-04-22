@@ -81,7 +81,7 @@
                             
                             
                             <div class="form-group">
-                                <label for="editor_top">Editor Top</label>
+                                <label for="editor_top">Section 1: Editor Top</label>
                                 <textarea name="editor_top" class="form-control" id="summernote1" rows="5" cols="20" placeholder="Describe your title here..." value="{{old('description')}}"></textarea>
                                 @error('editor_top')
                                     <span class="error">{{$message}}</span>
@@ -89,7 +89,7 @@
                             </div>
                             
                                 <div class="form-group">
-                                    <label for="editor_left">Editor Left</label>
+                                    <label for="editor_left">Section 2: Editor Left</label>
                                     <textarea name="editor_left" class="form-control" id="summernote2" placeholder="Describe your title here..." value="{{old('description')}}"></textarea>
                                     @error('editor_left')
                                         <span class="error">{{$message}}</span>
@@ -98,7 +98,7 @@
                             
                             
                                 <div class="form-group">
-                                    <label for="editor_right">Editor Right</label>
+                                    <label for="editor_right">Section 2: Editor Right</label>
                                     <textarea name="editor_right" class="form-control" id="summernote3" placeholder="Describe your title here..." value="{{old('description')}}"></textarea>
                                     @error('editor_right')
                                         <span class="error">{{$message}}</span>
@@ -106,7 +106,7 @@
                                 </div>
                             
                             <div class="form-group">
-                                <label for="editor_bottom">Editor Bottom</label>
+                                <label for="editor_bottom">Section 3: Editor Bottom</label>
                                 <textarea name="editor_bottom" class="form-control" id="summernote4" rows="5" cols="20" placeholder="Describe your title here..." value="{{old('description')}}"></textarea>
                                 @error('editor_bottom')
                                     <span class="error">{{$message}}</span>

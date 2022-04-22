@@ -46,7 +46,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="featured_date">Date of Publish</label>
-                                        <input type="date" name="featured_date" id="featured_date" class="form-control">
+                                        <input type="date" name="featured_date" id="featured_date" class="form-control" max="9999-12-31">
                                         @error('featured_date')
                                             <span class="error">{{ $message }}</span>
                                         @enderror

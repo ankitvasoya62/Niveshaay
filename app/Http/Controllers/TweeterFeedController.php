@@ -75,7 +75,7 @@ class TweeterFeedController extends Controller
         
         // $newClient->client_designation = $request->client_designation;
         $tweeterFeed->save();
-        return redirect()->route('admin.tweeter-feeds')->with('success','Tweeter Feed Added Successfully');
+        return redirect()->route('admin.tweeter-feeds')->with('success','Tweeter Feed Added Successfully!');
         
     }
 
@@ -145,7 +145,7 @@ class TweeterFeedController extends Controller
         
         // $newClient->client_designation = $request->client_designation;
         $tweeterFeed->save();
-        return redirect()->route('admin.tweeter-feeds')->with('success','Tweeter Feed Updated Successfully');
+        return redirect()->route('admin.tweeter-feeds')->with('success','Tweeter Feed Updated Successfully!');
     }
 
     /**
@@ -164,6 +164,6 @@ class TweeterFeedController extends Controller
             @unlink(public_path('images/tweeter-feeds/'.$previous_image));
         }
         
-        return redirect()->route('admin.tweeter-feeds')->with('success','Tweeter Feed Deleted Successfully');
+        return redirect()->route('admin.tweeter-feeds')->with('success','Tweeter Feed Deleted Successfully!');
     }
 }

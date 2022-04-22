@@ -39,7 +39,7 @@
                                 <h3 class="card-title">Twitter Feeds</h3>
                                 <div style="float:right; display:block;">
                                     <button class="btn btn-success"> <a href="{{route('admin.add.tweeter-feeds')}}"
-                                            class="text-light"><i class="fa fa-plus"></i> Add Twitter Feed</a> </button>
+                                            class="text-light"><i class="fa fa-plus"></i> Add a Tweet</a> </button>
                                 </div>
                             </div>
                             <div class="card-body">

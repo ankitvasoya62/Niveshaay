@@ -72,7 +72,7 @@
                       <div class="form-group">
                         <label>Date Of Birth:</label>
                         
-                        <input type="date" class="form-control datetimepicker-input" name="dob" value="{{ old('dob') }}">
+                        <input type="date" class="form-control datetimepicker-input" name="dob" value="{{ old('dob') }}" max="9999-12-31">
                         @error('dob')
                             <span class="error">{{$message}}</span>
                         @enderror

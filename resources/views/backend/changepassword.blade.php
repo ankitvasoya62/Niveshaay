@@ -62,7 +62,7 @@
                             <div class="form-group">
                                 <label for="confirm_password">Confirm Password</label>
                                 <input type="password" name="password_confirmation" id="confirm_password" class="form-control">
-                                @error('confirm_password')
+                                @error('password_confirmation')
                                     <span class="error">{{ $message }}</span>
                                 @enderror
                             </div>

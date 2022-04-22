@@ -43,16 +43,18 @@ class HomeController extends Controller
         // }
         $this->validate($request,[
             // 'current_password'=>'required',
-            'password'=>'required|min:8|confirmed'
+            'password'=>'required|min:8',
+            'password_confirmation'=>'required|same:password'
             
-            
+        ],[
+            'password_confirmation.same'=> "Confirm Password does not match with New Password. Please try again!",
         ]);        
         
         $user = Auth::guard('admin')->user();
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect()->back()->with("success","Password successfully changed!");
+        return redirect()->back()->with("success","Your password has been updated successfully!");
 
 
     }

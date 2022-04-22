@@ -97,7 +97,7 @@ class ComplaintStatusController extends Controller
                 }
                 
             }
-            return redirect()->route('admin.currentmonthcomplaint')->with('success','Research Updated Successfully');
+            return redirect()->route('admin.currentmonthcomplaint')->with('success','Changes Updated Successfully!');
         }else{
             return redirect()->route('admin.currentmonthcomplaint')->with('error','Something went wrong');
         }
@@ -175,7 +175,7 @@ class ComplaintStatusController extends Controller
                 MonthlyComplaint::insert($storeMonthlyComplaints);
             }
         }
-        return redirect()->route('admin.monthlycomplaint')->with('success','Record updated successfuly');
+        return redirect()->route('admin.monthlycomplaint')->with('success','Changes Updated Successfully!');
     }
 
     public function Anually(){
@@ -240,6 +240,6 @@ class ComplaintStatusController extends Controller
             }
 
         }
-        return redirect()->route('admin.anuallycomplaint')->with('success','Record updated successfuly');
+        return redirect()->route('admin.anuallycomplaint')->with('success','Changes Updated Successfully!');
     }
 }

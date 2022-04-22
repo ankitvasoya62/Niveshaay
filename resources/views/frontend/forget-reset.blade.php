@@ -34,7 +34,9 @@
                     <div class="form-group">
                     <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                    
+                    @error('password_confirmation')
+                        <span style="color:red">{{ $message }}</span>
+                    @enderror
                               		                    
                     </div>
                     
