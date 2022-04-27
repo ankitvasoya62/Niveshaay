@@ -152,7 +152,7 @@ jQuery(document).ready(function() {
     
     jQuery(".custom-dropdown").select2({
         placeholder: "Select a State/UnionTerritory",
-        minimumResultsForSearch: Infinity,
+        // minimumResultsForSearch: Infinity,
      });
     mobileMenu();
     addPadding();
@@ -252,7 +252,8 @@ jQuery(document).ready(function() {
 
     // Datepicker
     if(jQuery('.datepicker').datepicker){
-        jQuery( ".datepicker" ).datepicker({ dateFormat: "dd/mm/yy" });
+        jQuery( ".datepicker" ).datepicker({ dateFormat: "dd/mm/yy",changeMonth: true,
+        changeYear: true });
     }
     // our-research-slider
     if (jQuery('.niveshaay-research-block .list-inner-wrapper:not(.featured-on)').length) {

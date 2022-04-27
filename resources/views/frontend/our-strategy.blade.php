@@ -1,7 +1,7 @@
 @extends('frontend.layout.master')
 @section('content')
 <section class="our-strategy-page-banner-section">
-			<img src="{{ asset('images/our-strategy-banner.jpg')}}" alt="banner-img">
+			<img src="{{ asset('images/strategy-small.png')}}" alt="banner-img">
 			<div class="container">
 				<div class="banner-content">
 					<h1>Our Strategy</h1>

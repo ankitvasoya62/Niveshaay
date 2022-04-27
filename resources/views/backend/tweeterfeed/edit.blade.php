@@ -66,7 +66,18 @@
                                     <span class="error">{{ $message }}</span>
                                 @enderror
                             </div>
-                            
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="sort_order">Order</label>
+                                        <input type="number" name="sort_order" id="sort_order" class="form-control" value="{{ $tweeterFeeds->sort_order }}">
+                                        @error('sort_order')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    
+                                </div>
+                            </div>
                             
                         </div>
                         <div class="card-footer">

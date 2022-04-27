@@ -17,7 +17,7 @@ class FeaturedOnController extends Controller
     {
         //
         $active = "featured-on";
-        $listFeaturedOn = FeaturedOn::where('status','active')->orderBy('id','desc')->get();
+        $listFeaturedOn = FeaturedOn::where('status','active')->orderBy('sort_order','asc')->get();
         return view('backend.featuredon.index',compact('active','listFeaturedOn'));
     }
 
@@ -57,6 +57,7 @@ class FeaturedOnController extends Controller
         $featuredOn->featured_description = $request->featured_description;
         $featuredOn->featured_date = $request->featured_date;
         $featuredOn->featured_url = $request->featured_url;
+        $featuredOn->sort_order = $request->sort_order;
         if($request->file('featured_image')){
             try{
                 $image = $request->file('featured_image');
@@ -141,6 +142,7 @@ class FeaturedOnController extends Controller
         $featuredOn->featured_description = $request->featured_description;
         $featuredOn->featured_date = $request->featured_date;
         $featuredOn->featured_url = $request->featured_url;
+        $featuredOn->sort_order = $request->sort_order;
         if($request->file('featured_image'))
         {   try{
                 $image = $request->file('featured_image');

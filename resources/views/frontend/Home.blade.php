@@ -14,7 +14,7 @@
 				<div class="home-banner-content">
 					<h2 class="aos-init" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="300">Niveshaay</h2>
 					<p  class="aos-init banner-content" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="300" data-aos-delay="100"> Is a SEBI registered boutique investment advisory firm with a dedicated
-						<span>Research team specialising in equity portfolio advisory.</span>
+						<span>research team specialising in equity portfolio advisory</span>
 					</p>
 
 				</div>
@@ -28,19 +28,19 @@
 					<ul class="banner-content" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="300" data-aos-delay="100">
 						<li>Qualitative Research</li>
 						<li>Quantitative Data</li>
-						<li>Idiosyncratic Factors: Luck and Patience</li>
+						<li>Luck and Patience</li>
 					</ul>					
 				</div>
 			</div>
 			<div class="home-banner-slider">
 				<div class="home-banner-image">
-					<img src="{{ asset('images/slider3.jpg')}}" alt="slider">
+					<img src="{{ asset('images/newslider3.jpg')}}" alt="slider">
 				</div>
 				<div class="home-banner-content">
-					<h2 data-aos="fade-up" data-aos-easing="linear" data-aos-duration="300"> Road to Wealth</h2>
+					<h2 data-aos="fade-up" data-aos-easing="linear" data-aos-duration="300">Mid-Small Cap focused Portfolio</h2>
 					<p class="banner-content" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="300" data-aos-delay="100"> 
 						Road to wealth is a long journey and often taken alone.
-						<span> We can help to make your drive smoother to ensure you reach the destination on time </span>						
+						<span> Believes in the philosophy of ‘Think the Entrepreneur Way’ and gives utmost importance to Scuttlebutt Approach </span>						
 					</p>
 				</div>
 			</div>
@@ -329,9 +329,11 @@
 					@foreach ($ourClientSay as $client )
 					<div class="niveshaay-client-content">
 						<div class="client-content-wrapper">
+							@if(!empty($client->client_image))
 							<em>
-								<img src="{{ asset('images/clients/'.$client->client_image)}}" alt="Sanjay Trisal">
+								<img src="{{ asset('images/clients/'.$client->client_image)}}" alt="">
 							</em>
+							@endif
 							<div class="content-wrapper">
 								<p>
 									{{ $client->client_description }}
@@ -408,7 +410,9 @@
 							<div class="feeds-content-inner">
 								<div class="feeds-image-wrapper">
 									<div class="twitter-profile">
-										<em><img src="{{ asset('images/tweeter-feeds/'.$tweeterfeed->tweeter_user_image)}}" alt="profile-img"></em>
+										@if(!empty($tweeterfeed->tweeter_user_image))
+											<em><img src="{{ asset('images/tweeter-feeds/'.$tweeterfeed->tweeter_user_image)}}" alt="profile-img"></em>
+										@endif
 										<p>{{$tweeterfeed->tweeter_name }} <span>{{$tweeterfeed->tweeter_username }} </span></p>
 									</div>
 									<em  class="twitter-img"><img src="{{ asset('images/twitter.png')}}" alt="twitter-img"></em>
@@ -518,7 +522,7 @@
 													<ul>
 														<li>{{ $row->featured_date }}</li>
 														<li>
-															<em>
+															<em class="smallcase-logo-wrapper">
 																<img src="{{ asset('images/featured/featured-logo/'.$row->featured_logo) }}" alt="McClintock eye">
 															</em>
 														</li>

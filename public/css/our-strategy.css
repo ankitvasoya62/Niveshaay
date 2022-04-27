@@ -2,8 +2,8 @@
 .our-strategy-page-banner-section .container{position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);width:100%;max-width: 1220px;padding: 0 30px;margin: 0 auto;}
 .our-strategy-page-banner-section .banner-content{padding:0 15px;}
 .our-strategy-page-banner-section img{position:absolute;left:0;top:0;height:100%;width:100%;z-index:0;object-fit:cover;}
-.our-strategy-page-banner-section h1{font-size:77px;color:#FFF;text-align:center;font-weight:bold;}
-.our-strategy-page-banner-section p{font-size:18px;color:#FFF;text-align:center;font-weight:normal;}
+.our-strategy-page-banner-section h1{font-size:78px;color:#FFF;text-align:center;font-weight:600; letter-spacing: 1px;}
+.our-strategy-page-banner-section p{font-size:20px;color:#FFF;text-align:center;font-weight:normal; line-height: 1.5;}
 .research-card-section{padding:100px 0;}
 .research-card-section .research-card-grid{display:flex;margin:0 -15px -30px;flex-wrap:wrap;}
 .research-card-section .research-card-grid .white-card{padding:0 15px 30px;flex:33.33%;max-width:33.33%;}
@@ -40,10 +40,11 @@ ul.green-dot-listing li:before{position:absolute;content:'';left:0;top:12px;bord
 }
 @media (max-width:1199px){
  .research-card-section{padding:80px 0;}
- .our-strategy-page-banner-section h1{font-size:40px;}
+ .our-strategy-page-banner-section h1{font-size:40px; line-height: 1.2; margin-bottom: 10px;}
  .research-card-section .research-card-grid{margin:0 -10px -20px;}
  .research-card-section .research-card-grid .white-card{padding:0 10px 20px;}
  .white-card .white-card-inner{padding:15px;}
+ .our-strategy-page-banner-section p{font-size:18px;}
 }
 @media(max-width:991px){
  .research-card-section{padding:50px 0;}

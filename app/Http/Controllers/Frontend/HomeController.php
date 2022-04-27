@@ -207,7 +207,7 @@ class HomeController extends Controller
         /*Annually Complaints Logic End */
 
         $ourClientSay = OurClientSayManagement::all();
-        $featuredOn = FeaturedOn::all();
+        $featuredOn = FeaturedOn::where('status','active')->orderBy('sort_order','asc')->get();
         $tweeterfeed = TweeterFeed::all();
         return view('frontend.Home',compact('researches','active','green_energy_stock_array','mid_and_small_case_focus_stock_array','china_plus_one_strategy_stock_array','trends_triology_stock_array','current_month_investor_count','sebi_scores_count','other_sources_count','monthlyComplaints','annuallyComplaints','currentmonthgrandtotal','monthlygrandtotal','annuallygrandtotal','ourClientSay','featuredOn','tweeterfeed'));
     }
@@ -234,6 +234,7 @@ class HomeController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email',
+            
         ]);
         try {
             //code...
@@ -242,10 +243,11 @@ class HomeController extends Controller
                 'last_name' => $request->last_name,
                 'email' => $request->email,
                 'message' => $request->message,
+                'phone_no'=>$request->phone_no
             ]);
             $toEmail = "info@niveshaay.com";
             Mail::to($toEmail)->send(new FeedbackMail($request->message,$request->first_name,$request->last_name,$request->email));
-            return redirect()->route('frontend.contact')->with('success','Thank you! We will be in touch shortly.');
+            return redirect()->route('frontend.contact')->with('success','We’ll contact you shortly.');
         } catch (\Throwable $th) {
             throw $th;
             return redirect()->route('frontend.contact')->with('error','Something went wrong!');
@@ -519,15 +521,17 @@ class HomeController extends Controller
         // return $pdf->stream('document.pdf');
         // dd(request()->ip());
         // dd(view('pdf.hello'));
-        $watermarker = new PdfWatermarker(
-            public_path('pdf/1648040112.pdf'), // input
-            public_path('pdf/watermark/output27.pdf'), // output
-            base_path() . '/resources/views/pdf/hello.blade.php', // watermark file
-            'center', // watermark position (topleft, topright, bottomleft, bottomright, center)
-            false // set to true - replace original input file
-           );
-        $watermarker->create();
-        dd("success");
+        // $watermarker = new PdfWatermarker(
+        //     public_path('pdf/1648040112.pdf'), // input
+        //     public_path('pdf/watermark/output27.pdf'), // output
+        //     base_path() . '/resources/views/pdf/hello.blade.php', // watermark file
+        //     'center', // watermark position (topleft, topright, bottomleft, bottomright, center)
+        //     false // set to true - replace original input file
+        //    );
+        // $watermarker->create();
+        // dd("success");
+        $name = 'nikhil';
+        return view('frontend.mail.payment-details',compact('name'));
     }
 
     public function changePasswordForm(){

@@ -50,8 +50,8 @@ table th{color:#363636}
 ::selection{background-color:#83b645;color:#fff}
 p{font-family:'Open Sans',sans-serif;line-height:1.8;color:#000000;font-weight:300}
 .widget-links ul li{padding:6px 0 8px;font-size:15px;font-size:.9375rem;letter-spacing:1px}
-.widget-links ul li:first-child{padding-top:0}
-.widget-links ul li:last-child{padding-bottom:0}
+.widget-links ul li:first-child{padding-top:0 !important}
+.widget-links ul li:last-child{padding-bottom:0 !important}
 .widget-links ul li span{font-size:14px;font-size:.875rem;color:#83b645}
 .widget-tags .tagcloud a{background-color:#fff!important;border:1px solid #eaeaea;color:#929292!important;font-size:12.5px!important;letter-spacing:1.5px;height:3em!important;padding-left:1em!important;padding-right:1em!important;margin-right:.7rem!important;margin-bottom:.7rem}
 .widget-tags .tagcloud a:hover{text-decoration:none;color:#fff!important;background-color:#83b645!important;border-color:transparent}
@@ -199,7 +199,7 @@ body.footer-background.dark-color.widget-7 footer#footer .footer-social-links li
 .footer .footer-social-links li .icon i,footer .footer-social-links li .icon i{font-size:17px;font-size:1.0625rem}
 .footer .footer-social-links li .icon:hover,footer .footer-social-links li .icon:hover{background-color:#222121}
 .footer .widget,footer .widget{margin-top:1.3rem;margin-bottom:1.3rem}
-.footer .widget.widget-form .widget-title,footer .widget.widget-form .widget-title{margin-bottom:.6rem}
+.footer .widget.widget-form .widget-title,footer .widget.widget-form .widget-title{margin-bottom:1.6rem}
 .footer .widget-title,footer .widget-title{color:#262626;font-size:22px;font-size:1.375rem}
 .footer .widget-links,footer .widget-links{font-family:'Open Sans',sans-serif}
 .footer .widget-links ul li,footer .widget-links ul li{font-size:14.5px;font-size:.90625rem;-webkit-transition:all .3s ease;transition:all .3s ease}
@@ -287,6 +287,12 @@ body.footer-reveal #footer-bottom-wrap,body.footer-reveal #footer-wrap{width:100
 .footer-bottom-content .level .footer-copyright{font-size:13px;font-size:.8125rem;letter-spacing:2px}
 .site-footer .columns{display:flex;flex-wrap:wrap;margin:0 -15px;}
 .site-footer .column{max-width:33.33%;flex:0 0 33.33%;padding:0 15px}
+
+/*footer-quick-links*/
+
+body.footer-background.dark-color footer .footer-quick-links li { padding: 5px 0;}
+body.footer-background.dark-color footer .footer-quick-links li:before { content: none;}
+
 @media(max-width:1280px){
     .niveshaay-header .header-wrapper .user-dropdown-wrapper,.niveshaay-header .header-wrapper .navigation-wrapper .bottom-header-wrapper>ul li+li{margin-left:25px;}
 }

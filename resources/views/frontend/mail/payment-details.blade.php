@@ -33,6 +33,7 @@
 <body>
     <p>Dear {{ $name }},</p>
     <p>Thank You for showing interest in us. We are excited to have you in our Niveshaay family. Please find the payment details mentioned below:</p>
+    <p style="color: red">*We request you to make payment by the same account holder as mentioned in the agreement form.</p>
     <table>
         <tr>
             <td colspan="2" id="heading">Payment Details</td>
@@ -58,7 +59,7 @@
             <td>Vesu Branch</td>
         </tr>
         <tr>
-            <th>city</th>
+            <th>City</th>
             <td>Surat</td>
         </tr>
         <tr>
@@ -67,9 +68,9 @@
         </tr>
     </table>
     <div style="display:flex;flex-direction: row;">
-        <div style="border:1px dotted grey">
+        <div style="border:1px dotted grey;display:inline-flex;align-items:center">
             <img src="{{ $message->embed(base_path() . '/public/images/logo.png') }}" style="width:150px;"/>
-        
+            {{-- <img src="{{ asset('images/logo.png')}}" alt="" style="width:150px;"> --}}
         </div>
         <div style="border:1px dotted grey">
             <h3>CA Arvind Kothari</h3>

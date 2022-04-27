@@ -83,7 +83,12 @@
                                         <input type="text" name="pan_no" class="form-control" id="pan_no" placeholder="Enter Pan Number" value="{{ $subscription_details->pan_no }}" required>
                                     </div>
                                 </div>
-
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="pan_no">GST Number</label>
+                                        <input type="text" name="gst_no" class="form-control" id="gst_no" placeholder="Enter Pan Number" value="{{ $subscription_details->gst_no }}">
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 

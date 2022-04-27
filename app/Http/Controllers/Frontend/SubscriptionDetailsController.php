@@ -91,6 +91,7 @@ class SubscriptionDetailsController extends Controller
             $subscriptionFormDetail->email = $request['email'];
             $subscriptionFormDetail->mobile_no = $request['mobile_no'];
             $subscriptionFormDetail->pan_no = $request['pan_no'];
+            $subscriptionFormDetail->gst_no = $request['gst_no'];
             $subscriptionFormDetail->pin_code = $request['pin_code'];
             $subscriptionFormDetail->street_address = $request['street_address'];
             $subscriptionFormDetail->state = $request['state'];
@@ -119,6 +120,7 @@ class SubscriptionDetailsController extends Controller
             $subscriptionFormDetail->email = $request['email'];
             $subscriptionFormDetail->mobile_no = $request['mobile_no'];
             $subscriptionFormDetail->pan_no = $request['pan_no'];
+            $subscriptionFormDetail->gst_no = $request['gst_no'];
             $subscriptionFormDetail->pin_code = $request['pin_code'];
             $subscriptionFormDetail->street_address = $request['street_address'];
             $subscriptionFormDetail->state = $request['state'];

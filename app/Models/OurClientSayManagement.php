@@ -13,6 +13,7 @@ class OurClientSayManagement extends Model
         'client_name',
         'client_image',
         'client_description',
-        'client_status'
+        'client_status',
+        'sort_order'
     ];
 }

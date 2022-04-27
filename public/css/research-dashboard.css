@@ -22,16 +22,18 @@
     padding: 0 15px;
 }
 .research-dashboard-banner-section h1 {
-    font-size: 77px;
+    font-size: 78px;
     color: #FFF;
     text-align: center;
-    font-weight: bold;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 .research-dashboard-banner-section p {
-    font-size: 18px;
+    font-size: 20px;
     color: #FFF;
     text-align: center;
     font-weight: normal;
+    line-height: 1.5;
 }
 .green-block-section{
     padding: 60px 0 50px;
@@ -91,6 +93,11 @@
 @media(max-width:1199px){
     .research-dashboard-banner-section h1 {
         font-size: 40px;
+        line-height: 1.2;
+        margin-bottom: 10px;
+    }
+    .research-dashboard-banner-section p {
+        font-size: 18px;
     }
     .green-block-section .green-block-wrapper p{
         font-size: 22px;

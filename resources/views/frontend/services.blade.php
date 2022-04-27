@@ -281,7 +281,7 @@
                                 <span class="smallcase-badge">{{ $mid_and_small_case_focus_stock_array['riskLabel'] }}</span>
                                 <div class="top-block">
                                     <em class="img-block">
-                                        <img src="{{ asset('images/portfolio.svg')}}"
+                                        <img src="{{ asset('images/Mid-Small Cap.svg')}}"
                                             alt="Mid and small cap portfolio">
                                     </em>
                                     <ul class="info-list">
@@ -313,7 +313,7 @@
                                 <span class="smallcase-badge red">{{ $green_energy_stock_array['riskLabel']}}</span>
                                 <div class="top-block">
                                     <em class="img-block">
-                                        <img src="{{ asset('images/planet-earth.svg')}}" alt="Green Energy">
+                                        <img src="{{ asset('images/Green Energy.svg')}}" alt="Green Energy">
                                     </em>
                                     <ul class="info-list">
                                         <li>
@@ -344,7 +344,7 @@
                                 <span class="smallcase-badge red">{{ $china_plus_one_strategy_stock_array['riskLabel'] }}</span>
                                 <div class="top-block">
                                     <em class="img-block">
-                                        <img src="{{ asset('images/china-plus.svg')}}" alt="Rising Strategy">
+                                        <img src="{{ asset('images/China Plus One 1.svg')}}" alt="Rising Strategy">
                                     </em>
                                     <ul class="info-list">
                                         <li>
@@ -375,7 +375,7 @@
                                 <span class="smallcase-badge red">{{ $trends_triology_stock_array['riskLabel'] }}</span>
                                 <div class="top-block">
                                     <em class="img-block">
-                                        <img src="{{ asset('images/china-plus.svg')}}" alt="Rising Strategy">
+                                        <img src="{{ asset('images/Trends Triology.svg')}}" alt="Rising Strategy">
                                     </em>
                                     <ul class="info-list">
                                         <li>

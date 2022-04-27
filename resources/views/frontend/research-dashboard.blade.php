@@ -10,18 +10,20 @@
 		</div>
 	</div>
 </section>
+
 <section class="green-block-section">
+	<h2 class="heading-title niveshaay-section-title">Our Research Services</h2>
 	<div class="green-block-wrapper">
 		<div class="niveshaay-container">
-			<h2 class="heading-title niveshaay-section-title">Our Research Services</h2>
+			
 			@if(empty($isEmailVerified))
 				@if(empty($subscriptionFormCount))
-					<p>Please Subscribe <a href="{{ route('frontend.subscriptionForm') }}" title="Click to Subscribe">Here</a></p>
+					<p>To subscribe, click <a href="{{ route('frontend.subscriptionForm') }}" title="Click to Subscribe">Here</a></p>
 				@else
 					<p>Please Complete Your Registration From <a href="{{ route('frontend.subscriptionForm') }}" title="Click to Subscribe">Here</a></p>
 				@endif
 			@else
-				<p>You have verified the agreement successfully. You will receive the mail soon for further process. 
+				<p>You will receive an email soon for further process. 
 				</p>
 			@endif
 		</div>

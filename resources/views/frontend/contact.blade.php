@@ -1,7 +1,7 @@
 @extends('frontend.layout.master')
 @section('content')
     <section class="inner-page-banner-section contact-page-banner">
-        <img  src="{{ asset('images/contact-banner.jpg')}}" alt="contact-banner">
+        <img  src="{{ asset('images/Contact-banner-new.png')}}" alt="contact-banner">
         <div class="container">
             <h1>Contact Us</h1>
         </div>
@@ -37,16 +37,23 @@
                         <span class="error-message">*{{$message}}</span>
                     @enderror
                   </div>
-                  <div class="form-group">
+                  <div class="form-group half-width">
                     <label for="email">Email</label>
                     <input id="email" name="email" type="email" class="form-control" placeholder="Email Address" value="{{ Auth::user() ? Auth::user()->email : old('email') }}" required>
                     @error('email')
                         <span class="error-message">*{{$message}}</span>
                     @enderror
                   </div>
+                  <div class="form-group half-width">
+                    <label for="phone_no">Phone number</label>
+                    <input id="phone_no" name="phone_no" type="text" class="form-control" placeholder="Contact number" value="{{ Auth::user() ? Auth::user()->phone_no : old('email') }}" required>
+                    @error('phone_no')
+                        <span class="error-message">*{{$message}}</span>
+                    @enderror
+                  </div>
                   <div class="form-group">
                     <label for="Message">Message</label>
-                    <textarea id="Message" name="message" class="form-control" placeholder="Message" value="{{old('last_name')}}"></textarea>
+                    <textarea id="Message" name="message" class="form-control" placeholder="Message" value="{{old('message')}}"></textarea>
                   </div>
                   <div class="form-group">
                     <button type="submit" id="submit" class="btn btn-green">Submit</button>
@@ -102,7 +109,7 @@
                     </a>
                   </li>
                 </ul>
-                <h3>Follow Us On:
+                <h3>Follow us on:
                 </h3>
                 <ul class="social-icon-wrapper">
                   <li>

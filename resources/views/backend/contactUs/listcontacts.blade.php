@@ -51,6 +51,7 @@
                                         <th>Last Name</th>
                                         <th>Email</th>
                                         <th>Message</th>
+                                        <th>Phone no.</th>
                                         <th>Date</th>
                                         <th>Action</th>
                                     </tr>
@@ -66,6 +67,7 @@
                                         <td>{{ $contact->last_name}}</td>
                                         <td>{{ $contact->email}}</td>
                                         <td>{{ Str::limit($contact->message,20,' ...') }}</td>
+                                        <td>{{ $contact->phone_no }}</td>
                                         <td>{{date("d-m-Y", strtotime($contact->created_at)) }}</td>
                                         <td><a style="cursor:pointer" data-toggle="modal" data-target="#modal-default" class="btn btn-info contact-details" id="{{ $contact->id }}" title="view"><i class="nav-icon fas fa-eye"></i></a></td>
                                         
@@ -107,6 +109,9 @@
                         Email: <span id="contact-email" ></span>
                     </div>
                     <div class="col-md-12">
+                        Phone no.: <span id="contact-phone" ></span>
+                    </div>
+                    <div class="col-md-12">
                         Message: <span id="contact-message" ></span>
                     </div>
                 </div>
@@ -140,6 +145,7 @@ $(function() {
                         $('#contact-title').text(data.first_name + " " + data.last_name);
                         $('#contact-name').text(data.first_name + " " + data.last_name);
                         $('#contact-email').text(data.email);
+                        $('#contact-phone').text(data.phone_no);
                         $('#contact-message').text(data.message);
                      
                       },

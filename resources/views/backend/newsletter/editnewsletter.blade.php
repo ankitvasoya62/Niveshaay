@@ -131,14 +131,20 @@
 <script>
   $(function () {
     // Summernote
-    $('#summernote1,#summernote2,#summernote3,#summernote4').summernote({
-        callbacks: {
-            onFocus: function (contents) {
-                if($(this).summernote('isEmpty')){
-                $(this).html(''); 
-                }
-            }
-        }
+    $('#summernote1,#summernote2,#summernote3,#summernote4').summernote(
+        {
+          toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']],
+          ]
+        
     });
   });
 </script>

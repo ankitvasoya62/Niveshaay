@@ -79,6 +79,13 @@
                                 <span class="error">{{ $message }}</span>
                             @enderror
                         </div>
+                        <div class="form-group half-width">
+                            <label for="gst_no"> GST No.</label>
+                            <input id="gst_no" name="gst_no" type="text" class="form-control" placeholder="Enter GST No. " value="{{ $subscription_details->gst_no }}">		                    
+                            @error('gst_no')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
                         <div class="form-group has-radio-group">
                             <span class="label">Age<span class="red-text">*</span></span>
                             <div class="custom-radio-wrapper">

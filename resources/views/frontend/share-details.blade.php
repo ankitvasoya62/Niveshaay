@@ -3,13 +3,13 @@
 <section class="research-page-banner-section">
     <img src="{{ asset('images/dashboard-banner.jpg') }}" alt="banner-img">
     <div class="container">
-        <h1>Our Research</h1>
+        <h1>Our Research Reports</h1>
     </div>
 </section>
 <section class="research-page-wrapper">
     <div class="container">
     <div class="research-inner">
-        <h2>Latest Addition</h2>
+        <h2>Latest Additions</h2>
         <div class="research-image-grid">
             @foreach ($latest_addition as $share )
             <div class="research-item">
@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="research-inner">
-        <h2>Current Recommendation</h2>
+        <h2>Current Recommendations</h2>
         <div class="research-image-grid">
             @foreach ($current_recommendation as $share)
                 <div class="research-item">
@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="research-inner">
-        <h2>Past Recommendation</h2>
+        <h2>Past Recommendations</h2>
         <div class="research-image-grid">
             @foreach ($past_recommendation as $share)
             <div class="research-item">

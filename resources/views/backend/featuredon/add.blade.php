@@ -77,11 +77,23 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="client_name">Link</label>
-                                <input type="text" name="featured_url" id="featured_url" class="form-control" value="{{ old('client_name') }}">
+                                <label for="featured_url">Link</label>
+                                <input type="text" name="featured_url" id="featured_url" class="form-control" value="{{ old('featured_url') }}">
                                 @error('featured_url')
                                     <span class="error">{{ $message }}</span>
                                 @enderror
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="sort_order">Order</label>
+                                        <input type="number" name="sort_order" id="sort_order" class="form-control" value="{{ old('sort_order') }}">
+                                        @error('sort_order')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    
+                                </div>
                             </div>
                         </div>
                         <div class="card-footer">

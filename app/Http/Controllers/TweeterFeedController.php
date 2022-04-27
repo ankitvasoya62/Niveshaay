@@ -16,7 +16,7 @@ class TweeterFeedController extends Controller
     public function index()
     {
         //
-        $listtweeterfeed = TweeterFeed::orderBy('id','desc')->get();
+        $listtweeterfeed = TweeterFeed::orderBy('sort_order','asc')->get();
         $active = 'tweeter-feeds';
         return view('backend.tweeterfeed.index',compact('listtweeterfeed','active'));
     }
@@ -45,7 +45,7 @@ class TweeterFeedController extends Controller
         $this->validate($request,[
             'tweeter_name'=>'required',
             'tweeter_description'=>'required',
-            'tweeter_user_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            // 'tweeter_user_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'tweeter_username' => 'required'
             
         ]);
@@ -54,6 +54,7 @@ class TweeterFeedController extends Controller
         $tweeterFeed->tweeter_name = $request->tweeter_name;
         $tweeterFeed->tweeter_username = $request->tweeter_username;
         $tweeterFeed->tweeter_description = $request->tweeter_description;
+        $tweeterFeed->sort_order = $request->sort_order;
         try{
             if($request->file('tweeter_user_image')){
                 $image = $request->file('tweeter_user_image');
@@ -119,6 +120,7 @@ class TweeterFeedController extends Controller
         $tweeterFeed->tweeter_name = $request->tweeter_name;
         $tweeterFeed->tweeter_username = $request->tweeter_username;
         $tweeterFeed->tweeter_description = $request->tweeter_description;
+        $tweeterFeed->sort_order = $request->sort_order;
         try{
             if($request->file('tweeter_user_image')){
                 $image = $request->file('tweeter_user_image');

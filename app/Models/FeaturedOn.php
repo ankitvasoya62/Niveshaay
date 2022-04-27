@@ -16,6 +16,7 @@ class FeaturedOn extends Model
         'featured_title',
         'featured_url',
         'status',
-        'featured_description'
+        'featured_description',
+        'sort_order'
     ];
 }

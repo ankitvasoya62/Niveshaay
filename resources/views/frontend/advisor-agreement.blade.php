@@ -332,6 +332,7 @@
                         <span><a class="resend-otp-link" style="display: none">Resend OTP</a></span> <span class="otp-timer"></span>
                     </div>
             </div>
+            <p style="color: red">*We request you to make payment by the same account holder as mentioned in the agreement form.</p>
         </div>
         
         <div class="verify-content-block custom-form-section send-otp-block">
@@ -342,14 +343,16 @@
                     
                     <div class="form-group">
                         <label for="enter-email"></label>
-                        <input id="enter-email" name="subscription_email" type="text" class="form-control" placeholder="Enter your email" value='{{ $latestSubscriptionFormDetails->email }}'>
+                        <input id="enter-email" name="subscription_email" type="text" class="form-control" placeholder="Enter your email" value='{{ $latestSubscriptionFormDetails->email }}' disabled>
                         <span class="send-otp-error"></span>
                     </div>
                     <div class="form-group">
                         <button type="button" class="btn btn-green" id="send-otp-button">Send OTP</button>
                     </div>
             </div>
+            <p style="color: red">*We request you to make payment by the same account holder as mentioned in the agreement form.</p>
         </div>
+        
 </div>
 </section>
 <div class="loading-block hide" id="loading-block-sub" style="display: none">
@@ -357,6 +360,7 @@
         <img src="{{ asset('images/loader.gif') }}">
     </div>
 </div>
+
 <div id="submit-modal" class="custom-modal submit-modal" data-tab="submit-modal">
     <div class="modal-backdrop" id="verified-backdrop"></div>
     <div class="modal-content">

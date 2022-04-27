@@ -1,4 +1,12 @@
 @extends('frontend.layout.master')
+@push('css')
+<style>
+	.niveshaay-justify-content{
+		text-align: justify;
+	}
+</style>
+
+@endpush
 @section('content')
 <section class="about-page-banner-section">
 	<div class="bg-img">
@@ -7,8 +15,8 @@
 	<div class="niveshaay-container">
 		<div class="home-banner-content">
 			<h2>About Us</h2>
-			<p> Niveshaay Investment Advisors
-			</p>
+			{{-- <p> Niveshaay Investment Advisors
+			</p> --}}
 		</div>
 	</div>
 </section>
@@ -20,10 +28,10 @@
 				<h1 class="heading-title niveshaay-section-title">Welcome To Niveshaay</h1>
 				<p>Niveshaay (in Hindi translates to income from investments) is a SEBI Registered boutique Investment Advisory Firm with a Dedicated Research Team of 12+ young creative like-minded professionals advising on over Rs. 200+ crores of AUM. Our core focus is on small-mid cap stocks which has the potential of giving outsized returns in long term. Our approach of Research based Investing and Second Order Thinking has helped us find companies that delivered great returns.  </p>
 				<ul>
-					<li>Direct Equity Portfolio Advisory</li>
-					<li>Portfolio Restructuring</li>
-					<li>Research Portfolio</li>
-					<li>Family Office Portfolio Consultancy</li>
+					<li>Equity Portfolio Advisory</li>
+					<li>Research Services</li>
+					<li>Portfolio Listed on Smallcase</li>
+					<li>Family Office Consulting</li>
 				</ul>
 				<div class="video-wrapper">
 					<iframe src="https://www.youtube.com/embed/EgDqm9H1T0s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -41,7 +49,7 @@
 						<p class="green-text">Founder and Director
 						<span>B.COM, CA, CWA</span>
 						<span>Former Industry Research Analyst at ICICI Bank</span></p>
-						<p>“Over 12 years of experience in Equity Research and Investment Advisory, he started his journey as an Industry Research Analyst at ICICI Bank. Nearly a decade ago, after working in the finance industry and understanding its nuances, it caught his observation and interest that the wealth management industry was a little complex for investors to understand which induced him to quit his job. He then, started with advising on wealth management and leading investments for his family & friends. That’s how Niveshaay was born. He has a firm belief that taking entrepreneur calls work better than questioning quarterly performance like an analyst and has developed that culture in the enterprise too.”</p>
+						<p class="niveshaay-justify-content">“Over 12 years of experience in Equity Research and Investment Advisory, he started his journey as an Industry Research Analyst at ICICI Bank. Nearly a decade ago, after working in the finance industry and understanding its nuances, it caught his observation and interest that the wealth management industry was a little complex for investors to understand which induced him to quit his job. He then, started with advising on wealth management and leading investments for his family & friends. That’s how Niveshaay was born. He has a firm belief that taking entrepreneur calls work better than questioning quarterly performance like an analyst and has developed that culture in the enterprise too.”</p>
 					</div>
 				</div>
 			</div>
@@ -98,7 +106,7 @@
 					<div class="team-member-wrapper">
 						<div class="team-member-inner">
 							<div class="member-photo">
-								<img src="{{ asset('images/gunjan-kabra.jpg') }}" alt="team-meber-photo">
+								<img src="{{ asset('images/gunjan-kabra-new.jpg') }}" alt="team-meber-photo">
 							</div>
 							<div class="member-detail">
 								<h3 class="name">Gunjan Kabra</h3>

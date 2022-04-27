@@ -16,7 +16,7 @@ class OurClientSayManagementController extends Controller
     public function index()
     {
         //
-        $listClients = OurClientSayManagement::where('status','active')->orderBy('id','desc')->get();
+        $listClients = OurClientSayManagement::where('status','active')->orderBy('sort_order','asc')->get();
         $active ='clients';
         return view('backend.ourClients.index',compact('listClients','active'));
     }
@@ -46,14 +46,15 @@ class OurClientSayManagementController extends Controller
         $this->validate($request,[
             'client_name'=>'required',
             'client_description'=>'required',
-            'client_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
-            'client_designation' => 'required'
+            // 'client_image' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            // 'client_designation' => 'required'
             
         ]);
 
         $newClient = new OurClientSayManagement;
         $newClient->client_name = $request->client_name;
         $newClient->client_description = $request->client_description;
+        $newClient->sort_order = $request->sort_order;
         if($request->file('client_image')){
             try{
                 $image = $request->file('client_image');
@@ -119,13 +120,14 @@ class OurClientSayManagementController extends Controller
             'client_name'=>'required',
             'client_description'=>'required',
             
-            'client_designation' => 'required'
+            // 'client_designation' => 'required'
             
         ]);
         $updateClient = OurClientSayManagement::find($id);
         $previous_image = $updateClient->client_image;
         $updateClient->client_name = $request->client_name;
         $updateClient->client_description = $request->client_description;
+        $updateClient->sort_order = $request->sort_order;
         if($request->file('client_image')){
             try{
                 $image = $request->file('client_image');

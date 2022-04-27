@@ -18,6 +18,7 @@ class SubscriptionFormDetail extends Model
         'state',
         'pin_code',
         'pan_no',
+        'gst_no',
         'age',
         'source_of_income',
         'currently_hold_investments',

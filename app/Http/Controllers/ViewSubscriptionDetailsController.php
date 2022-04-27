@@ -95,6 +95,7 @@ class ViewSubscriptionDetailsController extends Controller
         $subscriptionFormDetail->email = $request['email'];
         $subscriptionFormDetail->mobile_no = $request['mobile_no'];
         $subscriptionFormDetail->pan_no = $request['pan_no'];
+        $subscriptionFormDetail->gst_no = $request['gst_no'];
         $subscriptionFormDetail->pin_code = $request['pin_code'];
         $subscriptionFormDetail->street_address = $request['street_address'];
         $subscriptionFormDetail->state = $request['state'];
@@ -170,6 +171,7 @@ class ViewSubscriptionDetailsController extends Controller
         $data['pan_no'] = $subscription_details->pan_no;
         $data['state'] = $subscription_details->state;
         $data["email"] = $subscription_details->email;
+        $data['gst_no'] = $subscription_details->gst_no;
         $today= Carbon::now();
         $currentmonth = $today->month;
         $currentyear = $today->year;

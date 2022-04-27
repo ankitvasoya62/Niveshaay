@@ -158,7 +158,7 @@
                     <div class="invoice-details">
                         <div class="invoice-inner">
                             <div class="left">GSTIN:</div>
-                            <div class="right">24AA0FN2865N3ZL</div>
+                            <div class="right">{{ $gst_no }}</div>
                             <div class="clearfix"></div>
                         </div>
                         <div class="invoice-inner">

@@ -12,6 +12,7 @@ class TweeterFeed extends Model
         'tweeter_name',
         'tweeter_username',
         'tweeter_user_image',
-        'tweeter_description'
+        'tweeter_description',
+        'sort_order'
     ];
 }

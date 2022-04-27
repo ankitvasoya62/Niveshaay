@@ -47,7 +47,7 @@
 									</li>
 								@endif
 								<li>
-									<a href="{{ asset('blog') }}" title="Blogs">Blogs</a>
+									<a href="{{ asset('blog') }}" title="Blogs">Blog</a>
 								</li>
 								<li class="@if($active=='contact') active @endif">
 									<a href="{{route('frontend.contact')}}" title="Contact Us">Contact Us</a>

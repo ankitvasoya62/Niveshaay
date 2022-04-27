@@ -7,12 +7,27 @@
 			<div class="columns is-variable is-4 is-multiline">
 				<div class="column is-4">
 					<div class="widget widget-links">
-						<h3 class="widget-title ">About Us</h3>
-						<p>Niveshaay was born with the objective of providing a viable alternative to the highly
-							Commission-Oriented, fixed fee generating finance industry. A decade ago, two young
-							professionals started a small advisory for few friends &amp; family and started
-							managing their money with just a simple expectation of getting a share in the
-							returns, rather than a fat fixed fee.</p>
+						<h3 class="widget-title ">Quick links</h3>
+						<ul class="footer-quick-links">
+							<li>
+								<a href="{{route('frontend.about')}}" title="about-us" >About Us</a>
+							</li>
+							<li>
+								<a href="{{ route('frontend.services') }}" title="services">Services</a>
+							</li>
+							<li>
+								<a href="{{route('frontend.our-strategy')}}" title="our-strategy">Our Strategy</a>
+							</li>
+							<li>
+								<a href="{{ asset('blog') }}" title="blog">Blog</a>
+							</li>
+							<li>
+								<a href="https://niveshaay.smallcase.com/" title="smallcase-link">Visit SmallCase</a>
+							</li>
+							<li>
+								<a href="{{route('frontend.contact')}}" title="contact-us">Contact Us</a>
+							</li>
+						</ul>
 							<div class="btn-wrapper">
 							   <a href="{{asset('images/investor-charter.pdf')}}" target="_blank" title="Invester Charter"
 									class="btn btn-border-green">
@@ -71,7 +86,7 @@
 													class="fab fa-linkedin"></i></span></a>
 									</li>
 									<li>
-										<a href="https://www.youtube.com/channel/UC8vnjpKi6JhsBLKr6zovAHQ" target="_blank" title="Youtube"><span class="icon"><i
+										<a href="https://www.youtube.com/watch?v=t8LXvzDmoy8" target="_blank" title="Youtube"><span class="icon"><i
 													class="fab fa-youtube"></i></span></a>
 									</li>
 								</ul>
