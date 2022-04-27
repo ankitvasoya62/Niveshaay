@@ -225,6 +225,10 @@
     .home-page-banner-section .banner-slider-wrapper .home-banner-slider .home-banner-content ul li{font-size: 16px;}
 }
 @media(max-width:767px){
+    .home-page-banner-section .banner-slider-wrapper .home-banner-slider .home-banner-image { position: relative; width: 100%; height: auto; padding-bottom: 40%; min-height: 300px;}
+    .home-page-banner-section .banner-slider-wrapper .home-banner-slider .home-banner-image img { position: absolute; left: 0; top: 0;}
+    .home-page-banner-section .banner-slider-wrapper .home-banner-slider .home-banner-content { position: absolute;}
+    .home-page-banner-section.loaded .banner-slider-wrapper .home-banner-slider { min-height: inherit !important;}
     .home-page-banner-section .banner-slider-wrapper .home-banner-slider .home-banner-content ul{flex-direction:column;max-width:320px;margin:0 auto;}
     .niveshaay-client .niveshaay-client-content .client-content-wrapper .content-wrapper p{height:auto!important;}
     .about-page-banner-section .home-banner-content p,.home-page-banner-section .banner-slider-wrapper .home-banner-slider .home-banner-content p{font-size:16px;}

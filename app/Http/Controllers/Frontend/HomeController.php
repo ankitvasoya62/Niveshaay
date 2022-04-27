@@ -206,9 +206,9 @@ class HomeController extends Controller
                 /* End Logic */
         /*Annually Complaints Logic End */
 
-        $ourClientSay = OurClientSayManagement::all();
+        $ourClientSay = OurClientSayManagement::orderBy('sort_order','asc')->get();
         $featuredOn = FeaturedOn::where('status','active')->orderBy('sort_order','asc')->get();
-        $tweeterfeed = TweeterFeed::all();
+        $tweeterfeed = TweeterFeed::orderBy('sort_order','asc')->get();
         return view('frontend.Home',compact('researches','active','green_energy_stock_array','mid_and_small_case_focus_stock_array','china_plus_one_strategy_stock_array','trends_triology_stock_array','current_month_investor_count','sebi_scores_count','other_sources_count','monthlyComplaints','annuallyComplaints','currentmonthgrandtotal','monthlygrandtotal','annuallygrandtotal','ourClientSay','featuredOn','tweeterfeed'));
     }
 
