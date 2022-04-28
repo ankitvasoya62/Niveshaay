@@ -46,14 +46,14 @@
                   </div>
                   <div class="form-group half-width">
                     <label for="phone_no">Phone number</label>
-                    <input id="phone_no" name="phone_no" type="text" class="form-control" placeholder="Contact number" value="{{ Auth::user() ? Auth::user()->phone_no : old('email') }}" required>
+                    <input id="phone_no" name="phone_no" type="text" class="form-control" placeholder="Contact number" value="{{ Auth::user() ? Auth::user()->phone_no : old('phone_no') }}" required>
                     @error('phone_no')
-                        <span class="error-message">*{{$message}}</span>
+                        <span class="error-message">{{$message}}</span>
                     @enderror
                   </div>
                   <div class="form-group">
                     <label for="Message">Message</label>
-                    <textarea id="Message" name="message" class="form-control" placeholder="Message" value="{{old('message')}}"></textarea>
+                    <textarea id="Message" name="message" class="form-control" placeholder="Message" value="{{old('message')}}">{{old('message')}}</textarea>
                   </div>
                   <div class="form-group">
                     <button type="submit" id="submit" class="btn btn-green">Submit</button>

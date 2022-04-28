@@ -158,7 +158,7 @@
                     <div class="invoice-details">
                         <div class="invoice-inner">
                             <div class="left">GSTIN:</div>
-                            <div class="right">{{ $gst_no }}</div>
+                            <div class="right">24AA0FN2865N3ZL</div>
                             <div class="clearfix"></div>
                         </div>
                         <div class="invoice-inner">
@@ -187,6 +187,7 @@
                     <h2><strong>Billed To</strong></h2>
                     <p><strong>{{ $name_of_investor }}</strong></p>
                     <p>PAN: {{ $pan_no }}</p>
+                    <p>GSTIN: {{ $gst_no }}</p>
                     <p>{{ $state }}</p>
                 </div>
                 <div class="clearfix"></div>

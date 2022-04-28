@@ -234,7 +234,9 @@ class HomeController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email',
-            
+            'phone_no'=>'required|digits:10'
+        ],[
+            'phone_no.digits'=>"Contact number should be of 10 digits"
         ]);
         try {
             //code...
