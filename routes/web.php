@@ -127,6 +127,8 @@ Route::middleware('auth:admin')->group(function () {
         Route::post('/our-client/update/{id}',[OurClientSayManagementController::class,'update'])->name('admin.update.our-clients');
 
         Route::get('/our-client/delete/{id}',[OurClientSayManagementController::class,'destroy'])->name('admin.delete.our-clients');
+        Route::get('/our-client/move-up/{id}',[OurClientSayManagementController::class,'moveup'])->name('admin.moveup.our-clients');
+        Route::get('/our-client/move-down/{id}',[OurClientSayManagementController::class,'movedown'])->name('admin.movedown.our-clients');
 
         Route::get('/featured-on',[FeaturedOnController::class,'index'])->name('admin.featured-on');
         Route::get('/featured-on/add',[FeaturedOnController::class,'create'])->name('admin.add.featured-on');
@@ -135,6 +137,8 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/featured-on/edit/{id}',[FeaturedOnController::class,'edit'])->name('admin.edit.featured-on');
         Route::post('/featured-on/update/{id}',[FeaturedOnController::class,'update'])->name('admin.update.featured-on');
         Route::get('/featured-on/delete/{id}',[FeaturedOnController::class,'destroy'])->name('admin.delete.featured-on');
+        Route::get('/featuredon/move-up/{id}',[FeaturedOnController::class,'moveup'])->name('admin.moveup.featured-on');
+        Route::get('/featuredon/move-down/{id}',[FeaturedOnController::class,'movedown'])->name('admin.movedown.featured-on');
 
         Route::get('/tweeter-feeds',[TweeterFeedController::class,'index'])->name('admin.tweeter-feeds');
         Route::get('/tweeter-feeds/add',[TweeterFeedController::class,'create'])->name('admin.add.tweeter-feeds');
@@ -142,6 +146,8 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/tweeter-feeds/edit/{id}',[TweeterFeedController::class,'edit'])->name('admin.edit.tweeter-feeds');
         Route::post('/tweeter-feeds/update/{id}',[TweeterFeedController::class,'update'])->name('admin.update.tweeter-feeds');
         Route::get('/tweeter-feeds/delete/{id}',[TweeterFeedController::class,'destroy'])->name('admin.delete.tweeter-feeds');
+        Route::get('/tweeter-feeds/move-up/{id}',[TweeterFeedController::class,'moveup'])->name('admin.moveup.tweeter-feeds');
+        Route::get('/tweeter-feeds/move-down/{id}',[TweeterFeedController::class,'movedown'])->name('admin.movedown.tweeter-feeds');
 
         Route::get('/report-images',[ResearchImageController::class,'index'])->name('admin.report-images');
         Route::get('/report-images/add',[ResearchImageController::class,'create'])->name('admin.add.report-images');

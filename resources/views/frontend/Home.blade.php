@@ -34,10 +34,10 @@
 			</div>
 			<div class="home-banner-slider">
 				<div class="home-banner-image">
-					<img src="{{ asset('images/newslider3.jpg')}}" alt="slider">
+					<img src="{{ asset('images/slider3-new.png')}}" alt="slider">
 				</div>
 				<div class="home-banner-content">
-					<h2 data-aos="fade-up" data-aos-easing="linear" data-aos-duration="300">Mid-Small Cap focused Portfolio</h2>
+					<h2 data-aos="fade-up" data-aos-easing="linear" data-aos-duration="300">Mid-Small Cap Focused Portfolio</h2>
 					<p class="banner-content" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="300" data-aos-delay="100"> 
 						Road to wealth is a long journey and often taken alone.
 						<span> Believes in the philosophy of ‘Think the Entrepreneur Way’ and gives utmost importance to Scuttlebutt Approach </span>						

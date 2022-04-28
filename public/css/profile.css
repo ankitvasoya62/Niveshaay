@@ -1,3 +1,7 @@
+.profile-page-banner-section{position:relative;display:flex;align-items:center;padding-bottom: 38.3%;padding-top: 0;min-height: inherit;}
+.profile-page-banner-section .container{position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);width:100%;padding:0 30px;}
+.profile-page-banner-section .bg-img{position:absolute;left:0;top:0;height:100%;width:100%;}
+.profile-page-banner-section .bg-img img{width:100%;height:100%;object-fit:cover;}
 .profile-section.niveshaay-section-paddding{padding:0 0 100px;}
 .profile-section{margin-top:-60px;position:relative;}
 .profile-section .profile-info .profile-info-wrapper{text-align:center;}
@@ -38,6 +42,8 @@
     .profile-section .profile-info .table-outer-wrapper .table-wrapper .table{min-width:574px;}
 }
 @media(max-width:767px){
+    .profile-page-banner-section{min-height: 200px;}
+    .profile-page-banner-section .container{padding:0 15px;}
     .profile-section .profile-info .profile-info-wrapper .title-wrapper h2{font-size:28px;margin-right:10px;}
     .profile-section{margin-top:-50px;}
     .profile-section .profile-info .profile-info-wrapper em.profile-image,

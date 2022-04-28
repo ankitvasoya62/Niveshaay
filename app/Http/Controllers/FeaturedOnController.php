@@ -57,7 +57,13 @@ class FeaturedOnController extends Controller
         $featuredOn->featured_description = $request->featured_description;
         $featuredOn->featured_date = $request->featured_date;
         $featuredOn->featured_url = $request->featured_url;
-        $featuredOn->sort_order = $request->sort_order;
+        $sortfeaturedOn = FeaturedOn::orderBy('sort_order','DESC')->first();
+        if(empty($sortfeaturedOn)){
+            $sort_order = 1;
+        }else{
+            $sort_order = $sortfeaturedOn + 1;
+        }
+        $featuredOn->sort_order = $sort_order;
         if($request->file('featured_image')){
             try{
                 $image = $request->file('featured_image');
@@ -142,7 +148,7 @@ class FeaturedOnController extends Controller
         $featuredOn->featured_description = $request->featured_description;
         $featuredOn->featured_date = $request->featured_date;
         $featuredOn->featured_url = $request->featured_url;
-        $featuredOn->sort_order = $request->sort_order;
+        // $featuredOn->sort_order = $request->sort_order;
         if($request->file('featured_image'))
         {   try{
                 $image = $request->file('featured_image');
@@ -195,5 +201,64 @@ class FeaturedOnController extends Controller
         @unlink(public_path('images/featured/featured-image/'.$previous_featured_image));
         @unlink(public_path('images/featured/featured-logo/'.$previous_featured_logo));
         return redirect()->route('admin.featured-on')->with('success','Feature Delete Successfully');
+    }
+
+    public function moveup($id){
+        $currentFeaturedOn = FeaturedOn::find($id);
+        $totalFeaturedOn = count(FeaturedOn::all());
+        $currentOrder = $currentFeaturedOn->sort_order;
+        if($totalFeaturedOn == 1){
+            return redirect()->back();
+        }else{
+            if($currentOrder <= 1){
+                $latestRecord = FeaturedOn::orderBy('sort_order','DESC')->first();
+                $previousOrder = $latestRecord->sort_order;
+                $previousfeaturedOn = FeaturedOn::where('sort_order',$previousOrder)->first();
+                $previousfeaturedOn->sort_order = $currentOrder;
+                $currentFeaturedOn->sort_order = $previousOrder;
+                $currentFeaturedOn->save();
+                $previousfeaturedOn->save();
+    
+            }else{
+                $previousOrder = $currentOrder - 1 ;
+                $previousfeaturedOn = FeaturedOn::where('sort_order',$previousOrder)->first();
+                $previousfeaturedOn->sort_order = $currentOrder;
+                $currentFeaturedOn->sort_order = $previousOrder;
+                $currentFeaturedOn->save();
+                $previousfeaturedOn->save();
+    
+            }
+            return redirect()->back()->with('success','Moved up successfully');
+        }
+        
+        
+    }
+    public function movedown($id){
+        $currentFeaturedOn = FeaturedOn::find($id);
+        $totalFeaturedOn = count(FeaturedOn::all());
+        $currentOrder = $currentFeaturedOn->sort_order;
+        if($totalFeaturedOn == 1){
+            return redirect()->back();
+        }else{
+            if($currentOrder == $totalFeaturedOn){
+                $firstRecord = FeaturedOn::orderBy('sort_order','ASC')->first();
+                $newOrder = $firstRecord->sort_order ;
+                $newfeaturedOn = FeaturedOn::where('sort_order',$newOrder)->first();
+                $newfeaturedOn->sort_order = $currentOrder;
+                $currentFeaturedOn->sort_order = $newOrder;
+                $currentFeaturedOn->save();
+                $newfeaturedOn->save();
+            }else{
+                $newOrder = $currentOrder + 1 ;
+                $newfeaturedOn = FeaturedOn::where('sort_order',$newOrder)->first();
+                $newfeaturedOn->sort_order = $currentOrder;
+                $currentFeaturedOn->sort_order = $newOrder;
+                $currentFeaturedOn->save();
+                $newfeaturedOn->save();
+    
+            }
+            return redirect()->back()->with('success','Moved down successfully');
+        }
+        
     }
 }

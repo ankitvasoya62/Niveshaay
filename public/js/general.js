@@ -253,7 +253,7 @@ jQuery(document).ready(function() {
     // Datepicker
     if(jQuery('.datepicker').datepicker){
         jQuery( ".datepicker" ).datepicker({ dateFormat: "dd/mm/yy",changeMonth: true,
-        changeYear: true });
+        changeYear: true ,yearRange: '1960:',});
     }
     // our-research-slider
     if (jQuery('.niveshaay-research-block .list-inner-wrapper:not(.featured-on)').length) {

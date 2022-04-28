@@ -187,8 +187,9 @@
                     <h2><strong>Billed To</strong></h2>
                     <p><strong>{{ $name_of_investor }}</strong></p>
                     <p>PAN: {{ $pan_no }}</p>
-                    <p>GSTIN: {{ $gst_no }}</p>
+                    
                     <p>{{ $state }}</p>
+                    @if(!empty($gst_no))<p>GSTIN: {{ $gst_no }}</p>@endif
                 </div>
                 <div class="clearfix"></div>
             </div>

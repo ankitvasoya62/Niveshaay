@@ -54,7 +54,13 @@ class TweeterFeedController extends Controller
         $tweeterFeed->tweeter_name = $request->tweeter_name;
         $tweeterFeed->tweeter_username = $request->tweeter_username;
         $tweeterFeed->tweeter_description = $request->tweeter_description;
-        $tweeterFeed->sort_order = $request->sort_order;
+        $latestRecord = TweeterFeed::orderBy('sort_order','DESC')->first();
+        if(empty($latestRecord)){
+            $sort_order = 1;
+        }else{
+            $sort_order = $latestRecord->sort_order + 1;
+        }
+        $tweeterFeed->sort_order = $sort_order;
         try{
             if($request->file('tweeter_user_image')){
                 $image = $request->file('tweeter_user_image');
@@ -120,7 +126,7 @@ class TweeterFeedController extends Controller
         $tweeterFeed->tweeter_name = $request->tweeter_name;
         $tweeterFeed->tweeter_username = $request->tweeter_username;
         $tweeterFeed->tweeter_description = $request->tweeter_description;
-        $tweeterFeed->sort_order = $request->sort_order;
+        //$tweeterFeed->sort_order = $request->sort_order;
         try{
             if($request->file('tweeter_user_image')){
                 $image = $request->file('tweeter_user_image');
@@ -167,5 +173,62 @@ class TweeterFeedController extends Controller
         }
         
         return redirect()->route('admin.tweeter-feeds')->with('success','Tweeter Feed Deleted Successfully!');
+    }
+
+    public function moveup($id){
+        $currentTweet = TweeterFeed::find($id);
+        $totalTweet = count(TweeterFeed::all());
+        $currentOrder = $currentTweet->sort_order;
+        if($totalTweet == 1){
+            return redirect()->back();
+        }else{
+            if($currentOrder <= 1){
+                $latestRecord = TweeterFeed::orderBy('sort_order','DESC')->first();
+                $previousOrder = $latestRecord->sort_order;
+                $previousTweet = TweeterFeed::where('sort_order',$previousOrder)->first();
+                $previousTweet->sort_order = $currentOrder;
+                $currentTweet->sort_order = $previousOrder;
+                $currentTweet->save();
+                $previousTweet->save();
+    
+            }else{
+                $previousOrder = $currentOrder - 1 ;
+                $previousTweet = TweeterFeed::where('sort_order',$previousOrder)->first();
+                $previousTweet->sort_order = $currentOrder;
+                $currentTweet->sort_order = $previousOrder;
+                $currentTweet->save();
+                $previousTweet->save();
+    
+            }
+            return redirect()->back()->with('success','Moved up successfully');
+        }
+        
+    }
+    public function movedown($id){
+        $currentTweet = TweeterFeed::find($id);
+        $totalTweet = count(TweeterFeed::all());
+        $currentOrder = $currentTweet->sort_order;
+        if($totalTweet == 1){
+            return redirect()->back();
+        }else{
+            if($currentOrder == $totalTweet){
+                $firstRecord = TweeterFeed::orderBy('sort_order','ASC')->first();
+                $newOrder = $firstRecord->sort_order ;
+                $newTweet = TweeterFeed::where('sort_order',$newOrder)->first();
+                $newTweet->sort_order = $currentOrder;
+                $currentTweet->sort_order = $newOrder;
+                $currentTweet->save();
+                $newTweet->save();
+            }else{
+                $newOrder = $currentOrder + 1 ;
+                $newTweet = TweeterFeed::where('sort_order',$newOrder)->first();
+                $newTweet->sort_order = $currentOrder;
+                $currentTweet->sort_order = $newOrder;
+                $currentTweet->save();
+                $newTweet->save();
+            }
+            return redirect()->back()->with('success','Moved down successfully');
+        }
+        
     }
 }

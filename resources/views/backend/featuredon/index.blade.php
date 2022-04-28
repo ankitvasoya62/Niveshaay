@@ -52,6 +52,7 @@
                                             <th style="width:5%">Title</th>
                                             <th>Logo</th>
                                             <th>Description</th>
+                                            <th>Order</th>
                                             {{-- <th style="width:5%;">Link</th> --}}
                                             <th>Action</th>
                                             
@@ -68,7 +69,10 @@
                                             <td><img src="{{ asset('images/featured/featured-logo/'.$FeaturedOn->featured_logo) }}" style="width:100px"></td>
                                             <td>{{ Str::limit($FeaturedOn->featured_description,50,'...') }}</td>
                                             {{-- <td style="width:5%;">{{ $FeaturedOn->featured_url }}</td> --}}
-                                            
+                                            <td>
+                                                <a href="{{route('admin.moveup.featured-on',$FeaturedOn->id)}}" class="btn btn-info"><i class="fa fa-solid fa-arrow-up"></i></a>
+                                                <a href="{{route('admin.movedown.featured-on',$FeaturedOn->id)}}" class="btn btn-info"><i class="fa fa-solid fa-arrow-down"></i></a>
+                                            </td>
                                             {{-- <td>{{date("d-m-Y", strtotime($share->created_at)) }}</td>
                                             <td>{{date("d-m-Y", strtotime($share->updated_at))}}</td> --}}
                                             

@@ -83,7 +83,7 @@
                                     <span class="error">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="sort_order">Order</label>
@@ -94,7 +94,7 @@
                                     </div>
                                     
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>

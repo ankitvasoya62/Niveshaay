@@ -1,7 +1,7 @@
 @extends('frontend.layout.master')
 @section('content')
-<section class="inner-page-banner-section">
-    <img src="{{ url('images/profile-banner-image.jpg')}}" alt="profile-banner">
+<section class="inner-page-banner-section profile-page-banner-section">
+    <img src="{{ url('images/profile-banner-new.png')}}" alt="profile-banner">
     <div class="container">
         <h1>My Profile</h1>
     </div>

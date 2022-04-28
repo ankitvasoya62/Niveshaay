@@ -51,6 +51,7 @@
                                             <th>Testimonial</th>
                                             {{-- <th>Client Image</th> --}}
                                             <th style="width: 15%">Client Designation</th>
+                                            <th>Order</th>
                                             <th>Action</th>
                                             
                                         </tr>
@@ -66,7 +67,10 @@
                                             <td>{{ $client->client_designation }}</td>
                                             {{-- <td>{{date("d-m-Y", strtotime($share->created_at)) }}</td>
                                             <td>{{date("d-m-Y", strtotime($share->updated_at))}}</td> --}}
-                                            
+                                            <td>
+                                                <a href="{{route('admin.moveup.our-clients',$client->id)}}" class="btn btn-info"><i class="fa fa-solid fa-arrow-up"></i></a>
+                                                <a href="{{route('admin.movedown.our-clients',$client->id)}}" class="btn btn-info"><i class="fa fa-solid fa-arrow-down"></i></a>
+                                            </td>
                                             <td>
                                                 <a href="{{route('admin.edit.our-clients',$client->id)}}" class="btn btn-info" title="Edit"><i class="fas fa-edit"></i></a>
                                                 <a onclick="return confirm('Are you sure you want to delete this entry?')"

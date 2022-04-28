@@ -301,6 +301,7 @@ class ViewSubscriptionDetailsController extends Controller
         $data['pan_no'] = $subscription_details->pan_no;
         $data['state'] = $subscription_details->state;
         $data["email"] = $subscription_details->email;
+        $data['gst_no'] = $subscription_details->gst_no;
         // $today= Carbon::now();
         // $currentmonth = $today->month;
         // $currentyear = $today->year;

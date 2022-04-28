@@ -52,7 +52,7 @@
                                             <th>Username</th>
                                             
                                             <th>Description</th>
-                                            
+                                            <th>Order</th>
                                             <th>Action</th>
                                             
                                         </tr>
@@ -66,7 +66,10 @@
                                             <td>{{ $tweeterfeed->tweeter_name }}</td>
                                             <td>{{ $tweeterfeed->tweeter_username }}</td>
                                             <td>{{ Str::limit($tweeterfeed->tweeter_description,50,'...') }}</td>
-                                            
+                                            <td>
+                                                <a href="{{route('admin.moveup.tweeter-feeds',$tweeterfeed->id)}}" class="btn btn-info"><i class="fa fa-solid fa-arrow-up"></i></a>
+                                                <a href="{{route('admin.movedown.tweeter-feeds',$tweeterfeed->id)}}" class="btn btn-info"><i class="fa fa-solid fa-arrow-down"></i></a>
+                                            </td>
                                             
                                             <td>
                                                 <a href="{{route('admin.edit.tweeter-feeds',$tweeterfeed->id)}}" class="btn btn-info" title="Edit"><i class="fas fa-edit"></i></a>

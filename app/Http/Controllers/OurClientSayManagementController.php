@@ -54,7 +54,13 @@ class OurClientSayManagementController extends Controller
         $newClient = new OurClientSayManagement;
         $newClient->client_name = $request->client_name;
         $newClient->client_description = $request->client_description;
-        $newClient->sort_order = $request->sort_order;
+        $latestRecord = OurClientSayManagement::orderBy('sort_order','DESC')->first();
+        if(empty($latestRecord)){
+            $sort_order = 1;
+        }else{
+            $sort_order = $latestRecord->sort_order + 1;
+        }
+        $newClient->sort_order = $sort_order;
         if($request->file('client_image')){
             try{
                 $image = $request->file('client_image');
@@ -127,7 +133,7 @@ class OurClientSayManagementController extends Controller
         $previous_image = $updateClient->client_image;
         $updateClient->client_name = $request->client_name;
         $updateClient->client_description = $request->client_description;
-        $updateClient->sort_order = $request->sort_order;
+        //$updateClient->sort_order = $request->sort_order;
         if($request->file('client_image')){
             try{
                 $image = $request->file('client_image');
@@ -173,5 +179,63 @@ class OurClientSayManagementController extends Controller
         // $client->save();
         $client->delete();
         return redirect()->route('admin.our-clients')->with('success','Client Deleted Successfully!');
+    }
+
+    public function moveup($id){
+        $currentClient = OurClientSayManagement::find($id);
+        $totalClient = count(OurClientSayManagement::all());
+        $currentOrder = $currentClient->sort_order;
+        if($totalClient == 1){
+            return redirect()->back();
+        }else{
+            if($currentOrder <= 1){
+                $latestRecord = OurClientSayManagement::orderBy('sort_order','DESC')->first();
+                $previousOrder = $latestRecord->sort_order;
+                $previousClient = OurClientSayManagement::where('sort_order',$previousOrder)->first();
+                $previousClient->sort_order = $currentOrder;
+                $currentClient->sort_order = $previousOrder;
+                $currentClient->save();
+                $previousClient->save();
+    
+            }else{
+                $previousOrder = $currentOrder - 1 ;
+                $previousClient = OurClientSayManagement::where('sort_order',$previousOrder)->first();
+                $previousClient->sort_order = $currentOrder;
+                $currentClient->sort_order = $previousOrder;
+                $currentClient->save();
+                $previousClient->save();
+                
+            }
+            return redirect()->back()->with('success','Moved up successfully');
+        }
+        
+    }
+    public function movedown($id){
+        $currentClient = OurClientSayManagement::find($id);
+        $totalClient = count(OurClientSayManagement::all());
+        $currentOrder = $currentClient->sort_order;
+        if($totalClient == 1){
+            return redirect()->back();
+        }else{
+            if($currentOrder == $totalClient){
+                $firstRecord = OurClientSayManagement::orderBy('sort_order','ASC')->first();
+                $newOrder = $firstRecord->sort_order ;
+                $newClient = OurClientSayManagement::where('sort_order',$newOrder)->first();
+                $newClient->sort_order = $currentOrder;
+                $currentClient->sort_order = $newOrder;
+                $currentClient->save();
+                $newClient->save();
+            }else{
+                $newOrder = $currentOrder + 1 ;
+                $newClient = OurClientSayManagement::where('sort_order',$newOrder)->first();
+                $newClient->sort_order = $currentOrder;
+                $currentClient->sort_order = $newOrder;
+                $currentClient->save();
+                $newClient->save();
+    
+            }
+            return redirect()->back()->with('success','Moved down successfully');
+        }
+        
     }
 }
