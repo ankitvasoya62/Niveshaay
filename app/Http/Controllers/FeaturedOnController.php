@@ -61,7 +61,7 @@ class FeaturedOnController extends Controller
         if(empty($sortfeaturedOn)){
             $sort_order = 1;
         }else{
-            $sort_order = $sortfeaturedOn + 1;
+            $sort_order = $sortfeaturedOn->sort_order + 1;
         }
         $featuredOn->sort_order = $sort_order;
         if($request->file('featured_image')){
