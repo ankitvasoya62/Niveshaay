@@ -39,7 +39,7 @@
 				<div class="home-banner-content">
 					<h2 data-aos="fade-up" data-aos-easing="linear" data-aos-duration="300">Mid-Small Cap Focused Portfolio</h2>
 					<p class="banner-content" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="300" data-aos-delay="100"> 
-						Road to wealth is a long journey and often taken alone.
+						
 						<span> Believes in the philosophy of ‘Think the Entrepreneur Way’ and gives utmost importance to Scuttlebutt Approach </span>						
 					</p>
 				</div>
@@ -51,10 +51,16 @@
 	<div id="content-area" class="site-content-area">
 		<section class="niveshaay-welcome-block niveshaay-home-welcome-block niveshaay-section-paddding">
 			<div class="niveshaay-container">
-				<h1 class="heading-title niveshaay-section-title">Welcome To Niveshaay</h1>
-				<p>Niveshaay (in Hindi translates to income from investments) is a SEBI Registered boutique Investment Advisory Firm with a Dedicated Research Team of 12+ young creative like-minded professionals advising on over Rs. 200+ crores of AUM. Our core focus is on small-mid cap stocks which has the potential of giving outsized returns in long term. Our approach of Research based Investing and Second Order Thinking has helped us find companies that delivered great returns.</p>				
-				<h2 class="heading-title niveshaay-section-title">Why Niveshaay?</h2>
+				<div class="welcome-block-wrapper has-border-bottom">
+					<h1 class="heading-title niveshaay-section-title">Welcome To Niveshaay</h1>
+					<p>Niveshaay (in Hindi translates to income from investments) is a SEBI Registered boutique Investment Advisory Firm with a Dedicated Research Team of 12+ young creative like-minded professionals advising on over Rs. 200+ crores of AUM. Our core focus is on small-mid cap stocks which has the potential of giving outsized returns in long term. Our approach of Research based Investing and Second Order Thinking has helped us find companies that delivered great returns.</p>				
+				</div>
+				<div class="welcome-block-wrapper">
+					<h2 class="heading-title niveshaay-section-title">Why Niveshaay?</h2>
 				<p>The firm believes in the philosophy of ‘Think the Entrepreneur Way’ and gives utmost importance to Scuttlebutt Approach. Our returns are primarily driven by Qualitative and Quantitative Research with an iota of luck. Our interaction with various entrepreneurs across the country helps us to understand the business model in great detail and get to know about the current happenings of the industry. This process sets us apart in the industry and has enabled us to generate reasonable returns over the years. Trust us in our wealth creation journey as we’ll continue to stick to our process and give one hundred percent always. </p>
+				</div>
+				
+				
 			</div>
 		</section>
 		<section class="list-catagory-section niveshaay-research-block niveshaay-gray-bg niveshaay-section-paddding">

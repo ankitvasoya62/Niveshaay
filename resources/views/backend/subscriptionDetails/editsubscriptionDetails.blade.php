@@ -86,7 +86,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="pan_no">GST Number</label>
-                                        <input type="text" name="gst_no" class="form-control" id="gst_no" placeholder="Enter Pan Number" value="{{ $subscription_details->gst_no }}">
+                                        <input type="text" name="gst_no" class="form-control" id="gst_no" placeholder="Enter GST Number" value="{{ $subscription_details->gst_no }}">
                                     </div>
                                 </div>
                             </div>

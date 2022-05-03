@@ -54,7 +54,7 @@
 								</li>
 								@if (!Auth::user())
 									
-								<li class=" btn btn-border">
+								<li class=" btn btn-green">
 									<a href="#" title="Login/Signup" data-link="login-modal" class="modal-link">Login/Signup </a>
 									{{-- <a href="{{ route('login') }}" title="Login/Signup">Login/Signup </a> --}}
 								</li>
