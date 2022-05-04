@@ -12,6 +12,9 @@
   min-height: 200px; /* custom size */
   
   }
+  .note-resize{
+    display: none !important;
+  }
   </style>
   <!-- summernote -->
 <link rel="stylesheet" href="{{ asset('admin/plugins/summernote/summernote-bs4.min.css')}}">
@@ -320,7 +323,8 @@
             ['table', ['table']],
             ['insert', ['link', 'picture', 'video']],
             ['view', ['fullscreen', 'codeview', 'help']],
-          ]
+          ],
+          disableResizeImage: true
         });
       });
     </script>
