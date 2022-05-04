@@ -18,4 +18,10 @@ class contactUsController extends Controller
         $contact = Contactus::find($id);
         return response()->json($contact);
     }
+
+    public function deleteContact($id){
+        $contact = Contactus::find($id);
+        $contact->delete();
+        return redirect()->back()->with('success','Record deleted Successfully!');
+    }
 }

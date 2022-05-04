@@ -249,6 +249,8 @@ $(function() {
     $("#example1").DataTable({
         "responsive": true,
         "autoWidth": false,
+        "columnDefs": [
+        { "orderable": false, "targets": [6,7] }]
     });
     $('#example2').DataTable({
         "paging": true,

@@ -84,6 +84,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/delete-admin-user/{id}', [UserController::class, 'deleteAdminUser'])->name('admin.delete.admin-user');
         Route::get('/contacts',[contactUsController::class,'contactUsList'])->name('admin.contacts');
         Route::get('/showcontact/{id}',[contactUsController::class,'showContact'])->name('admin.showContact');
+        Route::get('/deletecontact/{id}',[contactUsController::class,'deleteContact'])->name('admin.deleteContact');
         /*Share Management Route */
         Route::get('/share',[ShareDetailsController::class,'listShare'])->name('admin.share');
         Route::get('/add/share',[ShareDetailsController::class,'addShare'])->name('admin.add.share');

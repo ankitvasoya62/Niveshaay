@@ -69,7 +69,13 @@
                                         <td>{{ Str::limit($contact->message,20,' ...') }}</td>
                                         <td>{{ $contact->phone_no }}</td>
                                         <td>{{date("d-m-Y", strtotime($contact->created_at)) }}</td>
-                                        <td><a style="cursor:pointer" data-toggle="modal" data-target="#modal-default" class="btn btn-info contact-details" id="{{ $contact->id }}" title="view"><i class="nav-icon fas fa-eye"></i></a></td>
+                                        <td>
+                                            <a style="cursor:pointer" data-toggle="modal" data-target="#modal-default" class="btn btn-info contact-details" id="{{ $contact->id }}" title="view"><i class="nav-icon fas fa-eye"></i></a>
+                                            <a onclick="return confirm('Are you sure you want to delete this entry?')"
+                                                    href="{{route('admin.deleteContact',$contact->id)}}" class="btn btn-danger" title="Delete"><i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        
+                                        </td>
                                         
                                         
                                     </tr>
@@ -157,6 +163,8 @@ $(function() {
     $("#example1").DataTable({
         "responsive": true,
         "autoWidth": false,
+        "columnDefs": [
+        { "orderable": false, "targets": [7] }]
     });
     $('#example2').DataTable({
         "paging": true,
