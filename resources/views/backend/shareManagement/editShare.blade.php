@@ -60,8 +60,8 @@
                 <div class="card-body">
                     <div class="form-group">
                         <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="1" name="copy_to_our_research" @if($share->copy_to_our_research == 1) checked @endif>
-                            <label for="customCheckbox1" class="custom-control-label">Copy to Sample Research Reports</label>
+                            <input class="custom-control-input" type="checkbox" id="copy_our_research" value="1" name="copy_to_our_research" @if($share->copy_to_our_research == 1) checked @endif>
+                            <label for="copy_our_research" class="custom-control-label">Copy to Sample Research Reports</label>
                         </div>  
                         @error('copy_to_our_research')
                             <span class="error">{{$message}}</span>

@@ -607,7 +607,7 @@
                                                                                                 <td width="12" class="mobile-inner-space"></td>
                                                                                                 <td width="16" height="16" valign="center" align="center" style="width: 16px;height: 16px;" class="text-center">
                                                                                                     <a href="#" title="instagram" width="14" height="14" style="width: 14px;height: 14px;display: block;">
-                                                                                                        <img src="{{ $message->embed(base_path().'/public/images/button-shape-new.png')}}" alt="instagram-icon-white" width="14" height="14" style="width: 14px;height: 14px;display: block;">
+                                                                                                        <img src="{{ $message->embed(base_path().'/public/images/instagram-icon-white.png')}}" alt="instagram-icon-white" width="14" height="14" style="width: 14px;height: 14px;display: block;">
                                                                                                     </a>
                                                                                                 </td>
                                                                                                 <td width="12" class="mobile-inner-space"></td>
