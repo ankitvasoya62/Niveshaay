@@ -108,7 +108,7 @@
                                                 <td width="20" class="side-space"></td>
                                                 <td align="center"  height="73" width="164" style="height: 73px;width: 164px;">
                                                     <a href="#" title="Niveshaay Logo" height="73" width="164" style="display:block;height: 73px;width: 164px;">
-                                                        <img src="{{ base_path()images/logo.png }}" alt="Niveshaay Logo" height="73" width="164" style="display:block;height: 73px;width: 164px;">
+                                                        <img src="{{ $message->embed(base_path().'/public/images/logo.png')}}" alt="Niveshaay Logo" height="73" width="164" style="display:block;height: 73px;width: 164px;">
                                                     </a>
                                                 </td>
                                                 <td width="20" class="side-space"></td>
