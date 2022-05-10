@@ -65,5 +65,5 @@ function smallcaseapi(){
 }
 
 function ourresearchreport(){
-    return ShareDetails::all()->where('copy_to_our_research',1)->where('status','active');
+    return ShareDetails::all()->where('copy_to_our_research',1)->where('share_status',1)->where('status','active');
 }

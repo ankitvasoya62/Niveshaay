@@ -1,7 +1,7 @@
 @extends('frontend.layout.master')
 @section('content')
 <section class="our-strategy-page-banner-section">
-			<img src="{{ asset('images/our-strategy-new.png')}}" alt="banner-img">
+			<img src="{{ asset('images/our-stratergy.jpg')}}" alt="banner-img">
 			<div class="container">
 				<div class="banner-content">
 					<h1>Our Strategy</h1>
@@ -12,7 +12,7 @@
 <section class="research-card-section">
 	<div class="niveshaay-container">
 		<div class="research-card-grid">
-			<div class="white-card">
+			<div data-link="our-strategy-modal-1" class="modal-link white-card">
 				<div class="white-card-inner">
 					<em class="card-icon-wrapper">
 						<img src="{{ asset('images/research-based-investing.svg')}}" class="card-icon" alt="research-based-investing">
@@ -29,7 +29,7 @@
 					<a href="#" title="Read More" data-link="our-strategy-modal-1" class="modal-link">Read More</a>
 				</div>
 			</div>
-			<div class="white-card">
+			<div data-link="our-strategy-modal-2" class="modal-link white-card">
 				<div class="white-card-inner">
 					<em class="card-icon-wrapper">
 						<img src="{{ asset('images/our-philosophy.svg')}}" class="card-icon" alt="our-philosophy">
@@ -42,7 +42,7 @@
 					<a href="#" title="Read More" data-link="our-strategy-modal-2" class="modal-link">Read More</a>
 				</div>
 			</div>
-			<div class="white-card">
+			<div data-link="our-strategy-modal-3" class="modal-link white-card">
 				<div class="white-card-inner">
 					<em class="card-icon-wrapper">
 						<img src="{{ asset('images/stock-selection.svg')}}" class="card-icon" alt="stock-selection">
@@ -59,7 +59,7 @@
 					<a href="#" title="Read More" data-link="our-strategy-modal-3" class="modal-link">Read More</a>
 				</div>
 			</div>
-			<div class="white-card">
+			<div data-link="our-strategy-modal-4" class="modal-link white-card">
 				<div class="white-card-inner">
 					<em class="card-icon-wrapper">
 						<img src="{{ asset('images/peripheral-story.svg')}}" class="card-icon" alt="peripheral-story">
@@ -76,7 +76,7 @@
 					<a href="#" title="Read More" data-link="our-strategy-modal-4" class="modal-link">Read More</a>
 				</div>
 			</div>
-			<div class="white-card">
+			<div data-link="our-strategy-modal-5" class="modal-link white-card">
 				<div class="white-card-inner">
 					<em class="card-icon-wrapper">
 						<img src="{{ asset('images/broad-allocation.svg')}}" class="card-icon" alt="broad-allocation">
@@ -93,7 +93,7 @@
 					<a href="#" title="Read More" data-link="our-strategy-modal-5" class="modal-link">Read More</a>
 				</div>
 			</div>
-			<div class="white-card">
+			<div data-link="our-strategy-modal-6" class="modal-link white-card">
 				<div class="white-card-inner">
 					<em class="card-icon-wrapper">
 						<img src="{{ asset('images/success-stories.svg')}}" class="card-icon" alt="research-based-investing">

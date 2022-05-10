@@ -51,7 +51,7 @@
 				</a></li>
 				<li><a href="#" title="portfolio-listed-tab" data-tab="portfolio-listed-on-smallcase">
 					<em>
-						<img src="{{ asset('images/portfolio-listed-smallcase.svg') }}" alt="tab-icon" class="tab-icon">
+						<img src="{{ asset('images/portfolio_listed_on_smallcase_new.svg') }}" alt="tab-icon" class="tab-icon">
 						<img src="{{ asset('images/portfolio-listed-smallcase-white.svg') }}" alt="tab-icon" class="tab-icon-hover">
 					</em>
 					Portfolio Listed on Smallcase

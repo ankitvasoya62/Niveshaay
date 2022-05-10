@@ -6,6 +6,7 @@
 .niveshaay-client.niveshaay-section-paddding{padding:40px 0 15px;}
 .niveshaay-complaints-section.niveshaay-section-paddding{padding:41px 0 80px;}
 .niveshaay-complaints-section .heading-title.niveshaay-section-title{margin-bottom:20px!important;}
+.niveshaay-home-welcome-block { background-image: url(../images/welcome-block-bg.png); background-position: right; background-repeat: no-repeat; background-size: contain; z-index:-1;}
 .niveshaay-home-welcome-block h1.heading-title{padding-bottom:0;margin-bottom:10px!important;}
 .niveshaay-home-welcome-block h2.heading-title.niveshaay-section-title{margin-top:40px!important;margin-bottom:13px!important;}
 .niveshaay-welcome-block p{font-size:16px;line-height:1.75;text-align:center;color:#222121;font-weight:normal;}
@@ -213,6 +214,8 @@
     .niveshaay-welcome-block ul{flex-wrap:wrap;margin:20px 0 -15px;}
     .niveshaay-welcome-block ul li{flex:0 0 50%;max-width:50%;margin-bottom:15px;}
     .niveshaay-welcome-block .welcome-block-wrapper.has-border-bottom { padding-bottom: 40px;}
+    .niveshaay-home-welcome-block {  background: #fff;}
+
 
     /*niveshaay-shiksha*/
     .niveshaay-siksha .siksha-grid-wrapper{margin:0 -10px;}

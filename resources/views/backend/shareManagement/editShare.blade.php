@@ -12,6 +12,9 @@
   min-height: 200px; /* custom size */
   
   }
+  .note-editing-area .note-editable p{
+    margin-left: 0px !important;
+  }
   .note-resize{
     display: none !important;
   }
@@ -84,7 +87,7 @@
                   </div>
                   <div class="form-group">
                     <label for="name">Title</label>
-                    <input type="text" name="share_title" class="form-control" id="share_title" placeholder="Enter Title" value="{{ $share->share_title }}" required>
+                    <input type="text" name="share_title" class="form-control" id="share_title" placeholder="Enter Title" value="{{ $share->share_title }}" >
                     @error('share_title')
                         <span class="error">{{$message}}</span>
                     @enderror
@@ -93,7 +96,7 @@
                     <div class="col-md-3">
                       <div class="form-group">
                         <label for="name">Initiating Coverage Date</label>
-                        <input type="date" name="share_date" class="form-control" id="share_date" placeholder="Enter Title" value="{{ $share->share_date }}" required max="9999-12-31">
+                        <input type="date" name="share_date" class="form-control" id="share_date" placeholder="Enter Title" value="{{ $share->share_date }}"  max="9999-12-31">
                         @error('share_date')
                             <span class="error">{{$message}}</span>
                         @enderror
@@ -134,35 +137,35 @@
                         <div class="card-body">
                             <div class="form-group">
                               <label for="name">Industry</label>
-                              <input type="text" name="share_industry" class="form-control" id="share_industry" placeholder="Enter Industry" value="{{ $share->share_industry }}" required>
+                              <input type="text" name="share_industry" class="form-control" id="share_industry" placeholder="Enter Industry" value="{{ $share->share_industry }}" >
                               @error('share_industry')
                                   <span class="error">{{$message}}</span>
                               @enderror
                             </div>
                             <div class="form-group">
                               <label for="name">CMP</label>
-                              <input type="text" name="share_cmp" class="form-control" id="share_cmp" placeholder="Enter CMP" value="{{ $share->share_cmp }}" required>
+                              <input type="text" name="share_cmp" class="form-control" id="share_cmp" placeholder="Enter CMP" value="{{ $share->share_cmp }}" >
                               @error('share_cmp')
                                   <span class="error">{{$message}}</span>
                               @enderror
                             </div>
                             <div class="form-group">
                               <label for="name">Market Cap</label>
-                              <input type="text" name="share_market_cap" class="form-control" id="share_market_cap" placeholder="Enter Market Cap" value="{{ $share->share_market_cap }}" required>
+                              <input type="text" name="share_market_cap" class="form-control" id="share_market_cap" placeholder="Enter Market Cap" value="{{ $share->share_market_cap }}" >
                               @error('share_market_cap')
                                   <span class="error">{{$message}}</span>
                               @enderror
                             </div>
                             <div class="form-group">
                               <label for="name">52 –Week High/Low</label>
-                              <input type="text" name="share_week_high_low" class="form-control" id="share_week_high_low" placeholder="Enter 52 –Week High/Low" value="{{ $share->share_week_high_low }}" required>
+                              <input type="text" name="share_week_high_low" class="form-control" id="share_week_high_low" placeholder="Enter 52 –Week High/Low" value="{{ $share->share_week_high_low }}" >
                               @error('share_week_high_low')
                                   <span class="error">{{$message}}</span>
                               @enderror
                             </div>
                             <div class="form-group">
                               <label for="name">Outlook</label>
-                              <input type="text" name="share_outlook" class="form-control" id="share_outlook" placeholder="Enter Outlook" value="{{$share->share_outlook}}" required>
+                              <input type="text" name="share_outlook" class="form-control" id="share_outlook" placeholder="Enter Outlook" value="{{$share->share_outlook}}" >
                               @error('share_outlook')
                                   <span class="error">{{$message}}</span>
                               @enderror
@@ -184,14 +187,28 @@
                         <div class="card-body">
                             <div class="form-group">
                               <label for="name">Promoters</label>
-                              <input type="text" name="shareholding_promoters" class="form-control" id="shareholding_promoters" placeholder="Enter Promoteres" value="{{$share->shareholding_promoters}}" required>
+                              <input type="text" name="shareholding_promoters" class="form-control" id="shareholding_promoters" placeholder="Enter Promoteres" value="{{$share->shareholding_promoters}}" >
                               @error('shareholding_promoters')
                                   <span class="error">{{$message}}</span>
                               @enderror
                             </div>
                             <div class="form-group">
+                              <label for="mutual_funds">Mutual Funds</label>
+                              <input type="text" name="mutual_funds" class="form-control" id="mutual_funds" placeholder="Enter Mutual Funds" value="{{$share->mutual_funds}}" >
+                              @error('mutual_funds')
+                                  <span class="error">{{$message}}</span>
+                              @enderror
+                            </div>
+                            <div class="form-group">
+                              <label for="mutual_funds">FIIs</label>
+                              <input type="text" name="fiis" class="form-control" id="fiis" placeholder="Enter FIIs" value="{{$share->fiis}}" >
+                              @error('fiis')
+                                  <span class="error">{{$message}}</span>
+                              @enderror
+                            </div>
+                            <div class="form-group">
                               <label for="name">Public</label>
-                              <input type="text" name="shareholding_public" class="form-control" id="shareholding_public" placeholder="Enter public" value="{{$share->shareholding_public}}" required>
+                              <input type="text" name="shareholding_public" class="form-control" id="shareholding_public" placeholder="Enter public" value="{{$share->shareholding_public}}" >
                               @error('shareholding_public')
                                   <span class="error">{{$message}}</span>
                               @enderror
@@ -213,21 +230,21 @@
                         <div class="card-body">
                             <div class="form-group">
                               <label for="name">Name</label>
-                              <input type="text" name="research_analyst_name" class="form-control" id="research_analyst_name" placeholder="Enter Name" value="{{$share->research_analyst_name}}" required>
+                              <input type="text" name="research_analyst_name" class="form-control" id="research_analyst_name" placeholder="Enter Name" value="{{$share->research_analyst_name}}" >
                               @error('research_analyst_name')
                                   <span class="error">{{$message}}</span>
                               @enderror
                             </div>
                             <div class="form-group">
                               <label for="name">Designation</label>
-                              <input type="text" name="research_analyst_designation" class="form-control" id="research_analyst_designation" placeholder="Enter Designation" value="{{$share->research_analyst_designation}}" required>
+                              <input type="text" name="research_analyst_designation" class="form-control" id="research_analyst_designation" placeholder="Enter Designation" value="{{$share->research_analyst_designation}}" >
                               @error('research_analyst_designation')
                                   <span class="error">{{$message}}</span>
                               @enderror
                             </div>
                             <div class="form-group">
                               <label for="name">Email</label>
-                              <input type="text" name="research_analyst_email" class="form-control" id="research_analyst_email" placeholder="Enter Email" value="{{$share->research_analyst_email}}" required>
+                              <input type="text" name="research_analyst_email" class="form-control" id="research_analyst_email" placeholder="Enter Email" value="{{$share->research_analyst_email}}" >
                               @error('research_analyst_email')
                                   <span class="error">{{$message}}</span>
                               @enderror
@@ -262,19 +279,19 @@
                       <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="0" name="share_recommendation[]" @if(in_array('0',$share_recommendation_array)) checked
                           
                       @endif>
-                      <label for="customCheckbox1" class="custom-control-label" >Latest Addition</label>
+                      <label for="customCheckbox1" class="custom-control-label" >Latest Additions</label>
                     </div>
                     <div class="custom-control custom-checkbox">
                       <input class="custom-control-input" type="checkbox" id="customCheckbox2" value="1" name="share_recommendation[]" @if(in_array('1',$share_recommendation_array)) checked
                           
                       @endif>
-                      <label for="customCheckbox2" class="custom-control-label">Current Recommendation</label>
+                      <label for="customCheckbox2" class="custom-control-label">Current Recommendations</label>
                     </div>
                     <div class="custom-control custom-checkbox">
                       <input class="custom-control-input" type="checkbox" id="customCheckbox3" value="2" name="share_recommendation[]" @if(in_array('2',$share_recommendation_array)) checked
                           
                       @endif>
-                      <label for="customCheckbox3" class="custom-control-label">Past Recommendation</label>
+                      <label for="customCheckbox3" class="custom-control-label">Past Recommendations</label>
                     </div>
                   </div>
                     
@@ -283,7 +300,8 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Update</button>
+                  <button type="submit" class="btn btn-primary" name="submit">Update</button>
+                  <button type="submit" class="btn btn-info" name="draft">Save as a Draft</button>
                   <button type="button" class="btn btn-danger" onclick="window.history.back();" style="margin: 5px;">Cancel</button>
                 </div>
               </form>

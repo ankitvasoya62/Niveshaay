@@ -26,6 +26,9 @@ class ShareDetails extends Model
         'share_description',
         'share_outlook',
         'share_recommendation',
+        'mutual_funds',
+        'fiis',
+        'share_status',
         'status'
         
     ];

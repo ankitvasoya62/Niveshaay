@@ -51,6 +51,7 @@
                                     <tr>
                                         <th>SR No</th>
                                         <th>Title</th>
+                                        <th>Status</th>
                                         <th>Added On</th>
                                         <th>Updated On</th>
                                         <th>Action</th>
@@ -65,6 +66,11 @@
                                     <tr>
                                         <td>{{++$i}}</td>
                                         <td>{{ $share->share_title}}</td>
+                                        @if($share->share_status == 1)
+                                            <td><span class="badge badge-success">Live</span></td>
+                                        @else
+                                            <td><span class="badge badge-info">Draft</span></td>
+                                        @endif
                                         <td>{{date("d-m-Y", strtotime($share->created_at)) }}</td>
                                         <td>{{date("d-m-Y", strtotime($share->updated_at))}}</td>
                                         

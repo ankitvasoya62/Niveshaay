@@ -339,7 +339,7 @@ class HomeController extends Controller
     }
     public function shareDetail()
     {
-        $share = ShareDetails::all()->where('status','active');
+        $share = ShareDetails::all()->where('status','active')->where('share_status',1);
         
         $latest_addition = array();
         $current_recommendation = array();
