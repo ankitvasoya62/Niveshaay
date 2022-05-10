@@ -94,7 +94,7 @@ class ShareDetailsController extends Controller
             // $sharedescription->move(public_path('pdf'),$shareDescriptionName);
             // $share->share_description = $shareDescriptionName;
             $share->save();
-            return redirect()->route('admin.share')->with('success','Share Added Successfully!');
+            return redirect()->route('admin.share')->with('success','Report Uploaded Successfully!');
         }else if ($request->has('draft')) {
             $share = new ShareDetails;
             $share->share_title = $request->share_title;
@@ -150,7 +150,7 @@ class ShareDetailsController extends Controller
             $share->fiis = $request->fiis;
             $share->share_status = "0";
             $share->save();
-            return redirect()->route('admin.share')->with('success','Share Drafted Successfully!');
+            return redirect()->route('admin.share')->with('success','Draft Created Successfully!');
         }
         return redirect()->route('admin.share');
         
@@ -245,7 +245,7 @@ class ShareDetailsController extends Controller
             $share->share_status = "1";
             
             $share->save();
-            return redirect()->route('admin.share')->with('success','Share Updated Successfully!');
+            return redirect()->route('admin.share')->with('success','Report Uploaded Successfully!');
         }else if ($request->has('draft')) {
             $share_previous_image = $share->share_image;
             $share_previous_logo = $share->share_logo;
@@ -297,9 +297,9 @@ class ShareDetailsController extends Controller
             $share->fiis = $request->fiis;
             $share->share_status = "0";            
             $share->save();
-            return redirect()->route('admin.share')->with('success','Share Drafted Successfully!');
+            return redirect()->route('admin.share')->with('success','Draft Updated Successfully!');
         }
-        return redirect()->route('admin.share')->with('success','Share Updated Successfully!');
+        return redirect()->route('admin.share')->with('success','Report Uploaded Successfully!');
     }
 
     public function deleteShare($id){
