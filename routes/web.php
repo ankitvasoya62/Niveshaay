@@ -36,7 +36,7 @@ Route::get('/signup',[HomeController::class, 'signUp'])->name('frontend.signup')
 Route::get('/our-strategy',[HomeController::class, 'ourStrategy'])->name('frontend.our-strategy');
 /* Contact page post request */
 Route::post('/contact',[HomeController::class, 'contactForm'])->name('frontend.contactForm');
-Route::get('/services',[HomeController::class, 'Services'])->name('frontend.services');
+Route::get('/services/{id?}',[HomeController::class, 'Services'])->name('frontend.services');
 
 Route::get('/generate_pdf',[HomeController::class,'generatePDF'])->name('generate-pdf');
 

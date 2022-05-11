@@ -28,17 +28,7 @@ class ShareDetailsController extends Controller
                 'share_logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'share_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'share_date' => 'required|date',
-                'share_industry'=>'required',
-                'share_cmp'=>'required',
-                'share_market_cap'=>'required',
-                'share_week_high_low'=>'required',
-                'shareholding_promoters'=>'required',
-                'shareholding_public'=>'required',
-                'research_analyst_name'=>'required',
-                'research_analyst_designation'=>'required',
-                'research_analyst_email'=>'required',
                 'share_description'=>'required',
-                'share_outlook' => 'required',
                 'short_description'=>'required'
             ]);
     
@@ -171,20 +161,8 @@ class ShareDetailsController extends Controller
                 $validateArray = [
                     'share_title'=>'required',
                     'share_description'=>'required',
-                    
-                    
                     'share_date' => 'required|date',
-                    'share_industry'=>'required',
-                    'share_cmp'=>'required',
-                    'share_market_cap'=>'required',
-                    'share_week_high_low'=>'required',
-                    'shareholding_promoters'=>'required',
-                    'shareholding_public'=>'required',
-                    'research_analyst_name'=>'required',
-                    'research_analyst_designation'=>'required',
-                    'research_analyst_email'=>'required',
                     'share_description'=>'required',
-                    'share_outlook' => 'required',
                     'short_description'=>'required'
                 ];
                 if(empty($share->share_image)){

@@ -87,7 +87,7 @@
                   </div>
                   <div class="form-group">
                     <label for="name">Title</label>
-                    <input type="text" name="share_title" class="form-control" id="share_title" placeholder="Enter Title" value="{{ $share->share_title }}" >
+                    <input type="text" name="share_title" class="form-control" id="share_title" placeholder="Enter Title" value="{{ !empty(old('share_title')) ? old('share_title') : $share->share_title }}" >
                     @error('share_title')
                         <span class="error">{{$message}}</span>
                     @enderror
@@ -96,7 +96,7 @@
                     <div class="col-md-3">
                       <div class="form-group">
                         <label for="name">Initiating Coverage Date</label>
-                        <input type="date" name="share_date" class="form-control" id="share_date" placeholder="Enter Title" value="{{ $share->share_date }}"  max="9999-12-31">
+                        <input type="date" name="share_date" class="form-control" id="share_date" placeholder="Enter Title" value="{{ !empty(old('share_date')) ? old('share_date') : $share->share_date }}"  max="9999-12-31">
                         @error('share_date')
                             <span class="error">{{$message}}</span>
                         @enderror
@@ -107,7 +107,7 @@
                   
                   <div class="form-group">
                     <label for="description">Short Description</label>
-                    <textarea type="text" name="short_description" class="form-control" rows="5" cols="20" placeholder="Describe your title here...">{{$share->short_description}}</textarea>
+                    <textarea type="text" name="short_description" class="form-control" rows="5" cols="20" placeholder="Describe your title here...">{{ !empty(old('short_description')) ? old('short_description') : $share->short_description}}</textarea>
                     @error('short_description')
                         <span class="error">{{$message}}</span>
                     @enderror
@@ -137,35 +137,35 @@
                         <div class="card-body">
                             <div class="form-group">
                               <label for="name">Industry</label>
-                              <input type="text" name="share_industry" class="form-control" id="share_industry" placeholder="Enter Industry" value="{{ $share->share_industry }}" >
+                              <input type="text" name="share_industry" class="form-control" id="share_industry" placeholder="Enter Industry" value="{{ !empty(old('share_industry')) ? old('share_industry') : $share->share_industry }}" >
                               @error('share_industry')
                                   <span class="error">{{$message}}</span>
                               @enderror
                             </div>
                             <div class="form-group">
                               <label for="name">CMP</label>
-                              <input type="text" name="share_cmp" class="form-control" id="share_cmp" placeholder="Enter CMP" value="{{ $share->share_cmp }}" >
+                              <input type="text" name="share_cmp" class="form-control" id="share_cmp" placeholder="Enter CMP" value="{{ !empty(old('share_cmp')) ? old('share_cmp') :$share->share_cmp }}" >
                               @error('share_cmp')
                                   <span class="error">{{$message}}</span>
                               @enderror
                             </div>
                             <div class="form-group">
                               <label for="name">Market Cap</label>
-                              <input type="text" name="share_market_cap" class="form-control" id="share_market_cap" placeholder="Enter Market Cap" value="{{ $share->share_market_cap }}" >
+                              <input type="text" name="share_market_cap" class="form-control" id="share_market_cap" placeholder="Enter Market Cap" value="{{ !empty(old('share_market_cap')) ? old('share_market_cap') : $share->share_market_cap }}" >
                               @error('share_market_cap')
                                   <span class="error">{{$message}}</span>
                               @enderror
                             </div>
                             <div class="form-group">
                               <label for="name">52 –Week High/Low</label>
-                              <input type="text" name="share_week_high_low" class="form-control" id="share_week_high_low" placeholder="Enter 52 –Week High/Low" value="{{ $share->share_week_high_low }}" >
+                              <input type="text" name="share_week_high_low" class="form-control" id="share_week_high_low" placeholder="Enter 52 –Week High/Low" value="{{ !empty(old('share_week_high_low')) ? old('share_week_high_low') :$share->share_week_high_low }}" >
                               @error('share_week_high_low')
                                   <span class="error">{{$message}}</span>
                               @enderror
                             </div>
                             <div class="form-group">
                               <label for="name">Outlook</label>
-                              <input type="text" name="share_outlook" class="form-control" id="share_outlook" placeholder="Enter Outlook" value="{{$share->share_outlook}}" >
+                              <input type="text" name="share_outlook" class="form-control" id="share_outlook" placeholder="Enter Outlook" value="{{ !empty(old('share_outlook')) ? old('share_outlook') : $share->share_outlook}}" >
                               @error('share_outlook')
                                   <span class="error">{{$message}}</span>
                               @enderror
@@ -187,28 +187,28 @@
                         <div class="card-body">
                             <div class="form-group">
                               <label for="name">Promoters</label>
-                              <input type="text" name="shareholding_promoters" class="form-control" id="shareholding_promoters" placeholder="Enter Promoteres" value="{{$share->shareholding_promoters}}" >
+                              <input type="text" name="shareholding_promoters" class="form-control" id="shareholding_promoters" placeholder="Enter Promoteres" value="{{ !empty(old('shareholding_promoters')) ? old('shareholding_promoters') : $share->shareholding_promoters}}" >
                               @error('shareholding_promoters')
                                   <span class="error">{{$message}}</span>
                               @enderror
                             </div>
                             <div class="form-group">
                               <label for="mutual_funds">Mutual Funds</label>
-                              <input type="text" name="mutual_funds" class="form-control" id="mutual_funds" placeholder="Enter Mutual Funds" value="{{$share->mutual_funds}}" >
+                              <input type="text" name="mutual_funds" class="form-control" id="mutual_funds" placeholder="Enter Mutual Funds" value="{{!empty(old('mutual_funds')) ? old('mutual_funds') : $share->mutual_funds }}" >
                               @error('mutual_funds')
                                   <span class="error">{{$message}}</span>
                               @enderror
                             </div>
                             <div class="form-group">
                               <label for="mutual_funds">FIIs</label>
-                              <input type="text" name="fiis" class="form-control" id="fiis" placeholder="Enter FIIs" value="{{$share->fiis}}" >
+                              <input type="text" name="fiis" class="form-control" id="fiis" placeholder="Enter FIIs" value="{{!empty(old('fiis')) ? old('fiis') : $share->fiis}}" >
                               @error('fiis')
                                   <span class="error">{{$message}}</span>
                               @enderror
                             </div>
                             <div class="form-group">
                               <label for="name">Public</label>
-                              <input type="text" name="shareholding_public" class="form-control" id="shareholding_public" placeholder="Enter public" value="{{$share->shareholding_public}}" >
+                              <input type="text" name="shareholding_public" class="form-control" id="shareholding_public" placeholder="Enter public" value="{{ !empty(old('shareholding_public')) ? old('shareholding_public') :$share->shareholding_public}}" >
                               @error('shareholding_public')
                                   <span class="error">{{$message}}</span>
                               @enderror
@@ -230,21 +230,21 @@
                         <div class="card-body">
                             <div class="form-group">
                               <label for="name">Name</label>
-                              <input type="text" name="research_analyst_name" class="form-control" id="research_analyst_name" placeholder="Enter Name" value="{{$share->research_analyst_name}}" >
+                              <input type="text" name="research_analyst_name" class="form-control" id="research_analyst_name" placeholder="Enter Name" value="{{!empty(old('research_analyst_name')) ? old('research_analyst_name') :$share->research_analyst_name}}" >
                               @error('research_analyst_name')
                                   <span class="error">{{$message}}</span>
                               @enderror
                             </div>
                             <div class="form-group">
                               <label for="name">Designation</label>
-                              <input type="text" name="research_analyst_designation" class="form-control" id="research_analyst_designation" placeholder="Enter Designation" value="{{$share->research_analyst_designation}}" >
+                              <input type="text" name="research_analyst_designation" class="form-control" id="research_analyst_designation" placeholder="Enter Designation" value="{{!empty(old('research_analyst_designation')) ? old('research_analyst_designation') : $share->research_analyst_designation}}" >
                               @error('research_analyst_designation')
                                   <span class="error">{{$message}}</span>
                               @enderror
                             </div>
                             <div class="form-group">
                               <label for="name">Email</label>
-                              <input type="text" name="research_analyst_email" class="form-control" id="research_analyst_email" placeholder="Enter Email" value="{{$share->research_analyst_email}}" >
+                              <input type="text" name="research_analyst_email" class="form-control" id="research_analyst_email" placeholder="Enter Email" value="{{ !empty(old('research_analyst_email')) ? old('research_analyst_email') :$share->research_analyst_email}}" >
                               @error('research_analyst_email')
                                   <span class="error">{{$message}}</span>
                               @enderror
@@ -261,7 +261,7 @@
                   
                   <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea type="text" name="share_description" class="form-control" id="summernote" rows="5" cols="20" placeholder="Describe your title here...">{{$share->share_description}}</textarea>
+                    <textarea name="share_description" class="form-control" id="summernote" rows="5" cols="20" placeholder="Describe your title here...">{{ !empty(old('share_description')) ? old('share_description') : $share->share_description}}</textarea>
                     {{-- <input type="file" name="share_description" class="form-control" accept="application/pdf"> --}}
                     @error('share_description')
                         <span class="error">{{$message}}</span>

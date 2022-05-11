@@ -13,7 +13,7 @@
 	<div class="niveshaay-container">
 		<div class="service-tab-wrapper">
 			<ul class="tab-heading-block">
-				<li  class="active"><a href="#" title="equity-portfolio-tab" data-tab="equity-portfolio-advisory">
+				<li  class="@if($activeservice == 1) active @endif"><a href="#" title="equity-portfolio-tab" data-tab="equity-portfolio-advisory">
 					<em>
 						<img src="{{ asset('images/equity-portfolio-advisory.svg') }}" alt="tab-icon" class="tab-icon">
 						<img src="{{ asset('images/equity-portfolio-advisory-white.svg') }}" alt="tab-icon" class="tab-icon-hover">
@@ -31,7 +31,7 @@
 						</svg>
 					</span>
 				</a> </li>
-				<li><a href="#" title="research-services-tab" data-tab="research-services">
+				<li class="@if($activeservice == 2) active @endif"><a href="#" title="research-services-tab" data-tab="research-services">
 					<em>
 						<img src="{{ asset('images/research-services.svg') }}" alt="tab-icon" class="tab-icon">
 						<img src="{{ asset('images/research-services-white.svg') }}" alt="tab-icon" class="tab-icon-hover">
@@ -49,7 +49,7 @@
 						</svg>
 					</span>
 				</a></li>
-				<li><a href="#" title="portfolio-listed-tab" data-tab="portfolio-listed-on-smallcase">
+				<li class="@if($activeservice == 3) active @endif"><a href="#" title="portfolio-listed-tab" data-tab="portfolio-listed-on-smallcase">
 					<em>
 						<img src="{{ asset('images/portfolio_listed_on_smallcase_new.svg') }}" alt="tab-icon" class="tab-icon">
 						<img src="{{ asset('images/portfolio-listed-smallcase-white.svg') }}" alt="tab-icon" class="tab-icon-hover">
@@ -67,7 +67,7 @@
 						</svg>
 					</span>
 				</a></li>
-				<li><a href="#" title="family-office-tab" data-tab="family-office-consulting">
+				<li class="@if($activeservice == 4) active @endif"><a href="#" title="family-office-tab" data-tab="family-office-consulting">
 					<em>
 						<img src="{{ asset('images/family-office-consulting.svg') }}" alt="tab-icon" class="tab-icon">
 						<img src="{{ asset('images/family-office-consulting-white.svg') }}" alt="tab-icon" class="tab-icon-hover">
@@ -87,7 +87,7 @@
 				</a></li>
 			</ul>
 			<div class="tab-content-block">
-				<div class="tab-content-inner active" data-id="equity-portfolio-advisory">
+				<div class="tab-content-inner @if($activeservice == 1) active opacity @endif" data-id="equity-portfolio-advisory">
 						<div class="tab-inner-detail">
 							<h2>Small & Mid Cap focussed portfolio</h2>
 							<ul class="green-dot-listing">
@@ -106,7 +106,7 @@
 							@endif
 						</div>
 				</div>
-				<div class="tab-content-inner list-catagory-section niveshaay-research-block" data-id="research-services">
+				<div class="tab-content-inner list-catagory-section niveshaay-research-block @if($activeservice == 2) active opacity @endif" data-id="research-services">
 					<div class="tab-inner-detail">
 						<p>Our core competency is Equity Research. Here, what differentiates us is that we follow a holistic approach from explaining the business in great detail, 
 							covering supply side analysis to financials and valuations. In this process, we interact with various business management, dealers and distributors to 
@@ -271,7 +271,7 @@
 					</div>
 					{{-- <p class="has-different-style"><a href="#" title="click-here-btn">Click here</a> to Subscribe for the Research Services</p> --}}
 				</div>
-				<div class="tab-content-inner niveshaay-pick-smallcase" data-id="portfolio-listed-on-smallcase">
+				<div class="tab-content-inner niveshaay-pick-smallcase @if($activeservice == 3) active opacity @endif" data-id="portfolio-listed-on-smallcase">
 					<div class="tab-inner-detail">
 						<p>We have four portfolios listed on Smallcase platform: </p>
 					</div>
@@ -406,7 +406,7 @@
 							we believe that our well defined process and discipline to stick to our process has enabled our portfolio to be in the top performer list on small case. 
 						</p>
 				</div>
-				<div class="tab-content-inner" data-id="family-office-consulting">
+				<div class="tab-content-inner @if($activeservice == 4) active opacity @endif" data-id="family-office-consulting">
 					<div class="tab-inner-detail">
 						<p>Our research team understands that every family is different. So, we provide bespoke advice to establish, operate and grow your family office. Here, the AUM of family office is large. The general trend is to divide the portfolio and take advisory of different fund managers. 
 							Here, leveraging our research capabilities, we not only manage their portfolios but also make prudent allocation on consolidated basis for effective returns. 

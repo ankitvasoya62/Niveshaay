@@ -465,7 +465,7 @@ class HomeController extends Controller
         
     }
 
-    public function Services(){
+    public function Services($id = ""){
         $active = 'services';
         $smallcasearray = smallcaseapi();
         
@@ -474,7 +474,16 @@ class HomeController extends Controller
         $china_plus_one_strategy_stock_array = $smallcasearray[2];
         $trends_triology_stock_array = $smallcasearray[3];
         $researches = ourresearchreport();
-        return view('frontend.services',compact('active','green_energy_stock_array','mid_and_small_case_focus_stock_array','china_plus_one_strategy_stock_array','trends_triology_stock_array','researches'));
+        $activeservice = "1";
+        
+        if($id == "" || !in_array($id,["1","2","3","4"])){
+            $activeservice = "1";
+        }else{
+            $activeservice = $id;
+            
+        }
+        
+        return view('frontend.services',compact('active','green_energy_stock_array','mid_and_small_case_focus_stock_array','china_plus_one_strategy_stock_array','trends_triology_stock_array','researches','activeservice'));
     }
 
     public function researchDashboard(){

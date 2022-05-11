@@ -28,10 +28,10 @@
 				<h1 class="heading-title niveshaay-section-title">Welcome To Niveshaay</h1>
 				<p>Niveshaay (in Hindi translates to income from investments) is a SEBI Registered boutique Investment Advisory Firm with a Dedicated Research Team advising on over Rs. 200+ crores of AUM. Our core focus is on small-mid cap stocks which has the potential of giving outsized returns in long term. Our approach of Research based Investing and Second Order Thinking has helped us find companies that delivered great returns.  </p>
 				<ul>
-					<li>Equity Portfolio Advisory</li>
-					<li>Research Services</li>
-					<li>Portfolio Listed on Smallcase</li>
-					<li>Family Office Consulting</li>
+					<li><a href="{{ route('frontend.services',1)}}">Portfolio Advisory</a></li>
+					<li><a href="{{ route('frontend.services',2)}}">Research Services</a></li>
+					<li><a href="{{ route('frontend.services',3)}}">Portfolio Listed on Smallcase</a></li>
+					<li><a href="{{ route('frontend.services',4)}}">Family Office Consulting</a></li>
 				</ul>
 				<div class="video-wrapper">
 					<iframe src="https://www.youtube.com/embed/EgDqm9H1T0s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

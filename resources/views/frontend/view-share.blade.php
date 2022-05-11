@@ -84,6 +84,16 @@
                                     <li>
                                         Promoters: {{ $share->shareholding_promoters }}%
                                     </li>
+                                    @if(!empty($share->mutual_funds))
+                                    <li>
+                                        Mutual Funds: {{ $share->mutual_funds }}
+                                    </li>
+                                    @endif
+                                    @if(!empty($share->fiis))
+                                    <li>
+                                        FIIs: {{ $share->fiis }}
+                                    </li>
+                                    @endif
                                     <li>
                                         Public: {{ $share->shareholding_public }}%
                                     </li>
@@ -94,7 +104,9 @@
                                 <div class="data-wrapper-inner">
                                     <span>{{ $share->research_analyst_name}} </span>
                                     <span>{{ $share->research_analyst_designation }}</span>
-                                    <a class="email-id-link" href="mailto:{{ $share->research_analyst_email }}" title="email-id">{{ $share->research_analyst_email }}</a>
+                                    @if(!empty($share->research_analyst_email))
+                                        <a class="email-id-link" href="mailto:{{ $share->research_analyst_email }}" title="email-id">{{ $share->research_analyst_email }}</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
