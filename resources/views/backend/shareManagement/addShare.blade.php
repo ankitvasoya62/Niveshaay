@@ -14,6 +14,7 @@
   }
   .note-editing-area .note-editable p{
     margin-left: 0px !important;
+    margin-right: 0px !important;
   }
   .note-resize{
     display: none !important;
