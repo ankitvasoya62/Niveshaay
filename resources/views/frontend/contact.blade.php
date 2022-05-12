@@ -1,7 +1,8 @@
 @extends('frontend.layout.master')
 @section('content')
     <section class="inner-page-banner-section contact-page-banner">
-        <img  src="{{ asset('images/Contact-us-Adjusted.jpg')}}" alt="contact-banner">
+        <img  src="{{ asset('images/Contact-us-Adjusted.jpg')}}" alt="contact-banner" class=" home-banner-contact">
+        <img  src="{{ asset('images/contact-mobile-banner.jpg')}}" alt="contact-banner" class=" mobile-banner-contact">
         <div class="container">
             <h1>Contact Us</h1>
         </div>

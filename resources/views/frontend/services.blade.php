@@ -51,7 +51,7 @@
 				</a></li>
 				<li class="@if($activeservice == 3) active @endif"><a href="#" title="portfolio-listed-tab" data-tab="portfolio-listed-on-smallcase">
 					<em>
-						<img src="{{ asset('images/portfolio_listed_on_smallcase_new.svg') }}" alt="tab-icon" class="tab-icon">
+						<img src="{{ asset('images/new_portfolio_listed_on_small_case.svg') }}" alt="tab-icon" class="tab-icon">
 						<img src="{{ asset('images/portfolio-listed-smallcase-white.svg') }}" alt="tab-icon" class="tab-icon-hover">
 					</em>
 					Portfolio Listed on Smallcase
@@ -102,7 +102,7 @@
 								<li>Volatility, being an inherent nature of small and mid-caps, we prefer a time horizon of 3-5 years for reasonable returns.  </li>
 							</ul>
 							@if (!Auth::user())
-								<p class="has-different-style"><a href="{{ route('frontend.signup')}}" title="click-here-btn">Click here</a> to Subscribe for the equity portfolio advisory</p>
+								<p class="has-different-style"><a href="{{ route('frontend.signup')}}" title="click-here-btn">Click here</a> to Subscribe</p>
 							@endif
 						</div>
 				</div>
@@ -123,7 +123,7 @@
 					</div>
 					<p class="subscription-fees-text">Subscription Fees: <span> ₹ 20,000 + GST for 6 Months</span></p>
 					@if (!Auth::user())
-						<p class="has-different-style"><a href="{{ route('frontend.signup')}}" title="click-here-btn">Click here</a> to Subscribe for the Research Services</p>
+						<p class="has-different-style"><a href="{{ route('frontend.signup')}}" title="click-here-btn">Click here</a> to Subscribe</p>
 					@endif
 					<div class="list-catagory-wrapper">
 						<div class="list-wrapper">
@@ -402,9 +402,9 @@
                             </div>
                         </div>
                     </div>
-						<p>With immense gratitude, 
+						{{-- <p>With immense gratitude, 
 							we believe that our well defined process and discipline to stick to our process has enabled our portfolio to be in the top performer list on small case. 
-						</p>
+						</p> --}}
 				</div>
 				<div class="tab-content-inner @if($activeservice == 4) active opacity @endif" data-id="family-office-consulting">
 					<div class="tab-inner-detail">
@@ -412,7 +412,7 @@
 							Here, leveraging our research capabilities, we not only manage their portfolios but also make prudent allocation on consolidated basis for effective returns. 
 						</p>
 						@if (!Auth::user())
-							<p class="has-different-style"><a href="{{ route('frontend.signup')}}" title="click-here-btn">Click here</a> to Subscribe for family office consulting</p>
+							<p class="has-different-style"><a href="{{ route('frontend.signup')}}" title="click-here-btn">Click here</a> to Subscribe</p>
 						@endif
 					</div>
 				</div>

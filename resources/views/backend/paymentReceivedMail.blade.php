@@ -8,7 +8,7 @@
 <p>Regards,</p>
 <div style="display:flex;flex-direction: row;">
     <div style="border:1px dotted grey;display:inline-flex;align-items:center">
-        <img src="{{ $message->embed(base_path() . '/public/images/logo.png') }}" style="width:150px;"/>
+        <img src="{{ asset('images/logo.png') }}" style="width:150px;"/>
     
     </div>
     <div style="border:1px dotted grey">

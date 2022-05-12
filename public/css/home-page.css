@@ -214,7 +214,7 @@
     .niveshaay-welcome-block ul{flex-wrap:wrap;margin:20px 0 -15px;}
     .niveshaay-welcome-block ul li{flex:0 0 50%;max-width:50%;margin-bottom:15px;}
     .niveshaay-welcome-block .welcome-block-wrapper.has-border-bottom { padding-bottom: 40px;}
-    .niveshaay-home-welcome-block {  background: #fff;}
+    .niveshaay-home-welcome-block {  background-size: cover; background-position: center;}
 
 
     /*niveshaay-shiksha*/
