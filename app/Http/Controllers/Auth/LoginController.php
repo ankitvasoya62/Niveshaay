@@ -77,6 +77,18 @@ class LoginController extends Controller
                 return response()->json($errors);
                 
             }else{
+
+                $authUser = Auth::user();
+                $profilePhotourl = !empty(Auth::user()->profile_photo) ? asset('images/profile-photos/'.Auth::user()->profile_photo) : asset('images/blankuser.jpeg') ;
+                $authUserName = $authUser->name;
+                $profile_photocookie_name = "profile_photo";
+                $profile_cookie_value = $profilePhotourl;
+                $username_cookie = "user_name";
+                $username_cookie_value = $authUserName;
+                setcookie($profile_photocookie_name,$profile_cookie_value, time() + (86400 * 30), "/"); //name,value,time,url
+                setcookie($username_cookie,$username_cookie_value, time() + (86400 * 30), "/"); //name,value,time,url
+
+                // dd($_COOKIE["user"]);
                 $success = ['success'=>1];
             return response()->json($success);
             }
@@ -179,6 +191,10 @@ class LoginController extends Controller
             Auth::guard('admin')->logout();
             return redirect()->route('admin.loginform');
         }else{
+            unset($_COOKIE['user_name']);
+            unset($_COOKIE['profile_photo']);
+            setcookie('user_name', '', time() - 3600, '/');
+            setcookie('profile_photo', '', time() - 3600, '/');
             Auth::logout();
         }
         // $request->session()->invalidate();
