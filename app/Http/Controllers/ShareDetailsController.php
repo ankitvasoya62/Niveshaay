@@ -144,8 +144,8 @@ class ShareDetailsController extends Controller
                     }
                     
                 }catch(\Exception $e){
-                    // dd($e->getmessage());
-                    return redirect()->back()->with('error',$e->getMessage());
+                    dd($e->getmessage());
+                    //return redirect()->back()->with('error',$e->getMessage());
                 }
                 // $share->mutual_funds = $request->mutual_funds;
                 // $share->fiis = $request->fiis;
