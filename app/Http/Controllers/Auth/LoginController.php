@@ -90,6 +90,10 @@ class LoginController extends Controller
                 setcookie($profile_photocookie_name,$profile_cookie_value, time() + (86400 * 30), "/"); //name,value,time,url
                 setcookie($username_cookie,$username_cookie_value, time() + (86400 * 30), "/"); //name,value,time,url
                 try{
+                    $destinationPath = public_path("userwatermark");
+                    if(!File::exists($destinationPath)) {
+                        File::makeDirectory($destinationPath, 0777, true, true);
+                    }
                     $destinationPath = public_path("userwatermark/$authUser->id");
                 
                     if(!File::exists($destinationPath)) {

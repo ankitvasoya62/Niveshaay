@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ShareDetails;
+use File;
 
 class ShareDetailsController extends Controller
 {
@@ -130,6 +131,10 @@ class ShareDetailsController extends Controller
                         $share->share_image = $shareImageName;
                     }
                     if($request->file('pdf_name')){
+                        $destinationPath = public_path('pdf');
+                        if(!File::exists($destinationPath)) {
+                            File::makeDirectory($destinationPath, 0777, true, true);
+                        }
                         $pdfName = $request->file('pdf_name');
                         $imageFileExt = $pdfName->getClientOriginalName();
                         $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
@@ -205,6 +210,11 @@ class ShareDetailsController extends Controller
                 }
                 if($upload_type == 1){
                     if($request->file('pdf_name')){
+                        $destinationPath = public_path('pdf');
+                    
+                        if(!File::exists($destinationPath)) {
+                            File::makeDirectory($destinationPath, 0777, true, true);
+                        }
                         $pdfName = $request->file('pdf_name');
                         $imageFileExt = $pdfName->getClientOriginalName();
                         $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
@@ -311,6 +321,10 @@ class ShareDetailsController extends Controller
                 }
                 if($share->upload_type == 1){
                     if($request->file('pdf_name')){
+                        $destinationPath = public_path('pdf');
+                        if(!File::exists($destinationPath)) {
+                            File::makeDirectory($destinationPath, 0777, true, true);
+                        }
                         $pdfName = $request->file('pdf_name');
                         $imageFileExt = $pdfName->getClientOriginalName();
                         $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
@@ -377,6 +391,10 @@ class ShareDetailsController extends Controller
                 }
                 if($share->upload_type == 1){
                     if($request->file('pdf_name')){
+                        $destinationPath = public_path('pdf');
+                        if(!File::exists($destinationPath)) {
+                            File::makeDirectory($destinationPath, 0777, true, true);
+                        }
                         $pdfName = $request->file('pdf_name');
                         $imageFileExt = $pdfName->getClientOriginalName();
                         $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
@@ -418,6 +436,10 @@ class ShareDetailsController extends Controller
     }
 
     public function storeImages(Request $request){
+        $destinationPath = public_path('images/report');
+        if(!File::exists($destinationPath)) {
+            File::makeDirectory($destinationPath, 0777, true, true);
+        }
         $shareimage = $request->file('file');
         $shareImageName = time().".".$shareimage->extension();
         $shareimage->move(public_path('images/report'),$shareImageName);
