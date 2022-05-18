@@ -127,6 +127,8 @@
                   <div class="form-group">
                     <img src="{{asset('images/share-images/'.$share->share_image)}}" width="150px" alt="">
                   </div>
+
+                  @if($share->upload_type == 0)
                   <div class="row">
                     <div class="col-md-6">
                       <div class="card">
@@ -268,9 +270,20 @@
                         <span class="error">{{$message}}</span>
                     @enderror
                   </div>
-                  {{-- <div class="form-group">
-                    <a href="{{ asset('pdf/'.$share->share_description) }}" target="_blank">{{ $share->share_description }}</a>
-                  </div> --}}
+                  @else
+                  <div class="form-group">
+                    <label for="description">Upload pdf</label>
+                    {{-- <textarea name="share_description" class="form-control" id="summernote" rows="5" cols="20" placeholder="Describe your title here...">{{ !empty(old('share_description')) ? old('share_description') : $share->share_description}}</textarea> --}}
+                    <input type="file" name="pdf_name" class="form-control" accept="application/pdf">
+                    @error('pdf_name')
+                        <span class="error">{{$message}}</span>
+                    @enderror
+                  </div>
+                  <div class="form-group">
+                    <a href="{{ asset('pdf/'.$share->pdf_name) }}" target="_blank">{{ $share->pdf_name }}</a>
+                  </div>
+                  @endif
+                  
                   <?php
                         $share_recommendation_array = explode(",",$share->share_recommendation);
                   ?>
@@ -342,9 +355,36 @@
             ['table', ['table']],
             ['insert', ['link', 'picture', 'video']],
             ['view', ['fullscreen', 'codeview', 'help']],
-          ],
+          ],callbacks: {
+          onImageUpload: function(files, editor, welEditable) {
+              sendFile(files[0], editor, welEditable);
+          }
+        },
           disableResizeImage: true
         });
+
+        function sendFile(file,editor,welEditable){
+          var lib_url = "{{ route('admin.upload.image')}}";
+          data = new FormData();
+          data.append("file", file);
+          $.ajax({
+            data: data,
+            type: "POST",
+            headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            url: lib_url,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function(url) {
+                // console.log(url);
+                var image = $('<img>').attr('src', url);
+                $('#summernote').summernote("insertNode", image[0]);
+            }
+          });
+        
+        }
       });
     </script>
     

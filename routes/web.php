@@ -58,7 +58,7 @@ Route::post('/forgot-password',[ForgotPasswordController::class, 'sendResetLinkE
 Route::get('/reset-password/{token}',[ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('/reset-password',[ResetPasswordController::class, 'reset'])->name('password.update');
 Route::get('admin/forgot-password',[ForgotPasswordController::class, 'showadminRequestForm'])->name('admin.password.request');
-Route::get('/share-detail/{id}',[HomeController::class,'viewShare'])->name('frontend.view.share');        
+Route::get('/researchreport/{id}',[HomeController::class,'viewShare'])->name('frontend.view.share');        
 Route::middleware('auth:admin')->group(function () {
     Route::prefix('admin')->middleware('is_admin')->group(function () {
         Route::get('/home', [App\Http\Controllers\HomeController ::class, 'index'])->name('admin.home');
@@ -86,12 +86,14 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/showcontact/{id}',[contactUsController::class,'showContact'])->name('admin.showContact');
         Route::get('/deletecontact/{id}',[contactUsController::class,'deleteContact'])->name('admin.deleteContact');
         /*Share Management Route */
-        Route::get('/share',[ShareDetailsController::class,'listShare'])->name('admin.share');
-        Route::get('/add/share',[ShareDetailsController::class,'addShare'])->name('admin.add.share');
-        Route::post('/add/share',[ShareDetailsController::class,'storeShare'])->name('admin.store.share');
-        Route::get('/edit/share/{id}',[ShareDetailsController::class,'editShare'])->name('admin.edit.share');
-        Route::post('/edit/share/{id}',[ShareDetailsController::class,'updateShare'])->name('admin.update.share');
-        Route::get('/delete/share/{id}', [ShareDetailsController::class, 'deleteShare'])->name('admin.delete.share');
+        Route::get('/researchreport',[ShareDetailsController::class,'listShare'])->name('admin.share');
+        Route::get('/add/researchreport/{upload_type}',[ShareDetailsController::class,'addShare'])->name('admin.add.share');
+        Route::post('/add/researchreport/{upload_type}',[ShareDetailsController::class,'storeShare'])->name('admin.store.share');
+        Route::get('/edit/researchreport/{id}',[ShareDetailsController::class,'editShare'])->name('admin.edit.share');
+        Route::post('/edit/researchreport/{id}',[ShareDetailsController::class,'updateShare'])->name('admin.update.share');
+        Route::get('/delete/researchreport/{id}', [ShareDetailsController::class, 'deleteShare'])->name('admin.delete.share');
+        Route::get('/view/researchreport/{id}', [ShareDetailsController::class, 'viewShare'])->name('admin.view.report');
+        Route::post('/upload/report',[ShareDetailsController::class,'storeImages'])->name('admin.upload.image');
         /*Import Excel Route */
         Route::get('/excel',[ImportExcel::class, 'index'])->name('import-excel');
         Route::post('/excel',[ImportExcel::class, 'store'])->name('import');

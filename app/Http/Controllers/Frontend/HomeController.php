@@ -27,6 +27,11 @@ use App\Models\FeaturedOn;
 use App\Models\TweeterFeed;
 use DB;
 use File;
+use Cookie;
+// use DOMPDF;
+Use Image;
+use Intervention\Image\Exception\NotReadableException;
+
 
 class HomeController extends Controller
 {
@@ -41,7 +46,7 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        // dd(session()->all());
+        
         $active='home';
         $researches = ourresearchreport();
        
@@ -382,6 +387,26 @@ class HomeController extends Controller
                 if(empty($SubscriptionFormDetailCount)){
                     return redirect()->route('frontend.research-dashboard'); 
                 }else{
+                    if($share->upload_type == 1){
+                        $destinationPath = public_path("userpdf");
+                
+                        if(!File::exists($destinationPath)) {
+                            File::makeDirectory($destinationPath, 0777, true, true);
+                        }
+                        $authUser = Auth::user();
+                        $outputpdf = public_path("userpdf/".$share->id.".pdf");
+                        $inputpdf = public_path('pdf/'.$share->pdf_name) ;
+                        $watermarkfile = public_path("userwatermark/$authUser->id/".$authUser->id.".png");
+                        $watermarker = new PdfWatermarker(
+                            $inputpdf, // input
+                            $outputpdf, // outputpublic\
+                            $watermarkfile, // watermark file
+                            'center', // watermark position (topleft, topright, bottomleft, bottomright, center)
+                            false // set to true - replace original input file
+                        );
+                        $watermarker->create();
+                    }
+                    
                     return view('frontend.view-share',compact('active','share'));
                 }
             }else{
@@ -499,6 +524,7 @@ class HomeController extends Controller
     }
 
     public function generatePDF(){
+        // dd("hii");
         // $pdf = PDF::loadFile(public_path('pdf/1648039795.pdf'));
         // $pdf->setWatermarkImage(public_path('images/logo.png'));
         // $pdf->save(public_path('file.pdf'));
@@ -533,16 +559,51 @@ class HomeController extends Controller
         // dd(request()->ip());
         // dd(view('pdf.hello'));
         // $watermarker = new PdfWatermarker(
-        //     public_path('pdf/1648040112.pdf'), // input
-        //     public_path('pdf/watermark/output27.pdf'), // output
-        //     base_path() . '/resources/views/pdf/hello.blade.php', // watermark file
+        //     public_path('pdf/investor-charter_1652789208.pdf'), // input
+        //     public_path('pdf/watermark/output27.pdf'), // outputpublic\
+        //     public_path('image5.jpg'), // watermark file
         //     'center', // watermark position (topleft, topright, bottomleft, bottomright, center)
         //     false // set to true - replace original input file
         //    );
         // $watermarker->create();
+
         // dd("success");
-        $name = 'nikhil';
-        return view('frontend.mail.payment-details',compact('name'));
+        // $name = 'nikhil';
+        // return view('frontend.mail.payment-details',compact('name'));
+        // $data = [
+        //     'title' => 'Welcome to Nicesnippets.com',
+        //     'date' => date('m/d/Y')
+        // ];
+          
+        // $pdf = DOMPDF::loadFile(asset('pdf/1648040112.pdf'));
+
+        // $pdf->setPaper('L');
+        // $pdf->output();
+        // $canvas = $pdf->getDomPDF()->getCanvas();
+
+        // $height = $canvas->get_height();
+        // $width = $canvas->get_width();
+
+        // $canvas->set_opacity(.2,"Multiply");
+
+        // $canvas->set_opacity(.2);
+
+        // $canvas->page_text($width/5, $height/2, 'Nicesnippets.com', null,
+        // 55, array(0,0,0),2,2,-30);
+        // return $pdf->download('nicesnippets.pdf');
+        // $img = Image::canvas(800, 600);public\
+        $img = Image::make(public_path("image.jpg"));
+        $img->text("nikhilvshah12274@gmail.com",200,320,function($font){
+            $font->file(public_path("fonts/OpenSans-Regular.ttf"));
+            $font->size(40);
+            $font->color([0, 0, 0, 0.5]);
+            $font->align("center");
+            $font->valign("top");
+            $font->angle(45);
+        });
+
+        $img->save(public_path("image5.jpg"));
+        return "Done";
     }
 
     public function changePasswordForm(){

@@ -129,7 +129,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="email">Email Address</label>
-                                <input id="email" name="email" type="email" class="form-control" placeholder="john.dow22@gmail.com" value="{{ $user->email }}">			
+                                <input id="email" name="email" type="email" class="form-control" placeholder="john.dow22@gmail.com" value="{{ $user->email }}" disabled>			
                                 <span style="color:red" id='profile-modal-email-error'></span>
                             </div>
                             <div class="form-group">

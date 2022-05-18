@@ -40,8 +40,19 @@
                         <div class="card-header">
                             <h3 class="card-title">Research Reports</h3>
                             <div style="float:right; display:block;">
-                                <button class="btn btn-success"> <a href="{{route('admin.add.share')}}"
-                                        class="text-light"><i class="fa fa-plus"></i> Add New Report</a> </button>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-success btn-flat">Add New Report</button>
+                                    <button type="button" class="btn btn-success btn-flat dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
+                                      <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu" role="menu" style="">
+                                      <a class="dropdown-item" href="{{route('admin.add.share',0)}}">Upload Manually</a>
+                                      <a class="dropdown-item" href="{{route('admin.add.share',1)}}">Upload Via Pdf</a>
+                                      
+                                    </div>
+                                </div>
+                                {{-- <button class="btn btn-success"> <a href="{{route('admin.add.share')}}"
+                                        class="text-light"><i class="fa fa-plus"></i> </a> </button> --}}
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -67,7 +78,7 @@
                                         <td>{{++$i}}</td>
                                         <td>{{ $share->share_title}}</td>
                                         @if($share->share_status == 1)
-                                            <td><span class="badge badge-success">Live</span></td>
+                                            <td><span class="badge badge-success">Published</span></td>
                                         @else
                                             <td><span class="badge badge-info">Draft</span></td>
                                         @endif
@@ -75,6 +86,10 @@
                                         <td>{{date("d-m-Y", strtotime($share->updated_at))}}</td>
                                         
                                         <td>
+                                            @if ($share->share_status == 0)
+                                            <a href="{{ route('admin.view.report',$share->id)}}" class="btn btn-primary" target="_blank"><i class="fas fa-eye"></i></a>    
+                                            @endif
+                                            
                                             <a href="{{route('admin.edit.share',$share->id)}}" class="btn btn-info" title="Edit"><i class="fas fa-edit"></i></a>
                                             <a onclick="return confirm('Are you sure you want to delete this entry?')"
                                                 href="{{ route('admin.delete.share',$share->id) }}" class="btn btn-danger" title="Delete"><i class="fas fa-trash-alt"></i>

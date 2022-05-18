@@ -59,8 +59,9 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="quickForm" method="POST" action="{{route('admin.store.share')}}" enctype="multipart/form-data">
+              <form id="quickForm" method="POST" action="{{route('admin.store.share',$upload_type)}}" enctype="multipart/form-data">
               @csrf
+                <input type="hidden" value="{{ $upload_type }}" name="upload_type">
                 <div class="card-body">
                   <div class="form-group">
                     <div class="custom-control custom-checkbox">
@@ -117,148 +118,158 @@
                     @enderror
                   </div>
                    
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Key Data</h3>
-                        </div>
-                    
-                  
-                        <div class="card-body">
-                            <div class="form-group">
-                              <label for="name">Industry</label>
-                              <input type="text" name="share_industry" class="form-control" id="share_industry" placeholder="Enter Industry" value="{{old('share_industry')}}" >
-                              @error('share_industry')
-                                  <span class="error">{{$message}}</span>
-                              @enderror
-                            </div>
-                            <div class="form-group">
-                              <label for="name">CMP</label>
-                              <input type="text" name="share_cmp" class="form-control" id="share_cmp" placeholder="Enter CMP" value="{{old('share_cmp')}}" >
-                              @error('share_cmp')
-                                  <span class="error">{{$message}}</span>
-                              @enderror
-                            </div>
-                            <div class="form-group">
-                              <label for="name">Market Cap</label>
-                              <input type="text" name="share_market_cap" class="form-control" id="share_market_cap" placeholder="Enter Market Cap" value="{{old('share_market_cap')}}" >
-                              @error('share_market_cap')
-                                  <span class="error">{{$message}}</span>
-                              @enderror
-                            </div>
-                            <div class="form-group">
-                              <label for="name">52 –Week High/Low</label>
-                              <input type="text" name="share_week_high_low" class="form-control" id="share_week_high_low" placeholder="Enter 52 –Week High/Low" value="{{old('share_week_high_low')}}" >
-                              @error('share_week_high_low')
-                                  <span class="error">{{$message}}</span>
-                              @enderror
-                            </div>
-                            <div class="form-group">
-                              <label for="name">Outlook</label>
-                              <input type="text" name="share_outlook" class="form-control" id="share_outlook" placeholder="Enter Outlook" value="{{old('share_outlook')}}" >
-                              @error('share_outlook')
-                                  <span class="error">{{$message}}</span>
-                              @enderror
-                            </div>
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer"></div>
-                        
-    
-                     </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Shareholding Pattern</h3>
-                        </div>
-                    
-                  
-                        <div class="card-body">
-                            <div class="form-group">
-                              <label for="name">Promoters</label>
-                              <input type="text" name="shareholding_promoters" class="form-control" id="shareholding_promoters" placeholder="Enter Promoteres" value="{{old('shareholding_promoters')}}" >
-                              @error('shareholding_promoters')
-                                  <span class="error">{{$message}}</span>
-                              @enderror
-                            </div>
-                            <div class="form-group">
-                              <label for="mutual_funds">Mutual Funds</label>
-                              <input type="text" name="mutual_funds" class="form-control" id="mutual_funds" placeholder="Enter Mutual Funds" value="{{old('mutual_funds')}}" >
-                              @error('mutual_funds')
-                                  <span class="error">{{$message}}</span>
-                              @enderror
-                            </div>
-                            <div class="form-group">
-                              <label for="mutual_funds">FIIs</label>
-                              <input type="text" name="fiis" class="form-control" id="fiis" placeholder="Enter FIIs" value="{{old('fiis')}}" >
-                              @error('fiis')
-                                  <span class="error">{{$message}}</span>
-                              @enderror
-                            </div>
-                            <div class="form-group">
-                              <label for="name">Public</label>
-                              <input type="text" name="shareholding_public" class="form-control" id="shareholding_public" placeholder="Enter public" value="{{old('shareholding_public')}}" >
-                              @error('shareholding_public')
-                                  <span class="error">{{$message}}</span>
-                              @enderror
-                            </div>
-                            
-                        
-                        </div>
-                        <!-- /.card-body -->
-    
-                        
-    
-                     </div>
-                     <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Research Analyst</h3>
-                        </div>
-                  
-                
-                        <div class="card-body">
-                            <div class="form-group">
-                              <label for="name">Name</label>
-                              <input type="text" name="research_analyst_name" class="form-control" id="research_analyst_name" placeholder="Enter Name" value="{{old('share_title')}}" >
-                              @error('research_analyst_name')
-                                  <span class="error">{{$message}}</span>
-                              @enderror
-                            </div>
-                            <div class="form-group">
-                              <label for="name">Designation</label>
-                              <input type="text" name="research_analyst_designation" class="form-control" id="research_analyst_designation" placeholder="Enter Designation" value="{{old('research_analyst_designation')}}" >
-                              @error('research_analyst_designation')
-                                  <span class="error">{{$message}}</span>
-                              @enderror
-                            </div>
-                            <div class="form-group">
-                              <label for="name">Email</label>
-                              <input type="text" name="research_analyst_email" class="form-control" id="research_analyst_email" placeholder="Enter Email" value="{{old('research_analyst_email')}}" >
-                              @error('research_analyst_email')
-                                  <span class="error">{{$message}}</span>
-                              @enderror
-                            </div>
-                        
-                        </div>
-                      <!-- /.card-body -->
-  
+                  @if($upload_type == 0)
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="card">
+                          <div class="card-header">
+                              <h3 class="card-title">Key Data</h3>
+                          </div>
                       
-  
-                     </div>
+                    
+                          <div class="card-body">
+                              <div class="form-group">
+                                <label for="name">Industry</label>
+                                <input type="text" name="share_industry" class="form-control" id="share_industry" placeholder="Enter Industry" value="{{old('share_industry')}}" >
+                                @error('share_industry')
+                                    <span class="error">{{$message}}</span>
+                                @enderror
+                              </div>
+                              <div class="form-group">
+                                <label for="name">CMP</label>
+                                <input type="text" name="share_cmp" class="form-control" id="share_cmp" placeholder="Enter CMP" value="{{old('share_cmp')}}" >
+                                @error('share_cmp')
+                                    <span class="error">{{$message}}</span>
+                                @enderror
+                              </div>
+                              <div class="form-group">
+                                <label for="name">Market Cap</label>
+                                <input type="text" name="share_market_cap" class="form-control" id="share_market_cap" placeholder="Enter Market Cap" value="{{old('share_market_cap')}}" >
+                                @error('share_market_cap')
+                                    <span class="error">{{$message}}</span>
+                                @enderror
+                              </div>
+                              <div class="form-group">
+                                <label for="name">52 –Week High/Low</label>
+                                <input type="text" name="share_week_high_low" class="form-control" id="share_week_high_low" placeholder="Enter 52 –Week High/Low" value="{{old('share_week_high_low')}}" >
+                                @error('share_week_high_low')
+                                    <span class="error">{{$message}}</span>
+                                @enderror
+                              </div>
+                              <div class="form-group">
+                                <label for="name">Outlook</label>
+                                <input type="text" name="share_outlook" class="form-control" id="share_outlook" placeholder="Enter Outlook" value="{{old('share_outlook')}}" >
+                                @error('share_outlook')
+                                    <span class="error">{{$message}}</span>
+                                @enderror
+                              </div>
+                          </div>
+                          <!-- /.card-body -->
+                          <div class="card-footer"></div>
+                          
+      
+                      </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="card">
+                          <div class="card-header">
+                              <h3 class="card-title">Shareholding Pattern</h3>
+                          </div>
+                      
+                    
+                          <div class="card-body">
+                              <div class="form-group">
+                                <label for="name">Promoters</label>
+                                <input type="text" name="shareholding_promoters" class="form-control" id="shareholding_promoters" placeholder="Enter Promoteres" value="{{old('shareholding_promoters')}}" >
+                                @error('shareholding_promoters')
+                                    <span class="error">{{$message}}</span>
+                                @enderror
+                              </div>
+                              <div class="form-group">
+                                <label for="mutual_funds">Mutual Funds</label>
+                                <input type="text" name="mutual_funds" class="form-control" id="mutual_funds" placeholder="Enter Mutual Funds" value="{{old('mutual_funds')}}" >
+                                @error('mutual_funds')
+                                    <span class="error">{{$message}}</span>
+                                @enderror
+                              </div>
+                              <div class="form-group">
+                                <label for="mutual_funds">FIIs</label>
+                                <input type="text" name="fiis" class="form-control" id="fiis" placeholder="Enter FIIs" value="{{old('fiis')}}" >
+                                @error('fiis')
+                                    <span class="error">{{$message}}</span>
+                                @enderror
+                              </div>
+                              <div class="form-group">
+                                <label for="name">Public</label>
+                                <input type="text" name="shareholding_public" class="form-control" id="shareholding_public" placeholder="Enter public" value="{{old('shareholding_public')}}" >
+                                @error('shareholding_public')
+                                    <span class="error">{{$message}}</span>
+                                @enderror
+                              </div>
+                              
+                          
+                          </div>
+                          <!-- /.card-body -->
+      
+                          
+      
+                      </div>
+                      <div class="card">
+                          <div class="card-header">
+                              <h3 class="card-title">Research Analyst</h3>
+                          </div>
+                    
+                  
+                          <div class="card-body">
+                              <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" name="research_analyst_name" class="form-control" id="research_analyst_name" placeholder="Enter Name" value="{{old('share_title')}}" >
+                                @error('research_analyst_name')
+                                    <span class="error">{{$message}}</span>
+                                @enderror
+                              </div>
+                              <div class="form-group">
+                                <label for="name">Designation</label>
+                                <input type="text" name="research_analyst_designation" class="form-control" id="research_analyst_designation" placeholder="Enter Designation" value="{{old('research_analyst_designation')}}" >
+                                @error('research_analyst_designation')
+                                    <span class="error">{{$message}}</span>
+                                @enderror
+                              </div>
+                              <div class="form-group">
+                                <label for="name">Email</label>
+                                <input type="text" name="research_analyst_email" class="form-control" id="research_analyst_email" placeholder="Enter Email" value="{{old('research_analyst_email')}}" >
+                                @error('research_analyst_email')
+                                    <span class="error">{{$message}}</span>
+                                @enderror
+                              </div>
+                          
+                          </div>
+                        <!-- /.card-body -->
+    
+                        
+    
+                      </div>
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea type="text" name="share_description" class="form-control" id="summernote" rows="5" cols="20" placeholder="Describe your title here..."></textarea>
-                    {{-- <input type="file" name="share_description" class="form-control" accept="application/pdf"> --}}
-                    @error('share_description')
-                        <span class="error">{{$message}}</span>
-                    @enderror
-                  </div>
-                  
+                    
+                    <div class="form-group">
+                      <label for="description">Description</label>
+                      <textarea type="text" name="share_description" class="form-control" id="summernote" rows="5" cols="20" placeholder="Describe your title here..."></textarea>
+                      {{-- <input type="file" name="share_description" class="form-control" accept="application/pdf"> --}}
+                      @error('share_description')
+                          <span class="error">{{$message}}</span>
+                      @enderror
+                    </div>
+                  @else
+                    <div class="form-group">
+                      <label for="description">Upload PDF</label>
+                      {{-- <textarea type="text" name="share_description" class="form-control" id="summernote" rows="5" cols="20" placeholder="Describe your title here..."></textarea> --}}
+                      <input type="file" name="pdf_name" class="form-control" accept="application/pdf">
+                      @error('pdf_name')
+                          <span class="error">{{$message}}</span>
+                      @enderror
+                    </div>
+                  @endif
                   <div class="form-group">
                     <label>Recommendation Categories</label>
                     <div class="custom-control custom-checkbox">
@@ -321,9 +332,35 @@
             ['table', ['table']],
             ['insert', ['link', 'picture', 'video']],
             ['view', ['fullscreen', 'codeview', 'help']],
-          ],
-          disableResizeImage: true
+          ],callbacks: {
+          onImageUpload: function(files, editor, welEditable) {
+              sendFile(files[0], editor, welEditable);
+          }
+        }
+         
         });
+        function sendFile(file,editor,welEditable){
+          var lib_url = "{{ route('admin.upload.image')}}";
+          data = new FormData();
+          data.append("file", file);
+          $.ajax({
+            data: data,
+            type: "POST",
+            headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            url: lib_url,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function(url) {
+                // console.log(url);
+                var image = $('<img>').attr('src', url);
+                $('#summernote').summernote("insertNode", image[0]);
+            }
+          });
+        
+        }
       });
     </script>
     

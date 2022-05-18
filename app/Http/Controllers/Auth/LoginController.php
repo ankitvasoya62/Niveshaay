@@ -12,6 +12,8 @@ use App\Models\User;
 use Str;
 use Illuminate\Support\Facades\Validator;
 use App\Models\NewsletterUser;
+use File;
+use Image;
 
 class LoginController extends Controller
 {
@@ -87,7 +89,31 @@ class LoginController extends Controller
                 $username_cookie_value = $authUserName;
                 setcookie($profile_photocookie_name,$profile_cookie_value, time() + (86400 * 30), "/"); //name,value,time,url
                 setcookie($username_cookie,$username_cookie_value, time() + (86400 * 30), "/"); //name,value,time,url
+                try{
+                    $destinationPath = public_path("userwatermark/$authUser->id");
+                
+                    if(!File::exists($destinationPath)) {
+                        File::makeDirectory($destinationPath, 0777, true, true);
+                        $img = Image::canvas(800, 600);
+                    // $img = Image::make(public_path("image.jpg"));
+                        $img->text($authUser->email,200,320,function($font){
+                            $font->file(public_path("fonts/OpenSans-Regular.ttf"));
+                            $font->size(40);
+                            $font->color([0,0,0,0.3]);
+                            $font->align("center");
+                            $font->valign("top");
+                            $font->angle(45);
+                        });
+                        $filename = $authUser->id.".png";
+                        $img->save(public_path("userwatermark/$authUser->id/".$filename));
+                    }
 
+                    
+
+                    
+                }catch(\Exception $e){
+
+                }
                 // dd($_COOKIE["user"]);
                 $success = ['success'=>1];
             return response()->json($success);
