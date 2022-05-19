@@ -87,6 +87,7 @@
                         <span class="error">{{$message}}</span>
                     @enderror
                   </div>
+                  @if($upload_type == 0)
                   <div class="row">
                     <div class="col-md-3">
                       <div class="form-group">
@@ -98,7 +99,7 @@
                       </div>
                     </div>
                   </div>
-                  
+                  @endif
                   
                   <div class="form-group">
                     <label for="description">Short Description</label>
@@ -107,6 +108,7 @@
                         <span class="error">{{$message}}</span>
                     @enderror
                   </div>
+                  @if($upload_type == 0)
                   <div class="form-group">
                     <label for="exampleInputFile">Report Image</label>
                     
@@ -117,7 +119,7 @@
                         <span class="error">{{$message}}</span>
                     @enderror
                   </div>
-                   
+                   @endif
                   @if($upload_type == 0)
                     <div class="row">
                       <div class="col-md-6">
@@ -293,7 +295,7 @@
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                   <button type="submit" class="btn btn-info" name="draft">Save as a Draft</button>
-                  <button type="button" class="btn btn-danger" onclick="window.history.back();" style="margin: 5px;">Cancel</button>
+                  <button type="button" class="btn btn-danger" onclick="window.history.back();">Cancel</button>
                 </div>
               </form>
             </div>

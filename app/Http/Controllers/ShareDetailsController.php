@@ -91,8 +91,8 @@ class ShareDetailsController extends Controller
                     'share_title'=>'required',
                     // 'share_description'=>'required',
                     'share_logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                    'share_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                    'share_date' => 'required|date',
+                    // 'share_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                    // 'share_date' => 'required|date',
                     // 'share_description'=>'required',
                     'pdf_name' => 'required|mimes:pdf',
                     'short_description'=>'required'
@@ -100,7 +100,7 @@ class ShareDetailsController extends Controller
         
                 $share = new ShareDetails;
                 $share->share_title = $request->share_title;
-                $share->share_date = $request->share_date;
+                //$share->share_date = $request->share_date;
                 
                 //$share->share_description = $request->share_description;
                 
@@ -122,14 +122,14 @@ class ShareDetailsController extends Controller
                         $sharelogo->move(public_path('images/share-logo'),$shareLogoName);
                         $share->share_logo = $shareLogoName;
                     }
-                    if($request->file('share_image')){
-                        $shareimage = $request->file('share_image');
-                        $imageFileExt = $shareimage->getClientOriginalName();
-                        $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
-                        $shareImageName = str_replace(" ", "_", $imageFileName).'_' .time().".".$shareimage->extension();
-                        $shareimage->move(public_path('images/share-images'),$shareImageName);
-                        $share->share_image = $shareImageName;
-                    }
+                    // if($request->file('share_image')){
+                    //     $shareimage = $request->file('share_image');
+                    //     $imageFileExt = $shareimage->getClientOriginalName();
+                    //     $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
+                    //     $shareImageName = str_replace(" ", "_", $imageFileName).'_' .time().".".$shareimage->extension();
+                    //     $shareimage->move(public_path('images/share-images'),$shareImageName);
+                    //     $share->share_image = $shareImageName;
+                    // }
                     if($request->file('pdf_name')){
                         $destinationPath = public_path('pdf');
                         if(!File::exists($destinationPath)) {
@@ -162,8 +162,9 @@ class ShareDetailsController extends Controller
         }else if ($request->has('draft')) {
             $share = new ShareDetails;
             $share->share_title = $request->share_title;
-            $share->share_date = $request->share_date;
+            
             if($upload_type == 0){
+                $share->share_date = $request->share_date;
                 $share->share_industry = $request->share_industry;
                 $share->share_cmp = $request->share_cmp;
                 $share->share_market_cap = $request->share_market_cap;
@@ -200,14 +201,17 @@ class ShareDetailsController extends Controller
                     $sharelogo->move(public_path('images/share-logo'),$shareLogoName);
                     $share->share_logo = $shareLogoName;
                 }
-                if($request->file('share_image')){
-                    $shareimage = $request->file('share_image');
-                    $imageFileExt = $shareimage->getClientOriginalName();
-                    $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
-                    $shareImageName = str_replace(" ", "_", $imageFileName).'_' .time().".".$shareimage->extension();
-                    $shareimage->move(public_path('images/share-images'),$shareImageName);
-                    $share->share_image = $shareImageName;
+                if($upload_type == 0){
+                    if($request->file('share_image')){
+                        $shareimage = $request->file('share_image');
+                        $imageFileExt = $shareimage->getClientOriginalName();
+                        $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
+                        $shareImageName = str_replace(" ", "_", $imageFileName).'_' .time().".".$shareimage->extension();
+                        $shareimage->move(public_path('images/share-images'),$shareImageName);
+                        $share->share_image = $shareImageName;
+                    }
                 }
+                
                 if($upload_type == 1){
                     if($request->file('pdf_name')){
                         $destinationPath = public_path('pdf');
@@ -255,28 +259,29 @@ class ShareDetailsController extends Controller
             if($share->share_status == 0){
                 $validateArray = [
                     'share_title'=>'required',
-                    
-                    'share_date' => 'required|date',
-                    
                     'short_description'=>'required'
                 ];
                 if($share->upload_type == 0){
                     $validateArray['share_description'] = 'required';
+                    if(empty($share->share_image)){
+                        $validateArray['share_image'] = 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048';
+                    }
+                    $validateArray['share_date'] = 'required|date';
                 }
-                if(empty($share->share_image)){
-                    $validateArray['share_image'] = 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048';
-                }
+                
                 if(empty($share->share_logo)){
                     $validateArray['share_logo'] = 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048';
                 }
                 $this->validate($request,$validateArray); 
             }
-            $share_previous_image = $share->share_image;
+            
             $share_previous_logo = $share->share_logo;
             $share->share_title = $request->share_title;
-            $share->share_date = $request->share_date;
+            
 
             if($share->upload_type == 0){
+                $share->share_date = $request->share_date;
+                $share_previous_image = $share->share_image;
                 $share->share_industry = $request->share_industry;
                 $share->share_cmp = $request->share_cmp;
                 $share->share_market_cap = $request->share_market_cap;
@@ -310,15 +315,18 @@ class ShareDetailsController extends Controller
                     $share->share_logo = $shareLogoName;
                     @unlink(public_path('images/share-logo')."/".$share_previous_logo);
                 }
-                if($request->file('share_image')){
-                    $shareimage = $request->file('share_image');
-                    $imageFileExt = $shareimage->getClientOriginalName();
-                    $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
-                    $shareImageName = str_replace(" ", "_", $imageFileName).'_' .time().".".$shareimage->extension();
-                    $shareimage->move(public_path('images/share-images'),$shareImageName);
-                    $share->share_image = $shareImageName;
-                    @unlink(public_path('images/share-images')."/".$share_previous_image);
+                if($share->upload_type == 0 ){
+                    if($request->file('share_image')){
+                        $shareimage = $request->file('share_image');
+                        $imageFileExt = $shareimage->getClientOriginalName();
+                        $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
+                        $shareImageName = str_replace(" ", "_", $imageFileName).'_' .time().".".$shareimage->extension();
+                        $shareimage->move(public_path('images/share-images'),$shareImageName);
+                        $share->share_image = $shareImageName;
+                        @unlink(public_path('images/share-images')."/".$share_previous_image);
+                    }
                 }
+               
                 if($share->upload_type == 1){
                     if($request->file('pdf_name')){
                         $destinationPath = public_path('pdf');
@@ -342,11 +350,13 @@ class ShareDetailsController extends Controller
             $share->save();
             return redirect()->route('admin.share')->with('success','Report Uploaded Successfully!');
         }else if ($request->has('draft')) {
-            $share_previous_image = $share->share_image;
+           
             $share_previous_logo = $share->share_logo;
             $share->share_title = $request->share_title;
-            $share->share_date = $request->share_date;
+            
             if($share->upload_type == 0){
+                $share_previous_image = $share->share_image;
+                $share->share_date = $request->share_date;
                 $share->share_industry = $request->share_industry;
                 $share->share_cmp = $request->share_cmp;
                 $share->share_market_cap = $request->share_market_cap;
@@ -380,15 +390,18 @@ class ShareDetailsController extends Controller
                     $share->share_logo = $shareLogoName;
                     @unlink(public_path('images/share-logo')."/".$share_previous_logo);
                 }
-                if($request->file('share_image')){
-                    $shareimage = $request->file('share_image');
-                    $imageFileExt = $shareimage->getClientOriginalName();
-                    $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
-                    $shareImageName = str_replace(" ", "_", $imageFileName).'_' .time().".".$shareimage->extension();
-                    $shareimage->move(public_path('images/share-images'),$shareImageName);
-                    $share->share_image = $shareImageName;
-                    @unlink(public_path('images/share-images')."/".$share_previous_image);
+                if($share->upload_type == 0){
+                    if($request->file('share_image')){
+                        $shareimage = $request->file('share_image');
+                        $imageFileExt = $shareimage->getClientOriginalName();
+                        $imageFileName = pathinfo($imageFileExt, PATHINFO_FILENAME);
+                        $shareImageName = str_replace(" ", "_", $imageFileName).'_' .time().".".$shareimage->extension();
+                        $shareimage->move(public_path('images/share-images'),$shareImageName);
+                        $share->share_image = $shareImageName;
+                        @unlink(public_path('images/share-images')."/".$share_previous_image);
+                    }
                 }
+                
                 if($share->upload_type == 1){
                     if($request->file('pdf_name')){
                         $destinationPath = public_path('pdf');

@@ -29,6 +29,8 @@ class ShareDetails extends Model
         'mutual_funds',
         'fiis',
         'share_status',
+        'upload_type',
+        'pdf_name',
         'status'
         
     ];

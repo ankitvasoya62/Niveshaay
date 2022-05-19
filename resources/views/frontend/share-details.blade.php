@@ -13,9 +13,21 @@
         <div class="research-image-grid">
             @foreach ($latest_addition as $share )
             <div class="research-item">
-                <a href="{{ route('frontend.view.share',$share->id) }}" class="research-item-inner">
-                    <img src="{{ asset('images/share-logo/'.$share->share_logo)}}" alt="research-icons">
-                </a>
+                @if($share->upload_type == 0)
+                    <a href="{{ route('frontend.view.share',$share->id) }}" class="research-item-inner">
+                        <img src="{{ asset('images/share-logo/'.$share->share_logo)}}" alt="research-icons">
+                    </a>
+                @else
+                    @if($share->copy_to_our_research == 1)
+                        <a href="{{ asset('pdf/'.$share->pdf_name) }}" class="research-item-inner" target="_blank">
+                            <img src="{{ asset('images/share-logo/'.$share->share_logo)}}" alt="research-icons">
+                        </a>
+                    @else
+                        <a href="{{ route('frontend.generate-pdfwatermark',$share->id) }}" class="research-item-inner" target="_blank">
+                            <img src="{{ asset('images/share-logo/'.$share->share_logo)}}" alt="research-icons">
+                        </a>
+                    @endif
+                @endif
             </div>    
             @endforeach
             
@@ -28,7 +40,21 @@
             @foreach ($current_recommendation as $share)
                 <div class="research-item">
                     <div class="research-item-inner">
-                        <a href="{{ route('frontend.view.share',$share->id) }}"><img src="{{ asset('images/share-logo/'.$share->share_logo)}}" alt="research-icons"></a>
+                        @if($share->upload_type == 0)
+                            <a href="{{ route('frontend.view.share',$share->id) }}" class="research-item-inner">
+                                <img src="{{ asset('images/share-logo/'.$share->share_logo)}}" alt="research-icons">
+                            </a>
+                        @else
+                            @if($share->copy_to_our_research == 1)
+                                <a href="{{ asset('pdf/'.$share->pdf_name) }}" class="research-item-inner" target="_blank">
+                                    <img src="{{ asset('images/share-logo/'.$share->share_logo)}}" alt="research-icons">
+                                </a>
+                            @else
+                                <a href="{{ route('frontend.generate-pdfwatermark',$share->id) }}" class="research-item-inner" target="_blank">
+                                    <img src="{{ asset('images/share-logo/'.$share->share_logo)}}" alt="research-icons">
+                                </a>
+                            @endif
+                        @endif
                     </div>
                 </div>    
             @endforeach
@@ -41,7 +67,21 @@
             @foreach ($past_recommendation as $share)
             <div class="research-item">
                 <div class="research-item-inner">
-                    <a href="{{ route('frontend.view.share',$share->id) }}"><img src="{{ asset('images/share-logo/'.$share->share_logo)}}" alt="research-icons"></a>
+                    @if($share->upload_type == 0)
+                        <a href="{{ route('frontend.view.share',$share->id) }}" class="research-item-inner">
+                            <img src="{{ asset('images/share-logo/'.$share->share_logo)}}" alt="research-icons">
+                        </a>
+                    @else
+                        @if($share->copy_to_our_research == 1)
+                            <a href="{{ asset('pdf/'.$share->pdf_name) }}" class="research-item-inner" target="_blank">
+                                <img src="{{ asset('images/share-logo/'.$share->share_logo)}}" alt="research-icons">
+                            </a>
+                        @else
+                            <a href="{{ route('frontend.generate-pdfwatermark',$share->id) }}" class="research-item-inner" target="_blank">
+                                <img src="{{ asset('images/share-logo/'.$share->share_logo)}}" alt="research-icons">
+                            </a>
+                        @endif
+                    @endif
                 </div>
             </div>
             @endforeach

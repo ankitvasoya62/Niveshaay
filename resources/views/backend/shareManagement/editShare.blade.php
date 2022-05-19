@@ -93,6 +93,7 @@
                         <span class="error">{{$message}}</span>
                     @enderror
                   </div>
+                  @if($share->upload_type == 0)
                   <div class="row">
                     <div class="col-md-3">
                       <div class="form-group">
@@ -104,7 +105,7 @@
                       </div>  
                     </div>
                   </div>
-                  
+                  @endif
                   
                   <div class="form-group">
                     <label for="description">Short Description</label>
@@ -113,7 +114,7 @@
                         <span class="error">{{$message}}</span>
                     @enderror
                   </div>
-                  
+                  @if($share->upload_type == 0)
                   <div class="form-group">
                     <label for="exampleInputFile">Report Image</label>
                     
@@ -127,6 +128,7 @@
                   <div class="form-group">
                     <img src="{{asset('images/share-images/'.$share->share_image)}}" width="150px" alt="">
                   </div>
+                  @endif
 
                   @if($share->upload_type == 0)
                   <div class="row">
@@ -316,7 +318,7 @@
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary" name="submit">Update</button>
                   <button type="submit" class="btn btn-info" name="draft">Save as a Draft</button>
-                  <button type="button" class="btn btn-danger" onclick="window.history.back();" style="margin: 5px;">Cancel</button>
+                  <button type="button" class="btn btn-danger" onclick="window.history.back();">Cancel</button>
                 </div>
               </form>
             </div>

@@ -23,6 +23,9 @@
 .profile-section .profile-info .table-outer-wrapper .table-wrapper .table thead th{font-family:'open-sans',sans-serif;font-size:18px;font-weight:600;text-align:left;color:#3b3b3b;padding:17px 21px;background-color:#fafafa;}
 .profile-section .profile-info .table-outer-wrapper .table-wrapper .table tr{border-bottom:1px solid #e1e1e1;}
 .profile-section .profile-info .table-outer-wrapper .table-wrapper .table tbody td{color:#3b3b3b;font-size:16px;padding:15px 21px;text-align:left;font-family:'open-sans',sans-serif;}
+input[readonly]{
+    background-color: #f6f6f6 !important;
+}
 
 /* media css */
 @media(max-width:1280px){

@@ -372,10 +372,7 @@ class HomeController extends Controller
     public function viewShare($id){
         
         $share = ShareDetails::find($id);
-        // dd(route());
-        // dd(Route::getCurrentRoute()->getPath());
-        // dd(URL::current() == URL::previous());
-        // dd(Route::current()->getName());
+        
         $active = "view-share";
         if($share->copy_to_our_research == 1){
             return view('frontend.view-share',compact('active','share'));
@@ -420,7 +417,32 @@ class HomeController extends Controller
        
         
     }
-
+    public function generatewatermarkpdf($id){
+        $share = ShareDetails::find($id);
+        if($share->upload_type == 1){
+            $destinationPath = public_path("userpdf");
+                
+            if(!File::exists($destinationPath)) {
+                File::makeDirectory($destinationPath, 0777, true, true);
+            }
+            $authUser = Auth::user();
+            $outputpdf = public_path("userpdf/".$share->id.".pdf");
+            $inputpdf = public_path('pdf/'.$share->pdf_name) ;
+            $watermarkfile = public_path("userwatermark/$authUser->id/".$authUser->id.".png");
+            $watermarker = new PdfWatermarker(
+                $inputpdf, // input
+                $outputpdf, // outputpublic\
+                $watermarkfile, // watermark file
+                'center', // watermark position (topleft, topright, bottomleft, bottomright, center)
+                false // set to true - replace original input file
+            );
+            $watermarker->create();
+            
+            return response()->file($outputpdf);
+        }else{
+            return redirect()->route('frontend.view.share',$share->id);
+        }
+    }
     public function subscribeviewshare(){
         // dd("hoo");
     }

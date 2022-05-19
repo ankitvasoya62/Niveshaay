@@ -71,6 +71,7 @@
 						<div class="list-inner-wrapper">
 							@foreach ($researches as $research)
 								<div class="list-item-wrapper">
+									@if($research->upload_type == 0)
 									<a href="{{ route('frontend.view.share',$research->id) }}" class="list-item-link">
 										<div class="list-item">
 											<div class="item-img-wrapper">
@@ -87,6 +88,25 @@
 											</div>
 										</div>
 									</a>
+									@else
+									<a href="{{ asset('pdf/'.$research->pdf_name) }}" target="_blank" class="list-item-link">
+										<div class="list-item">
+											<div class="item-img-wrapper">
+												<img src="{{asset('images/share-logo/'.$research->share_logo)}}" alt="McClintock eye">
+											</div>
+											<div class="item-content-wrapper">
+												<h3>{{ $research->share_title}}</h3>
+												<div class="item-inner-content">
+													
+													{{-- <p>{!! $research->description !!}</p> --}}
+													<p>{{ Str::limit($research->short_description,50,' ...') }}</p>
+													<span><a href="{{ asset('pdf/'.$research->pdf_name) }}" target="_blank">Read More</a></span>
+												</div>
+											</div>
+										</div>
+									</a>
+										
+									@endif
 								</div>	
 							@endforeach
 							

@@ -148,6 +148,7 @@
                 e.stopImmediatePropagation();
             }  
         });
+        jQuery("table").wrap("<div class='table-responsive'></div>");
         // var frame = jQuery('#disablingiframe');
         // var contents = frame.contents();
         // var body = contents.find('body').attr('oncontextmenu',"return false;");

@@ -186,21 +186,21 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/newsletter/user/active/{id}',[NewsLetterManagementController::class,'activenewsletteruser'])->name('admin.newsletter.active.user');
         Route::get('/newsletter/user/deactive/{id}',[NewsLetterManagementController::class,'deactivenewsletteruser'])->name('admin.newsletter.deactive.user');
     });
-    Route::middleware(['subscription_expired'])->group(function () {
-        Route::get('/profile',[HomeController::class, 'userProfile'])->name('frontend.profile');
-        Route::post('/edit/profile',[HomeController::class, 'editProfile'])->name('frontend.editprofile');
-        Route::middleware('is_payment_received')->group(function () {
-            Route::get('/dashboard',[HomeController::class,'shareDetail'])->name('frontend.share-detail');
+    // Route::middleware(['subscription_expired'])->group(function () {
+    //     Route::get('/profile',[HomeController::class, 'userProfile'])->name('frontend.profile');
+    //     Route::post('/edit/profile',[HomeController::class, 'editProfile'])->name('frontend.editprofile');
+    //     Route::middleware('is_payment_received')->group(function () {
+    //         Route::get('/dashboard',[HomeController::class,'shareDetail'])->name('frontend.share-detail');
             
-        });
+    //     });
         
-    });
-    Route::get('/subscription-form',[SubscriptionDetailsController::class,'subscriptionForm'])->name('frontend.subscriptionForm');
-    Route::post('/store/subscription-detail',[SubscriptionDetailsController::class,'storeDetails'])->name('store.subscription-details');
-    Route::get('/advisor-agreement',[SubscriptionDetailsController::class,'advisorAgreement'])->name('frontend.advisor-agreement');
-    Route::get('/research-dashboard',[HomeController::class, 'researchDashboard'])->name('frontend.research-dashboard');
-    Route::post('/sendOtp',[SubscriptionDetailsController::class,'sendOtp'])->name('frontend.sendotp');
-    Route::post('/verifyOtp',[SubscriptionDetailsController::class,'verifyOtp'])->name('frontend.verifyotp');
+    // });
+    // Route::get('/subscription-form',[SubscriptionDetailsController::class,'subscriptionForm'])->name('frontend.subscriptionForm');
+    // Route::post('/store/subscription-detail',[SubscriptionDetailsController::class,'storeDetails'])->name('store.subscription-details');
+    // Route::get('/advisor-agreement',[SubscriptionDetailsController::class,'advisorAgreement'])->name('frontend.advisor-agreement');
+    // Route::get('/research-dashboard',[HomeController::class, 'researchDashboard'])->name('frontend.research-dashboard');
+    // Route::post('/sendOtp',[SubscriptionDetailsController::class,'sendOtp'])->name('frontend.sendotp');
+    // Route::post('/verifyOtp',[SubscriptionDetailsController::class,'verifyOtp'])->name('frontend.verifyotp');
     
 });
 Route::middleware('auth')->group(function () {
@@ -211,7 +211,7 @@ Route::middleware('auth')->group(function () {
             Route::post('/edit/profile',[HomeController::class, 'editProfile'])->name('frontend.editprofile');
             Route::middleware('is_payment_received')->group(function () {
                 Route::get('/dashboard',[HomeController::class,'shareDetail'])->name('frontend.share-detail');
-                
+                Route::get('/pdfreport/{id}',[HomeController::class,'generatewatermarkpdf'])->name('frontend.generate-pdfwatermark');
             });
             
         });

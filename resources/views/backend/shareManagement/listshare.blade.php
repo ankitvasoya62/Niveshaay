@@ -87,7 +87,12 @@
                                         
                                         <td>
                                             @if ($share->share_status == 0)
-                                            <a href="{{ route('admin.view.report',$share->id)}}" class="btn btn-primary" target="_blank"><i class="fas fa-eye"></i></a>    
+                                            
+                                                @if($share->upload_type == 0 )
+                                                    <a href="{{ route('admin.view.report',$share->id)}}" class="btn btn-primary" target="_blank"><i class="fas fa-eye"></i></a>    
+                                                @else
+                                                    <a href="{{ asset('pdf/'.$share->pdf_name) }}" target="_blank">{{ $share->pdf_name }}</a>
+                                                @endif
                                             @endif
                                             
                                             <a href="{{route('admin.edit.share',$share->id)}}" class="btn btn-info" title="Edit"><i class="fas fa-edit"></i></a>
