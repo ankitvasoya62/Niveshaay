@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ShareDetails;
 use File;
+use Illuminate\Support\Facades\Validator;
 
 class ShareDetailsController extends Controller
 {
@@ -22,17 +23,43 @@ class ShareDetailsController extends Controller
 
     public function storeShare(Request $request,$upload_type){
         // dd($request);
+        // return $request->has('submit');
         if($request->has('submit')){
+            
             if($upload_type == 0){
-                $this->validate($request,[
-                    'share_title'=>'required',
-                    'share_description'=>'required',
-                    'share_logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                    'share_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                    'share_date' => 'required|date',
-                    'share_description'=>'required',
-                    'short_description'=>'required'
-                ]);
+                $validator = Validator::make(
+                    $request->all(), [
+                        'share_title'=>'required',
+                        'share_description'=>'required',
+                        'share_logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+
+                    ],[
+                        'share_title.required'=> "Title field is required",
+                        'share_description.required'=> "Description field is required",
+                        'share_logo.required'=> "Company logo field is required",
+                        'share_logo.mimes'=>"Please upload file having extensions .jpeg/.jpg/.png/.gif only."
+                        
+                    ]
+                );
+                if($validator->fails()){
+                    
+                    $errors = ['success'=>0,'message'=>$validator->errors()];
+                    return response()->json($errors);
+                }
+                // $this->validate($request,[
+                //     'share_title'=>'required',
+                //     'share_description'=>'required',
+                //     'share_logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                //     'share_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                //     'share_date' => 'required|date',
+                    
+                // ],[
+                //     'share_title.required'=> "Title field is required",
+                //     'share_description.required'=> "Description field is required",
+                //     'share_logo.required'=> "Company logo field is required",
+                //     'share_image.required'=> "Report image field is required",
+                //     'share_date.required'=> "Initiating coverage date field is required"
+                // ]);
         
                 $share = new ShareDetails;
                 $share->share_title = $request->share_title;
@@ -76,7 +103,9 @@ class ShareDetailsController extends Controller
                     }
                     
                 }catch(\Exception $e){
-                    return redirect()->back()->with('error',$e->getMessage());
+                    // return redirect()->back()->with('error',$e->getMessage());
+                    $errors = ['success'=>0,'message'=>$e->getMessage()];
+                    return response()->json($errors);
                 }
                 $share->mutual_funds = $request->mutual_funds;
                 $share->fiis = $request->fiis;
@@ -87,16 +116,39 @@ class ShareDetailsController extends Controller
                 // $share->share_description = $shareDescriptionName;
                 $share->save();
             }else{
-                $this->validate($request,[
-                    'share_title'=>'required',
-                    // 'share_description'=>'required',
-                    'share_logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                    // 'share_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                    // 'share_date' => 'required|date',
-                    // 'share_description'=>'required',
-                    'pdf_name' => 'required|mimes:pdf',
-                    'short_description'=>'required'
-                ]);
+                // $this->validate($request,[
+                //     'share_title'=>'required',
+                //     // 'share_description'=>'required',
+                //     'share_logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                //     // 'share_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                //     // 'share_date' => 'required|date',
+                //     // 'share_description'=>'required',
+                //     'pdf_name' => 'required|mimes:pdf',
+                //     // 'short_description'=>'required'
+                // ]);
+                $validator = Validator::make(
+                    $request->all(), [
+                        'share_title'=>'required',
+                        // 'share_description'=>'required',
+                        'share_logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                        // 'share_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                        // 'share_date' => 'required|date',
+                        // 'share_description'=>'required',
+                        'pdf_name' => 'required|mimes:pdf',
+                        // 'short_description'=>'required'
+                    ],[
+                        'share_title.required'=> "Title field is required",
+                        
+                        'share_logo.required'=> "Company logo field is required",
+                        
+                        'pdf_name.required'=> "PDF field is required"
+                    ]
+                );
+                if($validator->fails()){
+                    
+                    $errors = ['success'=>0,'message'=>$validator->errors()];
+                    return response()->json($errors);
+                }
         
                 $share = new ShareDetails;
                 $share->share_title = $request->share_title;
@@ -157,8 +209,10 @@ class ShareDetailsController extends Controller
                 // $share->share_description = $shareDescriptionName;
                 $share->save();    
             }
-            
-            return redirect()->route('admin.share')->with('success','Report Uploaded Successfully!');
+            $success = ['success'=>1];
+            session()->flash('success','Report Uploaded Successfully!');
+            return response()->json($success); 
+            //return redirect()->route('admin.share')->with('success','Report Uploaded Successfully!');
         }else if ($request->has('draft')) {
             $share = new ShareDetails;
             $share->share_title = $request->share_title;
@@ -239,7 +293,10 @@ class ShareDetailsController extends Controller
             
             $share->share_status = "0";
             $share->save();
-            return redirect()->route('admin.share')->with('success','Draft Created Successfully!');
+            $success = ['success'=>1];
+            session()->flash('success','Draft Created Successfully!');
+            return response()->json($success);
+            //return redirect()->route('admin.share')->with('success','Draft Created Successfully!');
         }
         return redirect()->route('admin.share');
         
@@ -259,20 +316,27 @@ class ShareDetailsController extends Controller
             if($share->share_status == 0){
                 $validateArray = [
                     'share_title'=>'required',
-                    'short_description'=>'required'
+                    // 'short_description'=>'required'
                 ];
-                if($share->upload_type == 0){
-                    $validateArray['share_description'] = 'required';
-                    if(empty($share->share_image)){
-                        $validateArray['share_image'] = 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048';
-                    }
-                    $validateArray['share_date'] = 'required|date';
-                }
+                
                 
                 if(empty($share->share_logo)){
                     $validateArray['share_logo'] = 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048';
                 }
-                $this->validate($request,$validateArray); 
+                $validator = Validator::make(
+                    $request->all(), $validateArray,[
+                        'share_title.required'=> "Title field is required",
+                        
+                        'share_logo.required'=> "Company logo field is required",
+                        'share_logo.mimes'=>"Please upload file having extensions .jpeg/.jpg/.png/.gif only."
+                    ]
+                );
+                if($validator->fails()){
+                    
+                    $errors = ['success'=>0,'message'=>$validator->errors()];
+                    return response()->json($errors);
+                }
+                // $this->validate($request,$validateArray); 
             }
             
             $share_previous_logo = $share->share_logo;
@@ -342,13 +406,17 @@ class ShareDetailsController extends Controller
                     }
                 }
             }catch(\Exception $e){
-                return redirect()->back()->with('error',$e->getMessage());
+                $errors = ['success'=>0,'message'=>$e->getMessage()];
+                return response()->json($errors);
             }
             
             $share->share_status = "1";
             
             $share->save();
-            return redirect()->route('admin.share')->with('success','Report Uploaded Successfully!');
+            $success = ['success'=>1];
+            session()->flash('success','Report Uploaded Successfully!');
+            return response()->json($success);
+            //return redirect()->route('admin.share')->with('success','Report Uploaded Successfully!');
         }else if ($request->has('draft')) {
            
             $share_previous_logo = $share->share_logo;
@@ -423,9 +491,12 @@ class ShareDetailsController extends Controller
            
             $share->share_status = "0";            
             $share->save();
-            return redirect()->route('admin.share')->with('success','Draft Updated Successfully!');
+            session()->flash('success','Draft Updated Successfully!');
+            $success = ['success'=>1];
+            return response()->json($success);
         }
-        return redirect()->route('admin.share')->with('success','Report Uploaded Successfully!');
+        $success = ['success'=>1];
+        return response()->json($success);
     }
 
     public function deleteShare($id){

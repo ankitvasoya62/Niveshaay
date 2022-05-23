@@ -59,7 +59,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="quickForm" method="POST" action="{{route('admin.update.share',$share->id)}}" enctype="multipart/form-data">
+              <form id="quickForm" class="update-report-form" method="POST" action="{{route('admin.update.share',$share->id)}}" enctype="multipart/form-data">
               @csrf
                 <div class="card-body">
                     <div class="form-group">
@@ -73,15 +73,11 @@
                     </div>
                   <div class="form-group">
                     <label for="exampleInputFile">Company Logo</label>
-                    
-                      
-                        <input type="file" class="form-control" id="shareLogo" name="share_logo">
-                      
-                    
-                    
+                    <input type="file" class="form-control" id="shareLogo" name="share_logo">
                     @error('share_logo')
-                        <span class="error">{{$message}}</span>
+                        <span class="error">{{str_replace("share ","",$message)}}</span>
                     @enderror
+                    <span class="error logo-error"></span>
                   </div>
                   <div class="form-group">
                     <img src="{{asset('images/share-logo/'.$share->share_logo)}}" width="150px" alt="">
@@ -90,8 +86,9 @@
                     <label for="name">Title</label>
                     <input type="text" name="share_title" class="form-control" id="share_title" placeholder="Enter Title" value="{{ !empty(old('share_title')) ? old('share_title') : $share->share_title }}" >
                     @error('share_title')
-                        <span class="error">{{$message}}</span>
+                        <span class="error">{{str_replace("share ","",$message)}}</span>
                     @enderror
+                    <span class="error title-error"></span>
                   </div>
                   @if($share->upload_type == 0)
                   <div class="row">
@@ -100,8 +97,9 @@
                         <label for="name">Initiating Coverage Date</label>
                         <input type="date" name="share_date" class="form-control" id="share_date" placeholder="Enter Title" value="{{ !empty(old('share_date')) ? old('share_date') : $share->share_date }}"  max="9999-12-31">
                         @error('share_date')
-                            <span class="error">{{$message}}</span>
+                            <span class="error">{{str_replace("share ","",$message)}}</span>
                         @enderror
+                        <span class="error date-error"></span>
                       </div>  
                     </div>
                   </div>
@@ -116,14 +114,15 @@
                   </div>
                   @if($share->upload_type == 0)
                   <div class="form-group">
-                    <label for="exampleInputFile">Report Image</label>
+                    <label for="report-image">Report Image</label>
                     
-                    <input type="file"  class="form-control" id="exampleInputFile" name="share_image">
+                    <input type="file"  class="form-control" id="report-image" name="share_image">
                         
                      
                     @error('share_image')
-                        <span class="error">{{$message}}</span>
+                      <span class="error">{{str_replace("share ","",$message)}}</span>
                     @enderror
+                    <span class="error image-error"></span>
                   </div>
                   <div class="form-group">
                     <img src="{{asset('images/share-images/'.$share->share_image)}}" width="150px" alt="">
@@ -269,17 +268,18 @@
                     <textarea name="share_description" class="form-control" id="summernote" rows="5" cols="20" placeholder="Describe your title here...">{{ !empty(old('share_description')) ? old('share_description') : $share->share_description}}</textarea>
                     {{-- <input type="file" name="share_description" class="form-control" accept="application/pdf"> --}}
                     @error('share_description')
-                        <span class="error">{{$message}}</span>
+                        <span class="error">{{str_replace("share ","",$message)}}</span>
                     @enderror
                   </div>
                   @else
                   <div class="form-group">
                     <label for="description">Upload pdf</label>
                     {{-- <textarea name="share_description" class="form-control" id="summernote" rows="5" cols="20" placeholder="Describe your title here...">{{ !empty(old('share_description')) ? old('share_description') : $share->share_description}}</textarea> --}}
-                    <input type="file" name="pdf_name" class="form-control" accept="application/pdf">
+                    <input type="file" name="pdf_name" class="form-control" id="upload_pdf" accept="application/pdf">
                     @error('pdf_name')
-                        <span class="error">{{$message}}</span>
+                        <span class="error">{{str_replace("pdf_name","pdf",$message)}}</span>
                     @enderror
+                    <span class="error pdf-error"></span>
                   </div>
                   <div class="form-group">
                     <a href="{{ asset('pdf/'.$share->pdf_name) }}" target="_blank">{{ $share->pdf_name }}</a>
@@ -316,8 +316,8 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Update</button>
-                  <button type="submit" class="btn btn-info" name="draft">Save as a Draft</button>
+                  <button type="button" class="btn btn-primary report-submit" name="submit">Update</button>
+                  <button type="button" class="btn btn-info report-draft" name="draft">Save as a Draft</button>
                   <button type="button" class="btn btn-danger" onclick="window.history.back();">Cancel</button>
                 </div>
               </form>
@@ -387,6 +387,196 @@
           });
         
         }
+
+        // @if($share->upload_type == 1)
+
+        //   $('.report-submit').click(function(){
+        //     $('.title-error').text('');
+        //     $('.logo-error').text('');
+        //     $('.pdf-error').text('');
+        //     var intJ = 0;
+        //     if($('[name="share_title"]').val() == ''){
+        //       $('[name="share_title"]').focus();
+        //       $('.title-error').text('Title field is required');
+        //       intJ = 1;
+        //     }
+        //     @if(empty($share->share_logo))
+        //     var fileInput = document.getElementById('shareLogo');
+        //     var filePath = fileInput.value;
+        //     var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+        //     if(filePath){
+        //       if(!allowedExtensions.exec(filePath)){
+        //         $('.logo-error').text('Please upload file having extensions .jpeg/.jpg/.png/.gif only.');
+        //         //alert('Please upload file having extensions .jpeg/.jpg/.png/.gif only.');
+        //         fileInput.value = '';
+        //         intJ = 1;
+        //       }
+        //     }else{
+        //       $('.logo-error').text('Logo field is required');
+        //       // alert('Logo field is required');
+        //       intJ = 1;
+        //     }
+        //     @endif
+
+        //     @if(empty($share->pdf_name))
+        //     var fileInput = document.getElementById('upload_pdf');
+        //     var filePath = fileInput.value;
+        //     var allowedExtensions = /(\.pdf)$/i;
+        //     if(filePath){
+        //       if(!allowedExtensions.exec(filePath)){
+        //         $('.pdf-error').text('Please upload file having extensions .pdf only.');
+        //         //alert('Please upload file having extensions .jpeg/.jpg/.png/.gif only.');
+        //         fileInput.value = '';
+        //         intJ = 1;
+        //       }
+        //     }else{
+        //       $('.pdf-error').text('PDF field is required');
+        //       intJ = 1;
+        //     }
+        //     @endif
+        //     if(intJ == 1){
+        //       return false;
+        //     }else{
+        //       return true;
+        //     }
+            
+        //   });
+        //   @else
+        //     $('.report-submit').click(function(){
+        //         $('.title-error').text('');
+        //         $('.logo-error').text('');
+        //         $('.image-error').text('');
+        //         $('.date-error').text('');
+        //         var intJ = 0;
+        //         if($('[name="share_title"]').val() == ''){
+        //           $('[name="share_title"]').focus();
+        //           $('.title-error').text('Title field is required');
+        //           intJ = 1;
+        //         }
+        //         if($('[name="share_date"]').val() == ''){
+        //           $('[name="share_date"]').focus();
+        //           $('.date-error').text('Initiating coverage date field is required');
+        //           intJ = 1;
+        //         }
+
+        //         @if(empty($share->share_logo))
+        //         var fileInput = document.getElementById('shareLogo');
+        //         var filePath = fileInput.value;
+        //         var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+        //         if(filePath){
+        //           if(!allowedExtensions.exec(filePath)){
+        //             $('.logo-error').text('Please upload file having extensions .jpeg/.jpg/.png/.gif only.');
+        //             //alert('Please upload file having extensions .jpeg/.jpg/.png/.gif only.');
+        //             fileInput.value = '';
+        //             intJ = 1;
+        //           }
+        //         }else{
+        //           $('.logo-error').text('Logo field is required');
+        //           // alert('Logo field is required');
+        //           intJ = 1;
+        //         }
+        //         @endif
+
+        //         @if(empty($share->share_image))
+        //         var fileInput = document.getElementById('report-image');
+        //         var filePath = fileInput.value;
+        //         var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+        //         if(filePath){
+        //           if(!allowedExtensions.exec(filePath)){
+        //             $('.image-error').text('Please upload file having extensions .jpeg/.jpg/.png/.gif only.');
+        //             //alert('Please upload file having extensions .jpeg/.jpg/.png/.gif only.');
+        //             fileInput.value = '';
+        //             intJ = 1;
+        //           }
+        //         }else{
+        //           $('.image-error').text('Report image field is required');
+        //           intJ = 1;
+        //         }
+        //         @endif
+        //         if(intJ == 1){
+        //           return false;
+        //         }else{
+        //           return true;
+        //         }
+                
+        //       });
+        // @endif
+        
+        
+        $('.report-submit').click(function(){
+          var data = new FormData( $( '.update-report-form' )[ 0 ] );
+          data.append('submit','submit');
+          $.ajax({
+            data: data,
+            type: "POST",
+            headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            url: "{{route('admin.update.share',$share->id)}}",
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                // console.log(data);
+                if(data.success == 1){
+                  window.location.href = "{{ route('admin.share') }}";
+                }else{
+                  @if($share->upload_type == 1){
+                      if(data.message.share_title){
+                        $('.title-error').html(data.message.share_title[0]);
+                      }
+                      if(data.message.share_logo){
+                        $('.logo-error').html(data.message.share_logo[0]);
+                      }
+                      if(data.message.pdf_name){
+                        $('.pdf-error').html(data.message.pdf_name[0]);
+                      }
+                  }
+                  @else
+                    if(data.message.share_title){
+                      $('.title-error').html(data.message.share_title[0]);
+                    }
+                    if(data.message.share_logo){
+                      $('.logo-error').html(data.message.share_logo[0]);
+                    }
+                    if(data.message.share_image){
+                      $('.image-error').html(data.message.share_image[0]);
+                    }
+                    if(data.message.share_description){
+                      $('.description-error').html(data.message.share_description[0]);
+                    }
+                    if(data.message.share_date){
+                      $('.date-error').html(data.message.share_date[0]);
+                    }
+                  @endif
+                  
+                  
+                }
+                
+            }
+          });
+        });
+        $('.report-draft').click(function(){
+          var data = new FormData( $( '.update-report-form' )[ 0 ] );
+          data.append('draft','draft');
+          $.ajax({
+            data: data,
+            type: "POST",
+            headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            url: "{{route('admin.update.share',$share->id)}}",
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+              window.location.href = "{{ route('admin.share') }}";  
+    
+                }
+                
+            
+          });
+        });
       });
     </script>
     
