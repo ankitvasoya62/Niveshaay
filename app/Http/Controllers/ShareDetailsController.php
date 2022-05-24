@@ -509,7 +509,7 @@ class ShareDetailsController extends Controller
         $share->delete();  
         @unlink(public_path('images/share-logo')."/".$share_previous_logo);
         @unlink(public_path('images/share-images')."/".$share_previous_image);
-        return redirect()->route('admin.share')->with('success','Share Deleted Successfully!');      
+        return redirect()->route('admin.share')->with('success','Report Deleted Successfully!');      
     }
 
     public function viewShare($id){

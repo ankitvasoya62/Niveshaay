@@ -20,7 +20,7 @@
 					</em>
 					Equity Portfolio Advisory
 					<span class="down-arrow-icon">
-						<?xml version="1.0" encoding="utf-8"?>
+						
 						<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 						<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 							width="18.333px" height="10px" viewBox="246.833 251 18.333 10" enable-background="new 246.833 251 18.333 10"
@@ -38,7 +38,7 @@
 					</em>
 					Research Services
 					<span class="down-arrow-icon">
-						<?xml version="1.0" encoding="utf-8"?>
+						
 						<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 						<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 							width="18.333px" height="10px" viewBox="246.833 251 18.333 10" enable-background="new 246.833 251 18.333 10"
@@ -56,7 +56,7 @@
 					</em>
 					Portfolio Listed on Smallcase
 					<span class="down-arrow-icon">
-						<?xml version="1.0" encoding="utf-8"?>	
+						
 						<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 						<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 							width="18.333px" height="10px" viewBox="246.833 251 18.333 10" enable-background="new 246.833 251 18.333 10"
@@ -74,7 +74,7 @@
 					</em>
 					Family Office Consulting
 					<span class="down-arrow-icon">
-						<?xml version="1.0" encoding="utf-8"?>
+						
 						<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 						<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 							width="18.333px" height="10px" viewBox="246.833 251 18.333 10" enable-background="new 246.833 251 18.333 10"
