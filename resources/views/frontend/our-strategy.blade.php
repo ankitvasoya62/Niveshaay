@@ -242,7 +242,7 @@
 						<ul class="green-dot-listing">
 							<li>Macro Tailwinds in sector </li>
 							<li>Operating Leverage Play </li>
-							<li>Clical Approach </li>
+							<li>Cyclical Approach </li>
 							<li>Basket Approach </li>
 							<li>Growth Company, Emerging Giants</li>
 							
