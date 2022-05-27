@@ -344,11 +344,12 @@ class HomeController extends Controller
     }
     public function shareDetail()
     {
-        $share = ShareDetails::all()->where('status','active')->where('share_status',1);
+        $share = ShareDetails::where(['status'=>'active','share_status'=>"1"])->orderBy('id','desc')->get();
         
         $latest_addition = array();
         $current_recommendation = array();
         $past_recommendation = array();
+        $quaterly_results = array();
         foreach ($share as $key => $value) {
             # code...
             if(isset($value['share_recommendation'])){
@@ -362,11 +363,14 @@ class HomeController extends Controller
                 if(in_array('2',$share_recommendation_array)){
                     $past_recommendation[] = $value;
                 }
+                if(in_array('3',$share_recommendation_array)){
+                    $quaterly_results[] = $value;
+                }
             }
         }
         
         $active = "share-details";
-        return view('frontend.share-details',compact('active','latest_addition','current_recommendation','past_recommendation'));
+        return view('frontend.share-details',compact('active','latest_addition','current_recommendation','past_recommendation','quaterly_results'));
     }
 
     public function viewShare($id){

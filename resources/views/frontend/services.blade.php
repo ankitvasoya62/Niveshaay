@@ -89,7 +89,7 @@
 			<div class="tab-content-block">
 				<div class="tab-content-inner @if($activeservice == 1) active opacity @endif" data-id="equity-portfolio-advisory">
 						<div class="tab-inner-detail">
-							<h2>Small & Mid Cap focussed portfolio</h2>
+							<h2>Small & Mid Cap focused portfolio</h2>
 							<ul class="green-dot-listing">
 								<li>Every business starts small and law of large numbers gives this space an opportunity to outperform and have outsized impact on the portfolio. </li>
 								<li>We follow Research based Investing and have devised our own strategy named QQI
@@ -102,7 +102,7 @@
 								<li>Volatility, being an inherent nature of small and mid-caps, we prefer a time horizon of 3-5 years for reasonable returns.  </li>
 							</ul>
 							@if (!Auth::user())
-								<p class="has-different-style"><a href="{{ route('frontend.signup')}}" title="click-here-btn">Click here</a> to Subscribe</p>
+								<p class="has-different-style"><a href="{{ route('frontend.signup')}}" title="click-here-btn" class="services-click-btn">Click here</a> to Subscribe</p>
 							@endif
 						</div>
 				</div>
@@ -123,7 +123,7 @@
 					</div>
 					<p class="subscription-fees-text">Subscription Fees: <span> ₹ 20,000 + GST for 6 Months</span></p>
 					@if (!Auth::user())
-						<p class="has-different-style"><a href="{{ route('frontend.signup')}}" title="click-here-btn">Click here</a> to Subscribe</p>
+						<p class="has-different-style"><a href="{{ route('frontend.signup')}}" title="click-here-btn" class="services-click-btn">Click here</a> to Subscribe</p>
 					@endif
 					<div class="list-catagory-wrapper">
 						<div class="list-wrapper">
@@ -323,7 +323,7 @@
                                 <div class="content-block-inner">
                                     <p>This portfolio contains mid and small cap size companies available at
                                         reasonable valuations with strong market hold.</p>
-                                    <a href="https://www.smallcase.com/smallcase/mid-and-small-cap-focused-portfolio-NIVMO_0001" title="Subscribe Now" class="btn btn-green">Subscribe Now</a>
+                                    <a href="https://www.smallcase.com/smallcase/mid-and-small-cap-focused-portfolio-NIVMO_0001" title="Subscribe Now" class="btn btn-green" target="_blank">Subscribe Now</a>
                                 </div>
     
                             </div>
@@ -354,7 +354,7 @@
                                 <div class="content-block-inner">
                                     <p>A portfolio of stocks, which will get benefit from the renewable energy
                                         sector development.</p>
-                                    <a href="https://www.smallcase.com/smallcase/green-energy-portfolio-NIVTR_0001" title="Subscribe Now" class="btn btn-green">Subscribe Now</a>
+                                    <a href="https://www.smallcase.com/smallcase/green-energy-portfolio-NIVTR_0001" title="Subscribe Now" class="btn btn-green" target="_blank">Subscribe Now</a>
                                 </div>
     
                             </div>
@@ -385,7 +385,7 @@
                                 <div class="content-block-inner">
                                     <p>A smallcase to play the emerging structural theme from China plus one
                                         strategy.</p>
-                                    <a href="https://www.smallcase.com/smallcase/china-plus-one-strategy-india-rising!-NIVNM_0001" title="Subscribe Now" class="btn btn-green">Subscribe Now</a>
+                                    <a href="https://www.smallcase.com/smallcase/china-plus-one-strategy-india-rising!-NIVNM_0001" title="Subscribe Now" class="btn btn-green" target="_blank">Subscribe Now</a>
                                 </div>
     
                             </div>
@@ -416,7 +416,7 @@
                                 <div class="content-block-inner">
                                     <p>It aptly combines the three inter-related trends of investing:
                                         Business, Financial & Price trends.</p>
-                                    <a href="https://www.smallcase.com/smallcase/trends-trilogy-NIVMO_0004" title="Subscribe Now" class="btn btn-green">Subscribe Now</a>
+                                    <a href="https://www.smallcase.com/smallcase/trends-trilogy-NIVMO_0004" title="Subscribe Now" class="btn btn-green" target="_blank">Subscribe Now</a>
                                 </div>
     
                             </div>
@@ -432,7 +432,7 @@
 							Here, leveraging our research capabilities, we not only manage their portfolios but also make prudent allocation on consolidated basis for effective returns. 
 						</p>
 						@if (!Auth::user())
-							<p class="has-different-style"><a href="{{ route('frontend.signup')}}" title="click-here-btn">Click here</a> to Subscribe</p>
+							<p class="has-different-style"><a href="{{ route('frontend.signup')}}" title="click-here-btn" class="services-click-btn">Click here</a> to Subscribe</p>
 						@endif
 					</div>
 				</div>

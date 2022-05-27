@@ -289,9 +289,14 @@
                       <label for="customCheckbox2" class="custom-control-label">Current Recommendations</label>
                     </div>
                     <div class="custom-control custom-checkbox">
+                      <input class="custom-control-input" type="checkbox" id="quartelyResult" value="3" name="share_recommendation[]">
+                      <label for="quartelyResult" class="custom-control-label">Quarterly Results</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
                       <input class="custom-control-input" type="checkbox" id="customCheckbox3" value="2" name="share_recommendation[]">
                       <label for="customCheckbox3" class="custom-control-label">Past Recommendations</label>
                     </div>
+                    
                   </div>
                     
                    

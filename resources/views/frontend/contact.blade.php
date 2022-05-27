@@ -84,8 +84,10 @@
                       </i>
                     </span>
                     <address>
+                      <a href="https://goo.gl/maps/kvtDT3CSsGG6wPkp8" target="_blank">
                       508, SNS Platina, near Reliance Mart, <br>
                       Vesu, Surat, Gujarat 395007
+                      </a>
                     </address>
                   </li>
                   <li>

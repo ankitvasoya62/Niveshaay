@@ -110,7 +110,7 @@ function serviceAccordion(){
 
 //services-tabbing-section 
 function serviceTabbing(){ 
-    jQuery('.services-tabbing-section .tab-heading-block a').unbind('click').click(function(e){
+    jQuery('.services-tabbing-section .tab-heading-block a:not(.services-click-btn)').unbind('click').click(function(e){
 		e.preventDefault();  
 		if(jQuery(window).width() <= 991){ 
             var _this = jQuery(this).attr("data-tab");

@@ -22,7 +22,7 @@
 								<a href="{{ asset('blog') }}" title="blog">Blog</a>
 							</li>
 							<li>
-								<a href="https://niveshaay.smallcase.com/" title="smallcase-link">Visit SmallCase</a>
+								<a href="https://niveshaay.smallcase.com/" title="smallcase-link" target="_blank">Visit SmallCase</a>
 							</li>
 							<li>
 								<a href="{{route('frontend.contact')}}" title="contact-us">Contact Us</a>
@@ -45,7 +45,7 @@
 						<ul>
 							<li>
 								<span class="icon"><i class="icon-location-pin"></i></span>
-								<a href="https://www.google.com/maps/place/Nivesh+Shiksha/@21.1417755,72.7687535,17z/data=!3m1!4b1!4m5!3m4!1s0x3be05357064d63c7:0x204512c6b04261d8!8m2!3d21.1417755!4d72.7709422"
+								<a href="https://goo.gl/maps/kvtDT3CSsGG6wPkp8"
 									target="_blank">508, SNS Platina, Near Someshwara Enclave, Vesu</a>
 							</li>
 							<li>
@@ -86,7 +86,7 @@
 													class="fab fa-linkedin"></i></span></a>
 									</li>
 									<li>
-										<a href="https://www.youtube.com/watch?v=t8LXvzDmoy8" target="_blank" title="Youtube"><span class="icon"><i
+										<a href="https://www.youtube.com/channel/UC8vnjpKi6JhsBLKr6zovAHQ/videos?app=desktop" target="_blank" title="Youtube"><span class="icon"><i
 													class="fab fa-youtube"></i></span></a>
 									</li>
 								</ul>

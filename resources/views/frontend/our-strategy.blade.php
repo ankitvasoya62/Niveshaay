@@ -87,7 +87,7 @@
 						<ul class="green-dot-listing">
 							<li>Macro Tailwinds in sector </li>
 							<li>Operating Leverage Play </li>
-							<li>Clical Approach </li>
+							<li>Cyclical Approach </li>
 						</ul>
 					</div>
 					<a href="#" title="Read More" data-link="our-strategy-modal-5" class="modal-link">Read More</a>
