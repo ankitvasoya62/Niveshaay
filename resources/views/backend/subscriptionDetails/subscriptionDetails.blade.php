@@ -285,6 +285,17 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
         // $(this).attr('data-target','#modal-default');
         $('#payment-received-form').html('');
         var appendhtml = '@csrf<input type="hidden" value="'+ subscription_id +'" id="subscription_form_id" name="subscription_form_id">';
+        appendhtml += `<div class="card">
+                <div class="card-body">
+                    <div class="col-md-6">
+                        <div class="form-group d-inline">
+                            <label class="control-label">Invoice number</label>
+                            <input type="text" class="form-control" name="invoice_no" required id="subscription_invoice_no"> 
+                            <span class="subscription-invoice-no-error" style="color:red"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
         appendhtml += `<div class="card card-payment-form"><div class="card-header"><b>Invoice Details</b></div><div class="card-body"> <div class="row"><div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Description</label><textarea class="form-control" name="description[]" required></textarea></div></div><div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Amount</label><input type="number" class="form-control" name="amount[]" required> </div></div><div class="col-md-6">
             <div class="form-group d-inline">
                 <label class="control-label">Subscription Start Date</label>
@@ -323,6 +334,8 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
         var errordate = document.querySelector('.subscription-end-date-error');
         intJ = 0;
         $('.subscription-end-date-error').html('');
+        $('.subscription-invoice-no-error').html('');
+
         for(var i=0;i<subscription_start_date.length;i++){
             if(subscription_end_date[i].value > subscription_start_date[i].value ){
 
@@ -332,6 +345,11 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                 // $('.'[i]).html('Subscription end date should be greater than subscription start date');
                 // errordate[i].innerHTML = 'Subscription end date should be greater than subscription start date';
             }
+        }
+
+        if($('#subscription_invoice_no').val() == ""){
+            $('.subscription-invoice-no-error').html('Invoice number field is required');
+            intJ = 1;
         }
         // alert(intJ);
         // return false;
@@ -364,6 +382,17 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                         var invoicehtml = '';
                         $.each(data,function(index,value){
                             if(index == 0){
+                                invoicehtml += `<div class="card">
+                                                    <div class="card-body">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group d-inline">
+                                                                <label class="control-label">Invoice number</label>
+                                                                <input type="text" class="form-control" name="invoice_no" value="`+ value.invoice_no+`" required id="subscription_invoice_no"> 
+                                                                <span class="subscription-invoice-no-error" style="color:red"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>`;
                                 invoicehtml += `@csrf<div class="card"><div class="card-body"><div class="row">
                                                     <input type="hidden" value="`+ value.id+`" name="invoice_id[]">
                                                     <div class="col-md-6">
@@ -460,6 +489,7 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
         var errordate = document.querySelector('.invoice_end_date_error');
         intJ = 0;
         $('.invoice_end_date_error').html('');
+        $('.subscription-invoice-no-error').html('');
         for(var i=0;i<subscription_start_date.length;i++){
             if(subscription_end_date[i].value > subscription_start_date[i].value ){
 
@@ -472,6 +502,10 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
         }
         // alert(intJ);
         // return false;
+        if($('#subscription_invoice_no').val() == ""){
+            $('.subscription-invoice-no-error').html('Invoice number field is required');
+            intJ = 1;
+        }
         if(intJ == 0){
             var subscriptionformaction = $('#invoice-form').attr('action');
             $.ajax({

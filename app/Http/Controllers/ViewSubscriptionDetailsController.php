@@ -137,7 +137,8 @@ class ViewSubscriptionDetailsController extends Controller
         $table_data = array();
         $amount_sum = 0;
         $max_date = array();
-        // dd($request);
+        $subscription_invoice_no = !empty($request->invoice_no) ? $request->invoice_no : ''; 
+         // dd($request);
         foreach ($request->description as $key => $value) {
             # code...
             $data = array();
@@ -149,11 +150,16 @@ class ViewSubscriptionDetailsController extends Controller
             $today= Carbon::now();
             $currentmonth = $today->month;
             $currentyear = $today->year;
-            if($currentmonth < 4){
-                $invoice_no = "#NRS/".($currentyear-1)."-".($currentyear)."/".($id+100);
+            if(!empty($subscription_invoice_no)){
+                $invoice_no = $subscription_invoice_no;
             }else{
-                $invoice_no = "#NRS/".$currentyear."-".($currentyear+1)."/".($id+100);
+                if($currentmonth < 4){
+                    $invoice_no = "#NRS/".($currentyear-1)."-".($currentyear)."/".($id+100);
+                }else{
+                    $invoice_no = "#NRS/".$currentyear."-".($currentyear+1)."/".($id+100);
+                }
             }
+            
             $data['invoice_no'] = $invoice_no;
             $insertdata = InvoiceDetail::insert($data);
             $max_date[] = $request->subscription_end_date[$key];
@@ -175,10 +181,19 @@ class ViewSubscriptionDetailsController extends Controller
         $today= Carbon::now();
         $currentmonth = $today->month;
         $currentyear = $today->year;
-        if($currentmonth < 4){
-            $invoice_no = "#NRS/".($currentyear-1)."-".($currentyear)."/".($id+100);
+        // if($currentmonth < 4){
+        //     $invoice_no = "#NRS/".($currentyear-1)."-".($currentyear)."/".($id+100);
+        // }else{
+        //     $invoice_no = "#NRS/".$currentyear."-".($currentyear+1)."/".($id+100);
+        // }
+        if(!empty($subscription_invoice_no)){
+            $invoice_no = $subscription_invoice_no;
         }else{
-            $invoice_no = "#NRS/".$currentyear."-".($currentyear+1)."/".($id+100);
+            if($currentmonth < 4){
+                $invoice_no = "#NRS/".($currentyear-1)."-".($currentyear)."/".($id+100);
+            }else{
+                $invoice_no = "#NRS/".$currentyear."-".($currentyear+1)."/".($id+100);
+            }
         }
         $data['invoice_no'] = $invoice_no;
         $amount = $amount_sum;
@@ -265,7 +280,9 @@ class ViewSubscriptionDetailsController extends Controller
                 $invoice->amount = $request->amount[$key];
                 $invoice->subscription_start_date = !empty($request->subscription_start_date[$key]) ? date('Y-m-d',strtotime($request->subscription_start_date[$key])) : NULL;
                 $invoice->subscription_end_date = !empty($request->subscription_end_date[$key]) ? date('Y-m-d',strtotime($request->subscription_end_date[$key])) : NULL;
-                
+                if(!empty($request->invoice_no)){
+                    $invoice->invoice_no = $request->invoice_no;
+                }
                 $user = User::find($invoice->subscriptionForm->user_id);
                 if(!empty($user)){
                     $max_date = max($user->subscription_end_date,$invoice->subscription_end_date);

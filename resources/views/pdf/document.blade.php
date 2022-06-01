@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>laravel MPDF</title>
+    <title>{{ $invoice_no }}</title>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="{{ public_path('css/pdf.css') }}" rel="stylesheet">
