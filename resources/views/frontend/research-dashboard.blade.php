@@ -18,9 +18,9 @@
 			
 			@if(empty($isEmailVerified))
 				@if(empty($subscriptionFormCount))
-					<p>To subscribe, click <a href="{{ route('frontend.subscriptionForm') }}" title="Click to Subscribe">Here</a></p>
+					<p>To subscribe, click <a href="{{ route('frontend.subscriptionForm') }}" title="Click to Subscribe">here</a></p>
 				@else
-					<p>Please Complete Your Registration From <a href="{{ route('frontend.subscriptionForm') }}" title="Click to Subscribe">Here</a></p>
+					<p>Please Complete Your Registration From <a href="{{ route('frontend.subscriptionForm') }}" title="Click to Subscribe">here</a></p>
 				@endif
 			@else
 				<p>You will receive an email soon for further process. 

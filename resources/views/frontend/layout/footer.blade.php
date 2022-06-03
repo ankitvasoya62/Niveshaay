@@ -50,7 +50,7 @@
 							</li>
 							<li>
 								<span class="icon"><i class="icon-envelope"></i></span>
-								<a href="mailto:info@niveshaay.com">info@niveshaay.com</a>
+								<a href="mailto:research@niveshaay.com">research@niveshaay.com</a>
 							</li>
 							<li>
 								<span class="icon"><i class="icon-phone"></i></span>

@@ -80,44 +80,50 @@ class LoginController extends Controller
                 
             }else{
 
-                $authUser = Auth::user();
-                $profilePhotourl = !empty(Auth::user()->profile_photo) ? asset('images/profile-photos/'.Auth::user()->profile_photo) : asset('images/blankuser.jpeg') ;
-                $authUserName = $authUser->name;
-                $profile_photocookie_name = "profile_photo";
-                $profile_cookie_value = $profilePhotourl;
-                $username_cookie = "user_name";
-                $username_cookie_value = $authUserName;
-                setcookie($profile_photocookie_name,$profile_cookie_value, time() + (86400 * 30), "/"); //name,value,time,url
-                setcookie($username_cookie,$username_cookie_value, time() + (86400 * 30), "/"); //name,value,time,url
-                try{
-                    $destinationPath = public_path("userwatermark");
-                    if(!File::exists($destinationPath)) {
-                        File::makeDirectory($destinationPath, 0777, true, true);
-                    }
-                    $destinationPath = public_path("userwatermark/$authUser->id");
+                // $authUser = Auth::user();
+                // $profilePhotourl = !empty(Auth::user()->profile_photo) ? asset('images/profile-photos/'.Auth::user()->profile_photo) : asset('images/blankuser.jpeg') ;
+                // $authUserName = $authUser->name;
+                // $profile_photocookie_name = "profile_photo";
+                // $profile_cookie_value = $profilePhotourl;
+                // $username_cookie = "user_name";
+                // $username_cookie_value = $authUserName;
+                // setcookie($profile_photocookie_name,$profile_cookie_value, time() + (86400 * 30), "/"); //name,value,time,url
+                // setcookie($username_cookie,$username_cookie_value, time() + (86400 * 30), "/"); //name,value,time,url
+                // try{
+                //     $destinationPath = public_path("userwatermark");
+                //     if(!File::exists($destinationPath)) {
+                //         File::makeDirectory($destinationPath, 0777, true, true);
+                //     }
+                //     $destinationPath = public_path("userwatermark/$authUser->id");
                 
-                    if(!File::exists($destinationPath)) {
-                        File::makeDirectory($destinationPath, 0777, true, true);
-                        $img = Image::canvas(800, 600);
-                    // $img = Image::make(public_path("image.jpg"));
-                        $img->text($authUser->email,200,320,function($font){
-                            $font->file(public_path("fonts/OpenSans-Regular.ttf"));
-                            $font->size(40);
-                            $font->color([0,0,0,0.3]);
-                            $font->align("center");
-                            $font->valign("top");
-                            $font->angle(45);
-                        });
-                        $filename = $authUser->id.".png";
-                        $img->save(public_path("userwatermark/$authUser->id/".$filename));
-                    }
+                //     if(!File::exists($destinationPath)) {
+                //         File::makeDirectory($destinationPath, 0777, true, true);
+                //         $img = Image::canvas(800, 600);
+                //     // $img = Image::make(public_path("image.jpg"));
+                //         $img->text($authUser->email,200,320,function($font){
+                //             $font->file(public_path("fonts/OpenSans-Regular.ttf"));
+                //             $font->size(40);
+                //             $font->color([0,0,0,0.3]);
+                //             $font->align("center");
+                //             $font->valign("top");
+                //             $font->angle(45);
+                //         });
+                //         $filename = $authUser->id.".png";
+                //         $img->save(public_path("userwatermark/$authUser->id/".$filename));
+                //     }
 
                     
 
                     
+                // }catch(\Exception $e){
+
+                // }
+                try{
+                    createWatermark();
                 }catch(\Exception $e){
 
                 }
+                
                 // dd($_COOKIE["user"]);
                 $success = ['success'=>1];
             return response()->json($success);
@@ -211,6 +217,11 @@ class LoginController extends Controller
         
         // $user = Auth::attempt(['email' => $request->email, 'password' => Hash::make($request->password)]);
         $this->guard()->login($user);
+        try{
+            createWatermark();
+        }catch(\Exception $e){
+
+        }
         return redirect()->route('frontend.research-dashboard');
     }
     

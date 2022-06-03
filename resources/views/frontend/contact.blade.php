@@ -94,7 +94,7 @@
                     <span>
                       <img src="{{ asset('images/email.svg')}}" alt="email">
                     </span>
-                    <a href="{{url('mailto:info@niveshaay.com')}}">info@niveshaay.com
+                    <a href="{{url('mailto:research@niveshaay.com')}}">research@niveshaay.com
                     </a>
                   </li>
                   <li>

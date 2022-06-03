@@ -161,6 +161,19 @@
 							</div>
 						</div>
 					</div>
+					<div class="team-member-wrapper">
+						<div class="team-member-inner">
+							<div class="member-photo">
+								<img src="{{ asset('images/member-image.jpg') }}" alt="team-meber-photo">
+							</div>
+							<div class="member-detail">
+								<h3 class="name">Ganesh Sonawane</h3>
+								<span>B.Com</span>
+								<p>Over 15 years of work experience in this field, he makes our operational work smooth and efficient making it a good customer experience. 
+								</p>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>

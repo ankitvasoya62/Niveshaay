@@ -1,6 +1,10 @@
 <?php
 use Illuminate\Support\Facades\Http;
 use App\Models\ShareDetails;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
+// use File;
+// use Image;
 
 function smallcaseapi(){
     $green_energy_stock = Http::get("https://api.smallcase.com/smallcases/smallcase?scid=NIVTR_0001");
@@ -66,4 +70,45 @@ function smallcaseapi(){
 
 function ourresearchreport(){
     return ShareDetails::all()->where('copy_to_our_research',1)->where('share_status',1)->where('status','active');
+}
+
+function createWatermark(){
+    $authUser = Auth::user();
+    $profilePhotourl = !empty(Auth::user()->profile_photo) ? asset('images/profile-photos/'.Auth::user()->profile_photo) : asset('images/blankuser.jpeg') ;
+    $authUserName = $authUser->name;
+    $profile_photocookie_name = "profile_photo";
+    $profile_cookie_value = $profilePhotourl;
+    $username_cookie = "user_name";
+    $username_cookie_value = $authUserName;
+    setcookie($profile_photocookie_name,$profile_cookie_value, time() + (86400 * 30), "/"); //name,value,time,url
+    setcookie($username_cookie,$username_cookie_value, time() + (86400 * 30), "/"); //name,value,time,url
+    try{
+        $destinationPath = public_path("userwatermark");
+        if(!File::exists($destinationPath)) {
+            File::makeDirectory($destinationPath, 0777, true, true);
+        }
+        $destinationPath = public_path("userwatermark/$authUser->id");
+    
+        if(!File::exists($destinationPath)) {
+            File::makeDirectory($destinationPath, 0777, true, true);
+            $img = Image::canvas(800, 600);
+        // $img = Image::make(public_path("image.jpg"));
+            $img->text($authUser->email,200,320,function($font){
+                $font->file(public_path("fonts/OpenSans-Regular.ttf"));
+                $font->size(40);
+                $font->color([0,0,0,0.3]);
+                $font->align("center");
+                $font->valign("top");
+                $font->angle(45);
+            });
+            $filename = $authUser->id.".png";
+            $img->save(public_path("userwatermark/$authUser->id/".$filename));
+        }
+
+        
+
+        
+    }catch(\Exception $e){
+
+    }
 }

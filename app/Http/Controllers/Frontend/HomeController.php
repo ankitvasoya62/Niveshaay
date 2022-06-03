@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Http;
 use PDF;
 use App\Models\SubscriptionFormDetail;
+use App\Models\InvoiceDetail;
 use Carbon\Carbon;
 use App\Models\CurrentMonthComplaint;
 use App\Models\MonthlyComplaint;
@@ -252,7 +253,7 @@ class HomeController extends Controller
                 'message' => $request->message,
                 'phone_no'=>$request->phone_no
             ]);
-            $toEmail = "info@niveshaay.com";
+            $toEmail = "research@niveshaay.com";
             Mail::to($toEmail)->send(new FeedbackMail($request->message,$request->first_name,$request->last_name,$request->email));
             return redirect()->route('frontend.contact')->with('success','We’ll contact you shortly.');
         } catch (\Throwable $th) {
@@ -618,18 +619,76 @@ class HomeController extends Controller
         // 55, array(0,0,0),2,2,-30);
         // return $pdf->download('nicesnippets.pdf');
         // $img = Image::canvas(800, 600);public\
-        $img = Image::make(public_path("image.jpg"));
-        $img->text("nikhilvshah12274@gmail.com",200,320,function($font){
-            $font->file(public_path("fonts/OpenSans-Regular.ttf"));
-            $font->size(40);
-            $font->color([0, 0, 0, 0.5]);
-            $font->align("center");
-            $font->valign("top");
-            $font->angle(45);
-        });
+        // $img = Image::make(public_path("image.jpg"));
+        // $img->text("nikhilvshah12274@gmail.com",200,320,function($font){
+        //     $font->file(public_path("fonts/OpenSans-Regular.ttf"));
+        //     $font->size(40);
+        //     $font->color([0, 0, 0, 0.5]);
+        //     $font->align("center");
+        //     $font->valign("top");
+        //     $font->angle(45);
+        // });
 
-        $img->save(public_path("image5.jpg"));
-        return "Done";
+        // $img->save(public_path("image5.jpg"));
+        // return "Done";
+        $pdf = PDF::loadView('pdf.advisor-agreement', array());
+        return $pdf->stream('document.pdf');
+    }
+
+    public function invoicePDF(){
+        $id = 51;
+        $subscription_details = SubscriptionFormDetail::find(51);
+        $toEmail = $subscription_details->email;
+        $invoices = InvoiceDetail::latest()->where('subscription_form_id',$id)->first();
+        // dd($invoices);
+        $table_data = [];
+        $inoice = array();
+        $invoice['description'] = $invoices->description;
+        $invoice['amount'] = $invoices->amount;
+        $invoice['subscription_start_date'] = $invoices->subscription_start_date;
+        $invoice['subscription_end_date'] = $invoices->subscription_end_date;
+        // $invoice['amount'] = $invoices->amount;
+        $invoice['invoice_no'] = $invoices->invoice_no;
+        array_push($table_data,$invoice);
+        $data['name_of_investor'] = $subscription_details->name_of_investor;
+        $data['pan_no'] = $subscription_details->pan_no;
+        $data['state'] = $subscription_details->state;
+        $data["email"] = $subscription_details->email;
+        $data['gst_no'] = $subscription_details->gst_no;
+        // $today= Carbon::now();
+        // $currentmonth = $today->month;
+        // $currentyear = $today->year;
+        // if($currentmonth < 4){
+        //     $invoice_no = "#NIV/".($currentyear-1)."-".($currentyear)."/".($id+100);
+        // }else{
+        //     $invoice_no = "#NIV/".$currentyear."-".($currentyear+1)."/".($id+100);
+        // }
+        $data['invoice_no'] = $invoices->invoice_no;
+        $amount = $invoices->amount;
+        if($subscription_details->state == 'Gujarat'){
+               $cgst = $amount * 0.09;
+               $sgst = $amount * 0.09;
+               $total = $amount + $cgst + $sgst;
+               $data['amount'] = $amount;
+               $data['cgst'] = $cgst;
+               $data['sgst'] = $sgst;
+               $data['total'] = $total;
+               
+        }else{
+            $igst = $amount * 0.18;
+            $total = $amount + $igst;
+            $data['amount'] = $amount;
+            $data['igst'] = $igst;
+            $data['total'] = $total;
+        }
+        
+        
+        $data['table_data'] = $table_data;
+        
+        // dd($data);
+        $pdf = PDF::loadView('pdf.document', $data);
+        return $pdf->stream('invoice.pdf');
+
     }
 
     public function changePasswordForm(){
