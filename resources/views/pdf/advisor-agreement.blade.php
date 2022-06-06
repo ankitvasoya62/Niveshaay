@@ -186,7 +186,7 @@
                                         </td>
                                         <td width="10"></td>
                                         <td width="30%" class="detail-title">
-                                             SEBI Registration>
+                                             SEBI Registration
                                         </td>
                                     </tr>
                                     <tr>
@@ -277,15 +277,15 @@
                                     <tbody>
                                         <tr> 
                                             <td class="detail-title bold-title" >RISK PROFILING</td>
-                                            <td class="detail-title bold-title" style="text-align:right; width: 250px;">SEBI REGISTRATION</td>
+                                            {{-- <td class="detail-title bold-title" style="text-align:right; width: 250px;">SEBI REGISTRATION</td> --}}
                                         </tr>
                                         <tr>
                                             <td height="5"></td>
-                                            <td></td>
+                                            {{-- <td></td> --}}
                                         </tr>
                                         <tr>
                                             <td class="detail-text">{{ $riskprofile }}</td>
-                                            <td class="detail-text" style= "text-align:right; width: 250px;">INA000008552</td>
+                                            {{-- <td class="detail-text" style= "text-align:right; width: 250px;">INA000008552</td> --}}
                                         </tr>
                                     </tbody>
                                 </table>
