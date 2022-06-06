@@ -141,11 +141,13 @@
                                             <a href="#" onclick="event.preventDefault();" class="btn btn-info invoice-details" data-toggle="modal" data-target="#modal-default-2" id="{{ $subscription_detail->id}}"><i class="fas fa-edit"></i></a>
                                             {{-- <a href="{{ route('admin.download.invoice',$subscription_detail->id)}}" class="btn btn-success" title="Download Details">Download Details</a> --}}
                                             <a href="{{ route('admin.download.invoicepdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Invoice">Download Invoice</a>
+                                            <a href="{{ route('admin.download.agreementpdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Agreement">Download Agreement</a>
 
                                             @else
                                             <a href="#" onclick="event.preventDefault();" class="btn btn-info disabled" title="edit"><i class="fas fa-edit"></i></a>
                                             {{-- <a href="#" class="btn btn-success disabled" title="Download Details">Download Details</a> --}}
                                             <a href="#" class="btn btn-success disabled" title="Download Invoice">Download Invoice</a>
+                                            <a href="#" class="btn btn-success disabled" title="Download Agreement">Download Agreement</a>
                                             @endif
                                             
                                         </td>
@@ -287,11 +289,20 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
         var appendhtml = '@csrf<input type="hidden" value="'+ subscription_id +'" id="subscription_form_id" name="subscription_form_id">';
         appendhtml += `<div class="card">
                 <div class="card-body">
-                    <div class="col-md-6">
-                        <div class="form-group d-inline">
-                            <label class="control-label">Invoice number</label>
-                            <input type="text" class="form-control" name="invoice_no" required id="subscription_invoice_no"> 
-                            <span class="subscription-invoice-no-error" style="color:red"></span>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group d-inline">
+                                <label class="control-label">Invoice number</label>
+                                <input type="text" class="form-control" name="invoice_no" required id="subscription_invoice_no"> 
+                                <span class="subscription-invoice-no-error" style="color:red"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group d-inline">
+                                <label class="control-label">Fee Frequency</label>
+                                <input type="text" class="form-control" name="fees_frequency" required id="fees_frequency"> 
+                                <span class="fees-frequency-error" style="color:red"></span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -335,6 +346,7 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
         intJ = 0;
         $('.subscription-end-date-error').html('');
         $('.subscription-invoice-no-error').html('');
+        $('.fees-frequency-error').html('');
 
         for(var i=0;i<subscription_start_date.length;i++){
             if(subscription_end_date[i].value > subscription_start_date[i].value ){
@@ -349,6 +361,10 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
 
         if($('#subscription_invoice_no').val() == ""){
             $('.subscription-invoice-no-error').html('Invoice number field is required');
+            intJ = 1;
+        }
+        if($('#fees_frequency').val() == ""){
+            $('.fees-frequency-error').html('Fee Frequency field is required');
             intJ = 1;
         }
         // alert(intJ);
@@ -384,11 +400,20 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                             if(index == 0){
                                 invoicehtml += `<div class="card">
                                                     <div class="card-body">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group d-inline">
-                                                                <label class="control-label">Invoice number</label>
-                                                                <input type="text" class="form-control" name="invoice_no" value="`+ value.invoice_no+`" required id="subscription_invoice_no"> 
-                                                                <span class="subscription-invoice-no-error" style="color:red"></span>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group d-inline">
+                                                                    <label class="control-label">Invoice number</label>
+                                                                    <input type="text" class="form-control" name="invoice_no" value="`+ value.invoice_no+`" required id="subscription_invoice_no"> 
+                                                                    <span class="subscription-invoice-no-error" style="color:red"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group d-inline">
+                                                                    <label class="control-label">Fee Frequency</label>
+                                                                    <input type="text" class="form-control" name="fees_frequency"  value="`+ value.fees_frequency+`" required id="fees_frequency"> 
+                                                                    <span class="fees-frequency-error" style="color:red"></span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -490,6 +515,7 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
         intJ = 0;
         $('.invoice_end_date_error').html('');
         $('.subscription-invoice-no-error').html('');
+        $('.fees-frequency-error').html('');
         for(var i=0;i<subscription_start_date.length;i++){
             if(subscription_end_date[i].value > subscription_start_date[i].value ){
 
@@ -506,6 +532,12 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
             $('.subscription-invoice-no-error').html('Invoice number field is required');
             intJ = 1;
         }
+
+        if($('#fees_frequency').val() == ""){
+            $('.fees-frequency-error').html('Fee Frequency field is required');
+            intJ = 1;
+        }
+
         if(intJ == 0){
             var subscriptionformaction = $('#invoice-form').attr('action');
             $.ajax({

@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Http;
 use App\Models\ShareDetails;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
+use App\Models\SubscriptionFormDetail;
 // use File;
 // use Image;
 
@@ -111,4 +112,153 @@ function createWatermark(){
     }catch(\Exception $e){
 
     }
+}
+
+function riskProfile($latestSubscriptionFormDetails,$id){
+    // $latestSubscriptionFormDetails = subscriptionFormDetail::find($id);
+    $sum = 0;
+    $age = $latestSubscriptionFormDetails->age;
+    $source_of_income = explode(",",$latestSubscriptionFormDetails->source_of_income);
+    $invest_objective = $latestSubscriptionFormDetails->invest_objective;
+    $annual_income = $latestSubscriptionFormDetails->annual_income;
+    $repayment_of_existing_liabilities	= $latestSubscriptionFormDetails->repayment_of_existing_liabilities;
+    $invest_average_return = $latestSubscriptionFormDetails->invest_average_return;
+    $invest_net_worth = $latestSubscriptionFormDetails->invest_net_worth;		
+    $currently_hold_investments	= explode(",",$latestSubscriptionFormDetails->currently_hold_investments);
+    $investment_period = $latestSubscriptionFormDetails->investment_period;
+    $risk_attitude = $latestSubscriptionFormDetails->risk_attitude;
+    $knowledge_experience = $latestSubscriptionFormDetails->knowledge_experience;
+
+    $sumArr = array();
+    /* First Question Logic */
+        
+        if($age == 1 ){
+            $sumArr[] = 8.5 * 2;
+        }elseif($age == 2 ){
+            $sumArr[] = 5.5 * 2;
+        }elseif($age == 3 ){
+            $sumArr[] = 2.5 * 2;
+        }
+    /* end first question logic */
+
+    /* Second question logic */
+        if(count($source_of_income) == 1){
+            $sumArr[] = 2.5 * 1;
+        }elseif(count($source_of_income) == 2){
+            $sumArr[] = 5.5 * 1;
+        }elseif(count($source_of_income) == 3){
+            $sumArr[] = 8.5 * 1;
+        }elseif(count($source_of_income) == 4){
+            $sumArr[] = 8.5 * 1;
+        }elseif(count($source_of_income) == 5){
+            $sumArr[] = 10 * 1;
+        }elseif(count($source_of_income) == 6){
+            $sumArr[] = 10 * 1;
+        }
+    /* end second question logic */
+
+    /* Third question logic */
+        if($invest_objective == 1 ){
+            $sumArr[] = 2.5 * 2;
+        }elseif($invest_objective == 2 ){
+            $sumArr[] = 5.5 * 2;
+        }elseif($invest_objective == 3 ){
+            $sumArr[] = 8.5 * 2;
+        }
+    /* end third question logic */
+
+    /* Fourth question logic */
+    if($annual_income == 1 ){
+        $sumArr[] = 2.5 * 1;
+    }elseif($annual_income == 2 ){
+        $sumArr[] = 5.5 * 1;
+    }elseif($annual_income == 3 ){
+        $sumArr[] = 8.5 * 1;
+    }elseif($annual_income == 4 ){
+        $sumArr[] = 10 * 1;
+    }
+    /* end Fourth question logic */
+
+    /* Fifth question logic */
+    if($repayment_of_existing_liabilities == 1 ){
+        $sumArr[] = 2.5 * 1;
+    }elseif($repayment_of_existing_liabilities == 2 ){
+        $sumArr[] = 5.5 * 1;
+    }elseif($repayment_of_existing_liabilities == 3 ){
+        $sumArr[] = 8.5 * 1;
+    }
+    /* end Fifth question logic */
+
+    /* Sixth question logic */
+    if($invest_average_return == 1 ){
+        $sumArr[] = 2.5 * 2;
+    }elseif($invest_average_return == 2 ){
+        $sumArr[] = 5.5 * 2;
+    }elseif($invest_average_return == 3 ){
+        $sumArr[] = 8.5 * 2;
+    }
+    /* end Sixth question logic */
+
+    /* Seventh question logic */
+    if($invest_net_worth == 1 ){
+        $sumArr[] = 2.5 * 1;
+    }elseif($invest_net_worth == 2 ){
+        $sumArr[] = 5.5 * 1;
+    }elseif($invest_net_worth == 3 ){
+        $sumArr[] = 8.5 * 1;
+    }
+    /* end Seventh question logic */
+
+    /* Eighth question logic */
+    if($currently_hold_investments == ["stock","MF","FD"]){
+        $sumArr[] = 8.5 * 1;
+    }elseif($currently_hold_investments == ['stock','MF'] ){
+        $sumArr[] = 8.5 * 1;
+    }elseif($currently_hold_investments == ['stock','FD'] ){
+        $sumArr[] = 5.5 * 1;
+    }elseif($currently_hold_investments == ['MF','FD'] ){
+        $sumArr[] = 5.5 * 1;
+    }elseif($currently_hold_investments == ['stock'] ){
+        $sumArr[] = 10 * 1;
+    }elseif($currently_hold_investments == ['MF'] ){
+        $sumArr[] = 5.5 * 1;
+    }elseif($currently_hold_investments == ['FD'] ){
+        $sumArr[] = 2.5 * 1;
+    }
+    /* end Eighth question logic */
+    
+    /* Nineth question logic */
+    if($investment_period == 1 ){
+        $sumArr[] = 2.5 * 2;
+    }elseif($investment_period == 2 ){
+        $sumArr[] = 5.5 * 2;
+    }elseif($investment_period == 3 ){
+        $sumArr[] = 10 * 2;
+    }
+    /* end Nineth question logic */
+
+    /* tenth question logic */
+    if($risk_attitude == 1 ){
+        $sumArr[] = 2.5 * 2;
+    }elseif($risk_attitude == 2 ){
+        $sumArr[] = 5.5 * 2;
+    }elseif($risk_attitude == 3 ){
+        $sumArr[] = 8.5 * 2;
+    }
+    /* end tenth question logic */
+
+    /* eleventh question logic */
+    if($knowledge_experience == 1 ){
+        $sumArr[] = 2.5 * 1;
+    }elseif($knowledge_experience == 2 ){
+        $sumArr[] = 5.5 * 1;
+    }elseif($knowledge_experience == 3 ){
+        $sumArr[] = 8.5 * 1;
+    }
+    /* end eleventh question logic */
+    
+    $sum = collect($sumArr)->sum();
+
+    $average = $sum / 16;
+    return $average;
 }

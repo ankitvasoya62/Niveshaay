@@ -68,11 +68,11 @@
         </tr>
     </table>
     <div style="display:flex;flex-direction: row;">
-        <div style="border:1px dotted grey;display:inline-flex;align-items:center">
-            <img src="{{ asset('images/logo.png') }}" style="width:150px;"/>
+        <div style="border:1px dotted grey;display:inline-flex;align-items:center;padding:10px">
+            <img src="{{ asset('images/logo.png')}}" style="width:150px;"/>
             {{-- <img src="{{ asset('images/logo.png')}}" alt="" style="width:150px;"> --}}
         </div>
-        <div style="border:1px dotted grey">
+        <div style="border:1px dotted grey;padding:10px">
             <h3>CA Arvind Kothari</h3>
             <h3>Founder-Director, Niveshaay</h3>
             <p>+91 82003 84930 | www.niveshaay.com</p>

@@ -39,6 +39,7 @@ Route::post('/contact',[HomeController::class, 'contactForm'])->name('frontend.c
 Route::get('/services/{id?}',[HomeController::class, 'Services'])->name('frontend.services');
 
 Route::get('/generate_pdf',[HomeController::class,'generatePDF'])->name('generate-pdf');
+Route::get('/invoice_pdf',[HomeController::class,'invoicePDF'])->name('invoice-pdf');
 
 Route::get('/show-pdf-html',[HomeController::class,'generateMailPDF']);
 // Route::view('/subscription-form','frontend.subscription-form')->name('frontend.subscriptionForm');
@@ -112,6 +113,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/edit/invoice/{id}',[ViewSubscriptionDetailsController::class,'editinvoice'])->name('admin.edit.invoice');
         Route::post('/update/invoice/{id}',[ViewSubscriptionDetailsController::class,'updateinvoice'])->name('admin.update.invoice');
         Route::get('/download/pdf/invoice/{id}',[ViewSubscriptionDetailsController::class,'generatePdf'])->name('admin.download.invoicepdf');
+        Route::get('/download/pdf/agreement/{id}',[ViewSubscriptionDetailsController::class,'agreementPdf'])->name('admin.download.agreementpdf');
         /*Subscription Detail Route */
         Route::get('/complaint-status/current-month',[ComplaintStatusController::class,'currentMonth'])->name('admin.currentmonthcomplaint');
         Route::post('/complaint-status/store/current-month',[ComplaintStatusController::class,'storeCurrentMonth'])->name('admin.storecurrentmonthcomplaint');

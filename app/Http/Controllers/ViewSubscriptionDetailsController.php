@@ -132,7 +132,7 @@ class ViewSubscriptionDetailsController extends Controller
     }
 
     public function paymentReceivedAction(Request $request){
-
+        date_default_timezone_set('Asia/Kolkata');
         $id = !empty($request->subscription_form_id) ? $request->subscription_form_id : 0;
         $table_data = array();
         $amount_sum = 0;
@@ -158,6 +158,9 @@ class ViewSubscriptionDetailsController extends Controller
                 }else{
                     $invoice_no = "#NRS/".$currentyear."-".($currentyear+1)."/".($id+100);
                 }
+            }
+            if(!empty($request->fees_frequency)){
+                $data['fees_frequency'] = $request->fees_frequency;
             }
             
             $data['invoice_no'] = $invoice_no;
@@ -216,13 +219,39 @@ class ViewSubscriptionDetailsController extends Controller
         
         
         $data['table_data'] = $table_data;
-        
+        $average = riskProfile($subscription_details,$id);
+        if($average >=1 && $average <4){
+            $riskProfile = 'Low Risk';
+        }elseif($average >=4 && $average <7){
+            $riskProfile = 'Moderate';
+            
+        }   
+        elseif($average >= 7 && $average <=10){
+            $riskProfile = 'High Risk';
+        }
+        $invoices = InvoiceDetail::latest()->where('subscription_form_id',$id)->first();
+        $amount = $invoices->amount;
+        $subscription_start_date = $invoices->subscription_start_date;
+        $subscription_end_date = $invoices->subscription_end_date;
+        $feesfrequency = !empty($invoices->fees_frequency) ? $invoices->fees_frequency : '6 Months';
+        $subscription_data = array();
+        $subscription_data['name_of_investor'] = $subscription_details->name_of_investor;
+        $subscription_data['email'] = $subscription_details->email;
+        $subscription_data['pan_no'] = $subscription_details->pan_no;
+        $subscription_data['riskprofile'] = $riskProfile;
+        $subscription_data['amount'] = $amount;
+        $subscription_data['subscription_start_date'] = date('d F, Y',strtotime($subscription_start_date));
+        $subscription_data['subscription_end_date'] = date('d F, Y',strtotime($subscription_end_date));
+        $subscription_data['fees_frequency'] = $feesfrequency;
+        // $subscription_data = !empty($subscription_details) ? $subscription_details : array();
+        $subscriptionpdf = PDF::loadView('pdf.advisor-agreement', $subscription_data);
         // dd($data);
         $pdf = PDF::loadView('pdf.document', $data);
-        Mail::send('backend.paymentReceivedMail', $data, function($message)use($data, $pdf) {
+        Mail::send('backend.paymentReceivedMail', $data, function($message)use($data, $pdf,$subscriptionpdf) {
             $message->to($data["email"], $data["email"])
                     ->subject($data["title"])
-                    ->attachData($pdf->output(), "invoice.pdf");
+                    ->attachData($pdf->output(), "invoice.pdf")
+                    ->attachData($subscriptionpdf->output(), "agreement.pdf");
         });
         // $pdf->output(public_path('invoicepdf/'.$id.'/invoice.pdf'),'F');
         $subscription_details['is_payment_received'] = 1;
@@ -282,6 +311,9 @@ class ViewSubscriptionDetailsController extends Controller
                 $invoice->subscription_end_date = !empty($request->subscription_end_date[$key]) ? date('Y-m-d',strtotime($request->subscription_end_date[$key])) : NULL;
                 if(!empty($request->invoice_no)){
                     $invoice->invoice_no = $request->invoice_no;
+                }
+                if(!empty($request->fees_frequency)){
+                    $invoice->fees_frequency = $request->fees_frequency;
                 }
                 $user = User::find($invoice->subscriptionForm->user_id);
                 if(!empty($user)){
@@ -354,5 +386,39 @@ class ViewSubscriptionDetailsController extends Controller
         return $pdf->download('invoice.pdf');
         // return $pdf->output('document.pdf',true);
         //return $pdf->stream('document.pdf');
+    }
+
+    public function agreementPdf($id){
+
+        date_default_timezone_set('Asia/Kolkata');
+        $subscription_details = SubscriptionFormDetail::find($id);
+        $average = riskProfile($subscription_details,$id);
+        if($average >=1 && $average <4){
+            $riskProfile = 'Low Risk';
+        }elseif($average >=4 && $average <7){
+            $riskProfile = 'Moderate';
+            
+        }   
+        elseif($average >= 7 && $average <=10){
+            $riskProfile = 'High Risk';
+        }
+        $invoices = InvoiceDetail::latest()->where('subscription_form_id',$id)->first();
+        $amount = $invoices->amount;
+        $subscription_start_date = $invoices->subscription_start_date;
+        $subscription_end_date = $invoices->subscription_end_date;
+        $feesfrequency = !empty($invoices->fees_frequency) ? $invoices->fees_frequency : '6 Months';
+        $subscription_data = array();
+        $subscription_data = $subscription_details;
+        $subscription_data['riskprofile'] = $riskProfile;
+        $subscription_data['amount'] = $amount;
+        $subscription_data['subscription_start_date'] = date('d F, Y',strtotime($subscription_start_date));
+        $subscription_data['subscription_end_date'] = date('d F, Y',strtotime($subscription_end_date));
+        $subscription_data['fees_frequency'] = $feesfrequency;
+        $pdf = PDF::loadView('pdf.advisor-agreement', $subscription_data);
+        return $pdf->download('agreement.pdf');
+                                    
+                                
+                                    
+                                
     }
 }
