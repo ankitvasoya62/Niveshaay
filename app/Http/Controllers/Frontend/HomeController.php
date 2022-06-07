@@ -254,7 +254,7 @@ class HomeController extends Controller
                 'phone_no'=>$request->phone_no
             ]);
             $toEmail = "research@niveshaay.com";
-            Mail::to($toEmail)->send(new FeedbackMail($request->message,$request->first_name,$request->last_name,$request->email));
+            Mail::to($toEmail)->send(new FeedbackMail($request->message,$request->first_name,$request->last_name,$request->email,$request->phone_no));
             return redirect()->route('frontend.contact')->with('success','We’ll contact you shortly.');
         } catch (\Throwable $th) {
             throw $th;
@@ -636,8 +636,10 @@ class HomeController extends Controller
     }
 
     public function invoicePDF(){
-        $id = 51;
-        $subscription_details = SubscriptionFormDetail::find(51);
+        $id = 52;
+        $subscription_details = SubscriptionFormDetail::find(52);
+        $pdf = PDF::loadView('pdf.risk-profiling', $subscription_details);
+        return $pdf->stream('invoice.pdf');
         $toEmail = $subscription_details->email;
         $invoices = InvoiceDetail::latest()->where('subscription_form_id',$id)->first();
         // dd($invoices);

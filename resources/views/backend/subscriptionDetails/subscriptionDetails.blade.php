@@ -90,7 +90,7 @@
                                         
                                         
                                         <th style="width:30%;">Subscription Action</th>
-                                        <th style="width:20%;">Invoice Action</th>
+                                        <th style="width:20%;">Invoice Action & Downloads</th>
                                         
                                     </tr>
                                 </thead>
@@ -140,15 +140,15 @@
                                             {{-- <a href="{{ route('admin.view.invoicedetails',$subscription_detail->id) }}" class="btn btn-primary"><i class="fas fa-eye"></i></a> --}}
                                             <a href="#" onclick="event.preventDefault();" class="btn btn-info invoice-details" data-toggle="modal" data-target="#modal-default-2" id="{{ $subscription_detail->id}}"><i class="fas fa-edit"></i></a>
                                             {{-- <a href="{{ route('admin.download.invoice',$subscription_detail->id)}}" class="btn btn-success" title="Download Details">Download Details</a> --}}
-                                            <a href="{{ route('admin.download.invoicepdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Invoice">Download Invoice</a>
-                                            <a href="{{ route('admin.download.agreementpdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Agreement">Download Agreement</a>
-                                            <a href="{{ route('admin.download.riskprofilingpdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Agreement">Download Risk Profiling Pdf </a>
+                                            <a href="{{ route('admin.download.invoicepdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Invoice">Invoice</a>
+                                            <a href="{{ route('admin.download.agreementpdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Agreement">Agreement</a>
+                                            <a href="{{ route('admin.download.riskprofilingpdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Agreement">Risk Profiling Pdf </a>
                                             @else
                                             <a href="#" onclick="event.preventDefault();" class="btn btn-info disabled" title="edit"><i class="fas fa-edit"></i></a>
                                             {{-- <a href="#" class="btn btn-success disabled" title="Download Details">Download Details</a> --}}
-                                            <a href="#" class="btn btn-success disabled" title="Download Invoice">Download Invoice</a>
-                                            <a href="#" class="btn btn-success disabled" title="Download Agreement">Download Agreement</a>
-                                            <a href="{{ route('admin.download.riskprofilingpdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Agreement">Download Risk Profiling Pdf </a>
+                                            <a href="#" class="btn btn-success disabled" title="Download Invoice">Invoice</a>
+                                            <a href="#" class="btn btn-success disabled" title="Download Agreement">Agreement</a>
+                                            <a href="{{ route('admin.download.riskprofilingpdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Agreement">Risk Profiling Pdf </a>
                                             @endif
                                             
                                         </td>

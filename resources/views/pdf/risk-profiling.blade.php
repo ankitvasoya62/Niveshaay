@@ -11,10 +11,10 @@
             *,*:after,*:before {
                 box-sizing:border-box;
             }
-            h1 { font-size: 28px; text-align: center; font-weight: bold; line-height: 1.2; margin-bottom: 20px; color: #3b3b3b;  font-family: "Playfair Display", serif; }
+            h1 { font-size: 28px; text-align: center; font-weight: bold; line-height: 1.2; margin-bottom: 10px; color: #3b3b3b;  font-family: "Playfair Display", serif; }
             .subscription-form-section h1 span { display: block; }
             .custom-form-section .form-wrapper .form-outer-wrapper { display: block;}
-            .white-shadow-card { background-color: #fff;padding:30px 15px; }
+            .white-shadow-card { background-color: #fff;padding:20px 15px; }
             .custom-form-section .form-outer-wrapper .form-group.half-width { width:50%;float: left;margin-right: -4px;}
             .clearfix{ clear: both; margin:0;padding:0;}
             .form-group label,.form-group .label { display: block;margin-bottom: 5px;color: #888;font-family: 'Open Sans',sans-serif;line-height: 1.38;display: block;font-size: 14px;padding:0 15px;margin-bottom: 5px;}
@@ -27,6 +27,9 @@
 <body>
     <div class="subscription-form-section">
         <div class="niveshaay-container">
+        <div class="image-wrapper" style="margin-bottom:12px;text-align:center">
+                    <img src="{{ public_path('images/logo.png') }}" alt="logo" style="width:200px;height: auto;margin:0 auto"/>
+                </div>
             <h1>Niveshaay Risk Profiling and <span>Suitability Assessment</span></h1>
             <div class="subscription-form-block custom-form-section">
                 <div class="white-shadow-card form-wrapper">
