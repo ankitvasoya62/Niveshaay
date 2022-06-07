@@ -148,7 +148,7 @@
                                 <div class="custom-checkbox  has-full-width">
                                     <div class="other-feild">
                                         <div class="checkbox-inner">
-                                            <input id="other" name="source_of_income[]" type="checkbox" value="Other" @if(str_contains($subscription_details->source_of_income, 'Other')) checked @endif>		        >		                    
+                                            <input id="other" name="source_of_income[]" type="checkbox" value="Other" @if(str_contains($subscription_details->source_of_income, 'Other')) checked @endif>		       	                    
                                             <label for="other"> Other</label>
                                         </div>
                                         <div class="other-input-wrapper">
@@ -232,7 +232,7 @@
                                 <div class=" custom-radio-btn">
                                     <div class="radio-btn-inner">
                                         <input id="above50percent" name="repayment_of_existing_liabilities" type="radio" value="1" @if($subscription_details->repayment_of_existing_liabilities == 1) checked @endif>	                    
-                                        <label for="above50percent"> &gt;50</label>
+                                        <label for="above50percent"> &gt;50%</label>
                                     </div>
                                 </div>
                                 <div class=" custom-radio-btn">

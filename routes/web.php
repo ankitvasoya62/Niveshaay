@@ -105,8 +105,9 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/delete-subscription/{id}',[ViewSubscriptionDetailsController::class,'deleteSubscriptionDetails'])->name('admin.delete-subscription');
         Route::get('/edit-subscription/{id}',[ViewSubscriptionDetailsController::class,'editSubscriptionDetails'])->name('admin.edit-subscription');
         Route::post('/update-subscription/{id}',[ViewSubscriptionDetailsController::class,'updateSubscriptionDetails'])->name('admin.update-subscription');
-        Route::get('/verify-subscription/{id}',[ViewSubscriptionDetailsController::class,'verifySubscriptionDetails'])->name('admin.verify-subscription');
-        Route::post('/payment-received',[ViewSubscriptionDetailsController::class,'paymentReceivedAction'])->name('admin.payment-received');
+        Route::post('/verify-subscription',[ViewSubscriptionDetailsController::class,'verifySubscriptionDetails'])->name('admin.verify-subscription');
+        Route::get('/payment-received/{id}',[ViewSubscriptionDetailsController::class,'paymentReceivedAction'])->name('admin.payment-received');
+
 
         Route::get('/invoice-details/{id}',[ViewSubscriptionDetailsController::class,'viewinvoicedetails'])->name('admin.view.invoicedetails');
         Route::get('/download/invoice/{id}',[ViewSubscriptionDetailsController::class,'downloadinvoice'])->name('admin.download.invoice');
@@ -114,6 +115,8 @@ Route::middleware('auth:admin')->group(function () {
         Route::post('/update/invoice/{id}',[ViewSubscriptionDetailsController::class,'updateinvoice'])->name('admin.update.invoice');
         Route::get('/download/pdf/invoice/{id}',[ViewSubscriptionDetailsController::class,'generatePdf'])->name('admin.download.invoicepdf');
         Route::get('/download/pdf/agreement/{id}',[ViewSubscriptionDetailsController::class,'agreementPdf'])->name('admin.download.agreementpdf');
+        Route::get('/download/pdf/riskprofile/{id}',[ViewSubscriptionDetailsController::class,'riskProfilePdf'])->name('admin.download.riskprofilingpdf');
+        
         /*Subscription Detail Route */
         Route::get('/complaint-status/current-month',[ComplaintStatusController::class,'currentMonth'])->name('admin.currentmonthcomplaint');
         Route::post('/complaint-status/store/current-month',[ComplaintStatusController::class,'storeCurrentMonth'])->name('admin.storecurrentmonthcomplaint');

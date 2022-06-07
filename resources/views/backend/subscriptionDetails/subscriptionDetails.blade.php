@@ -119,7 +119,7 @@
                                             <a href="{{ route('admin.edit-subscription',$subscription_detail->id)}}" class="btn btn-info" title="Edit"><i class="nav-icon fas fa-edit"></i></a>
                                             
                                             @if($subscription_detail->is_verified_by_admin == 0)
-                                                <a href="{{ route('admin.verify-subscription',$subscription_detail->id)}}" class="btn btn-warning" onclick="return confirm('Are you sure?')" title="verify">Verification Pending</a>
+                                                <a class="btn btn-warning verify-admin-button" id="{{ $subscription_detail->id }}" data-toggle="modal" data-target="#modal-default" title="verify" style="cursor:pointer">Verification Pending</a>
                                             @else
                                                 <span class="badge badge-success" style="height:40px;font-size:16px;padding:13px" title="verified">Verified</span>
                                             @endif
@@ -127,7 +127,7 @@
                                                 @if($subscription_detail->is_verified_by_admin == 0)
                                                 <a class="btn btn-warning disabled" title="Confirm Payment"> Confirm Payment</a>
                                                 @else
-                                                <a style="cursor:pointer"  class="btn btn-warning payment-received-button" id="{{ $subscription_detail->id }}" data-toggle="modal" data-target="#modal-default" @if($subscription_detail->is_verified_by_admin == 0) disabled @endif title="Confirm Payment"> Confirm Payment</a>
+                                                <a href="{{ route('admin.payment-received',$subscription_detail->id)}}" style="cursor:pointer"  class="btn btn-warning payment-received-button" @if($subscription_detail->is_verified_by_admin == 0) disabled @endif title="Confirm Payment" onclick="return confirm('Are you sure?')"> Confirm Payment</a>
                                                 @endif
                                              
                                             @else
@@ -136,18 +136,19 @@
                                             <a href="{{ route('admin.delete-subscription',$subscription_detail->id)}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this entry?')" title="Delete"><i class="nav-icon fas fa-trash"></i></a>
                                         </td>
                                         <td>
-                                            @if($subscription_detail->is_payment_received == 1)
+                                            @if($subscription_detail->is_verified_by_admin == 1)
                                             {{-- <a href="{{ route('admin.view.invoicedetails',$subscription_detail->id) }}" class="btn btn-primary"><i class="fas fa-eye"></i></a> --}}
                                             <a href="#" onclick="event.preventDefault();" class="btn btn-info invoice-details" data-toggle="modal" data-target="#modal-default-2" id="{{ $subscription_detail->id}}"><i class="fas fa-edit"></i></a>
                                             {{-- <a href="{{ route('admin.download.invoice',$subscription_detail->id)}}" class="btn btn-success" title="Download Details">Download Details</a> --}}
                                             <a href="{{ route('admin.download.invoicepdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Invoice">Download Invoice</a>
                                             <a href="{{ route('admin.download.agreementpdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Agreement">Download Agreement</a>
-
+                                            <a href="{{ route('admin.download.riskprofilingpdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Agreement">Download Risk Profiling Pdf </a>
                                             @else
                                             <a href="#" onclick="event.preventDefault();" class="btn btn-info disabled" title="edit"><i class="fas fa-edit"></i></a>
                                             {{-- <a href="#" class="btn btn-success disabled" title="Download Details">Download Details</a> --}}
                                             <a href="#" class="btn btn-success disabled" title="Download Invoice">Download Invoice</a>
                                             <a href="#" class="btn btn-success disabled" title="Download Agreement">Download Agreement</a>
+                                            <a href="{{ route('admin.download.riskprofilingpdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Agreement">Download Risk Profiling Pdf </a>
                                             @endif
                                             
                                         </td>
@@ -179,11 +180,9 @@
             </div>
             <div class="modal-body" id="contact-content">
             <div class="row">
-                <div class="col-md-12" >
-                    <a class="btn btn-primary add-invoice" style="float:right;margin-bottom:15px">Add More Services</a>
-                </div>
+                
                <div class="col-md-12">
-                    <form id="payment-received-form" action="{{ route('admin.payment-received')}}" method="POST">@csrf
+                    <form id="payment-received-form" action="{{ route('admin.verify-subscription')}}" method="POST">@csrf
                         
                         
                     </form>
@@ -281,7 +280,7 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
 // $('#reservation').val('');
 </script>
 <script>
-    $(document).on('click','.payment-received-button',function(){
+    $(document).on('click','.verify-admin-button',function(){
         var subscription_id = $(this).attr('id');
         // $(this).attr('data-toggle','modal');
         // $(this).attr('data-target','#modal-default');

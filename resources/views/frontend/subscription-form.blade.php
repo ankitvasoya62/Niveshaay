@@ -233,7 +233,7 @@
                                 <div class=" custom-radio-btn">
                                     <div class="radio-btn-inner">
                                         <input id="above50percent" name="repayment_of_existing_liabilities" type="radio" value="1" @if(old('repayment_of_existing_liabilities') == '1') checked @endif>	                    
-                                        <label for="above50percent"> &gt;50</label>
+                                        <label for="above50percent"> &gt;50%</label>
                                     </div>
                                 </div>
                                 <div class=" custom-radio-btn">

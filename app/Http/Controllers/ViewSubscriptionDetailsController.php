@@ -113,25 +113,8 @@ class ViewSubscriptionDetailsController extends Controller
         $subscriptionFormDetail->save();
         return redirect()->route('admin.subscription-details')->with('success','Record Updated Successfully!');
     }
-    public function verifySubscriptionDetails($id){
-        $subscription_details = SubscriptionFormDetail::find($id);
-        $toEmail = $subscription_details->email;
-        $name = $subscription_details->name_of_investor;
-        try{
-            Mail::to($toEmail)->send(new PaymentDetailsMail($name));
-            $subscription_details->is_verified_by_admin =1;
-            $subscription_details->save();
-            return redirect()->route('admin.subscription-details')->with('success','Mail Sent Successfully!');
-        }
-        catch(\Throwable $th){
-            //throw $th;
-            return redirect()->back()->with('error','Something went wrong');
-        }
-        
+    public function verifySubscriptionDetails(Request $request){
 
-    }
-
-    public function paymentReceivedAction(Request $request){
         date_default_timezone_set('Asia/Kolkata');
         $id = !empty($request->subscription_form_id) ? $request->subscription_form_id : 0;
         $table_data = array();
@@ -169,6 +152,96 @@ class ViewSubscriptionDetailsController extends Controller
             array_push($table_data,$data);
             $amount_sum += $request->amount[$key];
         }
+        $subscription_details = SubscriptionFormDetail::find($id);
+        $toEmail = $subscription_details->email;
+        $name = $subscription_details->name_of_investor;
+        $data = array();
+        $data['name'] = $name;
+        $average = riskProfile($subscription_details,$id);
+        if($average >=1 && $average <4){
+            $riskProfile = 'Low Risk';
+        }elseif($average >=4 && $average <7){
+            $riskProfile = 'Moderate';
+            
+        }   
+        elseif($average >= 7 && $average <=10){
+            $riskProfile = 'High Risk';
+        }
+        $invoices = InvoiceDetail::where('subscription_form_id',$id)->orderBy('id','desc')->first();
+        $amount = $invoices->amount;
+        $subscription_start_date = $invoices->subscription_start_date;
+        $subscription_end_date = $invoices->subscription_end_date;
+        $feesfrequency = !empty($invoices->fees_frequency) ? $invoices->fees_frequency : '6 Months';
+        $subscription_data = array();
+        $subscription_data['name_of_investor'] = $subscription_details->name_of_investor;
+        $subscription_data['email'] = $subscription_details->email;
+        $subscription_data['pan_no'] = $subscription_details->pan_no;
+        $subscription_data['riskprofile'] = $riskProfile;
+        $subscription_data['amount'] = $amount;
+        $subscription_data['subscription_start_date'] = date('d F, Y',strtotime($subscription_start_date));
+        $subscription_data['subscription_end_date'] = date('d F, Y',strtotime($subscription_end_date));
+        $subscription_data['fees_frequency'] = $feesfrequency;
+        // $subscription_data = !empty($subscription_details) ? $subscription_details : array();
+        $subscriptionpdf = PDF::loadView('pdf.advisor-agreement', $subscription_data);
+        $riskprofilepdf = PDF::loadView('pdf.risk-profiling',$subscription_details);
+        try{
+            Mail::send('frontend.mail.payment-details', $data, function($message)use($toEmail, $subscriptionpdf,$riskprofilepdf) {
+                $message->to($toEmail, $toEmail)
+                        ->subject('Payment Details Mail')
+                        ->attachData($subscriptionpdf->output(), "agreement.pdf")
+                        ->attachData($riskprofilepdf->output(), "riskprofiling.pdf");
+            });
+            //Mail::to($toEmail)->send(new PaymentDetailsMail($name));
+            $subscription_details->is_verified_by_admin =1;
+            $subscription_details->save();
+            return redirect()->route('admin.subscription-details')->with('success','Mail Sent Successfully!');
+        }
+        catch(\Throwable $th){
+            //throw $th;
+            return redirect()->back()->with('error','Something went wrong');
+        }
+        
+
+    }
+
+    public function paymentReceivedAction($id){
+        date_default_timezone_set('Asia/Kolkata');
+        // $id = !empty($request->subscription_form_id) ? $request->subscription_form_id : 0;
+        // $table_data = array();
+        // $amount_sum = 0;
+        // $max_date = array();
+        // $subscription_invoice_no = !empty($request->invoice_no) ? $request->invoice_no : ''; 
+         // dd($request);
+        // foreach ($request->description as $key => $value) {
+        //     # code...
+        //     $data = array();
+        //     $data['description'] = $value;
+        //     $data['amount'] = $request->amount[$key];
+        //     $data['subscription_start_date'] = $request->subscription_start_date[$key];
+        //     $data['subscription_end_date'] = $request->subscription_end_date[$key];
+        //     $data['subscription_form_id'] = $id;
+        //     $today= Carbon::now();
+        //     $currentmonth = $today->month;
+        //     $currentyear = $today->year;
+        //     if(!empty($subscription_invoice_no)){
+        //         $invoice_no = $subscription_invoice_no;
+        //     }else{
+        //         if($currentmonth < 4){
+        //             $invoice_no = "#NRS/".($currentyear-1)."-".($currentyear)."/".($id+100);
+        //         }else{
+        //             $invoice_no = "#NRS/".$currentyear."-".($currentyear+1)."/".($id+100);
+        //         }
+        //     }
+        //     if(!empty($request->fees_frequency)){
+        //         $data['fees_frequency'] = $request->fees_frequency;
+        //     }
+            
+        //     $data['invoice_no'] = $invoice_no;
+        //     $insertdata = InvoiceDetail::insert($data);
+        //     $max_date[] = $request->subscription_end_date[$key];
+        //     array_push($table_data,$data);
+        //     $amount_sum += $request->amount[$key];
+        // }
 
         $data = array();
         
@@ -184,22 +257,20 @@ class ViewSubscriptionDetailsController extends Controller
         $today= Carbon::now();
         $currentmonth = $today->month;
         $currentyear = $today->year;
-        // if($currentmonth < 4){
-        //     $invoice_no = "#NRS/".($currentyear-1)."-".($currentyear)."/".($id+100);
-        // }else{
-        //     $invoice_no = "#NRS/".$currentyear."-".($currentyear+1)."/".($id+100);
-        // }
-        if(!empty($subscription_invoice_no)){
-            $invoice_no = $subscription_invoice_no;
-        }else{
-            if($currentmonth < 4){
-                $invoice_no = "#NRS/".($currentyear-1)."-".($currentyear)."/".($id+100);
-            }else{
-                $invoice_no = "#NRS/".$currentyear."-".($currentyear+1)."/".($id+100);
-            }
-        }
+        
+        
+        $invoices = InvoiceDetail::where('subscription_form_id',$id)->orderBy('id','desc')->first();
+        $invoice_no = $invoices->invoice_no;
+        
+        $table_data = array();
+        $invoiceData = array();
+        $invoiceData['description'] = $invoices->description;
+        $invoiceData['amount'] = $invoices->amount;
+        $invoiceData['subscription_start_date'] = $invoices->subscription_start_date;
+        $invoiceData['subscription_end_date'] = $invoices->subscription_end_date;
+        array_push($table_data,$invoiceData);
         $data['invoice_no'] = $invoice_no;
-        $amount = $amount_sum;
+        $amount = $invoices->amount;
         if($subscription_details->state == 'Gujarat'){
                $cgst = $amount * 0.09;
                $sgst = $amount * 0.09;
@@ -219,53 +290,26 @@ class ViewSubscriptionDetailsController extends Controller
         
         
         $data['table_data'] = $table_data;
-        $average = riskProfile($subscription_details,$id);
-        if($average >=1 && $average <4){
-            $riskProfile = 'Low Risk';
-        }elseif($average >=4 && $average <7){
-            $riskProfile = 'Moderate';
-            
-        }   
-        elseif($average >= 7 && $average <=10){
-            $riskProfile = 'High Risk';
-        }
-        $invoices = InvoiceDetail::latest()->where('subscription_form_id',$id)->first();
-        $amount = $invoices->amount;
-        $subscription_start_date = $invoices->subscription_start_date;
-        $subscription_end_date = $invoices->subscription_end_date;
-        $feesfrequency = !empty($invoices->fees_frequency) ? $invoices->fees_frequency : '6 Months';
-        $subscription_data = array();
-        $subscription_data['name_of_investor'] = $subscription_details->name_of_investor;
-        $subscription_data['email'] = $subscription_details->email;
-        $subscription_data['pan_no'] = $subscription_details->pan_no;
-        $subscription_data['riskprofile'] = $riskProfile;
-        $subscription_data['amount'] = $amount;
-        $subscription_data['subscription_start_date'] = date('d F, Y',strtotime($subscription_start_date));
-        $subscription_data['subscription_end_date'] = date('d F, Y',strtotime($subscription_end_date));
-        $subscription_data['fees_frequency'] = $feesfrequency;
-        // $subscription_data = !empty($subscription_details) ? $subscription_details : array();
-        $subscriptionpdf = PDF::loadView('pdf.advisor-agreement', $subscription_data);
-        // dd($data);
         $pdf = PDF::loadView('pdf.document', $data);
-        Mail::send('backend.paymentReceivedMail', $data, function($message)use($data, $pdf,$subscriptionpdf) {
+        Mail::send('backend.paymentReceivedMail', $data, function($message)use($data, $pdf) {
             $message->to($data["email"], $data["email"])
                     ->subject($data["title"])
-                    ->attachData($pdf->output(), "invoice.pdf")
-                    ->attachData($subscriptionpdf->output(), "agreement.pdf");
+                    ->attachData($pdf->output(), "invoice.pdf");
+                    // ->attachData($subscriptionpdf->output(), "agreement.pdf");
         });
         // $pdf->output(public_path('invoicepdf/'.$id.'/invoice.pdf'),'F');
         $subscription_details['is_payment_received'] = 1;
         $subscription_details->save();
 
-        $subscription_details_user  = $subscription_details->user;
-        $subscription_details_user_end_date = $subscription_details_user->subscription_end_date;
-        $subscription_details_user_end_date = date('Y-m-d',strtotime($subscription_details_user_end_date));
-        $max_date[] = $subscription_details_user_end_date;
-        $max_subscription_end_date = max($max_date);
+        // $subscription_details_user  = $subscription_details->user;
+        // $subscription_details_user_end_date = $subscription_details_user->subscription_end_date;
+        // $subscription_details_user_end_date = date('Y-m-d',strtotime($subscription_details_user_end_date));
+        // $max_date[] = $subscription_details_user_end_date;
+        // $max_subscription_end_date = max($max_date);
 
-        $user = User::find($subscription_details_user->id);
-        $user->subscription_end_date  = $max_subscription_end_date;
-        $user->save();
+        // $user = User::find($subscription_details_user->id);
+        // $user->subscription_end_date  = $max_subscription_end_date;
+        // $user->save();
 
 
         
@@ -335,7 +379,7 @@ class ViewSubscriptionDetailsController extends Controller
     public function generatePdf($id){
         $subscription_details = SubscriptionFormDetail::find($id);
         $toEmail = $subscription_details->email;
-        $invoices = InvoiceDetail::latest()->where('subscription_form_id',$id)->first();
+        $invoices = InvoiceDetail::where('subscription_form_id',$id)->orderBy('id','desc')->first();
         // dd($invoices);
         $table_data = [];
         $inoice = array();
@@ -351,14 +395,7 @@ class ViewSubscriptionDetailsController extends Controller
         $data['state'] = $subscription_details->state;
         $data["email"] = $subscription_details->email;
         $data['gst_no'] = $subscription_details->gst_no;
-        // $today= Carbon::now();
-        // $currentmonth = $today->month;
-        // $currentyear = $today->year;
-        // if($currentmonth < 4){
-        //     $invoice_no = "#NIV/".($currentyear-1)."-".($currentyear)."/".($id+100);
-        // }else{
-        //     $invoice_no = "#NIV/".$currentyear."-".($currentyear+1)."/".($id+100);
-        // }
+        
         $data['invoice_no'] = $invoices->invoice_no;
         $amount = $invoices->amount;
         if($subscription_details->state == 'Gujarat'){
@@ -380,12 +417,10 @@ class ViewSubscriptionDetailsController extends Controller
         
         
         $data['table_data'] = $table_data;
-        
-        // dd($data);
+
         $pdf = PDF::loadView('pdf.document', $data);
         return $pdf->download('invoice.pdf');
-        // return $pdf->output('document.pdf',true);
-        //return $pdf->stream('document.pdf');
+        
     }
 
     public function agreementPdf($id){
@@ -420,5 +455,12 @@ class ViewSubscriptionDetailsController extends Controller
                                 
                                     
                                 
+    }
+
+    public function riskProfilePdf($id){
+        $subscription_details = SubscriptionFormDetail::find($id);
+        $pdf = PDF::loadView('pdf.risk-profiling', $subscription_details);
+        return $pdf->download('riskprofiling.pdf');
+
     }
 }
