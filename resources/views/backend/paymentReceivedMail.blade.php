@@ -8,7 +8,7 @@
 <p>Regards,</p>
 <div style="display:flex;flex-direction: row;">
     <div style="border:1px dotted grey;display:inline-flex;align-items:center;padding:10px">
-        <img src="{{ asset('images/logo.png') }}" style="width:150px;"/>
+        <img src="{{ asset('images/logo.png')}}" style="width:200px;"/>
     
     </div>
     <div style="border:1px dotted grey;padding:10px">
