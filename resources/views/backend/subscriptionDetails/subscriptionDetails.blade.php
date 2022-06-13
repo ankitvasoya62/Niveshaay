@@ -140,7 +140,7 @@
                                             {{-- <a href="{{ route('admin.view.invoicedetails',$subscription_detail->id) }}" class="btn btn-primary"><i class="fas fa-eye"></i></a> --}}
                                             <a href="#" onclick="event.preventDefault();" class="btn btn-info invoice-details" data-toggle="modal" data-target="#modal-default-2" id="{{ $subscription_detail->id}}"><i class="fas fa-edit"></i></a>
                                             {{-- <a href="{{ route('admin.download.invoice',$subscription_detail->id)}}" class="btn btn-success" title="Download Details">Download Details</a> --}}
-                                            <a href="{{ route('admin.download.invoicepdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Invoice">Invoice</a>
+                                            <a href="{{ route('admin.download.invoicepdf',$subscription_detail->id)}}" class="btn btn-success @if($subscription_detail->is_payment_received == 0) disabled @endif" target="_blank" title="Download Invoice">Invoice</a>
                                             <a href="{{ route('admin.download.agreementpdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Agreement">Agreement</a>
                                             <a href="{{ route('admin.download.riskprofilingpdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Agreement">Risk Profiling Pdf </a>
                                             @else
@@ -306,19 +306,26 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                     </div>
                 </div>
             </div>`;
-        appendhtml += `<div class="card card-payment-form"><div class="card-header"><b>Invoice Details</b></div><div class="card-body"> <div class="row"><div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Description</label><textarea class="form-control" name="description[]" required></textarea></div></div><div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Amount</label><input type="number" class="form-control" name="amount[]" required> </div></div><div class="col-md-6">
+        appendhtml += `<div class="card card-payment-form"><div class="card-header"><b>Invoice Details</b></div><div class="card-body"> <div class="row"><div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Description</label><textarea class="form-control" name="description[]" required></textarea></div></div><div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Amount(in numbers only)</label><input type="number" class="form-control" name="amount[]" required> </div></div><div class="col-md-6">
             <div class="form-group d-inline">
                 <label class="control-label">Subscription Start Date</label>
                 <input type="date" class="form-control" name="subscription_start_date[]" required max="9999-12-31"> 
             </div>
         </div>
+        <div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Amount(in text)</label><input type="text" class="form-control" name="amount_description[]" required>
+        
+            </div></div>
         <div class="col-md-6">
             <div class="form-group d-inline">
                 <label class="control-label">Subscription End Date</label>
                 <input type="date" class="form-control" name="subscription_end_date[]" required max="9999-12-31"> 
                 <span class="subscription-end-date-error" style="color:red"></span>
             </div>
-        </div></div></div></div>`;
+        </div>
+        <div class="col-md-6">
+            <span style="color:red">*To generate the invoice for research reports services, put the amount in numbers only in Amount (in numbers only) field. In other cases, use Amount (in text) box.</span>
+        </div>
+        </div></div></div>`;
         $('#payment-received-form').html(appendhtml);
     });
     $(document).on('click','.add-invoice',function(){
@@ -396,6 +403,8 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                         $('#invoice-form').html('');
                         var invoicehtml = '';
                         $.each(data,function(index,value){
+                            value.amount_description = value.amount_description == null ? '' : value.amount_description;
+                            value.amount = value.amount== null ? '' : value.amount;
                             if(index == 0){
                                 invoicehtml += `<div class="card">
                                                     <div class="card-body">
@@ -427,7 +436,7 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>Amount</label>
+                                                            <label>Amount(in numbers only)</label>
                                                             <input type="number" class="form-control" name="amount[]" value="`+ value.amount+`">
                                                         </div>
                                                     </div>
@@ -438,6 +447,10 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                                                             
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Amount(in text)</label>
+                                                        <input type="text" class="form-control" name="amount_description[]" value="`+ value.amount_description+`" required> 
+                                                        
+                                                    </div></div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Subscription End Date</label>
@@ -445,6 +458,7 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                                                             <span class="text-danger invoice_end_date_error"></span>
                                                         </div>
                                                     </div>
+                                                    <span style="color:red">*To generate the invoice for research reports services, put the amount in numbers only in Amount (in numbers only) field. In other cases, use Amount (in text) box.</span>
                                                 </div></div></div>`
 
                             }else{
@@ -458,7 +472,7 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>Amount</label>
+                                                            <label>Amount(in numbers only)</label>
                                                             <input type="number" class="form-control" name="amount[]" value="`+ value.amount+`">
                                                         </div>
                                                     </div>
@@ -469,6 +483,9 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                                                             
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Amount(in text)</label><input type="text" class="form-control" name="amount_description[]" value="`+ value.amount_description+`" required>
+                                                        
+                                                    </div></div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Subscription End Date</label>
@@ -476,6 +493,7 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                                                             <span class="text-danger invoice_end_date_error"></span>
                                                         </div>
                                                     </div>
+                                                    <span style="color:red">*To generate the invoice for research reports services, put the amount in numbers only in Amount (in numbers only) field. In other cases, use Amount (in text) box.</span>
                                                 </div></div></div>`
 
                             }

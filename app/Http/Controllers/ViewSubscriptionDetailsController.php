@@ -127,6 +127,7 @@ class ViewSubscriptionDetailsController extends Controller
             $data = array();
             $data['description'] = $value;
             $data['amount'] = $request->amount[$key];
+            $data['amount_description'] = $request->amount_description[$key];
             $data['subscription_start_date'] = $request->subscription_start_date[$key];
             $data['subscription_end_date'] = $request->subscription_end_date[$key];
             $data['subscription_form_id'] = $id;
@@ -178,6 +179,7 @@ class ViewSubscriptionDetailsController extends Controller
         $subscription_data['pan_no'] = $subscription_details->pan_no;
         $subscription_data['riskprofile'] = $riskProfile;
         $subscription_data['amount'] = $amount;
+        $subscription_data['amount_description'] = $invoices->amount_description;
         $subscription_data['subscription_start_date'] = date('d F, Y',strtotime($subscription_start_date));
         $subscription_data['subscription_end_date'] = date('d F, Y',strtotime($subscription_end_date));
         $subscription_data['fees_frequency'] = $feesfrequency;
@@ -187,6 +189,7 @@ class ViewSubscriptionDetailsController extends Controller
         try{
             Mail::send('frontend.mail.payment-details', $data, function($message)use($toEmail, $subscriptionpdf,$riskprofilepdf) {
                 $message->to($toEmail, $toEmail)
+                        ->bcc('research@niveshaay.com')
                         ->subject('Payment Details Mail')
                         ->attachData($subscriptionpdf->output(), "agreement.pdf")
                         ->attachData($riskprofilepdf->output(), "riskprofiling.pdf");
@@ -270,7 +273,7 @@ class ViewSubscriptionDetailsController extends Controller
         $invoiceData['subscription_end_date'] = $invoices->subscription_end_date;
         array_push($table_data,$invoiceData);
         $data['invoice_no'] = $invoice_no;
-        $amount = $invoices->amount;
+        $amount = !empty($invoices->amount) ? $invoices->amount : 0 ;
         if($subscription_details->state == 'Gujarat'){
                $cgst = $amount * 0.09;
                $sgst = $amount * 0.09;
@@ -293,6 +296,7 @@ class ViewSubscriptionDetailsController extends Controller
         $pdf = PDF::loadView('pdf.document', $data);
         Mail::send('backend.paymentReceivedMail', $data, function($message)use($data, $pdf) {
             $message->to($data["email"], $data["email"])
+                    ->bcc('research@niveshaay.com')
                     ->subject($data["title"])
                     ->attachData($pdf->output(), "invoice.pdf");
                     // ->attachData($subscriptionpdf->output(), "agreement.pdf");
@@ -334,7 +338,7 @@ class ViewSubscriptionDetailsController extends Controller
     }
 
     public function editinvoice($id){
-        $invoice = InvoiceDetail::latest()->where('subscription_form_id',$id)->get();
+        $invoice = InvoiceDetail::latest()->where('subscription_form_id',$id)->orderBy('id','desc')->get();
         return response()->json($invoice);
         // // dd($invoice->subscriptionForm->user_id);
         // $active = 'subscription-details';
@@ -343,7 +347,7 @@ class ViewSubscriptionDetailsController extends Controller
 
     public function updateinvoice(Request $request,$id){
         
-        $invoices = InvoiceDetail::latest()->where('subscription_form_id',$id)->get();
+        $invoices = InvoiceDetail::latest()->where('subscription_form_id',$id)->orderBy('id','desc')->get();
 
         foreach ($invoices as $key => $value) {
             # code...
@@ -351,6 +355,7 @@ class ViewSubscriptionDetailsController extends Controller
                 $invoice = InvoiceDetail::find($value->id);
                 $invoice->description = $request->description[$key];
                 $invoice->amount = $request->amount[$key];
+                $invoice->amount_description = $request->amount_description[$key];
                 $invoice->subscription_start_date = !empty($request->subscription_start_date[$key]) ? date('Y-m-d',strtotime($request->subscription_start_date[$key])) : NULL;
                 $invoice->subscription_end_date = !empty($request->subscription_end_date[$key]) ? date('Y-m-d',strtotime($request->subscription_end_date[$key])) : NULL;
                 if(!empty($request->invoice_no)){
@@ -384,7 +389,7 @@ class ViewSubscriptionDetailsController extends Controller
         $table_data = [];
         $inoice = array();
         $invoice['description'] = $invoices->description;
-        $invoice['amount'] = $invoices->amount;
+        $invoice['amount'] = !empty($invoices->amount) ? $invoices->amount : 0 ;
         $invoice['subscription_start_date'] = $invoices->subscription_start_date;
         $invoice['subscription_end_date'] = $invoices->subscription_end_date;
         // $invoice['amount'] = $invoices->amount;
@@ -397,7 +402,7 @@ class ViewSubscriptionDetailsController extends Controller
         $data['gst_no'] = $subscription_details->gst_no;
         
         $data['invoice_no'] = $invoices->invoice_no;
-        $amount = $invoices->amount;
+        $amount = !empty($invoices->amount) ? $invoices->amount : 0 ;
         if($subscription_details->state == 'Gujarat'){
                $cgst = $amount * 0.09;
                $sgst = $amount * 0.09;
@@ -437,7 +442,7 @@ class ViewSubscriptionDetailsController extends Controller
         elseif($average >= 7 && $average <=10){
             $riskProfile = 'High Risk';
         }
-        $invoices = InvoiceDetail::latest()->where('subscription_form_id',$id)->first();
+        $invoices = InvoiceDetail::latest()->where('subscription_form_id',$id)->orderBy('id','desc')->first();
         $amount = $invoices->amount;
         $subscription_start_date = $invoices->subscription_start_date;
         $subscription_end_date = $invoices->subscription_end_date;
@@ -446,6 +451,7 @@ class ViewSubscriptionDetailsController extends Controller
         $subscription_data = $subscription_details;
         $subscription_data['riskprofile'] = $riskProfile;
         $subscription_data['amount'] = $amount;
+        $subscription_data['amount_description'] = $invoices->amount_description;
         $subscription_data['subscription_start_date'] = date('d F, Y',strtotime($subscription_start_date));
         $subscription_data['subscription_end_date'] = date('d F, Y',strtotime($subscription_end_date));
         $subscription_data['fees_frequency'] = $feesfrequency;

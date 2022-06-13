@@ -247,7 +247,16 @@
                                         <tr>
                                             <td width="40%" class="detail-text">{{ $email }}</td>
                                             <td width="10"></td>
-                                            <td width="30%"  class="detail-text"><div class="rupee-block"><em class="rupee-icon" style=""><img width="5" src="{{ public_path('images/rupee-icon.png') }}" alt="rupee-icon" style="display:inline"></em> {{ $amount }}</td>
+                                            <td width="30%"  class="detail-text"><div class="rupee-block">
+                                                @if(!empty($amount))
+                                                <em class="rupee-icon" style=""><img width="5" src="{{ public_path('images/rupee-icon.png') }}" alt="rupee-icon" style="display:inline"></em> 
+                                                   {{ $amount  }} 
+                                                @elseif(!empty($amount_description))
+                                                    {{ $amount_description }}
+                                                @else
+                                                     --- 
+                                                @endif
+                                            </td>
                                             <td width="10"></td>
                                             <td width="30%"  class="detail-text">{{ $subscription_end_date }}</td>
                                         </tr>

@@ -101,9 +101,9 @@
 								</li>
 								<li>Volatility, being an inherent nature of small and mid-caps, we prefer a time horizon of 3-5 years for reasonable returns.  </li>
 							</ul>
-							@if (!Auth::user())
-								<p class="has-different-style"><a href="{{ route('frontend.signup')}}" title="click-here-btn" class="services-click-btn">Click here</a> to Subscribe</p>
-							@endif
+							
+							<p class="has-different-style"><a href="{{ route('frontend.contact')}}" title="click-here-btn" class="services-click-btn">Click here</a> to Contact US</p>
+							
 						</div>
 				</div>
 				<div class="tab-content-inner list-catagory-section niveshaay-research-block @if($activeservice == 2) active opacity @endif" data-id="research-services">
@@ -431,9 +431,9 @@
 						<p>Our research team understands that every family is different. So, we provide bespoke advice to establish, operate and grow your family office. Here, the AUM of family office is large. The general trend is to divide the portfolio and take advisory of different fund managers. 
 							Here, leveraging our research capabilities, we not only manage their portfolios but also make prudent allocation on consolidated basis for effective returns. 
 						</p>
-						@if (!Auth::user())
-							<p class="has-different-style"><a href="{{ route('frontend.signup')}}" title="click-here-btn" class="services-click-btn">Click here</a> to Subscribe</p>
-						@endif
+						
+						<p class="has-different-style"><a href="{{ route('frontend.contact')}}" title="click-here-btn" class="services-click-btn">Click here</a> to Contact US</p>
+						
 					</div>
 				</div>
 			</div>
