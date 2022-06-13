@@ -458,7 +458,9 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                                                             <span class="text-danger invoice_end_date_error"></span>
                                                         </div>
                                                     </div>
-                                                    <span style="color:red">*To generate the invoice for research reports services, put the amount in numbers only in Amount (in numbers only) field. In other cases, use Amount (in text) box.</span>
+                                                    <div class="col-md-6">
+                                                        <span style="color:red">*To generate the invoice for research reports services, put the amount in numbers only in Amount (in numbers only) field. In other cases, use Amount (in text) box.</span>
+                                                    </div>
                                                 </div></div></div>`
 
                             }else{
@@ -493,7 +495,9 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                                                             <span class="text-danger invoice_end_date_error"></span>
                                                         </div>
                                                     </div>
-                                                    <span style="color:red">*To generate the invoice for research reports services, put the amount in numbers only in Amount (in numbers only) field. In other cases, use Amount (in text) box.</span>
+                                                    <div class="col-md-6">
+                                                        <span style="color:red">*To generate the invoice for research reports services, put the amount in numbers only in Amount (in numbers only) field. In other cases, use Amount (in text) box.</span>
+                                                    </div>
                                                 </div></div></div>`
 
                             }
