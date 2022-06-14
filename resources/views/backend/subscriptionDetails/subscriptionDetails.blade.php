@@ -89,7 +89,7 @@
                                         <th style="width:10%;">Mobile no.</th>
                                         
                                         
-                                        <th style="width:30%;">Subscription Action</th>
+                                        <th style="width:25%;">Subscription Action</th>
                                         <th style="width:20%;">Invoice Action & Downloads</th>
                                         
                                     </tr>
@@ -119,36 +119,39 @@
                                             <a href="{{ route('admin.edit-subscription',$subscription_detail->id)}}" class="btn btn-info" title="Edit"><i class="nav-icon fas fa-edit"></i></a>
                                             
                                             @if($subscription_detail->is_verified_by_admin == 0)
-                                                <a class="btn btn-warning verify-admin-button" id="{{ $subscription_detail->id }}" data-toggle="modal" data-target="#modal-default" title="verify" style="cursor:pointer">Verification Pending</a>
+                                                <a class="btn btn-warning verify-admin-button" id="{{ $subscription_detail->id }}" data-toggle="modal" data-target="#modal-default" title="Verification Pending" style="cursor:pointer"><i class="fas fa-hourglass"></i></a>
                                             @else
-                                                <span class="badge badge-success" style="height:40px;font-size:16px;padding:13px" title="verified">Verified</span>
+                                                <span class="badge badge-success" style="height:40px;font-size:16px;padding:13px" title="Verified"><i class="fa fa-check" aria-hidden="true"></i>
+                                                </span>
                                             @endif
                                             @if($subscription_detail->is_payment_received == 0)
                                                 @if($subscription_detail->is_verified_by_admin == 0)
-                                                <a class="btn btn-warning disabled" title="Confirm Payment"> Confirm Payment</a>
+                                                <a class="btn btn-warning disabled" title="Confirm Payment"> <i class="fas fa-rupee-sign"></i></a>
                                                 @else
-                                                <a href="{{ route('admin.payment-received',$subscription_detail->id)}}" style="cursor:pointer"  class="btn btn-warning payment-received-button" @if($subscription_detail->is_verified_by_admin == 0) disabled @endif title="Confirm Payment" onclick="return confirm('Are you sure?')"> Confirm Payment</a>
+                                                <a href="{{ route('admin.payment-received',$subscription_detail->id)}}" style="cursor:pointer"  class="btn btn-warning payment-received-button" @if($subscription_detail->is_verified_by_admin == 0) disabled @endif title="Confirm Payment" onclick="return confirm('Are you sure?')"> <i class="fas fa-rupee-sign"></i></a>
                                                 @endif
                                              
                                             @else
-                                                <span class="badge badge-success" style="height:40px;font-size:16px;padding:13px" title="Payment Received">Payment Received</span>
+                                                <span class="badge badge-success" style="height:40px;font-size:16px;padding:13px" title="Payment Received"><i class="fas fa-rupee-sign"></i><i class="fa fa-check"></i></span>
                                             @endif
                                             <a href="{{ route('admin.delete-subscription',$subscription_detail->id)}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this entry?')" title="Delete"><i class="nav-icon fas fa-trash"></i></a>
                                         </td>
                                         <td>
                                             @if($subscription_detail->is_verified_by_admin == 1)
                                             {{-- <a href="{{ route('admin.view.invoicedetails',$subscription_detail->id) }}" class="btn btn-primary"><i class="fas fa-eye"></i></a> --}}
-                                            <a href="#" onclick="event.preventDefault();" class="btn btn-info invoice-details" data-toggle="modal" data-target="#modal-default-2" id="{{ $subscription_detail->id}}"><i class="fas fa-edit"></i></a>
+                                            <a href="#" onclick="event.preventDefault();" class="btn btn-info invoice-details" title="Edit" data-toggle="modal" data-target="#modal-default-2" id="{{ $subscription_detail->id}}"><i class="fas fa-edit"></i></a>
                                             {{-- <a href="{{ route('admin.download.invoice',$subscription_detail->id)}}" class="btn btn-success" title="Download Details">Download Details</a> --}}
-                                            <a href="{{ route('admin.download.invoicepdf',$subscription_detail->id)}}" class="btn btn-success @if($subscription_detail->is_payment_received == 0) disabled @endif" target="_blank" title="Download Invoice">Invoice</a>
-                                            <a href="{{ route('admin.download.agreementpdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Agreement">Agreement</a>
-                                            <a href="{{ route('admin.download.riskprofilingpdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Agreement">Risk Profiling Pdf </a>
+                                            <a href="{{ route('admin.download.invoicepdf',$subscription_detail->id)}}" class="btn btn-success @if($subscription_detail->is_payment_received == 0) disabled @endif" target="_blank" title="Download Invoice" title="Invoice"><i class="fas fa-file-invoice"></i></a>
+                                            <a href="{{ route('admin.download.agreementpdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Agreement"><i class="fas fa-file-contract"></i></a>
+                                            <a href="{{ route('admin.download.riskprofilingpdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Risk Profiling Pdf"><i class="fas fa-tachometer-alt"></i>
+                                            </a>
                                             @else
                                             <a href="#" onclick="event.preventDefault();" class="btn btn-info disabled" title="edit"><i class="fas fa-edit"></i></a>
                                             {{-- <a href="#" class="btn btn-success disabled" title="Download Details">Download Details</a> --}}
-                                            <a href="#" class="btn btn-success disabled" title="Download Invoice">Invoice</a>
-                                            <a href="#" class="btn btn-success disabled" title="Download Agreement">Agreement</a>
-                                            <a href="{{ route('admin.download.riskprofilingpdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Agreement">Risk Profiling Pdf </a>
+                                            <a href="#" class="btn btn-success disabled" title="Invoice"><i class="fas fa-file-invoice"></i></a>
+                                            <a href="#" class="btn btn-success disabled" title="Download Agreement"><i class="fas fa-file-contract"></i></a>
+                                            <a href="{{ route('admin.download.riskprofilingpdf',$subscription_detail->id)}}" class="btn btn-success" target="_blank" title="Download Risk Profiling Pdf"><i class="fas fa-tachometer-alt"></i>
+                                            </a>
                                             @endif
                                             
                                         </td>
