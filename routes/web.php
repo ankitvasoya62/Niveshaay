@@ -83,9 +83,11 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/edit-admin-user/{id}', [UserController::class, 'editAdminUser'])->name('admin.edit.admin-user');
         Route::post('/edit-admin-user/{id}', [UserController::class, 'updateAdminUser'])->name('admin.update.admin-user');
         Route::get('/delete-admin-user/{id}', [UserController::class, 'deleteAdminUser'])->name('admin.delete.admin-user');
+        Route::get('/download/excel/user',[UserController::class, 'downloadUserExcel'])->name('admin.download.user-excel');
         Route::get('/contacts',[contactUsController::class,'contactUsList'])->name('admin.contacts');
         Route::get('/showcontact/{id}',[contactUsController::class,'showContact'])->name('admin.showContact');
         Route::get('/deletecontact/{id}',[contactUsController::class,'deleteContact'])->name('admin.deleteContact');
+        Route::get('/downloadcontact',[contactUsController::class,'downloadContactExcel'])->name('admin.download.contact-excel');
         /*Share Management Route */
         Route::get('/researchreport',[ShareDetailsController::class,'listShare'])->name('admin.share');
         Route::get('/add/researchreport/{upload_type}',[ShareDetailsController::class,'addShare'])->name('admin.add.share');

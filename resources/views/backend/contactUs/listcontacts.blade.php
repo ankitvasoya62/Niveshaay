@@ -39,7 +39,11 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Contact Us</h3>
-                            
+                            <div style="float:right; display:block;">
+                                <a href="{{ route('admin.download.contact-excel') }}" class="btn btn-success">Download Excel</a>
+                                
+                                
+                            </div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -47,12 +51,13 @@
                                 <thead>
                                     <tr>
                                         <th>SR No</th>
+                                        <th>Date</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
                                         <th>Email</th>
                                         <th>Message</th>
                                         <th>Phone no.</th>
-                                        <th>Date</th>
+                                        
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -63,12 +68,13 @@
                                 @foreach ($contactus_list as $contact)
                                     <tr>
                                         <td>{{++$i}}</td>
+                                        <td>{{date("d-m-Y", strtotime($contact->created_at)) }}</td>
                                         <td>{{ $contact->first_name}}</td>
                                         <td>{{ $contact->last_name}}</td>
                                         <td>{{ $contact->email}}</td>
                                         <td>{{ Str::limit($contact->message,20,' ...') }}</td>
                                         <td>{{ $contact->phone_no }}</td>
-                                        <td>{{date("d-m-Y", strtotime($contact->created_at)) }}</td>
+                                        
                                         <td>
                                             <a style="cursor:pointer" data-toggle="modal" data-target="#modal-default" class="btn btn-info contact-details" id="{{ $contact->id }}" title="view"><i class="nav-icon fas fa-eye"></i></a>
                                             <a onclick="return confirm('Are you sure you want to delete this entry?')"

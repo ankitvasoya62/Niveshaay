@@ -250,7 +250,7 @@
                                             <td width="30%"  class="detail-text"><div class="rupee-block">
                                                 @if(!empty($amount))
                                                 <em class="rupee-icon" style=""><img width="5" src="{{ public_path('images/rupee-icon.png') }}" alt="rupee-icon" style="display:inline"></em> 
-                                                   {{ $amount  }} 
+                                                   {{ $amount + (0.18*$amount)  }} 
                                                 @elseif(!empty($amount_description))
                                                     {{ $amount_description }}
                                                 @else

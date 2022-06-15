@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ContactUs;
+use App\Exports\ContactusExport;
+
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class contactUsController extends Controller
 {
@@ -23,5 +27,9 @@ class contactUsController extends Controller
         $contact = Contactus::find($id);
         $contact->delete();
         return redirect()->back()->with('success','Record deleted Successfully!');
+    }
+
+    public function downloadContactExcel(){
+        return Excel::download(new ContactusExport, 'contact_us.xlsx');
     }
 }
