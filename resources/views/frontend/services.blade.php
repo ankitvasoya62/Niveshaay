@@ -102,7 +102,7 @@
 								<li>Volatility, being an inherent nature of small and mid-caps, we prefer a time horizon of 3-5 years for reasonable returns.  </li>
 							</ul>
 							
-							<p class="has-different-style"><a href="{{ route('frontend.contact')}}" title="click-here-btn" class="services-click-btn">Click here</a> to Contact US</p>
+							<p class="has-different-style"><a href="{{ route('frontend.contact')}}" title="click-here-btn" class="services-click-btn">Click here</a> to Contact Us</p>
 							
 						</div>
 				</div>
@@ -432,7 +432,7 @@
 							Here, leveraging our research capabilities, we not only manage their portfolios but also make prudent allocation on consolidated basis for effective returns. 
 						</p>
 						
-						<p class="has-different-style"><a href="{{ route('frontend.contact')}}" title="click-here-btn" class="services-click-btn">Click here</a> to Contact US</p>
+						<p class="has-different-style"><a href="{{ route('frontend.contact')}}" title="click-here-btn" class="services-click-btn">Click here</a> to Contact Us</p>
 						
 					</div>
 				</div>
