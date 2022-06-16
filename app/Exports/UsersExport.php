@@ -66,8 +66,9 @@ class UsersExport implements FromCollection,WithHeadings,WithMapping
              $user->name,
              $user->email,
              $user->phone_no,
-             $user->dob,
              $user->amount,
+             $user->dob,
+             
              $user->pan,
              
              !empty($user->subscription_start_date) ? date("d-m-Y", strtotime($user->subscription_start_date)) : "",

@@ -134,8 +134,9 @@
 <script>
 $(function() {
     $("#example1").DataTable({
-        "responsive": true,
+        
         "autoWidth": false,
+        "scrollX": true,
         "columnDefs": [
         { "orderable": false, "targets": [9] }
         ]
