@@ -111,6 +111,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{route('admin.invoice')}}" class="nav-link @if($active=='invoice') active @endif">
+              <i class="fas fa-rocket nav-icon"></i>
+              <p>Invoice</p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{route('admin.our-clients')}}" class="nav-link @if($active=='clients') active @endif">
               <i class="fas fa-user nav-icon"></i>
               <p>What Our Clients Says</p>

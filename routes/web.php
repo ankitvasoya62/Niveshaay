@@ -12,6 +12,7 @@ use App\Http\Controllers\ImportExcel;
 use App\Http\Controllers\contactUsController;
 use App\Http\Controllers\ShareDetailsController;
 use App\Http\Controllers\ViewSubscriptionDetailsController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ComplaintStatusController;
 use App\Http\Controllers\OurClientSayManagementController;
 use App\Http\Controllers\FeaturedOnController;
@@ -118,8 +119,17 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/download/pdf/invoice/{id}',[ViewSubscriptionDetailsController::class,'generatePdf'])->name('admin.download.invoicepdf');
         Route::get('/download/pdf/agreement/{id}',[ViewSubscriptionDetailsController::class,'agreementPdf'])->name('admin.download.agreementpdf');
         Route::get('/download/pdf/riskprofile/{id}',[ViewSubscriptionDetailsController::class,'riskProfilePdf'])->name('admin.download.riskprofilingpdf');
+
+        
         
         /*Subscription Detail Route */
+        Route::get('/invoice', [InvoiceController::class,'index'])->name('admin.invoice');
+        Route::get('/invoice/add', [InvoiceController::class,'add'])->name('admin.invoice.add');
+        Route::post('/invoice/store', [InvoiceController::class,'store'])->name('admin.invoice.store');
+        Route::get('/invoice/edit/{id}', [InvoiceController::class,'edit'])->name('admin.invoice.edit');
+        Route::post('/invoice/update/{id}', [InvoiceController::class,'update'])->name('admin.invoice.update');
+        Route::get('/invoice/delete/{id}', [InvoiceController::class,'delete'])->name('admin.invoice.delete');
+        Route::get('/invoice/user/{id}',[InvoiceController::class,'userSubscriptionRecord'])->name('admin.invoice.users');
         Route::get('/complaint-status/current-month',[ComplaintStatusController::class,'currentMonth'])->name('admin.currentmonthcomplaint');
         Route::post('/complaint-status/store/current-month',[ComplaintStatusController::class,'storeCurrentMonth'])->name('admin.storecurrentmonthcomplaint');
 
