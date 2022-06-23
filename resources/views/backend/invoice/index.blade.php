@@ -73,6 +73,7 @@
                                                  <a onclick="return confirm('Are you sure you want to delete this entry?')"
                                                     href="{{route('admin.invoice.delete',$invoice->id)}}" class="btn btn-danger" title="Delete"><i class="fas fa-trash-alt"></i>
                                                 </a>
+                                                <a href="{{route('admin.invoice.download',$invoice->id)}}" class="btn btn-info" title="Download Invoice"><i class="fas fa-file-invoice"></i></a>
                                             </td>
                                             
                                                 {{-- <a href="{{route('admin.edit.our-clients',$client->id)}}" class="btn btn-info" title="Edit"><i class="fas fa-edit"></i></a>

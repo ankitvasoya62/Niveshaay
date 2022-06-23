@@ -168,7 +168,7 @@ class ViewSubscriptionDetailsController extends Controller
         elseif($average >= 7 && $average <=10){
             $riskProfile = 'High Risk';
         }
-        $invoices = InvoiceDetail::where('subscription_form_id',$id)->orderBy('id','desc')->first();
+        $invoices = InvoiceDetail::where('subscription_form_id',$id)->where('is_renew',0)->orderBy('id','desc')->first();
         $amount = $invoices->amount;
         $subscription_start_date = $invoices->subscription_start_date;
         $subscription_end_date = $invoices->subscription_end_date;
@@ -209,42 +209,7 @@ class ViewSubscriptionDetailsController extends Controller
 
     public function paymentReceivedAction($id){
         date_default_timezone_set('Asia/Kolkata');
-        // $id = !empty($request->subscription_form_id) ? $request->subscription_form_id : 0;
-        // $table_data = array();
-        // $amount_sum = 0;
-        // $max_date = array();
-        // $subscription_invoice_no = !empty($request->invoice_no) ? $request->invoice_no : ''; 
-         // dd($request);
-        // foreach ($request->description as $key => $value) {
-        //     # code...
-        //     $data = array();
-        //     $data['description'] = $value;
-        //     $data['amount'] = $request->amount[$key];
-        //     $data['subscription_start_date'] = $request->subscription_start_date[$key];
-        //     $data['subscription_end_date'] = $request->subscription_end_date[$key];
-        //     $data['subscription_form_id'] = $id;
-        //     $today= Carbon::now();
-        //     $currentmonth = $today->month;
-        //     $currentyear = $today->year;
-        //     if(!empty($subscription_invoice_no)){
-        //         $invoice_no = $subscription_invoice_no;
-        //     }else{
-        //         if($currentmonth < 4){
-        //             $invoice_no = "#NRS/".($currentyear-1)."-".($currentyear)."/".($id+100);
-        //         }else{
-        //             $invoice_no = "#NRS/".$currentyear."-".($currentyear+1)."/".($id+100);
-        //         }
-        //     }
-        //     if(!empty($request->fees_frequency)){
-        //         $data['fees_frequency'] = $request->fees_frequency;
-        //     }
-            
-        //     $data['invoice_no'] = $invoice_no;
-        //     $insertdata = InvoiceDetail::insert($data);
-        //     $max_date[] = $request->subscription_end_date[$key];
-        //     array_push($table_data,$data);
-        //     $amount_sum += $request->amount[$key];
-        // }
+        
 
         $data = array();
         
@@ -262,7 +227,7 @@ class ViewSubscriptionDetailsController extends Controller
         $currentyear = $today->year;
         
         
-        $invoices = InvoiceDetail::where('subscription_form_id',$id)->orderBy('id','desc')->first();
+        $invoices = InvoiceDetail::where('subscription_form_id',$id)->where('is_renew',0)->orderBy('id','desc')->first();
         $invoice_no = $invoices->invoice_no;
         
         $table_data = array();
@@ -338,7 +303,7 @@ class ViewSubscriptionDetailsController extends Controller
     }
 
     public function editinvoice($id){
-        $invoice = InvoiceDetail::latest()->where('subscription_form_id',$id)->orderBy('id','desc')->get();
+        $invoice = InvoiceDetail::latest()->where('subscription_form_id',$id)->where('is_renew',0)->orderBy('id','desc')->get();
         return response()->json($invoice);
         // // dd($invoice->subscriptionForm->user_id);
         // $active = 'subscription-details';
@@ -347,7 +312,7 @@ class ViewSubscriptionDetailsController extends Controller
 
     public function updateinvoice(Request $request,$id){
         
-        $invoices = InvoiceDetail::latest()->where('subscription_form_id',$id)->orderBy('id','desc')->get();
+        $invoices = InvoiceDetail::latest()->where('subscription_form_id',$id)->where('is_renew',0)->orderBy('id','desc')->get();
 
         foreach ($invoices as $key => $value) {
             # code...
@@ -384,7 +349,7 @@ class ViewSubscriptionDetailsController extends Controller
     public function generatePdf($id){
         $subscription_details = SubscriptionFormDetail::find($id);
         $toEmail = $subscription_details->email;
-        $invoices = InvoiceDetail::where('subscription_form_id',$id)->orderBy('id','desc')->first();
+        $invoices = InvoiceDetail::where('subscription_form_id',$id)->where('is_renew',0)->orderBy('id','desc')->first();
         // dd($invoices);
         $table_data = [];
         $inoice = array();

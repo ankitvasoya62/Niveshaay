@@ -302,19 +302,19 @@
 <p>16.7 No Person who is not a party to this Agreement shall have any right to enforce the terms of this Agreement.</p>
 <p>16.8 Each party agrees to perform such further actions and execute such further agreements as are necessary to effectuate the purposes hereof.</p>
 
-<h2 class="green-title">17. DISCLOSURES BY THE INVESTMENT ADVISER</h2>
+{{-- <h2 class="green-title">17. DISCLOSURES BY THE INVESTMENT ADVISER</h2>
 <p>17.1 The Investment Adviser has a contractual arrangement with a vendor - Smallcase Technologies Private Limited (STPL); whereby STPL provides technology solutions and related back-end infrastructure along with support for back- office related operations & processes.</p>
 <p>17.2 The Investment Adviser also offers a mechanism to facilitate transactions on the recommendations provided to the client through STPL. The investment adviser does not receive any commission, fees or any other type of remuneration from the STPL for the same. The client is free to use the service as per his/her own discretion.</p>
 <p>17.3 STPL shall prepare a holding statement summary of the Client’s securities at the end of each month on a monthly basis and shall email the same to the Client’s registered email address on behalf of the Investment Adviser with a copy to the Investment Adviser. This statement will be prepared basis the transactions done by the Client through or from the website and or mobile application of the Investment adviser and facilitated by the STPL.</p>
-<p>17.4 The Client agrees and confirms that the Service Provider may appoint agents and or third-party vendors for carrying out the acts mentioned in or in relation to rendering its services. The Client consents to sharing of his/its account related information to such authorised agents / third party vendors appointed by the Service Provide.</p>
+<p>17.4 The Client agrees and confirms that the Service Provider may appoint agents and or third-party vendors for carrying out the acts mentioned in or in relation to rendering its services. The Client consents to sharing of his/its account related information to such authorised agents / third party vendors appointed by the Service Provide.</p> --}}
 
-<h2 class="green-title">18. Place of arbitration</h2>
+<h2 class="green-title">17. Place of arbitration</h2>
 <p>The seat of arbitration shall be Surat, Gujarat, India.</p>
 
-<h2 class="green-title">19. Indemnity Limit</h2>
+<h2 class="green-title">18. Indemnity Limit</h2>
 <p>The liability of the Investment Adviser towards the Client shall be limited to the Advisory Fees as received by the Investment Adviser for a period of 6 preceding months from the date on which the claim in relation to actions of proven fraud, gross negligence, willful default in connection with discharge of duties of the Investment Adviser arises.</p>
 
-<h2 class="green-title">20. Refund policy</h2>
+<h2 class="green-title">19. Refund policy</h2>
 <p>Upon the termination of the Agreement due to reasons by the written consent of Client and Investment Advisor
     , the Investment Adviser shall at its own discretion (as applicable) provide refund of any balance of the Advisory Fees for which Services have not been provided</p>
         </div>

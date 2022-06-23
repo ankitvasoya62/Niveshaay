@@ -44,23 +44,32 @@
                                     <span class="error">{{ $message }}</span>
                                 @enderror
                             </div> --}}
-                            <div class="form-group">
-                                <label for="service_type">Service Type</label>
-                                <select name="service_type" class="form-control">
-                                    <option value="0" @if($invoice->service_type == 0) selected disabled @endif>Research Report Service</option>
-                                    <option value="1" @if($invoice->service_type == 1) selected disabled @endif>Equity Advisory Service</option>
-                                </select>
-                                @error('service_type')
-                                    <span class="error">{{ $message }}</span>
-                                @enderror
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="service_type">Service Type</label>
+                                        <select name="service_type" class="form-control" disabled>
+                                            <option value="0" @if($invoice->service_type == 0) selected @endif>Research Report Service</option>
+                                            <option value="1" @if($invoice->service_type == 1) selected @endif>Equity Advisory Service</option>
+                                        </select>
+                                        @error('service_type')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="invoice_no">Invoice no.</label>
-                                <input type="text" name="invoice_no" id="invoice_no" class="form-control" value="{{ $invoice->invoice_no }}">
-                                @error('invoice_no')
-                                    <span class="error">{{ $message }}</span>
-                                @enderror
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="invoice_no">Invoice no.</label>
+                                        <input type="text" name="invoice_no" id="invoice_no" class="form-control" value="{{ $invoice->invoice_no }}">
+                                        @error('invoice_no')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
+                            
                             {{-- <div class="form-group">
                                 <label for="pan_no">PAN no.</label>
                                 <input type="text" name="pan_no" id="pan_no" class="form-control" value="{{ old('pan_no') }}">
@@ -100,30 +109,44 @@
                                         ->where('is_admin',0)->orderBy('name','asc')->get();
 
                             ?>
-                            <div class="form-group">
-                                <label for="">Name Of Investor</label>
-                                <select name="user_id" class="form-control">
-                                    @foreach ($users as $user)
-                                        
-                                        <option value="{{ $user->id }}" disabled @if($user->id == $invoice->subscriptionForm->user_id) selected @endif>{{ $user->name }}</option>
-                                        
-                                    @endforeach
-                                </select>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="">Name Of Investor</label>
+                                        <select name="user_id" class="form-control" disabled>
+                                            @foreach ($users as $user)
+                                                
+                                                <option value="{{ $user->id }}"  @if($user->id == $invoice->subscriptionForm->user_id) selected @endif>{{ $user->name }}</option>
+                                                
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="pan_no">PAN no.</label>
-                                <input type="text" name="pan_no" id="pan_no" class="form-control" value="{{ $invoice->subscriptionForm->pan_no }}">
-                                @error('pan_no')
-                                    <span class="error">{{ $message }}</span>
-                                @enderror
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="pan_no">PAN no.</label>
+                                        <input type="text" name="pan_no" id="pan_no" class="form-control" value="{{ $invoice->subscriptionForm->pan_no }}">
+                                        @error('pan_no')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="gst_no">GST no.</label>
-                                <input type="text" name="gst_no" id="gst_no" class="form-control" value="{{ $invoice->subscriptionForm->gst_no }}">
-                                @error('gst_no')
-                                    <span class="error">{{ $message }}</span>
-                                @enderror
+                            
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="gst_no">GST no.</label>
+                                        <input type="text" name="gst_no" id="gst_no" class="form-control" value="{{ $invoice->subscriptionForm->gst_no }}">
+                                        @error('gst_no')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
+                            
                             <div class="form-group">
                                 <label for="street_address">Street Address</label>
                                 <input type="text" name="street_address" class="form-control" value="{{ $invoice->subscriptionForm->street_address }}">
@@ -131,20 +154,25 @@
                             <?php 
                                 $states = getStates();
                             ?>
-                            <div class="form-group">
-                                <label for="state">State</label>
-                                <select class="form-control select2bs4" name="state">
-                                    <option value="">SELECT ONE</option>
-                                    @foreach ($states as $state)
-                                        <option value="{{$state}}" @if($state == $invoice->subscriptionForm->state) selected @endif>{{ $state }}
-                                        </option>    
-                                    @endforeach
-                                    
-                                </select>
-                                @error('state')
-                                    <span class="error">{{ $message }}</span>
-                                @enderror
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="state">State</label>
+                                        <select class="form-control select2bs4" name="state">
+                                            <option value="">SELECT ONE</option>
+                                            @foreach ($states as $state)
+                                                <option value="{{$state}}" @if($state == $invoice->subscriptionForm->state) selected @endif>{{ $state }}
+                                                </option>    
+                                            @endforeach
+                                            
+                                        </select>
+                                        @error('state')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
+                            
                             {{-- <div class="new-user-wrap">
                                 <div class="form-group">
                                     <label for="description">Email</label>
@@ -169,6 +197,7 @@
                                     <span class="error">{{ $message }}</span>
                                 @enderror
                             </div>
+
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
@@ -192,13 +221,18 @@
                                 </div>
                             </div>
                             
-                            <div class="form-group">
-                                <label for="amount">Amount</label>
-                                <input type="number" name="amount" id="amount" class="form-control" value="{{ $invoice->amount }}">
-                                @error('amount')
-                                    <span class="error">{{ $message }}</span>
-                                @enderror
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="amount">Amount</label>
+                                        <input type="number" name="amount" id="amount" class="form-control" value="{{ $invoice->amount }}">
+                                        @error('amount')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
+                            
                             
                             {{-- <div class="row">
                                 <div class="col-md-3">

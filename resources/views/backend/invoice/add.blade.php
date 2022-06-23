@@ -44,23 +44,33 @@
                                     <span class="error">{{ $message }}</span>
                                 @enderror
                             </div> --}}
-                            <div class="form-group">
-                                <label for="service_type">Service Type</label>
-                                <select name="service_type" class="form-control">
-                                    <option value="0">Research Report Service</option>
-                                    <option value="1">Equity Advisory Service</option>
-                                </select>
-                                @error('service_type')
-                                    <span class="error">{{ $message }}</span>
-                                @enderror
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="service_type">Service Type</label>
+                                        <select name="service_type" class="form-control">
+                                            <option value="0">Research Report Service</option>
+                                            <option value="1">Equity Advisory Service</option>
+                                        </select>
+                                        @error('service_type')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="invoice_no">Invoice no.</label>
-                                <input type="text" name="invoice_no" id="invoice_no" class="form-control" value="{{ old('invoice_no') }}">
-                                @error('invoice_no')
-                                    <span class="error">{{ $message }}</span>
-                                @enderror
+                            
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="invoice_no">Invoice no.</label>
+                                        <input type="text" name="invoice_no" id="invoice_no" class="form-control" value="{{ old('invoice_no') }}">
+                                        @error('invoice_no')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
+                            
                             {{-- <div class="form-group">
                                 <label for="pan_no">PAN no.</label>
                                 <input type="text" name="pan_no" id="pan_no" class="form-control" value="{{ old('pan_no') }}">
@@ -100,16 +110,21 @@
                                         ->where('is_admin',0)->orderBy('name','asc')->get();
 
                             ?>
-                            <div class="form-group">
-                                <label for="user_id">Name Of Investor</label>
-                                
-                                <select name="user_id" class="form-control  select2bs4" style="width: 100%;" required>
-                                    
-                                    @foreach ($users as $user)
-                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                    @endforeach
-                                </select>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="user_id">Name Of Investor</label>
+                                        
+                                        <select name="user_id" class="form-control  select2bs4" style="width: 100%;" required>
+                                            
+                                            @foreach ($users as $user)
+                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
+                            
                             {{-- <div class="new-user-wrap">
                                 <div class="form-group">
                                     <label for="description">Email</label>
@@ -126,20 +141,30 @@
                                     @enderror
                                 </div>
                             </div> --}}
-                            <div class="form-group">
-                                <label for="pan_no">PAN no.</label>
-                                <input type="text" name="pan_no" id="pan_no" class="form-control" value="{{ old('pan_no') }}">
-                                @error('pan_no')
-                                    <span class="error">{{ $message }}</span>
-                                @enderror
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="pan_no">PAN no.</label>
+                                        <input type="text" name="pan_no" id="pan_no" class="form-control" value="{{ old('pan_no') }}">
+                                        @error('pan_no')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="gst_no">GST no.</label>
-                                <input type="text" name="gst_no" id="gst_no" class="form-control" value="{{ old('gst_no') }}">
-                                @error('gst_no')
-                                    <span class="error">{{ $message }}</span>
-                                @enderror
+                            
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="gst_no">GST no.</label>
+                                        <input type="text" name="gst_no" id="gst_no" class="form-control" value="{{ old('gst_no') }}">
+                                        @error('gst_no')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
+                            
                             <div class="form-group">
                                 <label for="street_address">Street Address</label>
                                 <input type="text" name="street_address" class="form-control" value="{{ old('street_address')}}">
@@ -147,20 +172,25 @@
                             <?php 
                                 $states = getStates();
                             ?>
-                            <div class="form-group">
-                                <label for="state">State</label>
-                                <select class="form-control select2bs4" name="state">
-                                    <option value="">SELECT ONE</option>
-                                    @foreach ($states as $state)
-                                        <option value="{{$state}}">{{ $state }}
-                                        </option>    
-                                    @endforeach
-                                    
-                                </select>
-                                @error('state')
-                                    <span class="error">{{ $message }}</span>
-                                @enderror
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="state">State</label>
+                                        <select class="form-control select2bs4" name="state">
+                                            <option value="">SELECT ONE</option>
+                                            @foreach ($states as $state)
+                                                <option value="{{$state}}">{{ $state }}
+                                                </option>    
+                                            @endforeach
+                                            
+                                        </select>
+                                        @error('state')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
+                            
                             <div class="form-group">
                                 <label for="description">Description</label>
                                 <input type="text" name="description" id="description" class="form-control" value="{{ old('description') }}">
@@ -190,14 +220,18 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="form-group">
-                                <label for="amount">Amount</label>
-                                <input type="number" name="amount" id="amount" class="form-control" value="{{ old('amount') }}">
-                                @error('amount')
-                                    <span class="error">{{ $message }}</span>
-                                @enderror
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="amount">Amount</label>
+                                        <input type="number" name="amount" id="amount" class="form-control" value="{{ old('amount') }}">
+                                        @error('amount')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
+                            
                             {{-- <div class="form-group">
                                 
                                 <div class="form-check">
@@ -254,7 +288,11 @@
                         if(data){
                             $('[name=pan_no]').val(data.pan_no);
                             $('[name=gst_no]').val(data.gst_no);
-                            $('[name=state]').val(data.state);
+                            $('[name=state]').select2({
+                            theme: 'bootstrap4'
+                            }).val(data.state).trigger("change");
+
+                            //$('[name=state]').select2('val',data.state).trigger('change');
                             $('[name=street_address]').val(data.street_address);
                         } else{
                             $('[name=pan_no]').val('');

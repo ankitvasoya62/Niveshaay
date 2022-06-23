@@ -14,7 +14,7 @@ class InvoiceController extends Controller
     //
     public function index(){
         $active = 'invoice';
-        $invoices = InvoiceDetail::orderBy('id','desc')->get();
+        $invoices = InvoiceDetail::where('is_renew',1)->orderBy('id','desc')->get();
         return view('backend.invoice.index',compact('active','invoices'));
     }
 
@@ -59,8 +59,11 @@ class InvoiceController extends Controller
         $invoice->subscription_end_date = $request->subscription_end_date;
         $invoice->amount = $request->amount;
         $invoice->subscription_form_id = $subscriptionRecord->id;
+        $invoice->is_renew = 1;
         $newInvoice = $invoice->save();
         
+        // $user = User::find($userid);
+        // $user->subscription_start_date = $request->subscription_start_date;
         if(!empty($newInvoice) && isset($request->service_type) && $request->service_type == 0  ){
             $toEmail = $subscriptionRecord->email;
             $data = array();
@@ -150,5 +153,54 @@ class InvoiceController extends Controller
     public function userSubscriptionRecord($userid){
         $subscriptionRecord = SubscriptionFormDetail::where('user_id',$userid)->orderBy('id','desc')->first();
         return response()->json($subscriptionRecord);        
+    }
+
+    public function downloadInvoiceById($id){
+        $invoices = InvoiceDetail::find($id);
+        $subscription_details = $invoices->subscriptionForm;
+        if(!empty($invoices) && !empty($subscription_details)){
+            $table_data = [];
+            $inoice = array();
+            $invoice['description'] = $invoices->description;
+            $invoice['amount'] = !empty($invoices->amount) ? $invoices->amount : 0 ;
+            $invoice['subscription_start_date'] = $invoices->subscription_start_date;
+            $invoice['subscription_end_date'] = $invoices->subscription_end_date;
+            // $invoice['amount'] = $invoices->amount;
+            $invoice['invoice_no'] = $invoices->invoice_no;
+            array_push($table_data,$invoice);
+            $data['name_of_investor'] = $subscription_details->name_of_investor;
+            $data['pan_no'] = $subscription_details->pan_no;
+            $data['state'] = $subscription_details->state;
+            $data["email"] = $subscription_details->email;
+            $data['gst_no'] = $subscription_details->gst_no;
+            
+            $data['invoice_no'] = $invoices->invoice_no;
+            $amount = !empty($invoices->amount) ? $invoices->amount : 0 ;
+            if($subscription_details->state == 'Gujarat'){
+                $cgst = $amount * 0.09;
+                $sgst = $amount * 0.09;
+                $total = $amount + $cgst + $sgst;
+                $data['amount'] = $amount;
+                $data['cgst'] = $cgst;
+                $data['sgst'] = $sgst;
+                $data['total'] = $total;
+                
+            }else{
+                $igst = $amount * 0.18;
+                $total = $amount + $igst;
+                $data['amount'] = $amount;
+                $data['igst'] = $igst;
+                $data['total'] = $total;
+            }
+            
+            
+            $data['table_data'] = $table_data;
+
+            $pdf = PDF::loadView('pdf.document', $data);
+            return $pdf->download('invoice.pdf');
+        }else{
+            return redirect()->back()->with('error','Sorry, Record not found');
+        }
+        
     }
 }

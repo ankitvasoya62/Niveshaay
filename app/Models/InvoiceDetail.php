@@ -17,7 +17,8 @@ class InvoiceDetail extends Model
         'invoice_no',
         'fees_frequency',
         'amount_description',
-        'service_type'
+        'service_type',
+        'is_renew'
     ];
 
     public function subscriptionForm(){

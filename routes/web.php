@@ -130,6 +130,8 @@ Route::middleware('auth:admin')->group(function () {
         Route::post('/invoice/update/{id}', [InvoiceController::class,'update'])->name('admin.invoice.update');
         Route::get('/invoice/delete/{id}', [InvoiceController::class,'delete'])->name('admin.invoice.delete');
         Route::get('/invoice/user/{id}',[InvoiceController::class,'userSubscriptionRecord'])->name('admin.invoice.users');
+        Route::get('/invoice/download/{id}',[InvoiceController::class,'downloadInvoiceById'])->name('admin.invoice.download');
+
         Route::get('/complaint-status/current-month',[ComplaintStatusController::class,'currentMonth'])->name('admin.currentmonthcomplaint');
         Route::post('/complaint-status/store/current-month',[ComplaintStatusController::class,'storeCurrentMonth'])->name('admin.storecurrentmonthcomplaint');
 
