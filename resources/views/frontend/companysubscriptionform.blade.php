@@ -120,7 +120,7 @@
                         </div>
                         <div class="form-group half-width">
                             <label for="gst_no"> GST No.</label>
-                            <input id="gst_no" name="gst_no" type="text" class="form-control" placeholder="Enter GST No. " value="{{ $subscription_details->gst_no }}">		                    
+                            <input id="gst_no" name="gst_no" type="text" class="form-control" placeholder="Enter GST No. " value="{{ old('gst_no') }}">		                    
                             @error('gst_no')
                                 <span class="error">{{ $message }}</span>
                             @enderror
