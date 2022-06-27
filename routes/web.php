@@ -234,8 +234,9 @@ Route::middleware('auth')->group(function () {
             });
             
         });
-        Route::get('/subscription-form',[SubscriptionDetailsController::class,'subscriptionForm'])->name('frontend.subscriptionForm');
+        Route::get('/subscription-form/{id?}',[SubscriptionDetailsController::class,'subscriptionForm'])->name('frontend.subscriptionForm');
         Route::post('/store/subscription-detail',[SubscriptionDetailsController::class,'storeDetails'])->name('store.subscription-details');
+        Route::post('/store/compamysubscription-detail',[SubscriptionDetailsController::class,'storeCompanyDetails'])->name('store.companysubscription-details');
         Route::get('/advisor-agreement',[SubscriptionDetailsController::class,'advisorAgreement'])->name('frontend.advisor-agreement');
         Route::get('/research-dashboard',[HomeController::class, 'researchDashboard'])->name('frontend.research-dashboard');
         Route::post('/sendOtp',[SubscriptionDetailsController::class,'sendOtp'])->name('frontend.sendotp');

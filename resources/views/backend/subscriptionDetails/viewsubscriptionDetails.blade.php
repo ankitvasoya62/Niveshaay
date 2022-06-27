@@ -47,14 +47,17 @@
                                         {{ $subscription_details->name_of_investor }}
                                     </div>
                                     <hr>
-                                    <div class="col-md-6">
-                                        Date of birth
-                                    </div>
+                                    @if($subscription_details->subscription_type == 0)
+                                        <div class="col-md-6">
+                                            Date of birth
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            {{ $subscription_details->dob }}
+                                        </div>
+                                        <hr>
+                                    @endif
                                     
-                                    <div class="col-md-6">
-                                        {{ $subscription_details->dob }}
-                                    </div>
-                                    <hr>
                                     <div class="col-md-6">
                                         Email
                                     </div>
@@ -87,6 +90,7 @@
                                         {{ $subscription_details->state }}
                                     </div>
                                     <hr>
+                                    @if($subscription_details->subscription_type == 0)
                                     <div class="col-md-6">
                                         Pin Code
                                     </div>
@@ -118,6 +122,7 @@
                                         @endif
                                     </div>
                                     <hr>
+                                    
                                     <div class="col-md-6">
                                         Source Of Income
                                     </div>
@@ -174,7 +179,84 @@
                                         
                                     </div>
                                     <hr>
-                
+                                    @endif
+                                    @if($subscription_details->subscription_type == 1)
+                                        <div class="col-md-6">
+                                            Do you have DEMAT Account? : 
+                                        </div>
+                                        <div class="col-md-6">
+                                        
+                                            {{ !empty($subscription_details->is_demat_account) ? "Yes" : "No" }}
+                                            
+                                        </div>
+                                        <hr>
+                                        <div class="col-md-6">
+                                            DEMAT Account No:
+                                        </div>
+                                        <div class="col-md-6">
+                                        
+                                            {{ $subscription_details->demat_account_no }}
+                                            
+                                        </div>
+                                        <hr>
+                                        <div class="col-md-6">
+                                            Date of Incorporation 
+                                        </div>
+                                        <div class="col-md-6">
+                                        
+                                            {{ $subscription_details->date_of_incorporation }}
+                                            
+                                        </div>
+                                        <hr>
+                                        <div class="col-md-6">
+                                            Legal Status
+                                        </div>
+                                        <div class="col-md-6">
+                                        
+                                            {{ $subscription_details->legal_status }}
+                                            
+                                        </div>
+                                        <hr>
+                                        <div class="col-md-6">
+                                            DEMAT Account No:
+                                        </div>
+                                        <div class="col-md-6">
+                                        
+                                            {{ $subscription_details->demat_account_no }}
+                                            
+                                        </div>
+                                        <hr>
+                                        <div class="col-md-6">
+                                            Number of years since Incorporation/Registration
+                                        </div>
+                                        <div class="col-md-6">
+                                            @if($subscription_details->number_of_years_since_registration == 1)
+                                                less than 5 years
+                                            @elseif($subscription_details->number_of_years_since_registration == 2)
+                                                5 - 10 years
+                                            @elseif($subscription_details->number_of_years_since_registration == 3)
+                                                more than 10 years
+                                            @endif
+                                            
+                                            
+                                        </div>
+                                        <hr>
+                                        <div class="col-md-6">
+                                            Average profit after tax (PAT) for last 3 years
+                                        </div>
+                                        <div class="col-md-6">
+                                            @if($subscription_details->average_profit == 1)
+                                                <p>less than Rs. 10 lakhs</p>
+                                            @elseif($subscription_details->average_profit == 2)
+                                                <p>Rs. 10-25 lakhs</p>
+                                            @elseif($subscription_details->average_profit == 3)
+                                                <p>more than Rs. 25 lakhs</p>
+                                            @endif
+                                            
+                                            
+                                        </div>
+                                        <hr>
+                                    @endif
                                     <div class="col-md-6">
                                         Invest Net Worth
                                     </div>
@@ -206,7 +288,8 @@
                                         
                                     </div>
                                     <hr>
-                
+                                    
+                                    @if($subscription_details->subscription_type == 0)
                                     <div class="col-md-6">
                                         Investment Objective
                                     </div>
@@ -222,7 +305,7 @@
                                         
                                     </div>
                                     <hr>
-                
+                                    
                                     <div class="col-md-6">
                                         Investment Average Return
                                     </div>
@@ -237,16 +320,16 @@
                                         
                                     </div>
                                     <hr>
-                
+                                    @endif
                                     <div class="col-md-6">
                                         Risk Attitude
                                     </div>
                                     <div class="col-md-6">
-                                        @if($subscription_details->risk_attittude == 1)
+                                        @if($subscription_details->risk_attitude == 1)
                                             Secure
-                                        @elseif($subscription_details->risk_attittude == 2)
+                                        @elseif($subscription_details->risk_attitude == 2)
                                             Moderate
-                                        @elseif($subscription_details->risk_attittude == 3)
+                                        @elseif($subscription_details->risk_attitude == 3)
                                             Aggressive
                                         @endif
                                         

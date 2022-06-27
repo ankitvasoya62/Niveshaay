@@ -112,7 +112,7 @@
           </li>
           <li class="nav-item">
             <a href="{{route('admin.invoice')}}" class="nav-link @if($active=='invoice') active @endif">
-              <i class="fas fa-rocket nav-icon"></i>
+              <i class="fas fa-file-invoice nav-icon"></i>
               <p>Invoice</p>
             </a>
           </li>

@@ -46,73 +46,66 @@ class ViewSubscriptionDetailsController extends Controller
 
     public function editSubscriptionDetails($id){
         $subscription_details = SubscriptionFormDetail::find($id);
-        $states = [
-        'AP' => 'Andhra Pradesh',
-        'AR' => 'Arunachal Pradesh',
-        'AS' => 'Assam',
-        'BR' => 'Bihar',
-        'CT' => 'Chhattisgarh',
-        'GA' => 'Goa',
-        'GJ' => 'Gujarat',
-        'HR' => 'Haryana',
-        'HP' => 'Himachal Pradesh',
-        'JK' => 'Jammu and Kashmir',
-        'JH' => 'Jharkhand',
-        'KA' => 'Karnataka',
-        'KL' => 'Kerala',
-        'MP' => 'Madhya Pradesh',
-        'MH' => 'Maharashtra',
-        'MN' => 'Manipur',
-        'ML' => 'Meghalaya',
-        'MZ' => 'Mizoram',
-        'NL' => 'Nagaland',
-        'OR' => 'Odisha',
-        'PB' => 'Punjab',
-        'RJ' => 'Rajasthan',
-        'SK' => 'Sikkim',
-        'TN' => 'Tamil Nadu',
-        'TG' => 'Telangana',
-        'TR' => 'Tripura',
-        'UP' => 'Uttar Pradesh',
-        'UT' => 'Uttarakhand',
-        'WB' => 'West Bengal',
-        'AN' => 'Andaman and Nicobar Islands',
-        'CH' => 'Chandigarh',
-        'DN' => 'Dadra and Nagar Haveli',
-        'DD' => 'Daman and Diu',
-        'LD' => 'Lakshadweep',
-        'DL' => 'National Capital Territory of Delhi',
-        'PY' => 'Puducherry'
-        ];
+        $states = getStates();
         $active = 'subscription-details';
-        return view('backend.subscriptionDetails.editsubscriptionDetails',compact('active','subscription_details','states'));        
+        if($subscription_details->subscription_type == 0){
+            return view('backend.subscriptionDetails.editsubscriptionDetails',compact('active','subscription_details','states'));        
+        }else{
+            return view('backend.subscriptionDetails.editcompanysubscriptionDetails',compact('active','subscription_details','states'));        
+        }
+        
     }
 
     public function updateSubscriptionDetails(Request $request,$id){
         $subscriptionFormDetail = SubscriptionFormDetail::find($id);
-        $subscriptionFormDetail->name_of_investor = $request['name_of_investor'];
-        $subscriptionFormDetail->dob = Carbon::parse($request['dob'])->format('Y-m-d');
-        $subscriptionFormDetail->email = $request['email'];
-        $subscriptionFormDetail->mobile_no = $request['mobile_no'];
-        $subscriptionFormDetail->pan_no = $request['pan_no'];
-        $subscriptionFormDetail->gst_no = $request['gst_no'];
-        $subscriptionFormDetail->pin_code = $request['pin_code'];
-        $subscriptionFormDetail->street_address = $request['street_address'];
-        $subscriptionFormDetail->state = $request['state'];
-        $subscriptionFormDetail->age = $request['age'];
-        $subscriptionFormDetail->source_of_income = implode(",",$request['source_of_income']);
-        $subscriptionFormDetail->currently_hold_investments = implode(",",$request['currently_hold_investments']);
-        $subscriptionFormDetail->annual_income = $request['annual_income'];
-        $subscriptionFormDetail->repayment_of_existing_liabilities = $request['repayment_of_existing_liabilities'];
-        $subscriptionFormDetail->invest_net_worth = $request['invest_net_worth'];
-        $subscriptionFormDetail->investment_period = $request['investment_period'];
-        $subscriptionFormDetail->invest_objective = $request['invest_objective'];
-        $subscriptionFormDetail->invest_average_return = $request['invest_average_return'];
-        $subscriptionFormDetail->risk_attitude = $request['risk_attitude'];
-        $subscriptionFormDetail->knowledge_experience = $request['knowledge_experience'];
-        $subscriptionFormDetail->save();
+        if($subscriptionFormDetail->subscription_type == 1){
+            $subscriptionFormDetail->name_of_investor = $request->name_of_investor;
+            $subscriptionFormDetail->email = $request->email;
+            $subscriptionFormDetail->mobile_no = $request->mobile_no;
+            $subscriptionFormDetail->pan_no = $request->pan_no;
+            $subscriptionFormDetail->gst_no = $request->gst_no;
+            $subscriptionFormDetail->state = $request->state;
+            $subscriptionFormDetail->street_address = $request->street_address;
+            $subscriptionFormDetail->is_demat_account= !empty($request->is_demat_account) ? $request->is_demat_account : 0;
+            $subscriptionFormDetail->demat_account_no = $request->demat_account_no;
+            $subscriptionFormDetail->number_of_years_since_registration = $request->number_of_years_since_registration;
+            $subscriptionFormDetail->average_profit = $request->average_profit;
+            $subscriptionFormDetail->date_of_incorporation = Carbon::parse($request->date_of_incorporation)->format('Y-m-d');
+            $subscriptionFormDetail->legal_status = $request->legal_status;
+            $subscriptionFormDetail->invest_net_worth = $request['invest_net_worth'];
+            $subscriptionFormDetail->investment_period = $request['investment_period'];
+            $subscriptionFormDetail->risk_attitude = $request['risk_attitude'];
+            $subscriptionFormDetail->knowledge_experience = $request['knowledge_experience'];
+            
+            $subscriptionFormDetail->save();
+        }else{
+            $subscriptionFormDetail->name_of_investor = $request['name_of_investor'];
+            $subscriptionFormDetail->dob = Carbon::parse($request['dob'])->format('Y-m-d');
+            $subscriptionFormDetail->email = $request['email'];
+            $subscriptionFormDetail->mobile_no = $request['mobile_no'];
+            $subscriptionFormDetail->pan_no = $request['pan_no'];
+            $subscriptionFormDetail->gst_no = $request['gst_no'];
+            $subscriptionFormDetail->pin_code = $request['pin_code'];
+            $subscriptionFormDetail->street_address = $request['street_address'];
+            $subscriptionFormDetail->state = $request['state'];
+            $subscriptionFormDetail->age = $request['age'];
+            $subscriptionFormDetail->source_of_income = implode(",",$request['source_of_income']);
+            $subscriptionFormDetail->currently_hold_investments = implode(",",$request['currently_hold_investments']);
+            $subscriptionFormDetail->annual_income = $request['annual_income'];
+            $subscriptionFormDetail->repayment_of_existing_liabilities = $request['repayment_of_existing_liabilities'];
+            $subscriptionFormDetail->invest_net_worth = $request['invest_net_worth'];
+            $subscriptionFormDetail->investment_period = $request['investment_period'];
+            $subscriptionFormDetail->invest_objective = $request['invest_objective'];
+            $subscriptionFormDetail->invest_average_return = $request['invest_average_return'];
+            $subscriptionFormDetail->risk_attitude = $request['risk_attitude'];
+            $subscriptionFormDetail->knowledge_experience = $request['knowledge_experience'];
+            $subscriptionFormDetail->save();
+        }
+        
         return redirect()->route('admin.subscription-details')->with('success','Record Updated Successfully!');
     }
+
+    
     public function verifySubscriptionDetails(Request $request){
 
         date_default_timezone_set('Asia/Kolkata');
@@ -158,7 +151,12 @@ class ViewSubscriptionDetailsController extends Controller
         $name = $subscription_details->name_of_investor;
         $data = array();
         $data['name'] = $name;
-        $average = riskProfile($subscription_details,$id);
+        if($subscription_details->subscription_type == 0){
+            $average = riskProfile($subscription_details,$id);
+        }else{
+            $average = companyRiskProfile($subscription_details,$id);
+        }
+        // $average = riskProfile($subscription_details,$id);
         if($average >=1 && $average <4){
             $riskProfile = 'Low Risk';
         }elseif($average >=4 && $average <7){
@@ -185,7 +183,12 @@ class ViewSubscriptionDetailsController extends Controller
         $subscription_data['fees_frequency'] = $feesfrequency;
         // $subscription_data = !empty($subscription_details) ? $subscription_details : array();
         $subscriptionpdf = PDF::loadView('pdf.advisor-agreement', $subscription_data);
-        $riskprofilepdf = PDF::loadView('pdf.risk-profiling',$subscription_details);
+        if($subscription_details->subscription_type == 0){
+            $riskprofilepdf = PDF::loadView('pdf.risk-profiling',$subscription_details);
+        }else{
+            $riskprofilepdf = PDF::loadView('pdf.companyrisk-profiling',$subscription_details);
+        }
+        
         try{
             Mail::send('frontend.mail.payment-details', $data, function($message)use($toEmail, $subscriptionpdf,$riskprofilepdf) {
                 $message->to($toEmail, $toEmail)
@@ -397,7 +400,12 @@ class ViewSubscriptionDetailsController extends Controller
 
         date_default_timezone_set('Asia/Kolkata');
         $subscription_details = SubscriptionFormDetail::find($id);
-        $average = riskProfile($subscription_details,$id);
+        if($subscription_details->subscription_type == 0){
+            $average = riskProfile($subscription_details,$id);
+        }else{
+            $average = companyRiskProfile($subscription_details,$id);
+        }
+        
         if($average >=1 && $average <4){
             $riskProfile = 'Low Risk';
         }elseif($average >=4 && $average <7){
@@ -407,7 +415,7 @@ class ViewSubscriptionDetailsController extends Controller
         elseif($average >= 7 && $average <=10){
             $riskProfile = 'High Risk';
         }
-        $invoices = InvoiceDetail::latest()->where('subscription_form_id',$id)->orderBy('id','desc')->first();
+        $invoices = InvoiceDetail::latest()->where('subscription_form_id',$id)->where('is_renew',0)->orderBy('id','desc')->first();
         $amount = $invoices->amount;
         $subscription_start_date = $invoices->subscription_start_date;
         $subscription_end_date = $invoices->subscription_end_date;
@@ -430,7 +438,12 @@ class ViewSubscriptionDetailsController extends Controller
 
     public function riskProfilePdf($id){
         $subscription_details = SubscriptionFormDetail::find($id);
-        $pdf = PDF::loadView('pdf.risk-profiling', $subscription_details);
+        if($subscription_details->subscription_type == 0){
+            $pdf = PDF::loadView('pdf.risk-profiling',$subscription_details);
+        }else{
+            $pdf = PDF::loadView('pdf.companyrisk-profiling',$subscription_details);
+        }
+        
         return $pdf->download('riskprofiling.pdf');
 
     }

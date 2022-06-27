@@ -24,14 +24,19 @@ class InvoiceController extends Controller
     }
 
     public function store(Request $request){
-
+        $this->validate($request,[
+            'user_id'=>'required',
+            
+        ],[
+            'user_id.required'=>'Please select a user'
+        ]);
         $userid = $request->user_id;
         $subscriptionRecord = SubscriptionFormDetail::where('user_id',$userid)->orderBy('id','desc')->first();
         if(empty($subscriptionRecord)){
             $user = User::find($userid);
             $subscriptionRecord = new SubscriptionFormDetail([
                 'name_of_investor'=>$user->name,
-                'email'=>$user->email,
+                'email'=>!empty($request->email) ? $request->email :$user->email,
                 'mobile_no'=>$user->phone_no,
                 'pan_no'=>$request->pan_no,
                 'gst_no'=>$request->gst_no,
@@ -45,12 +50,14 @@ class InvoiceController extends Controller
             $subscriptionRecord->save();
             
         }else{
+            $subscriptionRecord->email = $request->email;
             $subscriptionRecord->pan_no = $request->pan_no;
             $subscriptionRecord->gst_no = $request->gst_no;
             $subscriptionRecord->state = $request->state;
             $subscriptionRecord->street_address = $request->street_address;
             $subscriptionRecord->save();
         }
+        
         $invoice = new InvoiceDetail;
         $invoice->service_type = $request->service_type;
         $invoice->invoice_no = $request->invoice_no;
@@ -61,6 +68,13 @@ class InvoiceController extends Controller
         $invoice->subscription_form_id = $subscriptionRecord->id;
         $invoice->is_renew = 1;
         $newInvoice = $invoice->save();
+        
+        if(!empty($newInvoice)){
+            $user = User::find($userid);
+            $user->subscription_start_date = $request->subscription_start_date;
+            $user->subscription_end_date = $request->subscription_end_date;
+            $user->save();
+        }
         
         // $user = User::find($userid);
         // $user->subscription_start_date = $request->subscription_start_date;
@@ -131,6 +145,7 @@ class InvoiceController extends Controller
 
         $subscriptionRecord = SubscriptionFormDetail::find($subscription_id);
         $subscriptionRecord->pan_no = $request->pan_no;
+        $subscriptionRecord->email = $request->email;
         $subscriptionRecord->gst_no = $request->gst_no;
         $subscriptionRecord->street_address = $request->street_address;
         $subscriptionRecord->state = $request->state;
@@ -141,6 +156,13 @@ class InvoiceController extends Controller
         $invoice->subscription_end_date = $request->subscription_end_date;
         $invoice->amount = $request->amount;
         $invoice->save();
+
+        $userid = $invoice->subscriptionForm->user_id;
+        $user = User::find($userid);
+        $user->subscription_start_date = $request->subscription_start_date;
+        $user->subscription_end_date = $request->subscription_end_date;
+        $user->save();
+
         return redirect()->route('admin.invoice')->with('success',"Record Updated Successfully");
     }
 

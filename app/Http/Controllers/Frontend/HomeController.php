@@ -551,86 +551,8 @@ class HomeController extends Controller
     }
 
     public function generatePDF(){
-        // dd("hii");
-        // $pdf = PDF::loadFile(public_path('pdf/1648039795.pdf'));
-        // $pdf->setWatermarkImage(public_path('images/logo.png'));
-        // $pdf->save(public_path('file.pdf'));
-        // $headers = [
-        //     'Content-Type' => 'application/pdf'
-        // ];
-
-        // return response()->download(public_path('pdf/1648039795.pdf'), 'Test File', $headers, 'inline');
-
-        // dd('Mail sent successfully');
-        // $config = ['instanceConfigurator' => function ($mpdf) {
-        //     $mpdf->SetWatermarkImage(public_path('images/logo.png'));
-        //     $mpdf->showWatermarkImage = true;
-        //     // $mpdf->watermarkImageAlpha = 0.2; // image opacity 
-        //     // dd($mpdf) // show all attributes 
-        // }];
-
-        // $pdf = PDF::loadFile(public_path('pdf/1648039795.pdf'), $config);
-
-        // return $pdf->stream('DocumentName.pdf');
-        // $pdf = new PDF;
-        // $mpdf = $pdf->getMpdf();
-        // $mpdf->SetWatermarkText("PÉROLA NEGRA");
-        // $mpdf->showWatermarkText = true;
-        //$mpdf->SetProtection(array(), 'UserPassword', 'MyPassword');
-        // $mpdf->WriteHTML('Hello World');
-        // $mpdf->Output('filename.pdf');
-        // dd(sys_get_temp_dir());
-        // $data = array();
-        // $pdf = PDF::loadView('pdf.hello', $data);
-        // return $pdf->stream('document.pdf');
-        // dd(request()->ip());
-        // dd(view('pdf.hello'));
-        // $watermarker = new PdfWatermarker(
-        //     public_path('pdf/investor-charter_1652789208.pdf'), // input
-        //     public_path('pdf/watermark/output27.pdf'), // outputpublic\
-        //     public_path('image5.jpg'), // watermark file
-        //     'center', // watermark position (topleft, topright, bottomleft, bottomright, center)
-        //     false // set to true - replace original input file
-        //    );
-        // $watermarker->create();
-
-        // dd("success");
-        // $name = 'nikhil';
-        // return view('frontend.mail.payment-details',compact('name'));
-        // $data = [
-        //     'title' => 'Welcome to Nicesnippets.com',
-        //     'date' => date('m/d/Y')
-        // ];
-          
-        // $pdf = DOMPDF::loadFile(asset('pdf/1648040112.pdf'));
-
-        // $pdf->setPaper('L');
-        // $pdf->output();
-        // $canvas = $pdf->getDomPDF()->getCanvas();
-
-        // $height = $canvas->get_height();
-        // $width = $canvas->get_width();
-
-        // $canvas->set_opacity(.2,"Multiply");
-
-        // $canvas->set_opacity(.2);
-
-        // $canvas->page_text($width/5, $height/2, 'Nicesnippets.com', null,
-        // 55, array(0,0,0),2,2,-30);
-        // return $pdf->download('nicesnippets.pdf');
-        // $img = Image::canvas(800, 600);public\
-        // $img = Image::make(public_path("image.jpg"));
-        // $img->text("nikhilvshah12274@gmail.com",200,320,function($font){
-        //     $font->file(public_path("fonts/OpenSans-Regular.ttf"));
-        //     $font->size(40);
-        //     $font->color([0, 0, 0, 0.5]);
-        //     $font->align("center");
-        //     $font->valign("top");
-        //     $font->angle(45);
-        // });
-
-        // $img->save(public_path("image5.jpg"));
-        // return "Done";
+        $active = '';
+        return view('frontend.companysubscriptionform',compact('active'));
         $pdf = PDF::loadView('pdf.advisor-agreement', array());
         return $pdf->stream('document.pdf');
     }

@@ -114,7 +114,7 @@ function createWatermark(){
     }
 }
 
-function riskProfile($latestSubscriptionFormDetails,$id){
+function riskProfile($latestSubscriptionFormDetails,$id = ''){
     // $latestSubscriptionFormDetails = subscriptionFormDetail::find($id);
     $sum = 0;
     $age = $latestSubscriptionFormDetails->age;
@@ -303,4 +303,30 @@ function getStates(){
         'PY' => 'Puducherry'
         ];
         return $states;
+}
+
+function companyRiskProfile($latestSubscriptionFormDetails){
+    $sum = 0;
+    $companyProfile = array(); 
+    $companyProfile[] = $latestSubscriptionFormDetails->number_of_years_since_registration;
+    $companyProfile[] = $latestSubscriptionFormDetails->average_profit;
+    $companyProfile[] = $latestSubscriptionFormDetails->investment_period;
+    $companyProfile[] = $latestSubscriptionFormDetails->invest_net_worth;
+    $companyProfile[] = $latestSubscriptionFormDetails->risk_attitude;
+    $companyProfile[] = $latestSubscriptionFormDetails->knowledge_experience;
+    
+    foreach ($companyProfile as $key => $value) {
+        # code...
+        if($value == 1){
+            $sum += 2.5;
+        }elseif($value == 2){
+            $sum += 5.5;
+        }elseif($value == 3){
+            $sum += 8.5;
+        }
+    }
+
+    $average = $sum/6;
+    return $average;
+
 }

@@ -87,7 +87,7 @@
                                         
                                         <th style="width:10%;">PAN no.</th>
                                         <th style="width:10%;">Mobile no.</th>
-                                        
+                                        <th>Subscription Type</th>
                                         
                                         <th style="width:25%;">Subscription Action</th>
                                         <th style="width:20%;">Invoice Action & Downloads</th>
@@ -108,7 +108,11 @@
                                         <td>{{ $subscription_detail->pan_no}}</td>
                                         <td>{{ $subscription_detail->mobile_no}}</td>
                                         
-                                        
+                                        @if($subscription_detail->subscription_type == 1)
+                                            <td><span class="badge badge-success">Company</span></td>
+                                        @else
+                                            <td><span class="badge badge-success">Individual</span></td>
+                                        @endif
                                         
                                         <td>
                                             {{-- <a href="{{route('admin.edit.share',$share->id)}}" class="btn btn-info"><i class="fas fa-edit"></i></a>

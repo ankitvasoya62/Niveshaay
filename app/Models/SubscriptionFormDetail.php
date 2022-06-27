@@ -36,7 +36,14 @@ class SubscriptionFormDetail extends Model
         'is_email_verified',
         'is_verified_by_admin',
         'is_payment_received',
-        'user_id'
+        'user_id',
+        'subscription_type',
+        'is_demat_account',
+        'demat_account_no',
+        'average_profit',
+        'legal_status',
+        'number_of_years_since_registration',
+        'date_of_incorporation'
     ];
 
     public function user(){

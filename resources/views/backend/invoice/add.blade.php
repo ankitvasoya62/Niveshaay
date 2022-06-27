@@ -116,7 +116,7 @@
                                         <label for="user_id">Name Of Investor</label>
                                         
                                         <select name="user_id" class="form-control  select2bs4" style="width: 100%;" required>
-                                            
+                                            <option value="">SELECT ONE</option>
                                             @foreach ($users as $user)
                                                 <option value="{{ $user->id }}">{{ $user->name }}</option>
                                             @endforeach
@@ -124,11 +124,21 @@
                                     </div>
                                 </div>
                             </div>
-                            
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" name="email" value="{{ old('email')}}">
+                                        @error('email')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
                             {{-- <div class="new-user-wrap">
                                 <div class="form-group">
                                     <label for="description">Email</label>
-                                    <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}">
+                                    <input type="email" name="email" id="email" class="form-control" c>
                                     @error('email')
                                         <span class="error">{{ $message }}</span>
                                     @enderror
@@ -294,6 +304,7 @@
 
                             //$('[name=state]').select2('val',data.state).trigger('change');
                             $('[name=street_address]').val(data.street_address);
+                            $('[name=email]').val(data.email);
                         } else{
                             $('[name=pan_no]').val('');
                             $('[name=gst_no]').val('');

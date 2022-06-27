@@ -13,21 +13,56 @@
 
 <section class="green-block-section">
 	<h2 class="heading-title niveshaay-section-title">Our Research Services</h2>
-	<div class="green-block-wrapper">
-		<div class="niveshaay-container">
-			
-			@if(empty($isEmailVerified))
-				@if(empty($subscriptionFormCount))
-					<p>To subscribe, click <a href="{{ route('frontend.subscriptionForm') }}" title="Click to Subscribe">here</a></p>
+	@if(!empty($subscriptionFormCount))
+		<div class="green-block-wrapper">
+			<div class="niveshaay-container">
+				
+				@if(empty($isEmailVerified))
+					@if(empty($subscriptionFormCount))
+						<p>To subscribe, click <a href="{{ route('frontend.subscriptionForm') }}" title="Click to Subscribe">here</a></p>
+					@else
+						<p>Please Complete Your Registration From <a href="{{ route('frontend.subscriptionForm') }}" title="Click to Subscribe">here</a></p>
+					@endif
 				@else
-					<p>Please Complete Your Registration From <a href="{{ route('frontend.subscriptionForm') }}" title="Click to Subscribe">here</a></p>
+					<p>You will receive an email soon for further process. 
+					</p>
 				@endif
-			@else
-				<p>You will receive an email soon for further process. 
-				</p>
-			@endif
+			</div>
+		</div> 
+	@else
+		<div class="green-block-outer">
+			<div class="button-wrapper">
+				<div class="green-block-inner">
+					@if(empty($isEmailVerified))
+						@if(empty($subscriptionFormCount))
+						<p>Individual Investor <span>Click <a href="{{ route('frontend.subscriptionForm',0) }}" title="Click here">here</a> to Subscribe</span></p>
+							
+						@else
+							<p>Please Complete Your Registration From <a href="{{ route('frontend.subscriptionForm') }}" title="Click to Subscribe">here</a></p>
+						@endif
+					@else
+						<p>You will receive an email soon for further process. 
+						</p>
+					@endif
+					
+				</div>
+				<div class="green-block-inner">
+					@if(empty($isEmailVerified))
+						@if(empty($subscriptionFormCount))
+						
+							<p>Non Individual Investor <span>Click <a href="{{ route('frontend.subscriptionForm',1) }}" title="Click here">here</a> to Subscribe</span></p>		
+						@else
+							<p>Please Complete Your Registration From <a href="{{ route('frontend.subscriptionForm') }}" title="Click to Subscribe">here</a></p>
+						@endif
+					@else
+						<p>You will receive an email soon for further process. 
+						</p>
+					@endif
+					
+				</div>
+			</div>
 		</div>
-	</div>
+	@endif
 </section>
 <section class="list-catagory-section niveshaay-research-block sample-research-block">
 	<div class="niveshaay-container">

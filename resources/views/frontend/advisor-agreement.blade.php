@@ -69,77 +69,142 @@
                                 <p>INA000008552</p>
                             </div>
                         </div>
-                        <div class="block-item">
-                            <span>Age</span>
-                            @if($latestSubscriptionFormDetails->age == 1)
-                                <p>< 30 years</p>
-                            @elseif($latestSubscriptionFormDetails->age == 2)
-                                <p>30 - 60 years</p>
-                            @elseif($latestSubscriptionFormDetails->age == 3)
-                                <p>>60 years</p>
-                            @endif
-                        </div>
-                        <div class="block-item">
-                            <span>What is your investment objective?</span>
-                            @if($latestSubscriptionFormDetails->invest_objective == 1)
-                                <p>Protect invested capital with very low chance of a loss (investment horizon - < 2 years)</p>
-                            @elseif($latestSubscriptionFormDetails->invest_objective == 2)
-                                <p>Seek balance between invested capital growth and protection (investment horizon - 2-5 years)</p>
-                            @elseif($latestSubscriptionFormDetails->invest_objective == 3)
-                                <p>Seek long term wealth creation with chances of higher short term loss (investment horizon - > 5 years)</p>
-                            @endif
+                        @if($latestSubscriptionFormDetails->subscription_type != 1)
+                            <div class="block-item">
+                                <span>Age</span>
+                                @if($latestSubscriptionFormDetails->age == 1)
+                                    <p>< 30 years</p>
+                                @elseif($latestSubscriptionFormDetails->age == 2)
+                                    <p>30 - 60 years</p>
+                                @elseif($latestSubscriptionFormDetails->age == 3)
+                                    <p>>60 years</p>
+                                @endif
+                            </div>
+                            <div class="block-item">
+                                <span>What is your investment objective?</span>
+                                @if($latestSubscriptionFormDetails->invest_objective == 1)
+                                    <p>Protect invested capital with very low chance of a loss (investment horizon - < 2 years)</p>
+                                @elseif($latestSubscriptionFormDetails->invest_objective == 2)
+                                    <p>Seek balance between invested capital growth and protection (investment horizon - 2-5 years)</p>
+                                @elseif($latestSubscriptionFormDetails->invest_objective == 3)
+                                    <p>Seek long term wealth creation with chances of higher short term loss (investment horizon - > 5 years)</p>
+                                @endif
+                                
+                            </div>
+                            <div class="block-item">
+                                <span>What is your annual income?</span>
+                                @if($latestSubscriptionFormDetails->annual_income == 1)
+                                    <p>< 10 Lacs</p>
+                                @elseif($latestSubscriptionFormDetails->annual_income == 2)
+                                    <p>10 Lacs - 50 Lacs</p>
+                                @elseif($latestSubscriptionFormDetails->annual_income == 3)
+                                    <p>50 Lacs - 1 Cr</p>
+                                @elseif($latestSubscriptionFormDetails->annual_income == 4)
+                                    <p>Above 1 Cr</p>
+                                @endif
+                            </div>
+                            <div class="block-item">
+                                <span>What percentage of your income goes in repayment of existing liabilities like bank loans etc. ?</span>
+                                @if($latestSubscriptionFormDetails->repayment_of_existing_liabilities == 1)
+                                    <p>> 50%</p>
+                                @elseif($latestSubscriptionFormDetails->repayment_of_existing_liabilities == 2)
+                                    <p>20 - 50%</p>
+                                @elseif($latestSubscriptionFormDetails->repayment_of_existing_liabilities == 3)
+                                    <p>50%</p>
+                                @endif
+                            </div>
+                            <div class="block-item">
+                                <span>Pick a possible outcome along with potential capital drawdown for your investment</span>
+                                @if($latestSubscriptionFormDetails->invest_average_return == 1)
+                                    <p>7% , 12% , -5%</p>
+                                @elseif($latestSubscriptionFormDetails->invest_average_return == 2)
+                                    <p>10% , 18% , -12%</p>
+                                @elseif($latestSubscriptionFormDetails->invest_average_return == 3)
+                                    <p>12% , 22% , -19%</p>
+                                @endif
+                            </div>
+                            <div class="block-item">
+                                <span>What percentage of your total wealth are you planning to invest?</span>	
+                                @if($latestSubscriptionFormDetails->invest_net_worth == 1)
+                                    <p> < 25% </p>
+                                @elseif($latestSubscriptionFormDetails->invest_net_worth == 2)
+                                    <p> 25% - 50%</p>
+                                @elseif($latestSubscriptionFormDetails->invest_net_worth == 3)
+                                    <p> > 50% </p>
+                                @endif
+                            </div>
+                            <div class="block-item">
+                                <span>Select all the investments you currently hold</span>
+                                <?php 
+                                    $currently_hold_investments = str_replace("MF","Mutual Funds",$latestSubscriptionFormDetails->currently_hold_investments);
+                                    $currently_hold_investments = str_replace("FD","Bank FD",$currently_hold_investments);
+                                ?>
+                                <p>{{ $currently_hold_investments }}</p>
+                            </div>
+                        @else
+                            <div class="block-item">
+                                <span>Number of years since Incorporation/Registration</span>
+                                @if($latestSubscriptionFormDetails->number_of_years_since_registration == 1)
+                                    <p>less than 5 years</p>
+                                @elseif($latestSubscriptionFormDetails->number_of_years_since_registration == 2)
+                                    <p>5 - 10 years</p>
+                                @elseif($latestSubscriptionFormDetails->number_of_years_since_registration == 3)
+                                    <p>more than 10 years</p>
+                                @endif
+                            </div>
+                            <div class="block-item">
+                                <span>Average profit after tax (PAT) for last 3 years</span>
+                                @if($latestSubscriptionFormDetails->average_profit == 1)
+                                    <p>less than Rs. 10 lakhs</p>
+                                @elseif($latestSubscriptionFormDetails->average_profit == 2)
+                                    <p>Rs. 10-25 lakhs</p>
+                                @elseif($latestSubscriptionFormDetails->average_profit == 3)
+                                    <p>more than Rs. 25 lakhs</p>
+                                @endif
+                                
+                            </div>
+                            <div class="block-item">
+                                <span>Your comfortable holding investment horizon:</span>
+                                @if($latestSubscriptionFormDetails->investment_period == 1)
+                                    <p>less than 12 months</p>
+                                @elseif($latestSubscriptionFormDetails->investment_period == 2)
+                                    <p>12-36 months</p>
+                                @elseif($latestSubscriptionFormDetails->investment_period == 3)
+                                    <p>more than 36 months</p>
+                                @endif
+                            </div>
+                            <div class="block-item">
+                                <span>What percentage of your surplus/investible funds are you looking to invest now?</span>
+                                @if($latestSubscriptionFormDetails->invest_net_worth == 1)
+                                    <p>less than 25%</p>
+                                @elseif($latestSubscriptionFormDetails->invest_net_worth == 2)
+                                    <p>25 - 50%</p>
+                                @elseif($latestSubscriptionFormDetails->invest_net_worth == 3)
+                                    <p>more than 50%</p>
+                                @endif
+                            </div>
+                            <div class="block-item">
+                                <span>What best describe your risk attitude?</span>
+                                @if($latestSubscriptionFormDetails->risk_attitude == 1)
+                                    <p>Secure: You seek complete safety of capital with no negative returns.</p>
+                                @elseif($latestSubscriptionFormDetails->risk_attitude == 2)
+                                    <p>Moderate: You seek a balance of regular income and capital appreciation over medium term.</p>
+                                @elseif($latestSubscriptionFormDetails->risk_attitude == 3)
+                                    <p>Aggressive: You are comfortable with volatility and seek aggressive returns over long term.</p>
+                                @endif
+                            </div>
+                            <div class="block-item">
+                                <span>What best describes your knowledge & experience?</span>	
+                                @if($latestSubscriptionFormDetails->knowledge_experience == 1)
+                                    <p>Limited understanding & experience of financial investment</p>
+                                @elseif($latestSubscriptionFormDetails->knowledge_experience == 2)
+                                    <p>Moderate understanding & experience of financial investment</p>
+                                @elseif($latestSubscriptionFormDetails->knowledge_experience == 3)
+                                    <p>Extensive understanding & experience of financial investment</p>
+                                @endif
+                            </div>
                             
-                        </div>
-                        <div class="block-item">
-                            <span>What is your annual income?</span>
-                            @if($latestSubscriptionFormDetails->annual_income == 1)
-                                <p>< 10 Lacs</p>
-                            @elseif($latestSubscriptionFormDetails->annual_income == 2)
-                                <p>10 Lacs - 50 Lacs</p>
-                            @elseif($latestSubscriptionFormDetails->annual_income == 3)
-                                <p>50 Lacs - 1 Cr</p>
-                            @elseif($latestSubscriptionFormDetails->annual_income == 4)
-                                <p>Above 1 Cr</p>
-                            @endif
-                        </div>
-                        <div class="block-item">
-                            <span>What percentage of your income goes in repayment of existing liabilities like bank loans etc. ?</span>
-                            @if($latestSubscriptionFormDetails->repayment_of_existing_liabilities == 1)
-                                <p>> 50%</p>
-                            @elseif($latestSubscriptionFormDetails->repayment_of_existing_liabilities == 2)
-                                <p>20 - 50%</p>
-                            @elseif($latestSubscriptionFormDetails->repayment_of_existing_liabilities == 3)
-                                <p>50%</p>
-                            @endif
-                        </div>
-                        <div class="block-item">
-                            <span>Pick a possible outcome along with potential capital drawdown for your investment</span>
-                            @if($latestSubscriptionFormDetails->invest_average_return == 1)
-                                <p>7% , 12% , -5%</p>
-                            @elseif($latestSubscriptionFormDetails->invest_average_return == 2)
-                                <p>10% , 18% , -12%</p>
-                            @elseif($latestSubscriptionFormDetails->invest_average_return == 3)
-                                <p>12% , 22% , -19%</p>
-                            @endif
-                        </div>
-                        <div class="block-item">
-                            <span>What percentage of your total wealth are you planning to invest?</span>	
-                            @if($latestSubscriptionFormDetails->invest_net_worth == 1)
-                                <p> < 25% </p>
-                            @elseif($latestSubscriptionFormDetails->invest_net_worth == 2)
-                                <p> 25% - 50%</p>
-                            @elseif($latestSubscriptionFormDetails->invest_net_worth == 3)
-                                <p> > 50% </p>
-                            @endif
-                        </div>
-                        <div class="block-item">
-                            <span>Select all the investments you currently hold</span>
-                            <?php 
-                                $currently_hold_investments = str_replace("MF","Mutual Funds",$latestSubscriptionFormDetails->currently_hold_investments);
-                                $currently_hold_investments = str_replace("FD","Bank FD",$currently_hold_investments);
-                            ?>
-                            <p>{{ $currently_hold_investments }}</p>
-                        </div>
+                        @endif
                     </div>
                 </div>
 			</div>

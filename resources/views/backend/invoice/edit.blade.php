@@ -126,6 +126,17 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" name="email" value="{{ $invoice->subscriptionForm->email }}">
+                                        @error('email')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
                                         <label for="pan_no">PAN no.</label>
                                         <input type="text" name="pan_no" id="pan_no" class="form-control" value="{{ $invoice->subscriptionForm->pan_no }}">
                                         @error('pan_no')
