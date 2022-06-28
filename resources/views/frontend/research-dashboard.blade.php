@@ -50,7 +50,7 @@
 					@if(empty($isEmailVerified))
 						@if(empty($subscriptionFormCount))
 						
-							<p>Non Individual Investor <span>Click <a href="{{ route('frontend.subscriptionForm',1) }}" title="Click here">here</a> to Subscribe</span></p>		
+							<p>Non-Individual Investor <span>Click <a href="{{ route('frontend.subscriptionForm',1) }}" title="Click here">here</a> to Subscribe</span></p>		
 						@else
 							<p>Please Complete Your Registration From <a href="{{ route('frontend.subscriptionForm') }}" title="Click to Subscribe">here</a></p>
 						@endif
