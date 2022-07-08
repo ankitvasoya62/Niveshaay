@@ -27,6 +27,9 @@
 							<li>
 								<a href="{{route('frontend.contact')}}" title="contact-us">Contact Us</a>
 							</li>
+							<li>
+								<a href="{{route('frontend.disclosure')}}" title="Disclosure" target="_blank">Disclosure</a>
+							</li>
 						</ul>
 							<div class="btn-wrapper">
 							   <a href="{{asset('images/investor-charter.pdf')}}" target="_blank" title="Invester Charter"

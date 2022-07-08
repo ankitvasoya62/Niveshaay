@@ -19,6 +19,7 @@ use App\Http\Controllers\FeaturedOnController;
 use App\Http\Controllers\TweeterFeedController;
 use App\Http\Controllers\ResearchImageController;
 use App\Http\Controllers\NewsLetterManagementController;
+use App\Http\Controllers\DisclosureController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,6 +34,7 @@ use App\Http\Controllers\NewsLetterManagementController;
 Route::get('/',[HomeController::class, 'index'])->name('frontend.home');
 Route::get('/contact',[HomeController::class, 'contact'])->name('frontend.contact');
 Route::get('/about',[HomeController::class, 'about'])->name('frontend.about');
+Route::get('/disclosure',[HomeController::class,'disclosure'])->name('frontend.disclosure');
 Route::get('/signup',[HomeController::class, 'signUp'])->name('frontend.signup');
 Route::get('/our-strategy',[HomeController::class, 'ourStrategy'])->name('frontend.our-strategy');
 /* Contact page post request */
@@ -54,7 +56,13 @@ Route::view('/admin-login', 'backend.adminLogin')->name('admin.loginform')->midd
 Route::view('/expire', 'frontend.subscription-expired')->name('frontend.subscriptionExpire');
 Route::post('/admin-login', [LoginController::class, 'AdminLogin'])->name('admin.login')->middleware('guest:admin');
 Route::post('/user/register', [LoginController::class, 'registerUser'])->name('user.register');
-Auth::routes();
+Auth::routes([
+    'login'=>false
+]);
+Route::post('/front-login',[LoginController::class,'login'])->name('login');
+Route::get('/login', function () {
+    return redirect()->route('frontend.home');
+});
 Route::get('/forgot-password',[ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('/forgot-password',[ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 Route::get('/reset-password/{token}',[ResetPasswordController::class, 'showResetForm'])->name('password.reset');
@@ -204,6 +212,13 @@ Route::middleware('auth:admin')->group(function () {
 
         Route::get('/newsletter/user/active/{id}',[NewsLetterManagementController::class,'activenewsletteruser'])->name('admin.newsletter.active.user');
         Route::get('/newsletter/user/deactive/{id}',[NewsLetterManagementController::class,'deactivenewsletteruser'])->name('admin.newsletter.deactive.user');
+
+        Route::get('/disclosure',[DisclosureController::class,'index'])->name('admin.disclosure');
+        Route::get('/disclosure/add',[DisclosureController::class,'create'])->name('admin.disclosure.add');
+        Route::post('/disclosure/store',[DisclosureController::class,'store'])->name('admin.disclosure.store');
+        Route::get('/disclosure/edit/{id}',[DisclosureController::class,'edit'])->name('admin.disclosure.edit');
+        Route::post('/disclosure/update/{id}',[DisclosureController::class,'update'])->name('admin.disclosure.update');
+        Route::get('/disclosure/delete/{id}',[DisclosureController::class,'destroy'])->name('admin.disclosure.delete');
     });
     // Route::middleware(['subscription_expired'])->group(function () {
     //     Route::get('/profile',[HomeController::class, 'userProfile'])->name('frontend.profile');

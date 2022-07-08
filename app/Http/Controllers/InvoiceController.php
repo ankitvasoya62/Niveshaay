@@ -83,7 +83,7 @@ class InvoiceController extends Controller
             $data = array();
             $data = array();
         
-            $data["title"] = "Invoice Mail" ;
+            $data["title"] = "Invoice" ;
             $data['name_of_investor'] = $subscriptionRecord->name_of_investor;
             $data['pan_no'] = $subscriptionRecord->pan_no;
             $data['state'] = $subscriptionRecord->state;

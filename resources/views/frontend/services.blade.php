@@ -36,7 +36,7 @@
 						<img src="{{ asset('images/research-services.svg') }}" alt="tab-icon" class="tab-icon">
 						<img src="{{ asset('images/research-services-white.svg') }}" alt="tab-icon" class="tab-icon-hover">
 					</em>
-					Research Services
+					Research Advisory
 					<span class="down-arrow-icon">
 						
 						<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">

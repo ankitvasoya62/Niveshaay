@@ -222,9 +222,8 @@
             </ul>
             <h2 class="green-title">1. REPRESENTATIONS AND WARRANTIES BY THE PARTIES</h2>
             <h3><strong>The Parties hereto represent, warrant, and covenant to each other that:</strong></h3>
-            <p>1.1	Each of the Parties are duly formed and validly existing under the respective laws that they are subject to with full power and authority to conduct the business as contemplated in this Agreement.</p>
-            <p>1.2	Each Party has full power, capacity and authority to execute, deliver and perform this Agreement and has taken all necessary action (corporate, 
-            statutory or otherwise) to authorize the execution, delivery and performance of this Agreement.
+            <p>1.1  Each of the Parties are duly formed and validly existing under the respective laws that they are subject to with full power and authority to conduct the business as contemplated in this Agreement.</p>
+            <p>1.2	Each Party has full power, capacity and authority to execute, deliver and perform this Agreement and has taken all necessary action (corporate, statutory or otherwise) to authorize the execution, delivery and performance of this Agreement.
             </p>
             <p>1.3	This Agreement and each other agreement executed in connection herewith, if any, have been duly executed and delivered by each Party and constitute legal, valid and binding obligations of such Party, enforceable against the other Party in accordance with the terms.</p>
             <p>1.4	Each Party has obtained and complied with all clearances, permissions, approvals, conditions and notices, that are or have been required, for the due execution and delivery of, and performance under this Agreement.</p>
@@ -238,7 +237,7 @@
             <p>1.6	Representations by the Investment Adviser</p>
             <p>1.6.1	The Investment Adviser shall ensure that it has appointed personnel of appropriate qualifications and experience to perform the services in order to fulfil its obligations under this Agreement.</p>
             <p>1.6.2	Investment Adviser shall neither render any investment advice nor charge any fee until the Client has signed this Agreement.</p>
-            <p>1.6.3	The Investment Adviser represents and warrants that it shall only recommend direct implementation of advice i.e. through direct schemes/direct codes where no consideration (including any embedded/indirect/in kind commission or referral fees by any name) is received directly or indirectly by the Investment Adviser or his /her family.</p>
+            <p>1.6.3	1.6.3The Investment Adviser represents and warrants that it shall only recommend direct implementation of advice i.e. through direct schemes/direct codes where no consideration (including any embedded/indirect/in kind commission or referral fees by any name) is received directly or indirectly by the Investment Adviser or his /her family.</p>
             <p>1.6.4	Investment Adviser shall not manage funds and securities on behalf of the client and that it shall only receive such sums of monies from the client as are necessary to discharge the client’s liability towards fees owed to the Investment Adviser.</p>
             <p>1.6.5	Investment Adviser shall not, in the course of performing its services to the Client, hold out any investment advice implying any assured returns or minimum returns or target return or percentage accuracy or service provision till achievement of target returns or any other nomenclature that gives the impression to the Client that the investment advice is risk free and/or not susceptible to market risks and or that it can generate returns with any level of assurance.</p>
             <p>1.6.6	The Investment Adviser represents and warrants that it is carrying on its activities on an arms-length relationship between its activities as an Investment Adviser and other activities and such arm’s length relationship shall be maintained while the existence of this Agreement.</p>
@@ -248,12 +247,12 @@
             <p>1.6.10	The Investment Adviser shall ensure that it will take all consents and permissions from the Client prior to undertaking any actions, including but not limited to implementation services in relation to the securities or investment products advised by the Investment Adviser, in a form and manner as under the IA Regulations.</p>
             <p>1.6.11	The Investment Adviser represents and warrants that it shall not provide any distribution services to the Client.</p>
             <p>1.6.12	The Investment Adviser represents and warrants that its family/group companies shall not provide distribution services to the Client advised by the Investment Adviser, for securities and investment products.</p>
-            <p>1.6.13	The Investment Adviser represents and warrants that its family/ group shall not provide investment advisory services to the Client who receives distribution services from the other family members of the Investment Adviser.</p>
+            <p>1.6.13	1.6.13The Investment Adviser represents and warrants that its family/ group shall not provide investment advisory services to the Client who receives distribution services from the other family members of the Investment Adviser.</p>
             <p>1.6.14	The Investment Adviser represents and warrants that it shall not provide investment advisory services, for securities and investment products, to a Client who is receiving distribution services from its family members/ group.</p>
             <p>1.6.15	The investment adviser represents and warrants that it shall maintain client records and data as mandated under the securities and exchange board of India (Investment Adviser) Regulations 2013.</p>
             <!-- <p>For the purposes of this Agreement, “family members and group” shall have the meaning ascribed to it under the IA Regulations.</p> -->
             <h2 class="green-title">2. SCOPE OF SERVICES</h2>
-            <p>2.1 The Client hereby engages the services of the Investment Adviser and the Investment Adviser hereby agrees, as an independent contractor and on a principal to principal basis, to provide the model portfolio services.</p>
+            <p>2.1 The Client hereby engages the services of the Investment Adviser and the Investment Adviser hereby agrees, as an independent contractor and on a principal to principal basis, to provide the investment advisory services.</p>
             <p>2.2 The services rendered by the Investment Adviser shall take into account the risk capacity and risk aversion determined through a proper risk profiling process and accepted by the Client.</p>
             <p>2.3 Notwithstanding anything herein contained to the contrary, the Parties hereby agree that the services to be rendered by the Investment Adviser to the Client are merely recommendatory, non-binding in nature.</p>
             <p>2.4 The Parties acknowledge that the Investment Adviser will not assume any management responsibilities in connection with the services. Further, the Investment Adviser will not be responsible for the use or implementation of the output of the services provided pursuant to this Agreement.</p>
@@ -274,7 +273,7 @@
             <p>3.8 The Investor Advisor undertakes to abide by the code of conduct as specified under the IA Regulations and such shall be deemed to incorporated within this Agreement by reference.</p>
             <h2 class="green-title">4. ADVISORY FEE</h2>
 <p>4.1 The Client shall pay the Investment Adviser by way of remuneration for its services such fees as specified at the beginning of the agreement in accordance with the IA Regulations and relevant circulars issued there under</p>
-<p>4.2 In case, the Investment adviser is charging the fee on a percentage of AUA basis, the Investment Adviser shall refer the Client’s monthly holding statement as referred to in point 4.3 below for the calculation of the fee</p>
+<p>4.2 In case, the Investment adviser is charging the fee on a percentage of AUA basis, the Investment Adviser shall refer the Client’s holding statement as referred to in point 4.3 below for the calculation of the fee</p>
 <p>4.3 In case, the Investment Adviser is charging on a percentage of AUA basis, the Client shall bring to the notice of the Investment Adviser any discrepancy in the monthly holding statement shared by the Investment Adviser within 7 days from the date of the statement, failing which it shall be presumed that the Client has confirmed its completeness and correctness. The Client agrees to provide the Investment Adviser with necessary supporting documents related to the AUA, as and when required</p>
 <p>4.4 The client shall pay the fee within 7 days from receiving the invoice from the Investment Adviser on the registered email id.</p>
 <p>4.5 The Investment Adviser shall send a receipt evidencing payment of Advisory Fees by the Client to the Client’s registered email address.</p>
@@ -283,31 +282,143 @@
 <p>4.8 The Client shall be additionally charged all taxes as may be applicable or as may be levied in relation to the consideration payable to the Investment Adviser. It is hereby clarified that the Investment Adviser shall be responsible for payment of income tax and similar levies payable by it.</p>
 <p>4.9 A sample illustration for calculation of fee is given below
     <p>Formula for the calculating the fee on percentage of AUA basis has been explained below:
-        (Average daily AuA in the month) * (Number of invested days in the month/360) * Subscription fee (in %) Sample calculation: 100,000 (Avg. daily AuA) * (30/360) *.02 (subscription fee as %) = INR 166.67
-        Fixed fee will be charged as a fixed amount during the subscription at the beginning of the subscription</p>
+        (Total Asset under Advice) * (Number of invested days in the Year/365) * Subscription fee (in %) 
+        Sample calculation: 100,000 (Total Asset under Advice) * (365/365) *.02 (subscription fee as %)
+        INR 2000
+    </p>
+    <p>Calculation of fee on AUA build–up e.g.</p>
+    <table class="advisor-agreement-table">
+        <tr>
+            <td colspan="7">Calculation for the 1st Year</td>
+        </tr>
+        <tr>
+            <td>Date of Investments (A)</td>
+            <td>Asset Under Advice (B)</td>
+            <td>No of invested days during the year (C)</td>
+            <td>No of days in the full year (D)</td>
+            <td>Fee Rate (E)</td>
+            <td>Total Fee (F) =B*(C/D)*E</td>
+            <td>Market Value (30th June)</td>
+        </tr>
+        <tr>
+            <td>1st July 21</td>
+            <td>1,00,000</td>
+            <td>365</td>
+            <td>365</td>
+            <td>2%</td>
+            <td>2000</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>1st Oct 21</td>
+            <td>50,000</td>
+            <td>273</td>
+            <td>365</td>
+            <td>2%</td>
+            <td>748</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>1st Jan 22</td>
+            <td>50,000</td>
+            <td>181</td>
+            <td>365</td>
+            <td>2%</td>
+            <td>496</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Total Investments</td>
+            <td colspan="4">2,00,000</td>
+            <td></td>
+            <td>2,50,000</td>
+        </tr>
+        <tr>
+            <td colspan="5">Total Fixed fee on AUA at the end of 30th June</td>
+            
+            <td>3244</td>
+            <td></td>
+        </tr>
+    </table>
+    <p>
+    <table class="advisor-agreement-table">
+        <tr>
+            <td colspan="6">Calculation for the 2nd Year</td>
+        </tr>
+        <tr>
+            <td>Date of Investments (A)</td>
+            <td>Asset Under Advice (B)</td>
+            <td>No of invested days during the year (C)</td>
+            <td>No of days in the full year (D)</td>
+            <td>Fee Rate (E)</td>
+            <td>Total Fee (F) =B*(C/D)*E</td>
+            
+        </tr>
+        <tr>
+            <td>1st July 22*</td>
+            <td>2,50,000</td>
+            <td>365</td>
+            <td>365</td>
+            <td>2%</td>
+            <td>5000</td>
+            
+        </tr>
+        <tr>
+            <td>1st Oct 22</td>
+            <td>1,00,000</td>
+            <td>273</td>
+            <td>365</td>
+            <td>2%</td>
+            <td>1496</td>
+            
+        </tr>
+        <tr>
+            <td>1st Jan 23</td>
+            <td>50,000</td>
+            <td>181</td>
+            <td>365</td>
+            <td>2%</td>
+            <td>496</td>
+            
+        </tr>
+        <tr>
+            <td>Total Investments</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            
+        </tr>
+        <tr>
+            <td colspan="5">Total Fixed fee on AUA at the end of 30th June</td>
+            
+            <td>6992</td>
+            
+        </tr>
+        <tr>
+            <td colspan="6">*Market Value of investments at the end of 1st year will be AUA for next year.</td>
+        </tr>
+    </table>
+    </p>
 
 </p>
 <p>4.10 Below are the SEBI guidelines for advisory fees as specified in the SEBI circular dated 23rd Sep 2020.</p>
-<p>Fees Regulation 15 A of the amended IA Regulations provide that Investment Advisers shall be entitled to
-
-    charge fees from a client in the manner as specified by SEBI, accordingly Investment Advisers shall charge fees from the clients in either of the two modes:
-    (A) Assets under Advice (AUA) mode
-    
-    a. The maximum fees that may be charged under this mode shall not exceed 2.5 percent of AUA per annum per client across all services offered by IA.
-    b. IA shall be required to demonstrate AUA with supporting documents like demat statements, unit statements etc. of the client.
-    c. Any portion of AUA held by the client under any pre-existing distribution arrangement with any entity shall be deducted from AUA for the purpose of charging fee by the IA.
-    (B) Fixed fee mode
-    
-    The maximum fees that may be charged under this mode shall not exceed INR 1,25,000 per annum per client across all services offered by IA.
-    General conditions under both modes
-    
-    a. IA shall charge fees from a client under any one mode i.e. (A) or (B) on an annual basis. The change of mode shall be effected only after 12 months of on boarding/last change of mode.
-    b. If agreed by the client, IA may charge fees in advance. However, such advance shall not exceed fees for 2 quarters.
-    c. In the event of pre-mature termination of the IA services in terms of agreement, the client shall be refunded the fees for unexpired period. However, IA may retain a maximum breakage fee of not greater than one quarter fee.</p>
+<p>Fees Regulation 15 A of the amended IA Regulations provide that Investment Advisers shall be entitled to charge fees from a client in the manner as specified by SEBI, accordingly Investment Advisers shall charge fees from the clients in either of the two modes:
+    (A) Assets under Advice (AUA) mode 
+a. The maximum fees that may be charged under this mode shall not exceed 2.5 percent of AUA per annum per client across all services offered by IA. 
+b. IA shall be required to demonstrate AUA with supporting documents like demat statements, unit statements etc. of the client. 
+c. Any portion of AUA held by the client under any pre-existing distribution arrangement with any entity shall be deducted from AUA for the purpose of charging fee by the IA. 
+(B) Fixed fee mode:
+The maximum fees that may be charged under this mode shall not exceed INR 1,25,000 per annum per client across all services offered by IA. 
+General conditions under both modes 
+a. IA shall charge fees from a client under any one mode i.e. (A) or (B) on an annual basis. The change of mode shall be effected only after 12 months of on boarding/last change of mode. 
+b. If agreed by the client, IA may charge fees in advance. However, such advance shall not exceed fees for 2 quarters.
+c. In the event of pre-mature termination of the IA services in terms of agreement, the client shall be refunded the fees for unexpired period. However, IA may retain a maximum breakage fee of not greater than one quarter fee.</p>
 
     <h2 class="green-title">5. INVESTMENT OBJECTIVES AND GUIDELINES AND RISK FACTORS</h2>
-    <p>5.1 Type of securities – model portfolio services provided by the investment adviser under this agreement would be based on stocks and ETFs listed on the Indian Stock Exchanges.</p>
-    <p>5.2 Strategy – recommendation follows a model portfolio approach where the portfolio composition is reviewed at a fixed frequency based on various quantitative, technical or fundamental factors to determine the portfolio composition for the next period.</p>
+    <p>5.1 Type of securities –Equity advisory services provided by the investment adviser under this agreement would be based on stocks and ETFs listed on the Indian Stock Exchanges.</p>
+    <p>5.2 Strategy – recommendation follows a portfolio approach where the portfolio composition is reviewed on timely basis on various quantitative, technical or fundamental factors to determine the portfolio composition for the next period.</p>
     <p>5.3 Tax Aspects – equity component of the portfolio would be subjected to short term/long term capital gains tax depending on the holding period of the security. If the holding period is less than one year, a 15% short term capital gains tax would be applicable. If the holdings period is more than one year, a 10% long term capital gains tax would be applicable on portfolio gains. These rates can be revised on a time to time basis by the government of India. Tax liability on the ETF component of the portfolio, if any, would depend on the underlying asset class of the ETF. When in doubt, client shall reach out to the Investment Advisor on the mentioned email id for a detailed evaluation based on the trades placed by the client.</p>
     <p>5.4 Investment Objectives and Guidelines and risk factors - The Client hereby agrees and understands that investment advice made by the Investment Adviser are subject to various market, currency, economic, political and business risks including but not limited to price and volume volatility in the stock markets, interest rates, currency exchange rates, foreign investments, changes in government policies, taxation, political, economic, pandemic, or other developments and closure of the stock exchange</p>
     
@@ -319,7 +430,7 @@
     <p>In the event that such a conflict of interest does arise, the Investment Adviser shall declare such conflict and, if reasonably possible, ensure that fair treatment on an arm’s length basis as reasonably determined by the Investment Adviser in its sole discretion shall be accorded to the Client. For the avoidance of doubt, the Investment Advisor may, from time to time have business relationships with companies or corporations in relation to which advisory services have been provided to the Client.</p>
     <h2 class="green-title">8. DURATION AND TERMINATION</h2>
     <p>8.1 The Agreement shall remain in force for the period mentioned at the beginning of this agreement.</p>
-    <p>8.2 If the client is on an auto-renew plan, the agreement will remain in force until the subscription is canceled by the client or advisor in accordance with this agreement.</p>
+    <p>8.2 If the client is on continuous renew plan, the agreement will remain in force until the advisory service is canceled by the client or advisor in accordance with this agreement.</p>
     <p>8.3 This Agreement may be terminated by mutual agreement of the Client and the Investment Adviser by giving a 30 days prior written notice.</p>
     <p>8.4 The Agreement may be immediately terminated by the Investment Adviser: (i) if the Client breaches any material term of this Agreement; or (ii)if the Client is admitted into liquidation (except a voluntary liquidation for the purpose of reconstruction or amalgamation) or commits any act of bankruptcy or if a receiver is appointed in respect of any assets of the Client.</p>
     <p>8.5 If the Investment Adviser ceases to hold statutory licenses and/or registrations required to provide services as contemplated under this Agreement then the Client shall have the ability to terminate this Agreement without any further consequences.</p>
@@ -333,9 +444,9 @@
     <p>For the purposes of this Agreement, “Assets Under Advice” shall have the meaning ascribed to under the IA Regulations.</p>
 
     <h2 class="green-title">10. NOTICE</h2>
-    <p>10.1 Any notice, instruction, recommendation or other communication to be given hereunder shall be in writing and delivered by e-mail addressed to the Party for which it is intended A communication sent by e-mail shall be deemed to have been received at the close of business on the day on which it is sent In providing service by e-mail, it shall be sufficient to show that the email was properly addressed to the intended recipient.</p>
+    <p>10.1 Any notice, instruction, recommendation or other communication to be given here under shall be in writing and delivered by e-mail addressed to the Party for which it is intended A communication sent by e-mail shall be deemed to have been received at the close of business on the day on which it is sent in providing service by e-mail, it shall be sufficient to show that the email was properly addressed to the intended recipient</p>
     <p>10.2 Whenever, pursuant to any provision of this Agreement, any notice, instruction, recommendation or other communication is given to either Party, the Client or the Investment Adviser (as the case may be) may accept as sufficient evidence thereof a document signed or purporting to be signed by such person or persons as shall be authorised from time to time in that behalf by the Client or the Investment Adviser (as the case may be).</p>
-    <p>10.3 Whenever, pursuant to any provision of this Agreement, any notice, instruction, recommendation or other communication is given to either Party, the Client or the Investment Adviser (as the case may be) may accept as sufficient evidence thereof a document signed or purporting to be signed by such person or persons as shall be authorised from time to time in that behalf by the Client or the Investment Adviser (as the case may be).</p>
+    
 
     <h2 class="green-title">11. ASSIGNMENT</h2>
     <p>This Agreement may not be assigned by either Party without the written consent of the other Party.</p>
@@ -344,7 +455,8 @@
     <p>This Agreement together with any document annexed hereto or referred to herein constitutes the entire Agreement between the Parties in relation to the subject matter hereof and supersedes all prior understandings, arrangements, representations, proposals or communications between the Parties whether written or oral.</p>
 
     <h2 class="green-title">13. SEVERABILITY</h2>
-    <p>In the event that any term, condition or provision of this Agreement is held to be in a violation of any applicable law, statute or regulation the same shall be deemed to be deleted from this Agreement and shall be of no force and effect and this Agreement shall remain in full force and effect as if such term, condition or provision had not originally been contained in this Agreement. Notwithstanding theforegoing in the event of such deletion the Parties shall negotiate in good faith in order to agree on the terms of a mutually acceptable and satisfactory alternative provision in place of the provision so deleted.</p>
+    <p>In the event that any term, condition or provision of this Agreement is held to be in a violation of any applicable law, statute or regulation the same shall be deemed to be deleted from this Agreement and shall be of no force and effect and this Agreement shall remain in full force and effect as if such term, condition or provision had not originally been contained in this Agreement.
+        Notwithstanding theforegoing in the event of such deletion the Parties shall negotiate in good faith in order to agree on the terms of a mutually acceptable and satisfactory alternative provision in place of the provision so deleted.</p>
 
     <h2 class="green-title">14. GRIEVANCE REDRESSAL AND DISPUTE RESOLUTION</h2>
     <p>14.1 In the event any Client has any grievances in relation to the provision of investment advice and related services by the Investment Adviser, it shall be the responsibility of the Investment Adviser to resolve the grievances promptly but not later than a period of thirty (30) days from the date such grievance or such time period as may be prescribed by SEBI from time to time.</p>
@@ -380,8 +492,7 @@
 <p>The liability of the Investment Adviser towards the Client shall be limited to the Advisory Fees as received by the Investment Adviser for a period of 6 preceding months from the date on which the claim in relation to actions of proven fraud, gross negligence, willful default in connection with discharge of duties of the Investment Adviser arises.</p>
 
 <h2 class="green-title">19. Refund policy</h2>
-<p>Upon the termination of the Agreement due to reasons by the written consent of Client and Investment Advisor
-    , the Investment Adviser shall at its own discretion (as applicable) provide refund of any balance of the Advisory Fees for which Services have not been provided</p>
+<p>Upon the termination of the Agreement due to reasons by the written consent of Client and Investment Advisor , the Investment Adviser shall at its own discretion (as applicable) provide refund of any balance of the Advisory Fees for which Services have not been provided. </p>
         </div>
         <div class="verify-content-block custom-form-section verify-otp-block">
             <div class="verify-content-inner form-wrapper">

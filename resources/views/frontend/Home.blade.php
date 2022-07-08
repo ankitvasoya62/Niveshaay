@@ -53,7 +53,7 @@
 			<div class="niveshaay-container">
 				<div class="welcome-block-wrapper has-border-bottom">
 					<h1 class="heading-title niveshaay-section-title">Welcome To Niveshaay</h1>
-					<p>Niveshaay (in Hindi translates to income from investments) is a SEBI Registered boutique Investment Advisory Firm with a Dedicated Research Team advising on over Rs. 250+ crores of AUM. Our core focus is on small-mid cap stocks which has the potential of giving outsized returns in long term. Our approach of Research based Investing and Second Order Thinking has helped us find companies that delivered great returns.</p>				
+					<p>Niveshaay (in Hindi translates to income from investments) is a SEBI Registered boutique Investment Advisory Firm with a Dedicated Research Team. Our core focus is on small-mid cap stocks which has the potential of giving outsized returns in long term. Our approach of Research based Investing and Second Order Thinking has helped us find companies that delivered great returns.</p>				
 				</div>
 				<div class="welcome-block-wrapper">
 					<h2 class="heading-title niveshaay-section-title">Why Niveshaay?</h2>
@@ -65,7 +65,7 @@
 		</section>
 		<section class="list-catagory-section niveshaay-research-block niveshaay-gray-bg niveshaay-section-paddding">
 			<div class="niveshaay-container">
-				<h2 class="heading-title niveshaay-section-title">Our Research Reports</h2>
+				<h2 class="heading-title niveshaay-section-title">Our Research</h2>
 				<div class="list-catagory-wrapper">
 					<div class="list-wrapper">
 						<div class="list-inner-wrapper">

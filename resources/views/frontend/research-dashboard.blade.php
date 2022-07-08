@@ -66,7 +66,7 @@
 </section>
 <section class="list-catagory-section niveshaay-research-block sample-research-block">
 	<div class="niveshaay-container">
-		<h2 class="heading-title niveshaay-section-title">Our Sample Research Reports </h2>
+		<h2 class="heading-title niveshaay-section-title">Our Sample Research</h2>
 		<div class="list-catagory-wrapper">
 			<div class="list-wrapper">
 				<div class="list-inner-wrapper">

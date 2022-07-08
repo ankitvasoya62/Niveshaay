@@ -292,6 +292,12 @@
                   <div class="form-group">
                     <label>Recommendation Categories</label>
                     <div class="custom-control custom-checkbox">
+                      <input class="custom-control-input" type="checkbox" id="customCheckbox4" value="4" name="share_recommendation[]" @if(in_array('4',$share_recommendation_array)) checked
+                          
+                      @endif>
+                      <label for="customCheckbox4" class="custom-control-label">Investment Allocation Recommendations</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
                       <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="0" name="share_recommendation[]" @if(in_array('0',$share_recommendation_array)) checked
                           
                       @endif>
@@ -315,6 +321,7 @@
                       @endif>
                       <label for="customCheckbox3" class="custom-control-label">Past Recommendations</label>
                     </div>
+                    
                   </div>
                     
                    

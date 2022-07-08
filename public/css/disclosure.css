@@ -1,0 +1,10 @@
+.niveshhay-disclosure-table-responsive table{border:solid 1px #e1e1e1;background-color:#fff;width:100%;min-width:900px;}
+.niveshhay-disclosure-table-responsive table thead{border:solid 1px #e1e1e1;background-color:#fafafa;}
+.niveshhay-disclosure-table-responsive table thead th{font-family:'Open Sans',sans-serif;font-size:18px;font-weight:600;text-align:center;color:#3b3b3b;padding:12px 14px;}
+.niveshhay-disclosure-table-responsive table thead th:first-child{padding-left:33px;text-align:left;}
+.niveshhay-disclosure-table-responsive table thead th:last-child{padding-right:33px;}
+.niveshhay-disclosure-table-responsive table tbody td{font-size:18px;font-weight:normal;text-align:center;color:#3b3b3b;padding:12px 14px;}
+.niveshhay-disclosure-table-responsive table tbody tr td:first-child{text-align:left;padding-left:33px;}
+.niveshhay-disclosure-table-responsive table tbody tr td:last-child{padding-right:33px;}
+/* .niveshhay-disclosure-table-responsive table tbody tr:last-child{background:rgba(131,182,69,0.3);} */
+/* .niveshhay-disclosure-table-responsive table tbody tr:last-child td:first-child{font-weight:bold;} */

@@ -31,7 +31,16 @@
 .verify-content-block .verify-content-inner .form-group span{font-family:'Open Sans',sans-serif;display:block;color:#888;margin-top:5px;}
 .verify-content-block .verify-content-inner .form-group + .form-group{margin-top:30px;}
 .verify-content-block .verify-content-inner .form-group .btn{line-height:50px !important;}
+table.advisor-agreement-table{
+    border:1px solid black;
 
+}
+table.advisor-agreement-table tr td{
+    border:1px solid black;
+    padding: 5px;
+    font-size:18px;
+    font-family:'Open Sans',sans-serif;
+}
 /*submit-modal*/
 .submit-modal .modal-content .modal-content-inner {max-width: 580px;}
 .submit-modal .submit-modal-content { text-align: center; padding: 50px 42px 22px; box-shadow: 0 0 40px 0 rgba(74, 121, 18, 0.3); background-color: #fff;}

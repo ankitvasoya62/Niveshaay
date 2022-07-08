@@ -32,6 +32,7 @@ use Cookie;
 // use DOMPDF;
 Use Image;
 use Intervention\Image\Exception\NotReadableException;
+use App\Models\Disclosure;
 
 
 class HomeController extends Controller
@@ -351,6 +352,7 @@ class HomeController extends Controller
         $current_recommendation = array();
         $past_recommendation = array();
         $quaterly_results = array();
+        $investment_recommendations = array();
         foreach ($share as $key => $value) {
             # code...
             if(isset($value['share_recommendation'])){
@@ -367,11 +369,14 @@ class HomeController extends Controller
                 if(in_array('3',$share_recommendation_array)){
                     $quaterly_results[] = $value;
                 }
+                if(in_array('4',$share_recommendation_array)){
+                    $investment_recommendations[] = $value;
+                }
             }
         }
         
         $active = "share-details";
-        return view('frontend.share-details',compact('active','latest_addition','current_recommendation','past_recommendation','quaterly_results'));
+        return view('frontend.share-details',compact('active','latest_addition','current_recommendation','past_recommendation','quaterly_results','investment_recommendations'));
     }
 
     public function viewShare($id){
@@ -635,5 +640,11 @@ class HomeController extends Controller
         $user->save();
 
         return redirect()->route('frontend.home')->with("forgot_password_status","Your password has been updated successfully!");
+    }
+
+    public function disclosure(){
+        $active = '';
+        $disclosures = Disclosure::all();
+        return view('frontend.disclosure',compact('active','disclosures'));
     }
 }

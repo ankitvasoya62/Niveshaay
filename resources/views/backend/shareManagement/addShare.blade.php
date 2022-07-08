@@ -281,6 +281,10 @@
                   <div class="form-group">
                     <label>Recommendation Categories</label>
                     <div class="custom-control custom-checkbox">
+                      <input class="custom-control-input" type="checkbox" id="customCheckbox4" value="4" name="share_recommendation[]">
+                      <label for="customCheckbox4" class="custom-control-label">Investment Allocation Recommendations</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
                       <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="0" name="share_recommendation[]">
                       <label for="customCheckbox1" class="custom-control-label" >Latest Additions</label>
                     </div>

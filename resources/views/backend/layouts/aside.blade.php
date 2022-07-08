@@ -232,7 +232,12 @@
                   <p>Contact us</p>
                 </a>
             </li>
-
+            <li class="nav-item">
+              <a href="{{route('admin.disclosure')}}" class="nav-link @if($active=='disclosure') active @endif">
+                <i class="fas fa-address-book nav-icon"></i>
+                <p>Disclosure</p>
+              </a>
+            </li>
             <li class="nav-item">
               
               <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
