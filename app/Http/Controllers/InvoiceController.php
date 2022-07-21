@@ -197,6 +197,7 @@ class InvoiceController extends Controller
             $data['gst_no'] = $subscription_details->gst_no;
             
             $data['invoice_no'] = $invoices->invoice_no;
+            $data['created_at'] = $invoices->created_at;
             $amount = !empty($invoices->amount) ? $invoices->amount : 0 ;
             if($subscription_details->state == 'Gujarat'){
                 $cgst = $amount * 0.09;

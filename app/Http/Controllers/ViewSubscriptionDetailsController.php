@@ -125,6 +125,7 @@ class ViewSubscriptionDetailsController extends Controller
             $data['subscription_end_date'] = $request->subscription_end_date[$key];
             $data['subscription_form_id'] = $id;
             $today= Carbon::now();
+            $data['created_at'] = $today;
             $currentmonth = $today->month;
             $currentyear = $today->year;
             if(!empty($subscription_invoice_no)){
@@ -241,6 +242,7 @@ class ViewSubscriptionDetailsController extends Controller
         $invoiceData['subscription_end_date'] = $invoices->subscription_end_date;
         array_push($table_data,$invoiceData);
         $data['invoice_no'] = $invoice_no;
+        $data['created_at'] = $invoices->created_at;
         $amount = !empty($invoices->amount) ? $invoices->amount : 0 ;
         if($subscription_details->state == 'Gujarat'){
                $cgst = $amount * 0.09;
@@ -368,7 +370,7 @@ class ViewSubscriptionDetailsController extends Controller
         $data['state'] = $subscription_details->state;
         $data["email"] = $subscription_details->email;
         $data['gst_no'] = $subscription_details->gst_no;
-        
+        $data['created_at'] = $invoices->created_at;
         $data['invoice_no'] = $invoices->invoice_no;
         $amount = !empty($invoices->amount) ? $invoices->amount : 0 ;
         if($subscription_details->state == 'Gujarat'){
@@ -420,6 +422,7 @@ class ViewSubscriptionDetailsController extends Controller
         $subscription_start_date = $invoices->subscription_start_date;
         $subscription_end_date = $invoices->subscription_end_date;
         $feesfrequency = !empty($invoices->fees_frequency) ? $invoices->fees_frequency : '6 Months';
+        $created_at = $invoices->created_at;
         $subscription_data = array();
         $subscription_data = $subscription_details;
         $subscription_data['riskprofile'] = $riskProfile;
@@ -428,6 +431,7 @@ class ViewSubscriptionDetailsController extends Controller
         $subscription_data['subscription_start_date'] = date('d F, Y',strtotime($subscription_start_date));
         $subscription_data['subscription_end_date'] = date('d F, Y',strtotime($subscription_end_date));
         $subscription_data['fees_frequency'] = $feesfrequency;
+        $subscription_data['created_at'] = $created_at;
         $pdf = PDF::loadView('pdf.advisor-agreement', $subscription_data);
         return $pdf->download('agreement.pdf');
                                     

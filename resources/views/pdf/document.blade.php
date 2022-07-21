@@ -168,7 +168,7 @@
                         </div>
                         <div class="invoice-inner">
                             <div class="left">Date:</div>
-                            <div class="right">{{ date('d F, Y') }}</div>
+                            <div class="right">{{ !empty($created_at) ? date('d F Y',strtotime($created_at)):date('d F, Y') }}</div>
                             <div class="clearfix"></div>
                         </div>
                     </div>
