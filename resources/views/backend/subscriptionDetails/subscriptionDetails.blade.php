@@ -52,28 +52,40 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Manage Subscription</h3>
-                            <div style="float:right; display:block;">
-                                <form action='{{ route('download.excel') }}' class="form-inline">
-                                    
-                                    <div class="form-group">
-                                        <label>Export Date range:</label>&nbsp;
-                    
-                                        <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">
-                                            <i class="far fa-calendar-alt"></i>
-                                            </span>
-                                        </div>
-                                        <input type="text" name="date-range" class="form-control float-right" id="reservation">
-                                        </div>
-                                        <!-- /.input group -->
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <div style="float:right; display:block;">
+                                        <form action='{{ route('download.excel') }}' class="form-inline">
+                                            
+                                            <div class="form-group">
+                                                <label>Export Date range:</label>&nbsp;
+                            
+                                                <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                    <i class="far fa-calendar-alt"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="text" name="date-range" class="form-control float-right" id="reservation">
+                                                </div>
+                                                <!-- /.input group -->
+                                            </div>
+                                            <div class="form-group" style="margin-left:10px">
+                                                <button type="submit" class="btn btn-success">Download Excel</button>
+                                            </div>
+                                        </form>
+        
+                                       
+                                        
                                     </div>
-                                    <div class="form-group" style="margin-left:10px">
-                                        <button type="submit" class="btn btn-success">Download Excel</button>
-                                    </div>
-                                </form>
-                                
+                                </div>
+                                <div class="col-md-1">
+                                    <button class="btn btn-primary"> <a href="{{route('admin.subscription-detail.trash')}}"
+                                        class="text-light"><i class="fa fa-trash-restore"></i> Trash</a> </button>
+                                </div>
                             </div>
+                            
+                            
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">

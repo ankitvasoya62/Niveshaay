@@ -106,4 +106,22 @@ class DisclosureController extends Controller
         $disclosure->delete();
         return redirect()->route('admin.disclosure')->with('success','Record Deleted Successfully !');
     }
+
+    public function trash(){
+        $active = 'disclosure';
+        $disclosures = Disclosure::onlyTrashed()->orderBy('id','desc')->get();
+        return view('backend.disclosure.trash',compact('active','disclosures'));
+    }
+
+    public function restore($id){
+        $disclosure = Disclosure::withTrashed()->find($id);
+        $disclosure->restore();
+        return redirect()->route('admin.disclosure.trash')->with('success',"Record Restored Successfully!");
+    }
+
+    public function permanentDelete($id){
+        $disclosure = Disclosure::withTrashed()->find($id);
+        $disclosure->forceDelete();
+        return redirect()->route('admin.disclosure.trash')->with('success',"Record Deleted Successfully!");
+    }
 }

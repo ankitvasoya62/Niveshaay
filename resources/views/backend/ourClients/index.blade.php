@@ -40,7 +40,10 @@
                                 <div style="float:right; display:block;">
                                     <button class="btn btn-success"> <a href="{{route('admin.add.our-clients')}}"
                                             class="text-light"><i class="fa fa-plus"></i> Add Testimonial</a> </button>
+                                    <button class="btn btn-primary"> <a href="{{route('admin.our-client.trash')}}"
+                                        class="text-light"><i class="fa fa-trash-restore"></i> Trash</a> </button>
                                 </div>
+                                
                             </div>
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">

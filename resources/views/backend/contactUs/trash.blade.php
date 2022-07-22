@@ -21,11 +21,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
+                    <a class="btn btn-primary" href="{{ route('admin.contacts') }}">Back</a>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Contact Us</li>
+                        <li class="breadcrumb-item active">Trash Contact Us</li>
                     </ol>
                 </div>
             </div>
@@ -38,13 +39,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Contact Us</h3>
-                            <div style="float:right; display:block;">
-                                <a href="{{ route('admin.download.contact-excel') }}" class="btn btn-success">Download Excel</a>
-                                <button class="btn btn-primary"> <a href="{{route('admin.contact.trash')}}"
-                                    class="text-light"><i class="fa fa-trash-restore"></i> Trash</a> </button>
-                                
-                            </div>
+                            <h3 class="card-title">Trash Contact Us</h3>
                             
                         </div>
                         <!-- /.card-header -->
@@ -78,10 +73,12 @@
                                         <td>{{ $contact->phone_no }}</td>
                                         
                                         <td>
-                                            <a style="cursor:pointer" data-toggle="modal" data-target="#modal-default" class="btn btn-info contact-details" id="{{ $contact->id }}" title="view"><i class="nav-icon fas fa-eye"></i></a>
-                                            <a onclick="return confirm('Are you sure you want to delete this entry?')"
-                                                    href="{{route('admin.deleteContact',$contact->id)}}" class="btn btn-danger" title="Delete"><i class="fas fa-trash-alt"></i>
-                                            </a>
+                                            <a onclick="return confirm('Are you sure you want to restore this entry?')"
+                                                    href="{{route('admin.contact.restore',$contact->id)}}" class="btn btn-warning" title="Restore"><i class="fas fa-undo"></i>
+                                                </a>
+                                                <a onclick="return confirm('Are you sure you want to delete this entry?')"
+                                                    href="{{route('admin.contact.permanent-delete',$contact->id)}}" class="btn btn-danger" title="Delete"><i class="fas fa-trash"></i>
+                                                </a>
                                         
                                         </td>
                                         
@@ -148,26 +145,26 @@
 <script src="{{ asset ('admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <script>
 $(function() {
-    $('.contact-details').click(function(e){
-        e.preventDefault();
-        contact_id = $(this).attr('id');
-        $.ajax({
-            url: "{{  url('/admin/showcontact/') }}/"+contact_id,
-                     type:"GET",
-                     dataType:"json",
-                     success:function(data) {
-                        $('#contact-title').text(data.first_name + " " + data.last_name);
-                        $('#contact-name').text(data.first_name + " " + data.last_name);
-                        $('#contact-email').text(data.email);
-                        $('#contact-phone').text(data.phone_no);
-                        $('#contact-message').text(data.message);
+    // $('.contact-details').click(function(e){
+    //     e.preventDefault();
+    //     contact_id = $(this).attr('id');
+    //     $.ajax({
+    //         url: "{{  url('/admin/showcontact/') }}/"+contact_id,
+    //                  type:"GET",
+    //                  dataType:"json",
+    //                  success:function(data) {
+    //                     $('#contact-title').text(data.first_name + " " + data.last_name);
+    //                     $('#contact-name').text(data.first_name + " " + data.last_name);
+    //                     $('#contact-email').text(data.email);
+    //                     $('#contact-phone').text(data.phone_no);
+    //                     $('#contact-message').text(data.message);
                      
-                      },
-                      error:function(res){
+    //                   },
+    //                   error:function(res){
                         
-                      }
-        });
-    })
+    //                   }
+    //     });
+    // })
     $("#example1").DataTable({
         "responsive": true,
         "autoWidth": false,

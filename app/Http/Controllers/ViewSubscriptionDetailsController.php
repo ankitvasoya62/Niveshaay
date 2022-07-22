@@ -41,6 +41,7 @@ class ViewSubscriptionDetailsController extends Controller
         // $subscription_details->status = 'deleted';
         // $subscription_details->save();
         $subscription_details->delete();
+        $invoices = InvoiceDetail::where('subscription_form_id',$id)->delete();
         return redirect()->back()->with('success','Subscribe User Deleted Successfully');        
     }
 
@@ -450,5 +451,27 @@ class ViewSubscriptionDetailsController extends Controller
         
         return $pdf->download('riskprofiling.pdf');
 
+    }
+
+    public function trash(){
+        $subscription_details = SubscriptionFormDetail::onlyTrashed()->orderBy('id','desc')->get();
+        $active = 'subscription-details';
+        return view('backend.subscriptionDetails.trash',compact('active','subscription_details'));
+    }
+
+    public function restore($id){
+        $subscription_details = SubscriptionFormDetail::withTrashed()->find($id);
+        $subscription_details->restore();
+        $invoices = InvoiceDetail::where('subscription_form_id',$id)->restore();
+        
+        return redirect()->route('admin.subscription-detail.trash')->with('success',"Record Restored Successfully!");
+    }
+
+    public function permanentDelete($id){
+        $subscription_details = SubscriptionFormDetail::withTrashed()->find($id);
+        $subscription_details->forceDelete();
+        $invoices = InvoiceDetail::where('subscription_form_id',$id);
+        $invoices->forceDelete();
+        return redirect()->route('admin.subscription-detail.trash')->with('success',"Record Deleted Successfully!");
     }
 }

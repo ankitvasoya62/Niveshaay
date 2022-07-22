@@ -3,7 +3,6 @@
 <!-- DataTables -->
 <link rel="stylesheet" href="{{ asset ('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset ('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-
 @endpush
 @section('content')
     <div class="content-wrapper">
@@ -21,11 +20,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
+                        <a class="btn btn-primary" href="{{ route('admin.tweeter-feeds') }}">Back</a>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Disclosure</li>
+                            <li class="breadcrumb-item active">Trash Twitter Feeds</li>
                         </ol>
                     </div>
                 </div>
@@ -37,43 +37,47 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Disclosure</h3>
-                                <div style="float:right; display:block;">
-                                    <button class="btn btn-success"> <a href="{{route('admin.disclosure.add')}}"
-                                            class="text-light"><i class="fa fa-plus"></i> Add New</a> </button>
-                                    <button class="btn btn-primary"> <a href="{{route('admin.disclosure.trash')}}"
-                                        class="text-light"><i class="fa fa-trash-restore"></i> Trash</a> </button>
-                                </div>
+                                <h3 class="card-title">Trash Twitter Feeds</h3>
+                                {{-- <div style="float:right; display:block;">
+                                    <button class="btn btn-success"> <a href="{{route('admin.add.tweeter-feeds')}}"
+                                            class="text-light"><i class="fa fa-plus"></i> Add a Tweet</a> </button>
+                                </div> --}}
                             </div>
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th style="width: 5%">SR No</th>
-                                            <th style="width: 10%">Financial Year</th>
-                                            <th>Compliance Audit Status</th>
-                                            <th>Remarks, If any</th>
+                                            <th>SR No</th>
+                                            <th>Image</th>
+                                            <th>Name</th>
+                                            <th>Username</th>
+                                            
+                                            <th>Description</th>
+                                            
                                             <th>Action</th>
                                             
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $i = 0; ?>
-                                        @foreach ($disclosures as $disclosure)
+                                        @foreach ($listtweeterfeed as $tweeterfeed)
                                         <tr>
                                             <td>{{++$i}}</td>
-                                            <td>{{ $disclosure->financial_year }}</td>
-                                            <td>{{ $disclosure->audit_status }}</td>
-                                            <td>{{ $disclosure->remarks }}</td>
+                                            <td><img src="{{ asset('images/tweeter-feeds/'.$tweeterfeed->tweeter_user_image) }}" style="width:100px"></td>
+                                            <td>{{ $tweeterfeed->tweeter_name }}</td>
+                                            <td>{{ $tweeterfeed->tweeter_username }}</td>
+                                            <td>{{ Str::limit($tweeterfeed->tweeter_description,50,'...') }}</td>
                                             
                                             
                                             <td>
-                                                 <a href="{{route('admin.disclosure.edit',$disclosure->id)}}" class="btn btn-info" title="Edit"><i class="fas fa-edit"></i></a>
-                                                 <a onclick="return confirm('Are you sure you want to delete this entry?')"
-                                                    href="{{route('admin.disclosure.delete',$disclosure->id)}}" class="btn btn-danger" title="Delete"><i class="fas fa-trash-alt"></i>
+                                                <a onclick="return confirm('Are you sure you want to restore this entry?')"
+                                                href="{{route('admin.tweeter-feeds.restore',$tweeterfeed->id)}}" class="btn btn-warning" title="Restore"><i class="fas fa-undo"></i>
                                                 </a>
-                                                
+                                                <a onclick="return confirm('Are you sure you want to delete this entry?')"
+                                                    href="{{route('admin.tweeter-feeds.permanent-delete',$tweeterfeed->id)}}" class="btn btn-danger" title="Delete"><i class="fas fa-trash"></i>
+                                                </a>
                                             </td>
+                                            
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -98,7 +102,7 @@ $(function() {
         "responsive": true,
         "autoWidth": false,
         "columnDefs": [
-        { "orderable": false, "targets": [4] }
+        { "orderable": false, "targets": [1,5] }
         ]
     });
     $('#example2').DataTable({

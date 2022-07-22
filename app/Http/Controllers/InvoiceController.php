@@ -226,4 +226,22 @@ class InvoiceController extends Controller
         }
         
     }
+
+    public function trash(){
+        $active = 'invoice';
+        $invoices = InvoiceDetail::onlyTrashed()->where('is_renew',1)->orderBy('id','desc')->get();
+        return view('backend.invoice.trash',compact('active','invoices'));
+    }
+
+    public function restore($id){
+        $invoice = InvoiceDetail::withTrashed()->find($id);
+        $invoice->restore();
+        return redirect()->route('admin.invoice.trash')->with('success',"Record Restored Successfully!");
+    }
+
+    public function permanentDelete($id){
+        $invoice = InvoiceDetail::withTrashed()->find($id);
+        $invoice->forceDelete();
+        return redirect()->route('admin.invoice.trash')->with('success',"Record Deleted Successfully!");
+    }
 }

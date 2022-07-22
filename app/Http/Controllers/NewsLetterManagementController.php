@@ -176,9 +176,9 @@ class NewsLetterManagementController extends Controller
 
     public function deletenewsletter($id){
         $newsletter = Newsletter::find($id);
-        $previous_image = $newsletter->banner;
+        //$previous_image = $newsletter->banner;
         $newsletter->delete();
-        @unlink(public_path('images/newsletter/'.$previous_image));
+        //@unlink(public_path('images/newsletter/'.$previous_image));
         return redirect()->route('admin.newsletter')->with('success','Newsletter deleted successfully!');        
     }
 
@@ -257,5 +257,47 @@ class NewsLetterManagementController extends Controller
         $newsletteruser->status = 'inactive';
         $newsletteruser->save();
         return back()->with('success','Newsletteruser deactivated successfully!');
+    }
+
+    public function trash(){
+        $active = "newsletters";
+        $newsletters = Newsletter::onlyTrashed()->orderBy('id','desc')->get();
+        return view('backend.newsletter.trashnewsletter',compact('newsletters','active'));        
+    }
+
+    public function restore($id){
+        $newsletter = Newsletter::withTrashed()->find($id);
+        $newsletter->restore();
+        return redirect()->back()->with('success','Newsletter restored successfully!');        
+
+    }
+
+    public function permanentDelete($id){
+        $newsletter = Newsletter::withTrashed()->find($id);
+        $previous_image = $newsletter->banner;
+        $newsletter->forceDelete();
+        @unlink(public_path('images/newsletter/'.$previous_image));
+        return redirect()->back()->with('success','Newsletter deleted successfully!');        
+    }
+    
+    public function trashnewsusers(){
+        $active = "newsletterusers";
+        $newsletterusers = NewsletterUser::onlyTrashed()->orderBy('id','desc')->get();
+        return view('backend.newsletter.trashnewsletteruser',compact('newsletterusers','active'));        
+    }
+
+    public function restorenewsusers($id){
+
+        $newsletteruser = NewsletterUser::withTrashed()->find($id);
+        $newsletteruser->restore();
+        return redirect()->back()->with('success','Newsletteruser restored successfully!');        
+
+    }
+
+    public function permanentDeletenewsusers($id){
+        $newsletteruser = NewsletterUser::withTrashed()->find($id);
+        $newsletteruser->forceDelete();
+        
+        return redirect()->back()->with('success','Newsletteruser deleted successfully!');        
     }
 }

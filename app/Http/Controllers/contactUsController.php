@@ -32,4 +32,22 @@ class contactUsController extends Controller
     public function downloadContactExcel(){
         return Excel::download(new ContactusExport, 'contact_us.xlsx');
     }
+
+    public function trash(){
+        $active = 'contact';
+        $contactus_list = Contactus::onlyTrashed()->orderBy('id','desc')->get();
+        return view('backend.contactUs.trash',compact('active','contactus_list'));
+    }
+
+    public function restore($id){
+        $contact = Contactus::withTrashed()->find($id);
+        $contact->restore();
+        return redirect()->back()->with('success','Record restored Successfully!');
+    }
+
+    public function permanentDelete($id){
+        $contact = Contactus::withTrashed()->find($id);
+        $contact->forceDelete();
+        return redirect()->back()->with('success','Record deleted Successfully!');
+    }
 }

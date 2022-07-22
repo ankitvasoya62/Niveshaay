@@ -21,11 +21,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
+                    <a class="btn btn-primary" href="{{ route('admin.share') }}">Back</a>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Research Reports</li>
+                        <li class="breadcrumb-item active">Trash Research Reports</li>
                     </ol>
                 </div>
             </div>
@@ -38,22 +39,8 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Research Reports</h3>
-                            <div style="float:right; display:block;">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-success btn-flat">Add New Report</button>
-                                    <button type="button" class="btn btn-success btn-flat dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
-                                      <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <div class="dropdown-menu" role="menu" style="">
-                                      <a class="dropdown-item" href="{{route('admin.add.share',0)}}">Upload Manually</a>
-                                      <a class="dropdown-item" href="{{route('admin.add.share',1)}}">Upload Via Pdf</a>
-                                      
-                                    </div>
-                                </div>
-                                <button class="btn btn-primary"> <a href="{{route('admin.report.trash')}}"
-                                        class="text-light"><i class="fa fa-trash-restore"></i> Trash</a> </button>
-                            </div>
+                            <h3 class="card-title">Trash Research Reports</h3>
+                            
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -86,18 +73,12 @@
                                         <td>{{date("d-m-Y", strtotime($share->updated_at))}}</td>
                                         
                                         <td>
-                                            @if ($share->share_status == 0)
                                             
-                                                @if($share->upload_type == 0 )
-                                                    <a href="{{ route('admin.view.report',$share->id)}}" class="btn btn-primary" target="_blank"><i class="fas fa-eye"></i></a>    
-                                                @else
-                                                    <a href="{{ asset('pdf/'.$share->pdf_name) }}" target="_blank" class="btn btn-primary"><i class="fas fa-eye"></i></a>
-                                                @endif
-                                            @endif
-                                            
-                                            <a href="{{route('admin.edit.share',$share->id)}}" class="btn btn-info" title="Edit"><i class="fas fa-edit"></i></a>
+                                            <a onclick="return confirm('Are you sure you want to restore this entry?')"
+                                            href="{{route('admin.report.restore',$share->id)}}" class="btn btn-warning" title="Restore"><i class="fas fa-undo"></i>
+                                            </a>
                                             <a onclick="return confirm('Are you sure you want to delete this entry?')"
-                                                href="{{ route('admin.delete.share',$share->id) }}" class="btn btn-danger" title="Delete"><i class="fas fa-trash-alt"></i>
+                                                href="{{route('admin.report.permanent-delete',$share->id)}}" class="btn btn-danger" title="Delete"><i class="fas fa-trash"></i>
                                             </a>
                                         </td>
                                         

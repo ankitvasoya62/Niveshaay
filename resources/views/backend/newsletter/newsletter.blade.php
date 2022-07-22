@@ -40,6 +40,8 @@
                                 <div style="float:right; display:block;">
                                     <button class="btn btn-success"> <a href="{{ route('admin.newsletter.add')}}"
                                             class="text-light"><i class="fa fa-plus"></i>&nbsp;Add New Template</a> </button>
+                                    <button class="btn btn-primary"> <a href="{{route('admin.newsletter.trash')}}"
+                                        class="text-light"><i class="fa fa-trash-restore"></i> Trash</a> </button>
                                 </div>
                             </div>
                             <div class="card-body">

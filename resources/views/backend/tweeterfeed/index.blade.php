@@ -40,6 +40,8 @@
                                 <div style="float:right; display:block;">
                                     <button class="btn btn-success"> <a href="{{route('admin.add.tweeter-feeds')}}"
                                             class="text-light"><i class="fa fa-plus"></i> Add a Tweet</a> </button>
+                                    <button class="btn btn-primary"> <a href="{{route('admin.tweeter-feeds.trash')}}"
+                                        class="text-light"><i class="fa fa-trash-restore"></i> Trash</a> </button>
                                 </div>
                             </div>
                             <div class="card-body">

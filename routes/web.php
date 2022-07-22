@@ -95,6 +95,9 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/download/excel/user',[UserController::class, 'downloadUserExcel'])->name('admin.download.user-excel');
         Route::get('/contacts',[contactUsController::class,'contactUsList'])->name('admin.contacts');
         Route::get('/showcontact/{id}',[contactUsController::class,'showContact'])->name('admin.showContact');
+        Route::get('/contacts/trash',[contactUsController::class,'trash'])->name('admin.contact.trash');
+        Route::get('/contact/restore/{id}',[contactUsController::class,'restore'])->name('admin.contact.restore');
+        Route::get('/contact/permanentdelete/{id}',[contactUsController::class,'permanentDelete'])->name('admin.contact.permanent-delete');
         Route::get('/deletecontact/{id}',[contactUsController::class,'deleteContact'])->name('admin.deleteContact');
         Route::get('/downloadcontact',[contactUsController::class,'downloadContactExcel'])->name('admin.download.contact-excel');
         /*Share Management Route */
@@ -106,6 +109,9 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/delete/researchreport/{id}', [ShareDetailsController::class, 'deleteShare'])->name('admin.delete.share');
         Route::get('/view/researchreport/{id}', [ShareDetailsController::class, 'viewShare'])->name('admin.view.report');
         Route::post('/upload/report',[ShareDetailsController::class,'storeImages'])->name('admin.upload.image');
+        Route::get('/researchreport/trash',[ShareDetailsController::class,'trash'])->name('admin.report.trash');
+        Route::get('/researchreport/restore/{id}',[ShareDetailsController::class,'restore'])->name('admin.report.restore');
+        Route::get('/researchreport/permanentdelete/{id}',[ShareDetailsController::class,'permanentDelete'])->name('admin.report.permanent-delete');
         /*Import Excel Route */
         Route::get('/excel',[ImportExcel::class, 'index'])->name('import-excel');
         Route::post('/excel',[ImportExcel::class, 'store'])->name('import');
@@ -118,7 +124,9 @@ Route::middleware('auth:admin')->group(function () {
         Route::post('/update-subscription/{id}',[ViewSubscriptionDetailsController::class,'updateSubscriptionDetails'])->name('admin.update-subscription');
         Route::post('/verify-subscription',[ViewSubscriptionDetailsController::class,'verifySubscriptionDetails'])->name('admin.verify-subscription');
         Route::get('/payment-received/{id}',[ViewSubscriptionDetailsController::class,'paymentReceivedAction'])->name('admin.payment-received');
-
+        Route::get('/subscription-detail/trash',[ViewSubscriptionDetailsController::class,'trash'])->name('admin.subscription-detail.trash');
+        Route::get('/subscription-detail/restore/{id}',[ViewSubscriptionDetailsController::class,'restore'])->name('admin.subscription-detail.restore');
+        Route::get('/subscription-detail/permanentdelete/{id}',[ViewSubscriptionDetailsController::class,'permanentDelete'])->name('admin.subscription-detail.permanent-delete');
 
         Route::get('/invoice-details/{id}',[ViewSubscriptionDetailsController::class,'viewinvoicedetails'])->name('admin.view.invoicedetails');
         Route::get('/download/invoice/{id}',[ViewSubscriptionDetailsController::class,'downloadinvoice'])->name('admin.download.invoice');
@@ -139,6 +147,9 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/invoice/delete/{id}', [InvoiceController::class,'delete'])->name('admin.invoice.delete');
         Route::get('/invoice/user/{id}',[InvoiceController::class,'userSubscriptionRecord'])->name('admin.invoice.users');
         Route::get('/invoice/download/{id}',[InvoiceController::class,'downloadInvoiceById'])->name('admin.invoice.download');
+        Route::get('/invoice/trash',[InvoiceController::class,'trash'])->name('admin.invoice.trash');
+        Route::get('/invoice/restore/{id}',[InvoiceController::class,'restore'])->name('admin.invoice.restore');
+        Route::get('/invoice/permanentdelete/{id}',[InvoiceController::class,'permanentDelete'])->name('admin.invoice.permanent-delete');
 
         Route::get('/complaint-status/current-month',[ComplaintStatusController::class,'currentMonth'])->name('admin.currentmonthcomplaint');
         Route::post('/complaint-status/store/current-month',[ComplaintStatusController::class,'storeCurrentMonth'])->name('admin.storecurrentmonthcomplaint');
@@ -160,6 +171,10 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/our-client/move-up/{id}',[OurClientSayManagementController::class,'moveup'])->name('admin.moveup.our-clients');
         Route::get('/our-client/move-down/{id}',[OurClientSayManagementController::class,'movedown'])->name('admin.movedown.our-clients');
 
+        Route::get('/our-client/trash',[OurClientSayManagementController::class,'trash'])->name('admin.our-client.trash');
+        Route::get('/our-client/restore/{id}',[OurClientSayManagementController::class,'restore'])->name('admin.our-client.restore');
+        Route::get('/our-client/permanentdelete/{id}',[OurClientSayManagementController::class,'permanentDelete'])->name('admin.our-client.permanent-delete');
+
         Route::get('/featured-on',[FeaturedOnController::class,'index'])->name('admin.featured-on');
         Route::get('/featured-on/add',[FeaturedOnController::class,'create'])->name('admin.add.featured-on');
         Route::post('/featured-on/store',[FeaturedOnController::class,'store'])->name('admin.store.featured-on');
@@ -170,6 +185,10 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/featuredon/move-up/{id}',[FeaturedOnController::class,'moveup'])->name('admin.moveup.featured-on');
         Route::get('/featuredon/move-down/{id}',[FeaturedOnController::class,'movedown'])->name('admin.movedown.featured-on');
 
+        Route::get('/featured-on/trash',[FeaturedOnController::class,'trash'])->name('admin.featured-on.trash');
+        Route::get('/featured-on/restore/{id}',[FeaturedOnController::class,'restore'])->name('admin.featured-on.restore');
+        Route::get('/featured-on/permanentdelete/{id}',[FeaturedOnController::class,'permanentDelete'])->name('admin.featured-on.permanent-delete');
+
         Route::get('/tweeter-feeds',[TweeterFeedController::class,'index'])->name('admin.tweeter-feeds');
         Route::get('/tweeter-feeds/add',[TweeterFeedController::class,'create'])->name('admin.add.tweeter-feeds');
         Route::post('/tweeter-feeds/store',[TweeterFeedController::class,'store'])->name('admin.store.tweeter-feeds');
@@ -178,6 +197,9 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/tweeter-feeds/delete/{id}',[TweeterFeedController::class,'destroy'])->name('admin.delete.tweeter-feeds');
         Route::get('/tweeter-feeds/move-up/{id}',[TweeterFeedController::class,'moveup'])->name('admin.moveup.tweeter-feeds');
         Route::get('/tweeter-feeds/move-down/{id}',[TweeterFeedController::class,'movedown'])->name('admin.movedown.tweeter-feeds');
+        Route::get('/tweeter-feeds/trash',[TweeterFeedController::class,'trash'])->name('admin.tweeter-feeds.trash');
+        Route::get('/tweeter-feeds/restore/{id}',[TweeterFeedController::class,'restore'])->name('admin.tweeter-feeds.restore');
+        Route::get('/tweeter-feeds/permanentdelete/{id}',[TweeterFeedController::class,'permanentDelete'])->name('admin.tweeter-feeds.permanent-delete');
 
         Route::get('/report-images',[ResearchImageController::class,'index'])->name('admin.report-images');
         Route::get('/report-images/add',[ResearchImageController::class,'create'])->name('admin.add.report-images');
@@ -204,6 +226,13 @@ Route::middleware('auth:admin')->group(function () {
         Route::post('/newsletter/update/{id}',[NewsLetterManagementController::class,'updatenewsletters'])->name('admin.newsletter.update');
         Route::get('/newsletter/show/{id}',[NewsLetterManagementController::class,'shownewsletter'])->name('admin.newsletter.show');
         Route::get('/newsletter/delete/{id}',[NewsLetterManagementController::class,'deletenewsletter'])->name('admin.newsletter.delete');
+        Route::get('/newsletter/trash',[NewsLetterManagementController::class,'trash'])->name('admin.newsletter.trash');
+        Route::get('/newsletter/restore/{id}',[NewsLetterManagementController::class,'restore'])->name('admin.newsletter.restore');
+        Route::get('/newsletter/permanentdelete/{id}',[NewsLetterManagementController::class,'permanentDelete'])->name('admin.newsletter.permanent-delete');
+
+        Route::get('/newsletter/trashnewsusers',[NewsLetterManagementController::class,'trashnewsusers'])->name('admin.newsletteruser.trashnewsusers');
+        Route::get('/newsletter/restorenewsusers/{id}',[NewsLetterManagementController::class,'restorenewsusers'])->name('admin.newsletteruser.restorenewsusers');
+        Route::get('/newsletter/permanentdeletenewsusers/{id}',[NewsLetterManagementController::class,'permanentDeletenewsusers'])->name('admin.newsletteruser.permanent-deletenewsusers');
 
         Route::get('/newsletter/send',[NewsLetterManagementController::class,'sendnewsletter'])->name('admin.newsletter.send');
         Route::post('/newsletter/send/mail',[NewsLetterManagementController::class,'sendnewslettermail'])->name('admin.newsletter.send.mail');
@@ -219,6 +248,9 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/disclosure/edit/{id}',[DisclosureController::class,'edit'])->name('admin.disclosure.edit');
         Route::post('/disclosure/update/{id}',[DisclosureController::class,'update'])->name('admin.disclosure.update');
         Route::get('/disclosure/delete/{id}',[DisclosureController::class,'destroy'])->name('admin.disclosure.delete');
+        Route::get('/disclosure/trash',[DisclosureController::class,'trash'])->name('admin.disclosure.trash');
+        Route::get('/disclosure/restore/{id}',[DisclosureController::class,'restore'])->name('admin.disclosure.restore');
+        Route::get('/disclosure/permanentdelete/{id}',[DisclosureController::class,'permanentDelete'])->name('admin.disclosure.permanent-delete');
     });
     // Route::middleware(['subscription_expired'])->group(function () {
     //     Route::get('/profile',[HomeController::class, 'userProfile'])->name('frontend.profile');

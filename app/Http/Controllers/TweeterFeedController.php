@@ -18,6 +18,16 @@ class TweeterFeedController extends Controller
         //
         $listtweeterfeed = TweeterFeed::orderBy('sort_order','asc')->get();
         $active = 'tweeter-feeds';
+        $i = 1;
+        foreach ($listtweeterfeed as $key => $value) {
+            # code...
+            if($value['sort_order'] != $i){
+                $updatetweet = TweeterFeed::find($value['id']);
+                $updatetweet['sort_order'] = $i;
+                $updatetweet->save();
+            }
+            $i++;
+        }
         return view('backend.tweeterfeed.index',compact('listtweeterfeed','active'));
     }
 
@@ -166,11 +176,11 @@ class TweeterFeedController extends Controller
     {
         //
         $tweeterFeed = TweeterFeed::find($id);
-        $previous_image = $tweeterFeed->tweeter_user_image;
+        //$previous_image = $tweeterFeed->tweeter_user_image;
         $tweeterFeed->delete();
-        if(File::exists(public_path('images/tweeter-feeds/'.$previous_image))) {
-            @unlink(public_path('images/tweeter-feeds/'.$previous_image));
-        }
+        // if(File::exists(public_path('images/tweeter-feeds/'.$previous_image))) {
+        //     @unlink(public_path('images/tweeter-feeds/'.$previous_image));
+        // }
         
         return redirect()->route('admin.tweeter-feeds')->with('success','Tweeter Feed Deleted Successfully!');
     }
@@ -192,7 +202,14 @@ class TweeterFeedController extends Controller
                 $previousTweet->save();
     
             }else{
-                $previousOrder = $currentOrder - 1 ;
+                $previousRecord = TweeterFeed::where('sort_order','<',$currentOrder)->orderBy('sort_order','DESC')->first();
+                if(empty($previousRecord)){
+                    $latestRecord = TweeterFeed::orderBy('sort_order','DESC')->first();
+                    $previousOrder = $latestRecord->sort_order;
+                    
+                }else{
+                    $previousOrder = $previousRecord->sort_order ;
+                }
                 $previousTweet = TweeterFeed::where('sort_order',$previousOrder)->first();
                 $previousTweet->sort_order = $currentOrder;
                 $currentTweet->sort_order = $previousOrder;
@@ -220,7 +237,13 @@ class TweeterFeedController extends Controller
                 $currentTweet->save();
                 $newTweet->save();
             }else{
-                $newOrder = $currentOrder + 1 ;
+                $nextRecord = TweeterFeed::where('sort_order','>',$currentOrder)->orderBy('sort_order','ASC')->first();
+                if(empty($nextRecord)){
+                    $firstRecord = TweeterFeed::orderBy('sort_order','ASC')->first();
+                    $newOrder = $firstRecord->sort_order ;
+                }else{
+                    $newOrder = $nextRecord->sort_order ;
+                }
                 $newTweet = TweeterFeed::where('sort_order',$newOrder)->first();
                 $newTweet->sort_order = $currentOrder;
                 $currentTweet->sort_order = $newOrder;
@@ -230,5 +253,27 @@ class TweeterFeedController extends Controller
             return redirect()->back()->with('success','Moved down successfully');
         }
         
+    }
+
+    public function trash(){
+        $listtweeterfeed = TweeterFeed::onlyTrashed()->orderBy('sort_order','asc')->get();
+        $active = "tweeter-feeds";
+        return view('backend.tweeterfeed.trash',compact('listtweeterfeed','active'));
+    }
+
+    public function restore($id){
+        $tweeterFeed = TweeterFeed::withTrashed()->find($id);
+        $tweeterFeed->restore();
+        return redirect()->back()->with('success',"Record Restored Successfully!");
+    }
+
+    public function permanentDelete($id){
+        $tweeterFeed = TweeterFeed::withTrashed()->find($id);
+        $previous_image = $tweeterFeed->tweeter_user_image;
+        $tweeterFeed->forceDelete();
+        if(File::exists(public_path('images/tweeter-feeds/'.$previous_image))) {
+            @unlink(public_path('images/tweeter-feeds/'.$previous_image));
+        }
+        return redirect()->back()->with('success',"Record Deleted Successfully!");
     }
 }

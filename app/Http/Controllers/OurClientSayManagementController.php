@@ -18,6 +18,16 @@ class OurClientSayManagementController extends Controller
         //
         $listClients = OurClientSayManagement::where('status','active')->orderBy('sort_order','asc')->get();
         $active ='clients';
+        $i = 1;
+        foreach ($listClients as $key => $value) {
+            # code...
+            if($value['sort_order'] != $i){
+                $updateClient = OurClientSayManagement::find($value['id']);
+                $updateClient['sort_order'] = $i;
+                $updateClient->save();
+            }
+            $i++;
+        }
         return view('backend.ourClients.index',compact('listClients','active'));
     }
 
@@ -173,8 +183,8 @@ class OurClientSayManagementController extends Controller
     {
         //
         $client = OurClientSayManagement::find($id);
-        $previous_image = $client->client_image;
-        @unlink(public_path('images/clients/'.$previous_image));
+        // $previous_image = $client->client_image;
+        // @unlink(public_path('images/clients/'.$previous_image));
         // $client->status = 'deleted';
         // $client->save();
         $client->delete();
@@ -198,7 +208,15 @@ class OurClientSayManagementController extends Controller
                 $previousClient->save();
     
             }else{
-                $previousOrder = $currentOrder - 1 ;
+                $previousRecord = OurClientSayManagement::where('sort_order','<',$currentOrder)->orderBy('sort_order','DESC')->first();
+                if(empty($previousRecord)){
+                    $latestRecord = OurClientSayManagement::orderBy('sort_order','DESC')->first();
+                    $previousOrder = $latestRecord->sort_order;
+                    
+                }else{
+                    $previousOrder = $previousRecord->sort_order ;
+                }
+                
                 $previousClient = OurClientSayManagement::where('sort_order',$previousOrder)->first();
                 $previousClient->sort_order = $currentOrder;
                 $currentClient->sort_order = $previousOrder;
@@ -214,6 +232,7 @@ class OurClientSayManagementController extends Controller
         $currentClient = OurClientSayManagement::find($id);
         $totalClient = count(OurClientSayManagement::all());
         $currentOrder = $currentClient->sort_order;
+        
         if($totalClient == 1){
             return redirect()->back();
         }else{
@@ -226,7 +245,13 @@ class OurClientSayManagementController extends Controller
                 $currentClient->save();
                 $newClient->save();
             }else{
-                $newOrder = $currentOrder + 1 ;
+                $nextRecord = OurClientSayManagement::where('sort_order','>',$currentOrder)->orderBy('sort_order','ASC')->first();
+                if(empty($nextRecord)){
+                    $newOrder = 1;
+                }else{
+                    $newOrder = $nextRecord->sort_order ;
+                }
+                
                 $newClient = OurClientSayManagement::where('sort_order',$newOrder)->first();
                 $newClient->sort_order = $currentOrder;
                 $currentClient->sort_order = $newOrder;
@@ -237,5 +262,25 @@ class OurClientSayManagementController extends Controller
             return redirect()->back()->with('success','Moved down successfully');
         }
         
+    }
+
+    public function trash(){
+        $listClients = OurClientSayManagement::onlyTrashed()->orderBy('sort_order','asc')->get();
+        $active ='clients';
+        return view('backend.ourClients.trash',compact('listClients','active'));
+    }
+
+    public function restore($id){
+        $client = OurClientSayManagement::withTrashed()->find($id);
+        $client->restore();
+        return redirect()->back()->with('success',"Record Restored Successfully!");
+    }
+
+    public function permanentDelete($id){
+        $client = OurClientSayManagement::withTrashed()->find($id);
+        $previous_image = $client->client_image;
+        @unlink(public_path('images/clients/'.$previous_image));
+        $client->forceDelete();
+        return redirect()->back()->with('success',"Record Deleted Successfully!");
     }
 }

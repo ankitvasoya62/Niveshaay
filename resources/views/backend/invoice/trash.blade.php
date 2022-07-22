@@ -21,12 +21,16 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
+                        <a class="btn btn-primary" href="{{ route('admin.invoice') }}">Back</a>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Disclosure</li>
+                            <li class="breadcrumb-item active">Trash Invoices</li>
                         </ol>
+                    </div>
+                    <div class="col-md-6">
+                        
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -37,43 +41,56 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Disclosure</h3>
-                                <div style="float:right; display:block;">
-                                    <button class="btn btn-success"> <a href="{{route('admin.disclosure.add')}}"
+                                <h3 class="card-title">Trash Invoices</h3>
+                                {{-- <div style="float:right; display:block;">
+                                    <button class="btn btn-success"> <a href="{{route('admin.invoice.add')}}"
                                             class="text-light"><i class="fa fa-plus"></i> Add New</a> </button>
-                                    <button class="btn btn-primary"> <a href="{{route('admin.disclosure.trash')}}"
-                                        class="text-light"><i class="fa fa-trash-restore"></i> Trash</a> </button>
-                                </div>
+                                    <button class="btn btn-primary"> <a href="{{route('admin.invoice.trash')}}"
+                                        class="text-light">Trash</a> </button>
+                                </div> --}}
                             </div>
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th style="width: 5%">SR No</th>
-                                            <th style="width: 10%">Financial Year</th>
-                                            <th>Compliance Audit Status</th>
-                                            <th>Remarks, If any</th>
+                                            <th style="width: 10%">Date</th>
+                                            <th>Name Of Investor</th>
+                                            <th>Email</th>
                                             <th>Action</th>
                                             
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $i = 0; ?>
-                                        @foreach ($disclosures as $disclosure)
+                                        @foreach ($invoices as $invoice)
                                         <tr>
                                             <td>{{++$i}}</td>
-                                            <td>{{ $disclosure->financial_year }}</td>
-                                            <td>{{ $disclosure->audit_status }}</td>
-                                            <td>{{ $disclosure->remarks }}</td>
+                                            <td>{{date("d-m-Y", strtotime($invoice->created_at)) }}</td>
+                                            <td>{{ !empty($invoice->subscriptionForm) ? $invoice->subscriptionForm->name_of_investor : "---"  }}</td>
+                                            <td>{{ !empty($invoice->subscriptionForm) ? $invoice->subscriptionForm->email : "---"  }}</td>
                                             
-                                            
+                                            {{-- <td><img src="{{ asset('images/clients/'.$client->client_image)}}"></td> --}}
+                                            {{-- <td>{{ $client->client_designation }}</td> --}}
+                                            {{-- <td>{{date("d-m-Y", strtotime($share->created_at)) }}</td>
+                                            <td>{{date("d-m-Y", strtotime($share->updated_at))}}</td> --}}
                                             <td>
-                                                 <a href="{{route('admin.disclosure.edit',$disclosure->id)}}" class="btn btn-info" title="Edit"><i class="fas fa-edit"></i></a>
-                                                 <a onclick="return confirm('Are you sure you want to delete this entry?')"
-                                                    href="{{route('admin.disclosure.delete',$disclosure->id)}}" class="btn btn-danger" title="Delete"><i class="fas fa-trash-alt"></i>
+                                                 {{-- <a href="{{route('admin.invoice.edit',$invoice->id)}}" class="btn btn-info" title="Edit"><i class="fas fa-edit"></i></a> --}}
+                                                 <a onclick="return confirm('Are you sure you want to restore this entry?')"
+                                                    href="{{route('admin.invoice.restore',$invoice->id)}}" class="btn btn-warning" title="Restore"><i class="fas fa-undo"></i>
                                                 </a>
-                                                
+                                                <a onclick="return confirm('Are you sure you want to delete this entry?')"
+                                                    href="{{route('admin.invoice.permanent-delete',$invoice->id)}}" class="btn btn-danger" title="Delete"><i class="fas fa-trash"></i>
+                                                </a>
+                                                {{-- <a href="{{route('admin.invoice.download',$invoice->id)}}" class="btn btn-info" title="Download Invoice"><i class="fas fa-file-invoice"></i></a> --}}
                                             </td>
+                                            
+                                                {{-- <a href="{{route('admin.edit.our-clients',$client->id)}}" class="btn btn-info" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <a onclick="return confirm('Are you sure you want to delete this entry?')"
+                                                    href="{{route('admin.delete.our-clients',$client->id)}}" class="btn btn-danger" title="Delete"><i class="fas fa-trash-alt"></i>
+                                                </a> --}}
+                                            
+                                            
                                         </tr>
                                         @endforeach
                                     </tbody>

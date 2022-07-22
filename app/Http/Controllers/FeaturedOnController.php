@@ -18,6 +18,16 @@ class FeaturedOnController extends Controller
         //
         $active = "featured-on";
         $listFeaturedOn = FeaturedOn::where('status','active')->orderBy('sort_order','asc')->get();
+        $i = 1;
+        foreach ($listFeaturedOn as $key => $value) {
+            # code...
+            if($value['sort_order'] != $i){
+                $updatefeature = FeaturedOn::find($value['id']);
+                $updatefeature['sort_order'] = $i;
+                $updatefeature->save();
+            }
+            $i++;
+        }
         return view('backend.featuredon.index',compact('active','listFeaturedOn'));
     }
 
@@ -195,11 +205,11 @@ class FeaturedOnController extends Controller
     {
         //
         $featuredOn = FeaturedOn::find($id);
-        $previous_featured_logo = $featuredOn->featured_logo;
-        $previous_featured_image = $featuredOn->featured_image;
+        // $previous_featured_logo = $featuredOn->featured_logo;
+        // $previous_featured_image = $featuredOn->featured_image;
         $featuredOn->delete();
-        @unlink(public_path('images/featured/featured-image/'.$previous_featured_image));
-        @unlink(public_path('images/featured/featured-logo/'.$previous_featured_logo));
+        // @unlink(public_path('images/featured/featured-image/'.$previous_featured_image));
+        // @unlink(public_path('images/featured/featured-logo/'.$previous_featured_logo));
         return redirect()->route('admin.featured-on')->with('success','Feature Delete Successfully');
     }
 
@@ -220,7 +230,14 @@ class FeaturedOnController extends Controller
                 $previousfeaturedOn->save();
     
             }else{
-                $previousOrder = $currentOrder - 1 ;
+                $previousRecord = FeaturedOn::where('sort_order','<',$currentOrder)->orderBy('sort_order','DESC')->first();
+                if(empty($previousRecord)){
+                    $latestRecord = FeaturedOn::orderBy('sort_order','DESC')->first();
+                    $previousOrder = $latestRecord->sort_order;
+                    
+                }else{
+                    $previousOrder = $previousRecord->sort_order ;
+                }
                 $previousfeaturedOn = FeaturedOn::where('sort_order',$previousOrder)->first();
                 $previousfeaturedOn->sort_order = $currentOrder;
                 $currentFeaturedOn->sort_order = $previousOrder;
@@ -249,7 +266,13 @@ class FeaturedOnController extends Controller
                 $currentFeaturedOn->save();
                 $newfeaturedOn->save();
             }else{
-                $newOrder = $currentOrder + 1 ;
+                $nextRecord = FeaturedOn::where('sort_order','>',$currentOrder)->orderBy('sort_order','ASC')->first();
+                if(empty($nextRecord)){
+                    $firstRecord = FeaturedOn::orderBy('sort_order','ASC')->first();
+                    $newOrder = $firstRecord->sort_order ;
+                }else{
+                    $newOrder = $nextRecord->sort_order ;
+                }
                 $newfeaturedOn = FeaturedOn::where('sort_order',$newOrder)->first();
                 $newfeaturedOn->sort_order = $currentOrder;
                 $currentFeaturedOn->sort_order = $newOrder;
@@ -260,5 +283,27 @@ class FeaturedOnController extends Controller
             return redirect()->back()->with('success','Moved down successfully');
         }
         
+    }
+
+    public function trash(){
+        $active = "featured-on";
+        $listFeaturedOn = FeaturedOn::onlyTrashed()->orderBy('sort_order','asc')->get();
+        return view('backend.featuredon.trash',compact('active','listFeaturedOn'));
+    }
+
+    public function restore($id){
+        $featuredOn = FeaturedOn::withTrashed()->find($id);
+        $featuredOn->restore();
+        return redirect()->back()->with('success',"Record Restored Successfully");
+    }
+
+    public function permanentDelete($id){
+        $featuredOn = FeaturedOn::withTrashed()->find($id);
+        $previous_featured_logo = $featuredOn->featured_logo;
+        $previous_featured_image = $featuredOn->featured_image;
+        $featuredOn->forceDelete();
+        @unlink(public_path('images/featured/featured-image/'.$previous_featured_image));
+        @unlink(public_path('images/featured/featured-logo/'.$previous_featured_logo));
+        return redirect()->back()->with('success',"Record Deleted Successfully");
     }
 }

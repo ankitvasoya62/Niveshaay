@@ -502,13 +502,13 @@ class ShareDetailsController extends Controller
     public function deleteShare($id){
         $active = 'share';
         $share = ShareDetails::find($id);
-        $share_previous_image = $share->share_image;
-        $share_previous_logo = $share->share_logo;
+        // $share_previous_image = $share->share_image;
+        // $share_previous_logo = $share->share_logo;
         
         // $share->status = 'deleted';
         $share->delete();  
-        @unlink(public_path('images/share-logo')."/".$share_previous_logo);
-        @unlink(public_path('images/share-images')."/".$share_previous_image);
+        // @unlink(public_path('images/share-logo')."/".$share_previous_logo);
+        // @unlink(public_path('images/share-images')."/".$share_previous_image);
         return redirect()->route('admin.share')->with('success','Report Deleted Successfully!');      
     }
 
@@ -529,5 +529,27 @@ class ShareDetailsController extends Controller
         $shareimage->move(public_path('images/report'),$shareImageName);
         
         return asset('images/report/'.$shareImageName);       
+    }
+
+    public function trash(){
+        $share_list = ShareDetails::onlyTrashed()->orderBy('id','desc')->get();
+        $active = "share";
+        return view('backend.shareManagement.trash',compact('share_list','active'));
+    }
+
+    public function restore($id){
+        $report = ShareDetails::withTrashed()->find($id);
+        $report->restore();
+        return redirect()->route('admin.report.trash')->with('success',"Record Restored Successfully!");
+    }
+
+    public function permanentDelete($id){
+        $report = ShareDetails::withTrashed()->find($id);
+        $share_previous_image = $report->share_image;
+        $share_previous_logo = $report->share_logo;
+        $report->forceDelete();
+        @unlink(public_path('images/share-logo')."/".$share_previous_logo);
+        @unlink(public_path('images/share-images')."/".$share_previous_image);
+        return redirect()->route('admin.report.trash')->with('success',"Record Deleted Successfully!");
     }
 }
