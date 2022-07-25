@@ -26,7 +26,7 @@ class InvoiceController extends Controller
     public function store(Request $request){
         $this->validate($request,[
             'user_id'=>'required',
-            
+            'invoice_date'=> ' required'
         ],[
             'user_id.required'=>'Please select a user'
         ]);
@@ -65,6 +65,7 @@ class InvoiceController extends Controller
         $invoice->subscription_start_date = $request->subscription_start_date;
         $invoice->subscription_end_date = $request->subscription_end_date;
         $invoice->amount = $request->amount;
+        $invoice->invoice_date = $request->invoice_date;
         $invoice->subscription_form_id = $subscriptionRecord->id;
         $invoice->is_renew = 1;
         $newInvoice = $invoice->save();
@@ -139,6 +140,10 @@ class InvoiceController extends Controller
     }
     
     public function update(Request $request,$id){
+        $this->validate($request,[
+            
+            'invoice_date'=> ' required'
+        ]);
         // $id = $request->user_id;
         $invoice = InvoiceDetail::find($id);
         $subscription_id = $invoice->subscriptionForm->id;
@@ -154,6 +159,7 @@ class InvoiceController extends Controller
         $invoice->description = $request->description;
         $invoice->subscription_start_date = $request->subscription_start_date;
         $invoice->subscription_end_date = $request->subscription_end_date;
+        $invoice->invoice_date = $request->invoice_date;
         $invoice->amount = $request->amount;
         $invoice->save();
 
@@ -197,7 +203,7 @@ class InvoiceController extends Controller
             $data['gst_no'] = $subscription_details->gst_no;
             
             $data['invoice_no'] = $invoices->invoice_no;
-            $data['created_at'] = $invoices->created_at;
+            $data['created_at'] = $invoices->invoice_date;
             $amount = !empty($invoices->amount) ? $invoices->amount : 0 ;
             if($subscription_details->state == 'Gujarat'){
                 $cgst = $amount * 0.09;

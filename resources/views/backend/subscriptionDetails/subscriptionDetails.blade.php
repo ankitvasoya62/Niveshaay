@@ -144,7 +144,7 @@
                                                 @if($subscription_detail->is_verified_by_admin == 0)
                                                 <a class="btn btn-warning disabled" title="Confirm Payment"> <i class="fas fa-rupee-sign"></i></a>
                                                 @else
-                                                <a href="{{ route('admin.payment-received',$subscription_detail->id)}}" style="cursor:pointer"  class="btn btn-warning payment-received-button" @if($subscription_detail->is_verified_by_admin == 0) disabled @endif title="Confirm Payment" onclick="return confirm('Are you sure?')"> <i class="fas fa-rupee-sign"></i></a>
+                                            <a href="{{ route('admin.payment-received',$subscription_detail->id)}}" style="cursor:pointer"  class="btn btn-warning payment-received-button" data-toggle="modal" data-target="#invoice-modal" title="Confirm Payment" id="invoice_{{ $subscription_detail->id }}"> <i class="fas fa-rupee-sign"></i></a>
                                                 @endif
                                              
                                             @else
@@ -254,6 +254,50 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
+
+    <div class="modal fade" id="invoice-modal" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title" id="contact-title"></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            </div>
+            <div class="modal-body" id="invoice-date-content">
+            <div class="row">
+                {{-- <div class="col-md-12" >
+                    <a class="btn btn-primary add-invoice" style="float:right;margin-bottom:15px">Add More Invoice</a>
+                </div> --}}
+                <div class="loader">
+
+                </div>
+               <div class="col-md-12">
+                    <form id="invoice-date-form" action="" method="POST">@csrf
+                        
+                        {{-- <input type="hidden" id="subscription_form_date_id" name="subscription_form_date_id"/>     --}}
+                        <div class="form-group">
+                            <label class="control-label">Invoice Date</label>
+                            <input type="date" class="form-control" name="invoice_payment_date" id="invoice_payment_date" required value="<?php echo date('Y-m-d'); ?>">
+                            <span style="color: red" class="invoice-date-error"></span>
+                        </div>
+                            
+                        
+                        
+                    </form>
+               </div> 
+            </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-primary" id="invoice-date-form-submit" onclick="fninvoicedatesubmit()">Submit</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            
+            </div>
+        </div>
+        <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 </div>
 @endsection
 @push('js')
@@ -322,12 +366,19 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                                 <span class="fees-frequency-error" style="color:red"></span>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group d-inline">
+                                <label class="control-label">Agreement Date</label>
+                                <input type="date" class="form-control" name="agreement_date" required id="agreement_date" max="9999-12-31"> 
+                                <span class="agreement-date-error" style="color:red"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>`;
         appendhtml += `<div class="card card-payment-form"><div class="card-header"><b>Invoice Details</b></div><div class="card-body"> <div class="row"><div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Description</label><textarea class="form-control" name="description[]" required></textarea></div></div><div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Amount(in numbers only)</label><input type="number" class="form-control" name="amount[]" required> </div></div><div class="col-md-6">
             <div class="form-group d-inline">
-                <label class="control-label">Subscription Start Date</label>
+                <label class="control-label">Service Start Date</label>
                 <input type="date" class="form-control" name="subscription_start_date[]" required max="9999-12-31"> 
             </div>
         </div>
@@ -336,7 +387,7 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
             </div></div>
         <div class="col-md-6">
             <div class="form-group d-inline">
-                <label class="control-label">Subscription End Date</label>
+                <label class="control-label">Service End Date</label>
                 <input type="date" class="form-control" name="subscription_end_date[]" required max="9999-12-31"> 
                 <span class="subscription-end-date-error" style="color:red"></span>
             </div>
@@ -351,13 +402,13 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
         var invoicecount = $('.card-payment-form').length + 1;
         var appendhtml = `<div class="card card-payment-form"><div class="card-header"><b>Invoice Details</b><a class="btn btn-danger" style="float:right" onclick="return removeinvoice(`+invoicecount+`)"><i class="nav-icon fas fa-trash"></i></a></div><div class="card-body"> <div class="row"><div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Description</label><textarea class="form-control" name="description[]" required></textarea></div></div><div class="col-md-6"><div class="form-group d-inline"><label class="control-label">Amount</label><input type="number" class="form-control" name="amount[]" required> </div></div><div class="col-md-6">
                     <div class="form-group d-inline">
-                        <label class="control-label">Subscription Start Date</label>
+                        <label class="control-label">Service Start Date</label>
                         <input type="date" class="form-control" name="subscription_start_date[]" required max="9999-12-31"> 
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group d-inline">
-                        <label class="control-label">Subscription End Date</label>
+                        <label class="control-label">Service End Date</label>
                         <input type="date" class="form-control" name="subscription_end_date[]" required max="9999-12-31"> 
                         <span class="subscription-end-date-error" style="color:red"></span>
                     </div>
@@ -424,6 +475,9 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                         $.each(data,function(index,value){
                             value.amount_description = value.amount_description == null ? '' : value.amount_description;
                             value.amount = value.amount== null ? '' : value.amount;
+                            value.fees_frequency = value.fees_frequency==null ? '' : value.fees_frequency;
+                            value.agreement_date = value.agreement_date==null ? '' : value.agreement_date;
+                            value.invoice_date = value.invoice_date==null ? '' : value.invoice_date;
                             if(index == 0){
                                 invoicehtml += `<div class="card">
                                                     <div class="card-body">
@@ -440,6 +494,20 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                                                                     <label class="control-label">Fee Frequency</label>
                                                                     <input type="text" class="form-control" name="fees_frequency"  value="`+ value.fees_frequency+`" required id="fees_frequency"> 
                                                                     <span class="fees-frequency-error" style="color:red"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group d-inline">
+                                                                    <label class="control-label">Agreement Date</label>
+                                                                    <input type="date" class="form-control" name="agreement_date" required id="agreement_date" max="9999-12-31" value="${value.agreement_date}"> 
+                                                                    <span class="agreement-date-error" style="color:red"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group d-inline">
+                                                                    <label class="control-label">Invoice Date</label>
+                                                                    <input type="date" class="form-control" name="invoice_date" required id="invoice_date" max="9999-12-31" value="${value.invoice_date}"> 
+                                                                    <span class="invoice-date-error" style="color:red"></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -461,7 +529,7 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>Subscription Start Date</label>
+                                                            <label>Service Start Date</label>
                                                             <input type="date" class="form-control" name="subscription_start_date[]" value="`+ value.subscription_start_date+`" id="subscription_start_date" max="9999-12-31">
                                                             
                                                         </div>
@@ -472,7 +540,7 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                                                     </div></div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>Subscription End Date</label>
+                                                            <label>Service End Date</label>
                                                             <input type="date" class="form-control" name="subscription_end_date[]" value="`+ value.subscription_end_date+`" id="subscription_end_date" max="9999-12-31">
                                                             <span class="text-danger invoice_end_date_error"></span>
                                                         </div>
@@ -499,7 +567,7 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>Subscription Start Date</label>
+                                                            <label>Service Start Date</label>
                                                             <input type="date" class="form-control" name="subscription_start_date[]" value="`+ value.subscription_start_date+`" max="9999-12-31">
                                                             
                                                         </div>
@@ -509,7 +577,7 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                                                     </div></div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>Subscription End Date</label>
+                                                            <label>Service End Date</label>
                                                             <input type="date" class="form-control" name="subscription_end_date[]" value="`+ value.subscription_end_date+`" max="9999-12-31">
                                                             <span class="text-danger invoice_end_date_error"></span>
                                                         </div>
@@ -634,6 +702,46 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
             
         // }
                
+    }
+
+    $(document).on('click','.payment-received-button',function(){
+        var subscription_id = $(this).attr('id');
+        subscription_id = subscription_id.split("invoice_")[1];
+        $('#invoice-date-form').attr('action',"{{  url('/admin/payment-received') }}/"+subscription_id);
+        //$('invoice-date-form #subscription_form_date_id').val(subscription_id);
+    });
+    function fninvoicedatesubmit(){
+        $('.invoice-date-error').html('');
+        
+        var invoice_date = $('#invoice_payment_date').val();
+        if(invoice_date){
+            $('#invoice-date-form-submit').addClass('disabled');
+            var subscriptionformaction = $('#invoice-date-form').attr('action');
+            $.ajax({
+                url:subscriptionformaction,
+                type:'POST',
+                data:$('#invoice-date-form').serialize(),
+                
+                success:function(data) {
+                    $('#invoice-date-form-submit').removeClass('disabled');
+                    if(data.success == 1){
+                            window.location.href = window.location.href;
+                    }else{
+                        
+                        console.log(data);
+                    }
+                
+                        
+                },
+                error:function(res){
+                    $('#invoice-date-form-submit').removeClass('disabled');
+                    $('.invoice-date-error').html('Something went wrong');
+                }
+            });
+        }else{
+            
+            $('.invoice-date-error').html('Invoice Date is required');
+        }
     }
 </script>
 <!--Data Table End -->

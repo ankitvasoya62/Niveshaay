@@ -69,7 +69,17 @@
                                     </div>
                                 </div>
                             </div>
-                            
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="invoice_no">Invoice Date</label>
+                                        <input type="date" name="invoice_date" id="invoice_date" class="form-control" value="{{ $invoice->invoice_date}}">
+                                        @error('invoice_date')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
                             {{-- <div class="form-group">
                                 <label for="pan_no">PAN no.</label>
                                 <input type="text" name="pan_no" id="pan_no" class="form-control" value="{{ old('pan_no') }}">
@@ -212,7 +222,7 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="subscription_start_date">Subscription Start Date</label>
+                                        <label for="subscription_start_date">Service Start Date</label>
                                         <input type="date" name="subscription_start_date" id="subscription_start_date" class="form-control" value="{{ $invoice->subscription_start_date }}">
                                         @error('subscription_start_date')
                                             <span class="error">{{ $message }}</span>
@@ -223,7 +233,7 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="subscription_end_date">Subscription End Date</label>
+                                        <label for="subscription_end_date">Service End Date</label>
                                         <input type="date" name="subscription_end_date" id="subscription_end_date" class="form-control" value="{{ $invoice->subscription_end_date }}">
                                         @error('subscription_end_date')
                                             <span class="error">{{ $message }}</span>

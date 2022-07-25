@@ -66,7 +66,7 @@
                                         @foreach ($invoices as $invoice)
                                         <tr>
                                             <td>{{++$i}}</td>
-                                            <td>{{date("d-m-Y", strtotime($invoice->created_at)) }}</td>
+                                            <td>{{!empty($invoice->invoice_date) ? date("d-m-Y", strtotime($invoice->invoice_date)) : date("d-m-Y", strtotime($invoice->created_at)) }}</td>
                                             <td>{{ !empty($invoice->subscriptionForm) ? $invoice->subscriptionForm->name_of_investor : "---"  }}</td>
                                             <td>{{ !empty($invoice->subscriptionForm) ? $invoice->subscriptionForm->email : "---"  }}</td>
                                             

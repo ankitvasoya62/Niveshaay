@@ -123,7 +123,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::get('/edit-subscription/{id}',[ViewSubscriptionDetailsController::class,'editSubscriptionDetails'])->name('admin.edit-subscription');
         Route::post('/update-subscription/{id}',[ViewSubscriptionDetailsController::class,'updateSubscriptionDetails'])->name('admin.update-subscription');
         Route::post('/verify-subscription',[ViewSubscriptionDetailsController::class,'verifySubscriptionDetails'])->name('admin.verify-subscription');
-        Route::get('/payment-received/{id}',[ViewSubscriptionDetailsController::class,'paymentReceivedAction'])->name('admin.payment-received');
+        Route::post('/payment-received/{id}',[ViewSubscriptionDetailsController::class,'paymentReceivedAction'])->name('admin.payment-received');
         Route::get('/subscription-detail/trash',[ViewSubscriptionDetailsController::class,'trash'])->name('admin.subscription-detail.trash');
         Route::get('/subscription-detail/restore/{id}',[ViewSubscriptionDetailsController::class,'restore'])->name('admin.subscription-detail.restore');
         Route::get('/subscription-detail/permanentdelete/{id}',[ViewSubscriptionDetailsController::class,'permanentDelete'])->name('admin.subscription-detail.permanent-delete');

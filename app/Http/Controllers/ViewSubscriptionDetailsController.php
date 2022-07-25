@@ -141,6 +141,7 @@ class ViewSubscriptionDetailsController extends Controller
             if(!empty($request->fees_frequency)){
                 $data['fees_frequency'] = $request->fees_frequency;
             }
+            $data['agreement_date'] = $request->agreement_date;
             
             $data['invoice_no'] = $invoice_no;
             $insertdata = InvoiceDetail::insert($data);
@@ -182,6 +183,7 @@ class ViewSubscriptionDetailsController extends Controller
         $subscription_data['amount_description'] = $invoices->amount_description;
         $subscription_data['subscription_start_date'] = date('d F, Y',strtotime($subscription_start_date));
         $subscription_data['subscription_end_date'] = date('d F, Y',strtotime($subscription_end_date));
+        $subscription_data['agreement_date'] = $invoices->agreement_date;
         $subscription_data['fees_frequency'] = $feesfrequency;
         // $subscription_data = !empty($subscription_details) ? $subscription_details : array();
         $subscriptionpdf = PDF::loadView('pdf.advisor-agreement', $subscription_data);
@@ -212,9 +214,11 @@ class ViewSubscriptionDetailsController extends Controller
 
     }
 
-    public function paymentReceivedAction($id){
+    public function paymentReceivedAction(Request $request,$id){
         date_default_timezone_set('Asia/Kolkata');
-        
+        $editinvoice = InvoiceDetail::where('subscription_form_id',$id)->where('is_renew',0)->orderBy('id','desc')->first();
+        $editinvoice->invoice_date = $request->invoice_payment_date;
+        $editinvoice->save();
 
         $data = array();
         
@@ -243,7 +247,7 @@ class ViewSubscriptionDetailsController extends Controller
         $invoiceData['subscription_end_date'] = $invoices->subscription_end_date;
         array_push($table_data,$invoiceData);
         $data['invoice_no'] = $invoice_no;
-        $data['created_at'] = $invoices->created_at;
+        $data['created_at'] = $invoices->invoice_date;
         $amount = !empty($invoices->amount) ? $invoices->amount : 0 ;
         if($subscription_details->state == 'Gujarat'){
                $cgst = $amount * 0.09;
@@ -288,7 +292,10 @@ class ViewSubscriptionDetailsController extends Controller
 
 
         
-        return redirect()->route('admin.subscription-details')->with('success','Payment Received! Mail Sent Successfully');
+        //return redirect()->route('admin.subscription-details')->with('success','Payment Received! Mail Sent Successfully');
+        $success = ['success'=>1];
+        session()->flash('success','Payment Received! Mail Sent Successfully');
+        return response()->json($success);
     }
 
     public function viewinvoicedetails($id){
@@ -335,6 +342,8 @@ class ViewSubscriptionDetailsController extends Controller
                 if(!empty($request->fees_frequency)){
                     $invoice->fees_frequency = $request->fees_frequency;
                 }
+                $invoice->agreement_date = $request->agreement_date;
+                $invoice->invoice_date = $request->invoice_date;
                 $user = User::find($invoice->subscriptionForm->user_id);
                 if(!empty($user)){
                     $max_date = max($user->subscription_end_date,$invoice->subscription_end_date);
@@ -371,7 +380,7 @@ class ViewSubscriptionDetailsController extends Controller
         $data['state'] = $subscription_details->state;
         $data["email"] = $subscription_details->email;
         $data['gst_no'] = $subscription_details->gst_no;
-        $data['created_at'] = $invoices->created_at;
+        $data['created_at'] = $invoices->invoice_date;
         $data['invoice_no'] = $invoices->invoice_no;
         $amount = !empty($invoices->amount) ? $invoices->amount : 0 ;
         if($subscription_details->state == 'Gujarat'){
@@ -432,7 +441,7 @@ class ViewSubscriptionDetailsController extends Controller
         $subscription_data['subscription_start_date'] = date('d F, Y',strtotime($subscription_start_date));
         $subscription_data['subscription_end_date'] = date('d F, Y',strtotime($subscription_end_date));
         $subscription_data['fees_frequency'] = $feesfrequency;
-        $subscription_data['created_at'] = $created_at;
+        $subscription_data['agreement_date'] = $invoices->agreement_date;
         $pdf = PDF::loadView('pdf.advisor-agreement', $subscription_data);
         return $pdf->download('agreement.pdf');
                                     
@@ -464,7 +473,7 @@ class ViewSubscriptionDetailsController extends Controller
         $subscription_details->restore();
         $invoices = InvoiceDetail::where('subscription_form_id',$id)->restore();
         
-        return redirect()->route('admin.subscription-detail.trash')->with('success',"Record Restored Successfully!");
+        return redirect()->route('admin.subscription-detail.trash')->with('success',"Record restored Successfully!");
     }
 
     public function permanentDelete($id){
@@ -472,6 +481,6 @@ class ViewSubscriptionDetailsController extends Controller
         $subscription_details->forceDelete();
         $invoices = InvoiceDetail::where('subscription_form_id',$id);
         $invoices->forceDelete();
-        return redirect()->route('admin.subscription-detail.trash')->with('success',"Record Deleted Successfully!");
+        return redirect()->route('admin.subscription-detail.trash')->with('success',"Record deleted Successfully!");
     }
 }
