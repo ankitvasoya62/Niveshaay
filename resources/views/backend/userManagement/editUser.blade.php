@@ -108,7 +108,7 @@
                     <div class="col-md-3">
                       <div class="form-group">
                         <label for="name">GST number</label>
-                        <input type="text" name="gst_no" class="form-control" id="gst_no" placeholder="Enter GST Number" value="{{ $gst_no }}" required>
+                        <input type="text" name="gst_no" class="form-control" id="gst_no" placeholder="Enter GST Number" value="{{ $gst_no }}">
                         @error('gst_no')
                             <span class="error">{{$message}}</span>
                         @enderror
@@ -117,7 +117,7 @@
                   </div>
                   <div class="form-group">
                     <label for="name">Street address</label>
-                    <input type="text" name="street_address" class="form-control" id="street_address" placeholder="Enter Street Address" value="{{ $street_address }}" required>
+                    <input type="text" name="street_address" class="form-control" id="street_address" placeholder="Enter Street Address" value="{{ $street_address }}">
                     @error('street_address')
                         <span class="error">{{$message}}</span>
                     @enderror
@@ -148,7 +148,7 @@
                     <div class="col-md-3">
                       <div class="form-group">
                         <label for="name">Service Name</label>
-                        <input type="text" name="service_name" class="form-control" id="service_name" placeholder="Enter Service Name" value="{{ $service_name }}" required>
+                        <input type="text" name="service_name" class="form-control" id="service_name" placeholder="Enter Service Name" value="{{ $service_name }}">
                         @error('service_name')
                             <span class="error">{{$message}}</span>
                         @enderror
