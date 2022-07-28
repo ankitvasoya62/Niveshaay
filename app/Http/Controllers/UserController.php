@@ -124,6 +124,9 @@ class UserController extends Controller
             'mobile_no'=>$request->phone_no,
             'pan_no'=>$request->pan,
             'dob'=>date("Y-m-d", strtotime($request->dob)),
+            'street_address'=>$request->street_address,
+            'state'=>$request->state,
+            'gst_no'=>$request->gst_no,
             'user_id'=>$user->id,
             'is_email_verified'=>1,
             'is_verified_by_admin'=>1,
@@ -139,9 +142,9 @@ class UserController extends Controller
             $invoice_no = "#NRS/".$currentyear."-".($currentyear+1)."/".($subscriptionFormDetails->id+100);
         }
         $invoiceDetails = new InvoiceDetail([
-            'description'=> 'Research Services',
-            'subscription_start_date'=>date("Y-m-d", strtotime($request->subscription_start_date)),
-            'subscription_end_date'=>date("Y-m-d", strtotime($request->subscription_end_date)),
+            'description'=> !empty($request->service_name) ? $request->service_name :'Research Services',
+            'subscription_start_date'=>!empty($request->subscription_start_date) ? date("Y-m-d", strtotime($request->subscription_start_date)) : NULL,
+            'subscription_end_date'=>!empty($request->subscription_end_date) ? date("Y-m-d", strtotime($request->subscription_end_date)) : NULL,
             'amount'=>$request->amount,
             'invoice_no'=>$invoice_no,
             'subscription_form_id'=>$subscriptionFormDetails->id
@@ -205,8 +208,8 @@ class UserController extends Controller
 
     	],[
             'dob.date_format'=>'Please enter a valid date of birth!',
-            'subscription_start_date.date_format'=>'Please enter a valid subscription start date!',
-            'subscription_end_date.date_format'=>'Please enter a valid subscription end date!',
+            'subscription_start_date.date_format'=>'Please enter a valid service start date!',
+            'subscription_end_date.date_format'=>'Please enter a valid service end date!',
         ]);
         $data = array();
         $data['name'] = $request->name;
@@ -223,6 +226,23 @@ class UserController extends Controller
         $data['updated_at'] = Carbon::now();
         User::find($id)->update($data);
         $user = User::find($id);
+
+        $subscriptionDetails = SubscriptionFormDetail::where('user_id',$id)->first();
+
+        if(!empty($subscriptionDetails)){
+            $subscriptionDetails->state = $request->state;
+            $subscriptionDetails->street_address = $request->street_address;
+            $subscriptionDetails->gst_no = $request->gst_no;
+            $subscriptionDetails->save();
+
+            $invoice = InvoiceDetail::where('subscription_form_id',$subscriptionDetails->id)->where('is_renew',0)->orderBy('id','desc')->first();
+            
+            if(!empty($invoice)){
+                $invoice->description = $request->service_name;
+                $invoice->save();
+            }
+        }
+
         $notification = array(
             // 'message' => 'User Updated Successfully',
             // 'alert-type' => 'success'

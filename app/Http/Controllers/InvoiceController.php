@@ -117,7 +117,7 @@ class InvoiceController extends Controller
                 $data['total'] = $total;
             }
             
-            
+            $data['created_at'] = $invoices->invoice_date;
             $data['table_data'] = $table_data;
             $pdf = PDF::loadView('pdf.document', $data);
             Mail::send('backend.invoiceMail', $data, function($message)use($data, $pdf) {
