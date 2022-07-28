@@ -369,10 +369,12 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                         <div class="col-md-6">
                             <div class="form-group d-inline">
                                 <label class="control-label">Agreement Date</label>
-                                <input type="date" class="form-control" name="agreement_date" required id="agreement_date" max="9999-12-31"> 
+                                <input type="datetime-local" class="form-control" name="agreement_date" required id="agreement_date" max="9999-12-31"> 
+                                
                                 <span class="agreement-date-error" style="color:red"></span>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>`;
@@ -499,10 +501,12 @@ $('#reservation').on('cancel.daterangepicker',function(ev,picker){
                                                             <div class="col-md-6">
                                                                 <div class="form-group d-inline">
                                                                     <label class="control-label">Agreement Date</label>
-                                                                    <input type="date" class="form-control" name="agreement_date" required id="agreement_date" max="9999-12-31" value="${value.agreement_date}"> 
+                                                                    
+                                                                    <input type="datetime-local" class="form-control" name="agreement_date" required id="agreement_date" value="${value.agreement_date}"> 
                                                                     <span class="agreement-date-error" style="color:red"></span>
                                                                 </div>
                                                             </div>
+                                                            
                                                             <div class="col-md-6">
                                                                 <div class="form-group d-inline">
                                                                     <label class="control-label">Invoice Date</label>
