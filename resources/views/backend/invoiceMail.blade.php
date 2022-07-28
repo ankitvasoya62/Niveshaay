@@ -1,4 +1,4 @@
-<p>Thank You for subscribing to Niveshaay Research Services. Your login account details remain the same.</p>
+<p>Thank You for subscribing to Niveshaay. Your login account details remain the same.</p>
 <p>You can always contact us in case of any query.</p>
 <p>Happy Investing!</p>
 <p>Regards </p>

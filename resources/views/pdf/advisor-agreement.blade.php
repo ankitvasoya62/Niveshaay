@@ -154,7 +154,7 @@
                                                                             <td height="10"></td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td class="detail-text">{{ !empty($agreement_date) ? date("F d Y",strtotime($agreement_date)) :date("F d Y");}}</td>
+                                                                            <td class="detail-text">{{ !empty($agreement_date) ? date("F d Y H:i:s A",strtotime($agreement_date)) :date("F d Y H:i:s A");}}</td>
                                                                         </tr>
                                                                 </tbody> 
                                                             </table>

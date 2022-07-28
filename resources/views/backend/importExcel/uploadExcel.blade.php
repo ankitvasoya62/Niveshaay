@@ -93,7 +93,7 @@
                         
                         
                         <button class="btn btn-success">Import Bulk Users</button>
-                        <a class="btn btn-warning" href="{{ asset('images/Users.csv') }}" download>Download Demo Excel</a>
+                        <a class="btn btn-warning" href="{{ asset('images/demo_user_excel.xlsx') }}" download>Download Demo Excel</a>
                         {{-- <a class="btn btn-warning" href="#">Export User Data</a> --}}
                     </form>
                                         

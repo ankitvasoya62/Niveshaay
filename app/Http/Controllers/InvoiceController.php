@@ -79,7 +79,7 @@ class InvoiceController extends Controller
         
         // $user = User::find($userid);
         // $user->subscription_start_date = $request->subscription_start_date;
-        if(!empty($newInvoice) && isset($request->service_type) && $request->service_type == 0  ){
+        if(!empty($newInvoice)){
             $toEmail = $subscriptionRecord->email;
             $data = array();
             $data = array();
