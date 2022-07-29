@@ -166,7 +166,7 @@ class UsersImport implements ToModel,WithHeadingRow,WithValidation,SkipsOnFailur
          return [
              '*.name'=>['required'],
              '*.email'=>['email'],
-             '*.dob'=>['date'],
+             '*.dob'=>['date','date_format:d-m-Y'],
              
              '*.contact_number'=>['digits:10'],
              '*.pan_no'=>['max:10','min:10']

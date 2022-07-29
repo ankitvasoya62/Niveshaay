@@ -82,8 +82,9 @@
                                 <input type="file" name="file" class="form-control" >
                                 
                             </div>
-                            <div class="col-md-7 form-group" style="padding-top: 5px">
-                                <span style="color:red">*The file type should be: .csv, .xls, .xlsx.</span>
+                            <div class="col-md-7 form-group">
+                                <span style="color:red">*The file type should be: .csv, .xls, .xlsx.</span><br/>
+                                <span style="color:red">*Date format should be dd-mm-yyyy.</span>
                             </div>
                         </div>
                         
