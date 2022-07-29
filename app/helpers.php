@@ -4,6 +4,9 @@ use App\Models\ShareDetails;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use App\Models\SubscriptionFormDetail;
+use Carbon\Carbon;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
+
 // use File;
 // use Image;
 
@@ -329,4 +332,13 @@ function companyRiskProfile($latestSubscriptionFormDetails){
     $average = $sum/6;
     return $average;
 
+}
+
+function transformDate($value, $format = 'd-m-Y')
+{
+    try {
+        return Date::excelToDateTimeObject($value)->format($format);
+    } catch (\ErrorException $e) {
+        return Carbon::createFromFormat($format, $value)->format($format);
+    }
 }

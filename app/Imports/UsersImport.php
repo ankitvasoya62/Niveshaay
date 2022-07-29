@@ -19,6 +19,8 @@ use App\Models\SubscriptionLog;
 use App\Models\SubscriptionFormDetail;
 use App\Models\InvoiceDetail;
 use Carbon\Carbon;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
+
 
 
 class UsersImport implements ToModel,WithHeadingRow,WithValidation,SkipsOnFailure
@@ -67,11 +69,13 @@ class UsersImport implements ToModel,WithHeadingRow,WithValidation,SkipsOnFailur
                 $user->email = $row['email'];
                 $user->phone_no = $row['contact_number'];
                 $user->pan = $row['pan_no'];
-                $user->dob = $row['dob'];
+                $user->dob = transformDate($row['dob']);
                 // $user->smallcase_name = $row['smallcase_name'];
                 // $user->subscription_status = $row['subscription_status']=='SUBSCRIBED' ? 1:0;
-                $user->subscription_start_date = date('Y-m-d',strtotime($row['service_start_date']));
-                $user->subscription_end_date  = $max_date;
+                // $user->subscription_start_date = date('Y-m-d',strtotime($row['service_start_date']));
+                // $user->subscription_end_date  = $max_date;
+                $user->subscription_start_date = !empty($row['service_start_date']) ? transformDate($row['service_start_date']) : '';
+                $user->subscription_end_date  = !empty($row['service_end_date']) ? transformDate($row['service_end_date']) : '';
                 // $user->subscription_plan  = $row['subscription_plan'];
                 $user->amount  = $row['amount'];
                 // $user->broker = $row['broker']; 
@@ -96,11 +100,11 @@ class UsersImport implements ToModel,WithHeadingRow,WithValidation,SkipsOnFailur
                 'password'=>\Hash::make($random_password),
                 'phone_no'=>$row['contact_number'],
                 'pan'=>$row['pan_no'],
-                'dob'=>date("Y-m-d", strtotime($row['dob'])),
+                'dob'=>transformDate($row['dob']),
                 // 'smallcase_name'=>$row['smallcase_name'],
                 // 'subscription_status'=>$row['subscription_status']=='SUBSCRIBED' ? 1:0,
-                'subscription_start_date'=>!empty($row['service_start_date']) ? date("Y-m-d", strtotime($row['service_start_date'])) : '',
-                'subscription_end_date'=>!empty($row['service_end_date']) ? date("Y-m-d", strtotime($row['service_end_date'])) : '',
+                'subscription_start_date'=>!empty($row['service_start_date']) ? transformDate($row['service_start_date']) : '',
+                'subscription_end_date'=>!empty($row['service_end_date']) ? transformDate($row['service_end_date']) : '',
                 // 'subscription_plan'=>$row['subscription_plan'],
                 'is_admin'=>0,
                 'amount'=>$row['amount'],
@@ -128,7 +132,7 @@ class UsersImport implements ToModel,WithHeadingRow,WithValidation,SkipsOnFailur
                 'mobile_no'=>$row['contact_number'],
                 'pan_no'=>$row['pan_no'],
                 'gst_no'=>$row['gst_no'],
-                'dob'=>date("Y-m-d", strtotime($row['dob'])),
+                'dob'=>transformDate($row['dob'],'Y-m-d'),
                 'street_address'=>$row['street_address'],
                 'state'=>!empty($row['state']) ? $row['state'] : '',
                 'user_id'=>$user->id,
@@ -147,8 +151,8 @@ class UsersImport implements ToModel,WithHeadingRow,WithValidation,SkipsOnFailur
             }
             $invoiceDetails = new InvoiceDetail([
                 'description'=>$row['service_name'],
-                'subscription_start_date'=>date("Y-m-d", strtotime($row['service_start_date'])),
-                'subscription_end_date'=>date("Y-m-d", strtotime($row['service_end_date'])),
+                'subscription_start_date'=>transformDate($row['service_start_date'],'Y-m-d'),
+                'subscription_end_date'=>transformDate($row['service_end_date'],'Y-m-d'),
                 'amount'=>$row['amount'],
                 'invoice_no'=>$invoice_no,
                 'subscription_form_id'=>$subscriptionFormDetails->id
@@ -166,7 +170,7 @@ class UsersImport implements ToModel,WithHeadingRow,WithValidation,SkipsOnFailur
          return [
              '*.name'=>['required'],
              '*.email'=>['email'],
-             '*.dob'=>['date','date_format:d-m-Y'],
+            //  '*.dob'=>['date','date_format:d-m-Y'],
              
              '*.contact_number'=>['digits:10'],
              '*.pan_no'=>['max:10','min:10']
